@@ -28,9 +28,10 @@ jobs:
       run: >
         Get-ChildItem -Path "${{ github.workspace }}/packages/" | Foreach-Object -Process { echo $_.Name }
     - name: Setup NuGet.exe
-      uses: nuget/setup-nuget@v1
+      uses: nuget/setup-nuget@v2
       with:
         nuget-api-key: ${{ secrets.nuget_api_key }}
+        nuget-version: '5.x'
     - name: Publish NuGet packages to nuget.org
       run: nuget push -Source https://api.nuget.org/v3/index.json '${{ github.workspace }}\packages\*.nupkg' -SkipDuplicate
     - name: Get version.txt
