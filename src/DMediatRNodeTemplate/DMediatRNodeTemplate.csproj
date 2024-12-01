@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageType>Template</PackageType>
+    <Authors>Toni Arnold</Authors>
+    <Version>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../../nuget-info/version.txt"))</Version>
+    <PackageId>DMediatRNodeTemplate</PackageId>
+    <Product>DMediatR</Product>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Title>aspnettest Blazor Server App with bUnit, Selenium and SpecFlow</Title>
+    <Description>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../../nuget-info/description.txt"))</Description>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Copyright>Copyright © 2024</Copyright>
+    <PackageProjectUrl>https://github.com/toniarnold/DMediatR/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/toniarnold/DMediatR.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../../nuget-info/release-notes.txt"))</PackageReleaseNotes>
+    <PackageTags>dotnet-new;templates;mediator;gRPC;x509;certificate</PackageTags>
+
+    <TargetFramework>netstandard2.0</TargetFramework>
+
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>content</ContentTargetFolders>
+    <NoWarn>$(NoWarn)</NoWarn>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="**\*" Exclude="bin\**;src\DMediatRNode1*\bin\**;src\bin\DMediatRNode1*;**\obj\**;.vs/**" />
+    <Compile Remove="**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+
+</Project>

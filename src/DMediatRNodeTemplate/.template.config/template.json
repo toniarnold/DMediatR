@@ -1,0 +1,30 @@
+{
+  "identity": "DMediatRNodeTemplate",
+  "author": "Toni Arnold",
+  "classifications": [
+    "Solution",
+    "MediatR",
+    "gRPC"
+  ],
+  "name": "DMediatR gRPC node",
+  "shortName": "DMediatRNode",
+  "tags": {
+    "language": "C#",
+    "type": "solution"
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [
+            ".vs/**",
+            "DMediatRNodeTemplate.csproj"
+          ],
+          "include": [
+          ]
+        }
+      ]
+    }
+  ],
+  "sourceName": "DMediatRNode1"
+}

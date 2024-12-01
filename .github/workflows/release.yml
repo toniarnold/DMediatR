@@ -1,0 +1,47 @@
+name: Release Libraries
+
+on:
+  workflow_call:
+    secrets:
+      nuget_api_key:
+        description: 'nuget.org API key'
+        required: true
+
+jobs:
+  publish-nuget:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+    - name: Download .[s]nupkg packages
+      uses: actions/download-artifact@v3
+      with:
+        name: DMediatR
+        path: ${{ github.workspace }}/packages/
+    - name: List packages
+      shell: pwsh
+      run: >
+        Get-ChildItem -Path "${{ github.workspace }}/packages/" | Foreach-Object -Process { echo $_.Name }
+    - name: Setup NuGet.exe
+      uses: nuget/setup-nuget@v1
+      with:
+        nuget-api-key: ${{ secrets.nuget_api_key }}
+    - name: Publish NuGet packages to nuget.org
+      run: nuget push -Source https://api.nuget.org/v3/index.json '${{ github.workspace }}\packages\*.nupkg' -SkipDuplicate
+    - name: Get version.txt
+      shell: pwsh
+      run: |
+        $version = Get-Content ${{ github.workspace }}/nuget-info/version.txt
+        echo "version=$version" >> $Env:GITHUB_ENV
+    - name: Create GitHub release "v${{ env.version }}"
+      uses: ncipollo/release-action@v1
+      with:
+        commit: master
+        tag: "v${{ env.version }}"
+        artifacts: "${{ github.workspace }}/packages/*.nupkg"
+        bodyFile: "${{ github.workspace }}/nuget-info/release-notes.txt"
