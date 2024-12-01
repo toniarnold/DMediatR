@@ -1,7 +1,7 @@
 # nmake file for building the DocFX API documentation
 
 gh-pages: doc
-	-robocopy _site ..\gh-pages /mir /njh /ns /nc /nfl /ndl /np
+	-robocopy _site ..\docs /mir /njh /ns /nc /nfl /ndl /np
 
 doc:
 	docfx docfx.json
