@@ -1,0 +1,13 @@
+name: Build and release DMediatR.nupkg
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+  release:
+    needs: [build]
+    uses: ./.github/workflows/release.yml
+    secrets:
+      nuget_api_key: ${{ secrets.NUGET_API }}

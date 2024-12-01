@@ -1,4 +1,4 @@
-name: Build DMediatR .nupkg
+name: Build DMediatR.nupkg
 
 on:
   workflow_dispatch:

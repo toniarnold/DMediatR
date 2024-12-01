@@ -5,3 +5,34 @@ on:
   workflow_call:
 
 jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+
+    # Build DMediatR
+    - name: Restore dependencies
+      run: dotnet restore DMediatR.sln
+    - name: Build the solution
+      run: dotnet build DMediatR.sln --configuration=Release
+    
+    # Fails on github as it cannot start DMediatRNode processes:
+    - name: Test the solution
+      run: dotnet test DMediatR.sln --configuration=Release --no-build --verbosity normal
+      
+    - name: Create .nupkg packages
+      run: dotnet pack DMediatR.sln --configuration Release --no-restore -o ${{ github.workspace }}/packages
+
+    # Upload NuGet packages to github artefacts
+    - name: Upload .[s]nupkg packages
+      uses: actions/upload-artifact@v3
+      with:
+        name: DMediatR
+        path: ${{ github.workspace }}/packages/*.*nupkg
+        retention-days: 10

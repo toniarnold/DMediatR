@@ -1,4 +1,4 @@
-name: Release Libraries
+name: Release DMediatR.nupkg
 
 on:
   workflow_call:
