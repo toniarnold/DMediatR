@@ -7,6 +7,9 @@ namespace DMediatR
     internal partial class ValidateCertificateOptions : IValidateOptions<CertificateOptions>
     { }
 
+    /// <summary>
+    /// X509 certificate specification, including the password.
+    /// </summary>
     public sealed class CertificateOptions
     {
         public const string SectionName = "Certificate";

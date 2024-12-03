@@ -11,6 +11,9 @@ namespace DMediatR
     {
     }
 
+    /// <summary>
+    /// IRemote extension methods for connecting to a Dto gRPC service from a MediatR handler.
+    /// </summary>
     public static class RemoteExtension
     {
         /// <summary>

@@ -400,3 +400,4 @@ FodyWeavers.xsd
 # DocFX generated
 doc/_site/
 doc/api/
+doc/DocFx.Plugins.PlantUml/

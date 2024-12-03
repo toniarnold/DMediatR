@@ -31,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="appsettings.RemoteClientCert.json">
+    <None Update="appsettings.RemotePing.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="appsettings.RemoteServerCert.json">

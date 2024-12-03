@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class GrpcChannelPool | DMediatR </title>
+      <title>Class Pong | DMediatR </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class GrpcChannelPool | DMediatR ">
+      <meta name="title" content="Class Pong | DMediatR ">
       
-      <meta name="description" content="Implements a cache for long-lived gRPC channels, one instance per address.">
+      <meta name="description" content="Response to a Ping request. Echoes the Ping message and the ASPNETCORE_ENVIRONMENT of the responding Node if present.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -84,12 +84,12 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="DMediatR.GrpcChannelPool">
+        <article data-uid="DMediatR.Pong">
 
 
 
-  <h1 id="DMediatR_GrpcChannelPool" data-uid="DMediatR.GrpcChannelPool" class="text-break">
-Class GrpcChannelPool  
+  <h1 id="DMediatR_Pong" data-uid="DMediatR.Pong" class="text-break">
+Class Pong  
   </h1>
 
   <div class="facts text-secondary">
@@ -97,12 +97,12 @@ Class GrpcChannelPool
   <dl><dt>Assembly</dt><dd>DMediatR.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Implements a cache for long-lived gRPC channels, one instance per address.</p>
+  <div class="markdown summary"><p>Response to a Ping request. Echoes the Ping message and the ASPNETCORE_ENVIRONMENT of the responding Node if present.</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class GrpcChannelPool : IGrpcChannelPool, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Pong</code></pre>
   </div>
 
 
@@ -112,17 +112,10 @@ Class GrpcChannelPool
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><span class="xref">GrpcChannelPool</span></div>
+      <div><span class="xref">Pong</span></div>
     </dd>
   </dl>
 
-  <dl class="typelist implements">
-    <dt>Implements</dt>
-    <dd>
-      <div><a class="xref" href="DMediatR.IGrpcChannelPool.html">IGrpcChannelPool</a></div>
-      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
-    </dd>
-  </dl>
 
 
   <dl class="typelist inheritedMembers">
@@ -156,41 +149,14 @@ Class GrpcChannelPool
 
 
 
-  <h2 class="section" id="methods">Methods
+  <h2 class="section" id="properties">Properties
 </h2>
 
 
-  <a id="DMediatR_GrpcChannelPool_Dispose_" data-uid="DMediatR.GrpcChannelPool.Dispose*"></a>
+  <a id="DMediatR_Pong_Message_" data-uid="DMediatR.Pong.Message*"></a>
 
-  <h3 id="DMediatR_GrpcChannelPool_Dispose" data-uid="DMediatR.GrpcChannelPool.Dispose">
-  Dispose()
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <a id="DMediatR_GrpcChannelPool_ForAddress_" data-uid="DMediatR.GrpcChannelPool.ForAddress*"></a>
-
-  <h3 id="DMediatR_GrpcChannelPool_ForAddress_System_String_System_Net_Http_HttpClientHandler_" data-uid="DMediatR.GrpcChannelPool.ForAddress(System.String,System.Net.Http.HttpClientHandler)">
-  ForAddress(string, HttpClientHandler)
+  <h3 id="DMediatR_Pong_Message" data-uid="DMediatR.Pong.Message">
+  Message
   
   </h3>
 
@@ -198,56 +164,18 @@ Class GrpcChannelPool
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GrpcChannel ForAddress(string address, HttpClientHandler handler)</code></pre>
+    <pre><code class="lang-csharp hljs">public string? Message { get; set; }</code></pre>
   </div>
 
-  <h4 class="section">Parameters</h4>
+
+
+
+
+  <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><code>address</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-    <dt><code>handler</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclienthandler">HttpClientHandler</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
   </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/64e87a676b6aba16945f70aed3bb1c1dbbbbbad0/src/Grpc.Net.Client/GrpcChannel.cs">GrpcChannel</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="DMediatR_GrpcChannelPool_Remove_" data-uid="DMediatR.GrpcChannelPool.Remove*"></a>
-
-  <h3 id="DMediatR_GrpcChannelPool_Remove_System_String_" data-uid="DMediatR.GrpcChannelPool.Remove(System.String)">
-  Remove(string)
-  
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Remove(string address)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>address</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
 
 
 

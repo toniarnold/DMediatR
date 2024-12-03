@@ -25,9 +25,9 @@ jobs:
     - name: Build the solution
       run: dotnet build DMediatR.sln --configuration=Release
     
-      # Fails on github as it cannot start DMediatRNode processes:
-      #- name: Test the solution
-      #run: dotnet test DMediatR.sln --configuration=Release --no-build --verbosity normal
+      # Exclude integration tests as github workflows are prohibited to start DMediatRNode processes:
+      - name: Test the solution
+      run: dotnet test DMediatR.sln --configuration=Release --no-build --verbosity normal -- NUnit.Where="cat != Integration"
       
     - name: Create .nupkg packages
       run: dotnet pack DMediatR.sln --configuration Release --no-restore -o ${{ github.workspace }}/packages

@@ -595,6 +595,22 @@ references:
   isSpec: "True"
   fullName: DMediatR.GrpcChannelPool.ForAddress
   nameWithType: GrpcChannelPool.ForAddress
+- uid: DMediatR.GrpcChannelPool.Remove(System.String)
+  name: Remove(string)
+  href: api/DMediatR.GrpcChannelPool.html#DMediatR_GrpcChannelPool_Remove_System_String_
+  commentId: M:DMediatR.GrpcChannelPool.Remove(System.String)
+  name.vb: Remove(String)
+  fullName: DMediatR.GrpcChannelPool.Remove(string)
+  fullName.vb: DMediatR.GrpcChannelPool.Remove(String)
+  nameWithType: GrpcChannelPool.Remove(string)
+  nameWithType.vb: GrpcChannelPool.Remove(String)
+- uid: DMediatR.GrpcChannelPool.Remove*
+  name: Remove
+  href: api/DMediatR.GrpcChannelPool.html#DMediatR_GrpcChannelPool_Remove_
+  commentId: Overload:DMediatR.GrpcChannelPool.Remove
+  isSpec: "True"
+  fullName: DMediatR.GrpcChannelPool.Remove
+  nameWithType: GrpcChannelPool.Remove
 - uid: DMediatR.GrpcPort
   name: GrpcPort
   href: api/DMediatR.GrpcPort.html
@@ -801,6 +817,22 @@ references:
   isSpec: "True"
   fullName: DMediatR.IGrpcChannelPool.ForAddress
   nameWithType: IGrpcChannelPool.ForAddress
+- uid: DMediatR.IGrpcChannelPool.Remove(System.String)
+  name: Remove(string)
+  href: api/DMediatR.IGrpcChannelPool.html#DMediatR_IGrpcChannelPool_Remove_System_String_
+  commentId: M:DMediatR.IGrpcChannelPool.Remove(System.String)
+  name.vb: Remove(String)
+  fullName: DMediatR.IGrpcChannelPool.Remove(string)
+  fullName.vb: DMediatR.IGrpcChannelPool.Remove(String)
+  nameWithType: IGrpcChannelPool.Remove(string)
+  nameWithType.vb: IGrpcChannelPool.Remove(String)
+- uid: DMediatR.IGrpcChannelPool.Remove*
+  name: Remove
+  href: api/DMediatR.IGrpcChannelPool.html#DMediatR_IGrpcChannelPool_Remove_
+  commentId: Overload:DMediatR.IGrpcChannelPool.Remove
+  isSpec: "True"
+  fullName: DMediatR.IGrpcChannelPool.Remove
+  nameWithType: IGrpcChannelPool.Remove
 - uid: DMediatR.IRemote
   name: IRemote
   href: api/DMediatR.IRemote.html
@@ -1034,6 +1066,72 @@ references:
   isSpec: "True"
   fullName: DMediatR.MemoryCacheGuidExtension.HaveSeen
   nameWithType: MemoryCacheGuidExtension.HaveSeen
+- uid: DMediatR.Ping
+  name: Ping
+  href: api/DMediatR.Ping.html
+  commentId: T:DMediatR.Ping
+  fullName: DMediatR.Ping
+  nameWithType: Ping
+- uid: DMediatR.Ping.#ctor
+  name: Ping()
+  href: api/DMediatR.Ping.html#DMediatR_Ping__ctor
+  commentId: M:DMediatR.Ping.#ctor
+  name.vb: New()
+  fullName: DMediatR.Ping.Ping()
+  fullName.vb: DMediatR.Ping.New()
+  nameWithType: Ping.Ping()
+  nameWithType.vb: Ping.New()
+- uid: DMediatR.Ping.#ctor(System.String)
+  name: Ping(string)
+  href: api/DMediatR.Ping.html#DMediatR_Ping__ctor_System_String_
+  commentId: M:DMediatR.Ping.#ctor(System.String)
+  name.vb: New(String)
+  fullName: DMediatR.Ping.Ping(string)
+  fullName.vb: DMediatR.Ping.New(String)
+  nameWithType: Ping.Ping(string)
+  nameWithType.vb: Ping.New(String)
+- uid: DMediatR.Ping.#ctor*
+  name: Ping
+  href: api/DMediatR.Ping.html#DMediatR_Ping__ctor_
+  commentId: Overload:DMediatR.Ping.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: DMediatR.Ping.Ping
+  fullName.vb: DMediatR.Ping.New
+  nameWithType: Ping.Ping
+  nameWithType.vb: Ping.New
+- uid: DMediatR.Ping.Message
+  name: Message
+  href: api/DMediatR.Ping.html#DMediatR_Ping_Message
+  commentId: P:DMediatR.Ping.Message
+  fullName: DMediatR.Ping.Message
+  nameWithType: Ping.Message
+- uid: DMediatR.Ping.Message*
+  name: Message
+  href: api/DMediatR.Ping.html#DMediatR_Ping_Message_
+  commentId: Overload:DMediatR.Ping.Message
+  isSpec: "True"
+  fullName: DMediatR.Ping.Message
+  nameWithType: Ping.Message
+- uid: DMediatR.Pong
+  name: Pong
+  href: api/DMediatR.Pong.html
+  commentId: T:DMediatR.Pong
+  fullName: DMediatR.Pong
+  nameWithType: Pong
+- uid: DMediatR.Pong.Message
+  name: Message
+  href: api/DMediatR.Pong.html#DMediatR_Pong_Message
+  commentId: P:DMediatR.Pong.Message
+  fullName: DMediatR.Pong.Message
+  nameWithType: Pong.Message
+- uid: DMediatR.Pong.Message*
+  name: Message
+  href: api/DMediatR.Pong.html#DMediatR_Pong_Message_
+  commentId: Overload:DMediatR.Pong.Message
+  isSpec: "True"
+  fullName: DMediatR.Pong.Message
+  nameWithType: Pong.Message
 - uid: DMediatR.RemoteAttribute
   name: RemoteAttribute
   href: api/DMediatR.RemoteAttribute.html

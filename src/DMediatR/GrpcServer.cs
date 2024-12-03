@@ -12,21 +12,24 @@ using System.Security.Cryptography.X509Certificates;
 namespace DMediatR
 {
     /// <summary>
-    /// Port resp. SSL certificate to use
+    /// Port resp. SSL certificate to use.
     /// </summary>
     public enum GrpcPort
     {
         /// <summary>
-        /// Use the configured default port with the  current certificate
+        /// Use the configured default port with the  current certificate.
         /// </summary>
         UseDefault,
 
         /// <summary>
-        /// Use the configured OldPort with the old certificate
+        /// Use the configured OldPort with the old certificate.
         /// </summary>
         UseRenew
     }
 
+    /// <summary>
+    /// Utility for creating a gRPC service WebApplicationBuilder and WebApplication in a DMediatR node.
+    /// </summary>
     public static class GrpcServer
     {
         public static WebApplicationBuilder CreateWebAppBuilder(string[] args)

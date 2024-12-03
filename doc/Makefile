@@ -3,8 +3,11 @@
 gh-pages: doc
 	-robocopy _site ..\docs /mir /njh /ns /nc /nfl /ndl /np
 
-doc:
+doc: DocFx.Plugins.PlantUml
 	docfx docfx.json
+
+DocFx.Plugins.PlantUml:
+	nuget install DocFx.Plugins.PlantUml -ExcludeVersion -OutputDirectory .
 
 clean:
 	-del /s /q _site\*

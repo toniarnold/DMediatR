@@ -7,6 +7,9 @@ namespace DMediatR
     internal partial class ValidateHostOptions : IValidateOptions<HostOptions>
     { }
 
+    /// <summary>
+    /// Specification of a DMediatR node host. Also used for specifying the remotes in RemotesOptions.
+    /// </summary>
     public sealed class HostOptions
     {
         public const string SectionName = "Host";

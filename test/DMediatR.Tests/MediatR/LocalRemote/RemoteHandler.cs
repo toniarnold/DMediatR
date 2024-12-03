@@ -5,7 +5,7 @@
     {
         public async Task<Pong> Handle(Ping request, CancellationToken cancellationToken)
         {
-            await Task.FromResult(0);
+            await Task.CompletedTask;
             return new Pong { Message = request.Message + " remote Pong" };
         }
     }

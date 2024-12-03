@@ -96,11 +96,13 @@ Classes
 </h3>
     <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.CertificateOptions.html">CertificateOptions</a></dt>
-      <dd></dd>
+      <dd><p>X509 certificate specification, including the password.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.Certificates.html">Certificates</a></dt>
-      <dd></dd>
+      <dd><p>Utility to create a valid initial X509 certificate chain offline to be distributed to all gRPC nodes.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.Dto.html">Dto</a></dt>
@@ -113,16 +115,33 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.GrpcChannelPool.html">GrpcChannelPool</a></dt>
+      <dd><p>Implements a cache for long-lived gRPC channels, one instance per address.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.GrpcServer.html">GrpcServer</a></dt>
-      <dd></dd>
+      <dd><p>Utility for creating a gRPC service WebApplicationBuilder and WebApplication in a DMediatR node.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.HostOptions.html">HostOptions</a></dt>
-      <dd></dd>
+      <dd><p>Specification of a DMediatR node host. Also used for specifying the remotes in RemotesOptions.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.LocalAttribute.html">LocalAttribute</a></dt>
       <dd><p>Marks the handlers in this class as local double of a [Remote] class.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.Ping.html">Ping</a></dt>
+      <dd><p>Simple MediatR IRequest for diagnosis.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.Pong.html">Pong</a></dt>
+      <dd><p>Response to a Ping request. Echoes the Ping message and the ASPNETCORE_ENVIRONMENT of the responding Node if present.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -132,11 +151,12 @@ Classes
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.RemoteExtension.html">RemoteExtension</a></dt>
-      <dd></dd>
+      <dd><p>IRemote extension methods for connecting to a Dto gRPC service from a MediatR handler.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.RemotesOptions.html">RemotesOptions</a></dt>
-      <dd><p>Dictionary of configured remotes.</p>
+      <dd><p>Dictionary of HostOptions declaring the configured remotes for that DMediatR node.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -169,20 +189,26 @@ To handle them only once as in a monolith correlate these remote Notifications w
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.IGrpcChannelPool.html">IGrpcChannelPool</a></dt>
+      <dd><p>Interface for injecting alternate gRPC channel pool implementations.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.IRemote.html">IRemote</a></dt>
       <dd><p>Inherit from this interface to add the SendRemote extension.</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.ISerializer.html">ISerializer</a></dt>
-      <dd></dd>
+      <dd><p>Interface for injecting alternate serializer implementations.</p>
+</dd>
     </dl>
     <h3 id="enums">
 Enums
 </h3>
     <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.GrpcPort.html">GrpcPort</a></dt>
-      <dd><p>Port resp. SSL certificate to use</p>
+      <dd><p>Port resp. SSL certificate to use.</p>
 </dd>
     </dl>
 

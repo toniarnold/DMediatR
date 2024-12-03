@@ -2,6 +2,9 @@
 
 namespace DMediatR
 {
+    /// <summary>
+    /// Utility to create a valid initial X509 certificate chain offline to be distributed to all gRPC nodes.
+    /// </summary>
     public class Certificates
     {
         private readonly IServiceProvider _serviceProvider;

@@ -3,14 +3,20 @@ using System.Collections.Concurrent;
 
 namespace DMediatR
 {
-    internal interface IGrpcChannelPool : IDisposable
+    /// <summary>
+    /// Interface for injecting alternate gRPC channel pool implementations.
+    /// </summary>
+    public interface IGrpcChannelPool : IDisposable
     {
         GrpcChannel ForAddress(string address, HttpClientHandler handler);
 
         void Remove(string address);
     }
 
-    internal class GrpcChannelPool : IGrpcChannelPool
+    /// <summary>
+    /// Implements a cache for long-lived gRPC channels, one instance per address.
+    /// </summary>
+    public class GrpcChannelPool : IGrpcChannelPool
     {
         private readonly ConcurrentDictionary<string, GrpcChannel> _channelCache = new();
 

@@ -7,7 +7,7 @@ namespace DMediatR
     { }
 
     /// <summary>
-    /// Dictionary of configured remotes.
+    /// Dictionary of HostOptions declaring the configured remotes for that DMediatR node.
     /// </summary>
     public sealed class RemotesOptions : Dictionary<string, HostOptions>
     {

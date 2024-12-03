@@ -3,6 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace DMediatR
 {
+    /// <summary>
+    /// Interface for injecting alternate serializer implementations.
+    /// </summary>
     public interface ISerializer
     {
         byte[] Serialize(object obj);

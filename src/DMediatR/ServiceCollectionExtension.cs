@@ -13,6 +13,13 @@ namespace DMediatR
             return AddDMediatR(services, config, (_) => { });
         }
 
+        /// <summary>
+        /// Provides services.AddDMediatR() as a drop-in replacement for AddMediatR.
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="config"></param>
+        /// <param name="mediatrCfg"></param>
+        /// <returns></returns>
         public static IServiceCollection AddDMediatR(this IServiceCollection services, IConfiguration config,
             Action<MediatRServiceConfiguration> mediatrCfg)
         {
@@ -44,6 +51,10 @@ namespace DMediatR
             services.TryAddSingleton<RenewNotificationForwarder>();
             services.TryAddSingleton<IGrpcChannelPool, GrpcChannelPool>();
             services.AddMemoryCache();
+
+            // Ping-Pong
+            services.TryAddSingleton<PingHandler>();
+            services.TryAddSingleton<PingHandlerRemote>();
 
             // Certificates
             services.AddCertificateManager();

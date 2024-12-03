@@ -28,7 +28,6 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace DMediatR.Tests.Grpc
 {
-    [Ignore("Access violation, stack overflow")]
     [Category("Integration")]
     public class FourNodesTest
     {
@@ -43,7 +42,7 @@ namespace DMediatR.Tests.Grpc
             Given_CertificatesDistributedOffline();
             Given_FourServersStarted();
             Given_DMediatRClient();
-            await Given_DMediatRClientRechable();
+            await Given_DMediatRNodeRechable();
         }
 
         [Test]
@@ -117,17 +116,17 @@ namespace DMediatR.Tests.Grpc
         /// </summary>
         private void Given_DMediatRClient()
         {
-            SetUp.SetUpDMediatRServices("RemoteClientCert");
+            SetUp.SetUpDMediatRServices("RemotePing");
         }
 
         /// <summary>
         /// Request a plausible client certificate from the ClientCertifier node.
         /// </summary>
-        private async Task Given_DMediatRClientRechable()
+        private async Task Given_DMediatRNodeRechable()
         {
-            var clientCertFromRemote = await Mediator.Send(new ClientCertificateRequest());
-            Assert.That(clientCertFromRemote, Is.Not.Null);
-            Assert.That(clientCertFromRemote.Subject, Is.EqualTo("CN=ClientCertifier"));
+            var pongFromRemote = await Mediator.Send(new Ping("NUnit"));
+            Assert.That(pongFromRemote, Is.Not.Null);
+            Assert.That(pongFromRemote.Message, Is.EqualTo("NUnit from ClientCertifier"));
         }
 
         #endregion Given
