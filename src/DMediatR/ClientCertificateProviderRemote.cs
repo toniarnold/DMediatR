@@ -5,18 +5,13 @@ using System.Security.Cryptography.X509Certificates;
 namespace DMediatR
 {
     [Remote("ClientCertifier")]
-    internal class ClientCertificateProviderRemote : ClientCertificateProvider, IRemoteInternal
+    internal class ClientCertificateProviderRemote : ClientCertificateProvider, IRemote
     {
-        public ClientCertificateProviderRemote(
+        public ClientCertificateProviderRemote(Remote remote,
             CreateCertificatesClientServerAuth createCert,
             IOptions<HostOptions> hostOptions,
-            IOptions<CertificateOptions> certOptions,
-            IOptions<RemotesOptions> remotesOptions,
-            IMediator mediator,
-            ISerializer serializer,
-            IGrpcChannelPool channel,
             ImportExportCertificate ioCert)
-                : base(createCert, hostOptions, certOptions, remotesOptions, mediator, serializer, channel, ioCert) { }
+                : base(remote, createCert, hostOptions, ioCert) { }
 
         public override async Task<X509Certificate2> Handle(ClientCertificateRequest request, CancellationToken cancellationToken)
         {

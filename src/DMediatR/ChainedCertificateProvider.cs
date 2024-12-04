@@ -6,15 +6,10 @@ namespace DMediatR
 {
     internal abstract class ChainedCertificateProvider : CertificateProvider
     {
-        public ChainedCertificateProvider(
+        public ChainedCertificateProvider(Remote remote,
             IOptions<HostOptions> hostOptions,
-            IOptions<CertificateOptions> certOptions,
-            IOptions<RemotesOptions> remotesOptions,
-            IMediator mediator,
-            ISerializer serializer,
-            IGrpcChannelPool channel,
             ImportExportCertificate ioCert)
-                : base(hostOptions, certOptions, remotesOptions, mediator, serializer, channel, ioCert)
+                : base(remote, hostOptions, ioCert)
         {
         }
 
@@ -38,7 +33,7 @@ namespace DMediatR
 
         protected async Task<X509Certificate2> Generate(ChainedCertificateRequest request, CancellationToken cancellationToken)
         {
-            var parentCert = await _mediator.Send(request.ParentCertificateRequest, cancellationToken);
+            var parentCert = await Remote.Mediator.Send(request.ParentCertificateRequest, cancellationToken);
             var newcert = Generate(request, parentCert);
             await Save(newcert, parentCert, cancellationToken);
             return newcert;

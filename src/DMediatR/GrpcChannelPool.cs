@@ -4,7 +4,7 @@ using System.Collections.Concurrent;
 namespace DMediatR
 {
     /// <summary>
-    /// Interface for injecting alternate gRPC channel pool implementations.
+    /// Its internal implementation provides a cache for long-lived gRPC channels, one instance per address.
     /// </summary>
     public interface IGrpcChannelPool : IDisposable
     {
@@ -16,7 +16,7 @@ namespace DMediatR
     /// <summary>
     /// Implements a cache for long-lived gRPC channels, one instance per address.
     /// </summary>
-    public class GrpcChannelPool : IGrpcChannelPool
+    internal class GrpcChannelPool : IGrpcChannelPool
     {
         private readonly ConcurrentDictionary<string, GrpcChannel> _channelCache = new();
 

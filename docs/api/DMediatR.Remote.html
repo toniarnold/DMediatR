@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class Serializer&lt;T&gt; | DMediatR </title>
+      <title>Class Remote | DMediatR </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class Serializer&lt;T&gt; | DMediatR ">
+      <meta name="title" content="Class Remote | DMediatR ">
       
-      <meta name="description" content="Generic custom binary serializer.">
+      <meta name="description" content="Composite object injecting all required dependencies for SendRemote().">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -84,12 +84,12 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="DMediatR.Serializer`1">
+        <article data-uid="DMediatR.Remote">
 
 
 
-  <h1 id="DMediatR_Serializer_1" data-uid="DMediatR.Serializer`1" class="text-break">
-Class Serializer&lt;T&gt;  
+  <h1 id="DMediatR_Remote" data-uid="DMediatR.Remote" class="text-break">
+Class Remote  
   </h1>
 
   <div class="facts text-secondary">
@@ -97,55 +97,30 @@ Class Serializer&lt;T&gt;
   <dl><dt>Assembly</dt><dd>DMediatR.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Generic custom binary serializer.</p>
+  <div class="markdown summary"><p>Composite object injecting all required dependencies for SendRemote().</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Serializer&lt;T&gt; : Serializer, ISerializer</code></pre>
+    <pre><code class="lang-csharp hljs">public class Remote</code></pre>
   </div>
 
 
 
-  <h4 class="section">Type Parameters</h4>
-  <dl class="parameters">
-    <dt><code>T</code></dt>
-    <dd><p>The concrete type to serialize.</p>
-</dd>
-  </dl>
 
   <dl class="typelist inheritance">
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><a class="xref" href="DMediatR.Serializer.html">Serializer</a></div>
-      <div><span class="xref">Serializer&lt;T&gt;</span></div>
+      <div><span class="xref">Remote</span></div>
     </dd>
   </dl>
 
-  <dl class="typelist implements">
-    <dt>Implements</dt>
-    <dd>
-      <div><a class="xref" href="DMediatR.ISerializer.html">ISerializer</a></div>
-    </dd>
-  </dl>
 
 
   <dl class="typelist inheritedMembers">
     <dt>Inherited Members</dt>
     <dd>
-    <div>
-      <a class="xref" href="DMediatR.Serializer.html#DMediatR_Serializer_Serialize_System_Object_">Serializer.Serialize(object)</a>
-    </div>
-    <div>
-      <a class="xref" href="DMediatR.Serializer.html#DMediatR_Serializer_Deserialize__1_System_Byte___">Serializer.Deserialize&lt;T&gt;(byte[])</a>
-    </div>
-    <div>
-      <a class="xref" href="DMediatR.Serializer.html#DMediatR_Serializer_Deserialize__1_System_Type_System_Byte___">Serializer.Deserialize&lt;T&gt;(Type, byte[])</a>
-    </div>
-    <div>
-      <a class="xref" href="DMediatR.Serializer.html#DMediatR_Serializer_Deserialize_System_Type_System_Byte___">Serializer.Deserialize(Type, byte[])</a>
-    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -178,10 +153,10 @@ Class Serializer&lt;T&gt;
 </h2>
 
 
-  <a id="DMediatR_Serializer_1__ctor_" data-uid="DMediatR.Serializer`1.#ctor*"></a>
+  <a id="DMediatR_Remote__ctor_" data-uid="DMediatR.Remote.#ctor*"></a>
 
-  <h3 id="DMediatR_Serializer_1__ctor_System_IServiceProvider_" data-uid="DMediatR.Serializer`1.#ctor(System.IServiceProvider)">
-  Serializer(IServiceProvider)
+  <h3 id="DMediatR_Remote__ctor_Microsoft_Extensions_Options_IOptions_DMediatR_CertificateOptions__Microsoft_Extensions_Options_IOptions_DMediatR_RemotesOptions__MediatR_IMediator_DMediatR_ISerializer_DMediatR_IGrpcChannelPool_" data-uid="DMediatR.Remote.#ctor(Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions},Microsoft.Extensions.Options.IOptions{DMediatR.RemotesOptions},MediatR.IMediator,DMediatR.ISerializer,DMediatR.IGrpcChannelPool)">
+  Remote(IOptions&lt;CertificateOptions&gt;, IOptions&lt;RemotesOptions&gt;, IMediator, ISerializer, IGrpcChannelPool)
   
   </h3>
 
@@ -189,12 +164,20 @@ Class Serializer&lt;T&gt;
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Serializer(IServiceProvider serviceProvider)</code></pre>
+    <pre><code class="lang-csharp hljs">public Remote(IOptions&lt;CertificateOptions&gt; certOptions, IOptions&lt;RemotesOptions&gt; remotesOptions, IMediator mediator, ISerializer serializer, IGrpcChannelPool channel)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>serviceProvider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></dt>
+    <dt><code>certOptions</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.options.ioptions-1">IOptions</a>&lt;<a class="xref" href="DMediatR.CertificateOptions.html">CertificateOptions</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>remotesOptions</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.options.ioptions-1">IOptions</a>&lt;<a class="xref" href="DMediatR.RemotesOptions.html">RemotesOptions</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>mediator</code> <span class="xref">IMediator</span></dt>
+    <dd></dd>
+    <dt><code>serializer</code> <a class="xref" href="DMediatR.ISerializer.html">ISerializer</a></dt>
+    <dd></dd>
+    <dt><code>channel</code> <a class="xref" href="DMediatR.IGrpcChannelPool.html">IGrpcChannelPool</a></dt>
     <dd></dd>
   </dl>
 
@@ -206,83 +189,6 @@ Class Serializer&lt;T&gt;
 
 
 
-
-
-
-  <h2 class="section" id="properties">Properties
-</h2>
-
-
-  <a id="DMediatR_Serializer_1_Type_" data-uid="DMediatR.Serializer`1.Type*"></a>
-
-  <h3 id="DMediatR_Serializer_1_Type" data-uid="DMediatR.Serializer`1.Type">
-  Type
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>Type of the serialized object as key for services.AddKeyedSingleton().</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Type Type { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <h2 class="section" id="methods">Methods
-</h2>
-
-
-  <a id="DMediatR_Serializer_1_CheckType_" data-uid="DMediatR.Serializer`1.CheckType*"></a>
-
-  <h3 id="DMediatR_Serializer_1_CheckType_System_Type_" data-uid="DMediatR.Serializer`1.CheckType(System.Type)">
-  CheckType(Type)
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>Throws an ArgumentException if the given object is not of type T.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void CheckType(Type givenType)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>givenType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-  <h4 class="section">Exceptions</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
-    <dd></dd>
-  </dl>
 
 
 

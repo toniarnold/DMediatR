@@ -5,6 +5,7 @@ namespace DMediatR
 {
     /// <summary>
     /// Interface for injecting alternate serializer implementations.
+    /// The default implementation uses MessagePackSerializer.Typeless.
     /// </summary>
     public interface ISerializer
     {
@@ -20,7 +21,7 @@ namespace DMediatR
     /// <summary>
     /// Pluggable binary serializer for DMediatR using MessagePackSerializer.Typeless as default.
     /// </summary>
-    public class Serializer : ISerializer
+    internal class Serializer : ISerializer
     {
         private readonly IServiceProvider _serviceProvider;
 
@@ -72,7 +73,7 @@ namespace DMediatR
     /// Generic custom binary serializer.
     /// </summary>
     /// <typeparam name="T">The concrete type to serialize.</typeparam>
-    public class Serializer<T> : Serializer
+    internal class Serializer<T> : Serializer
     {
         public Serializer(IServiceProvider serviceProvider) : base(serviceProvider)
         {

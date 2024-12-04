@@ -12,3 +12,4 @@ DocFx.Plugins.PlantUml:
 clean:
 	-del /s /q _site\*
 	-del /s /q api\*
+	-del /s /q  ..\docs\*

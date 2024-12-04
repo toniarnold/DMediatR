@@ -6,40 +6,21 @@ namespace DMediatR
 {
     internal abstract class CertificateProvider
     {
+        protected readonly Remote _remote;
         protected readonly HostOptions _hostOptions;
-        protected readonly CertificateOptions _certOptions;
-        protected readonly RemotesOptions _remotes;
-        protected readonly IMediator _mediator;
-        protected readonly ISerializer _serializer;
-        protected readonly IGrpcChannelPool _grpcChannelProvider;
         protected readonly ImportExportCertificate _importExportCertificate;
 
-        protected CertificateProvider(
+        protected CertificateProvider(Remote remote,
                 IOptions<HostOptions> hostOptions,
-                IOptions<CertificateOptions> certOptions,
-                IOptions<RemotesOptions> remotesOptions,
-                IMediator mediator,
-                ISerializer serializer,
-                IGrpcChannelPool channel,
                 ImportExportCertificate ioCert)
         {
+            _remote = remote;
             _hostOptions = hostOptions.Value;
-            _certOptions = certOptions.Value;
-            _remotes = remotesOptions.Value;
-            _mediator = mediator;
-            _serializer = serializer;
-            _grpcChannelProvider = channel;
             _importExportCertificate = ioCert;
         }
 
-        public IMediator Mediator => _mediator;
-        public ISerializer Serializer => _serializer;
-        public IGrpcChannelPool ChannelPool => _grpcChannelProvider;
-
-        public CertificateOptions Options => _certOptions;
-
-        public RemotesOptions Remotes => _remotes;
-
+        public Remote Remote => _remote;
+        public CertificateOptions Options => _remote.CertificateOptions;
         protected string? RemoteName => LocalAttribute.RemoteName(this.GetType());
 
         internal string FileName =>

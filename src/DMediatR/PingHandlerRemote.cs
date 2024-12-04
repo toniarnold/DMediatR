@@ -3,36 +3,16 @@
 namespace DMediatR
 {
     [Remote("Ping")]
-    internal class PingHandlerRemote : PingHandler, IRemoteInternal
+    internal class PingHandlerRemote : PingHandler, IRemote
     {
-        protected readonly CertificateOptions _certOptions;
-        protected readonly RemotesOptions _remotes;
-        protected readonly IMediator _mediator;
-        protected readonly ISerializer _serializer;
-        protected readonly IGrpcChannelPool _grpcChannelProvider;
+        private readonly Remote _remote;
 
-        public PingHandlerRemote(
-
-            IOptions<CertificateOptions> certOptions,
-            IOptions<RemotesOptions> remotesOptions,
-            IMediator mediator,
-            ISerializer serializer,
-            IGrpcChannelPool channel)
+        public PingHandlerRemote(Remote remote, IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            _certOptions = certOptions.Value;
-            _remotes = remotesOptions.Value;
-            _mediator = mediator;
-            _serializer = serializer;
-            _grpcChannelProvider = channel;
+            _remote = remote;
         }
 
-        public IGrpcChannelPool ChannelPool => _grpcChannelProvider;
-
-        public CertificateOptions Options => _certOptions;
-        public ISerializer Serializer => _serializer;
-
-        public RemotesOptions Remotes => _remotes;
-        public IMediator Mediator => _mediator;
+        public Remote Remote => _remote;
 
         public override async Task<Pong> Handle(Ping request, CancellationToken cancellationToken)
         {

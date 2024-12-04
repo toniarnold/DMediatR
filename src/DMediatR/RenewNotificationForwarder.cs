@@ -3,17 +3,18 @@ using Microsoft.Extensions.Options;
 
 namespace DMediatR
 {
-    internal class RenewNotificationForwarder : INotificationHandler<ICorrelatedNotification>, IRemoteInternal
+    internal class RenewNotificationForwarder : INotificationHandler<ICorrelatedNotification>, IRemote
     {
+        private readonly Remote _remote;
         private readonly IMemoryCache _correlationGuidCache;
         private readonly HostOptions _host;
         private readonly CertificateOptions _certOptions;
         private readonly RemotesOptions _remotes;
         private readonly IMediator _mediator;
         private readonly ISerializer _serializer;
-        protected readonly IGrpcChannelPool _grpcChannelProvider;
+        private readonly IGrpcChannelPool _grpcChannelProvider;
 
-        public RenewNotificationForwarder(
+        public RenewNotificationForwarder(Remote remote,
             IMemoryCache cache,
             IOptions<HostOptions> hostOptions,
             IOptions<CertificateOptions> certOptions,
@@ -22,6 +23,7 @@ namespace DMediatR
             ISerializer serializer,
             IGrpcChannelPool channel)
         {
+            _remote = remote;
             _correlationGuidCache = cache;
             _host = hostOptions.Value;
             _certOptions = certOptions.Value;
@@ -31,6 +33,7 @@ namespace DMediatR
             _grpcChannelProvider = channel;
         }
 
+        public Remote Remote => _remote;
         public IMediator Mediator => _mediator;
         public ISerializer Serializer => _serializer;
         public IGrpcChannelPool ChannelPool => _grpcChannelProvider;

@@ -6,6 +6,9 @@ using System.Reflection;
 
 namespace DMediatR
 {
+    /// <summary>
+    /// Provides services.AddDMediatR() as a drop-in replacement for AddMediatR().
+    /// </summary>
     public static class ServiceCollectionExtension
     {
         internal static IServiceCollection AddDMediatR(this IServiceCollection services, IConfiguration config)
@@ -14,7 +17,7 @@ namespace DMediatR
         }
 
         /// <summary>
-        /// Provides services.AddDMediatR() as a drop-in replacement for AddMediatR.
+        /// A drop-in replacement for MediatR.AddMediatR adding services for distribution.
         /// </summary>
         /// <param name="services"></param>
         /// <param name="config"></param>
@@ -46,6 +49,9 @@ namespace DMediatR
                 cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly());
                 cfg.TypeEvaluator = t => config.SelectLocalRemote(t) && externalTypeEvaluator(t);
             });
+
+            // Composite DMediatR dependencies
+            services.TryAddSingleton<Remote>();
 
             // MediatR NotificationForwarder
             services.TryAddSingleton<RenewNotificationForwarder>();

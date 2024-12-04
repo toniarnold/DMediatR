@@ -115,11 +115,6 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="DMediatR.GrpcChannelPool.html">GrpcChannelPool</a></dt>
-      <dd><p>Implements a cache for long-lived gRPC channels, one instance per address.</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.GrpcServer.html">GrpcServer</a></dt>
       <dd><p>Utility for creating a gRPC service WebApplicationBuilder and WebApplication in a DMediatR node.</p>
 </dd>
@@ -141,7 +136,13 @@ Classes
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.Pong.html">Pong</a></dt>
-      <dd><p>Response to a Ping request. Echoes the Ping message and the ASPNETCORE_ENVIRONMENT of the responding Node if present.</p>
+      <dd><p>Response to a Ping request. Echoes the Ping message and the name
+of the corresponding host if it is not handled locally.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.Remote.html">Remote</a></dt>
+      <dd><p>Composite object injecting all required dependencies for SendRemote().</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -160,18 +161,9 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="DMediatR.Serializer.html">Serializer</a></dt>
-      <dd><p>Pluggable binary serializer for DMediatR using MessagePackSerializer.Typeless as default.</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="DMediatR.Serializer-1.html">Serializer&lt;T&gt;</a></dt>
-      <dd><p>Generic custom binary serializer.</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.ServiceCollectionExtension.html">ServiceCollectionExtension</a></dt>
-      <dd></dd>
+      <dd><p>Provides services.AddDMediatR() as a drop-in replacement for AddMediatR().</p>
+</dd>
     </dl>
     <h3 id="interfaces">
 Interfaces
@@ -190,17 +182,18 @@ To handle them only once as in a monolith correlate these remote Notifications w
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.IGrpcChannelPool.html">IGrpcChannelPool</a></dt>
-      <dd><p>Interface for injecting alternate gRPC channel pool implementations.</p>
+      <dd><p>Its internal implementation provides a cache for long-lived gRPC channels, one instance per address.</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.IRemote.html">IRemote</a></dt>
-      <dd><p>Inherit from this interface to add the SendRemote extension.</p>
+      <dd><p>Inherit from IRemote and inject Remote to add the SendRemote extension.</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.ISerializer.html">ISerializer</a></dt>
-      <dd><p>Interface for injecting alternate serializer implementations.</p>
+      <dd><p>Interface for injecting alternate serializer implementations.
+The default implementation uses MessagePackSerializer.Typeless.</p>
 </dd>
     </dl>
     <h3 id="enums">

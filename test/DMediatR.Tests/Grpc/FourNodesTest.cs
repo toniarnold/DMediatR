@@ -111,17 +111,11 @@ namespace DMediatR.Tests.Grpc
             File.Copy(Path.Combine(path, certificate), Path.Combine(path, node, certificate.Replace(".pfx", "-old.pfx")), true);
         }
 
-        /// <summary>
-        /// RemoteClientCert is the node this test itself is connected to.
-        /// </summary>
         private void Given_DMediatRClient()
         {
             SetUp.SetUpDMediatRServices("RemotePing");
         }
 
-        /// <summary>
-        /// Request a plausible client certificate from the ClientCertifier node.
-        /// </summary>
         private async Task Given_DMediatRNodeRechable()
         {
             var pongFromRemote = await Mediator.Send(new Ping("NUnit"));

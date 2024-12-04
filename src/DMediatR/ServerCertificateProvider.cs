@@ -16,16 +16,11 @@ namespace DMediatR
         private string CommonName => $"{RemoteName}";
         private string FriendlyName => $"DMediatR {CommonName} server L3 certificate";
 
-        public ServerCertificateProvider(
+        public ServerCertificateProvider(Remote remote,
             CreateCertificatesClientServerAuth createCert,
             IOptions<HostOptions> hostOptions,
-            IOptions<CertificateOptions> certOptions,
-            IOptions<RemotesOptions> remotesOptions,
-            IMediator mediator,
-            ISerializer serializer,
-            IGrpcChannelPool channel,
             ImportExportCertificate ioCert)
-                : base(hostOptions, certOptions, remotesOptions, mediator, serializer, channel, ioCert)
+                : base(remote, hostOptions, ioCert)
         {
             _createCert = createCert;
         }

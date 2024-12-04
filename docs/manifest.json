@@ -22,80 +22,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.CertificateProvider.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.CertificateProvider.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.CertificateRequest.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.CertificateRequest.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/DMediatR.Certificates.yml",
       "output": {
         ".html": {
           "relative_path": "api/DMediatR.Certificates.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.ChainedCertificateProvider.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.ChainedCertificateProvider.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.ChainedCertificateRequest.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.ChainedCertificateRequest.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.ClientCertificateProvider.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.ClientCertificateProvider.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.ClientCertificateProviderRemote.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.ClientCertificateProviderRemote.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.ClientCertificateRequest.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.ClientCertificateRequest.html"
         }
       },
       "version": ""
@@ -116,16 +46,6 @@
       "output": {
         ".html": {
           "relative_path": "api/DMediatR.DtoService.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.GrpcChannelPool.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.GrpcChannelPool.html"
         }
       },
       "version": ""
@@ -202,16 +122,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.IRequestExtension.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.IRequestExtension.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/DMediatR.ISerializer.yml",
       "output": {
         ".html": {
@@ -222,50 +132,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.IntermediateCertificateProvider.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.IntermediateCertificateProvider.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.IntermediateCertificateProviderRemote.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.IntermediateCertificateProviderRemote.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.IntermediateCertificateRequest.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.IntermediateCertificateRequest.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/DMediatR.LocalAttribute.yml",
       "output": {
         ".html": {
           "relative_path": "api/DMediatR.LocalAttribute.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.MemoryCacheGuidExtension.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.MemoryCacheGuidExtension.html"
         }
       },
       "version": ""
@@ -292,20 +162,20 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.RemoteAttribute.yml",
+      "source_relative_path": "api/DMediatR.Remote.yml",
       "output": {
         ".html": {
-          "relative_path": "api/DMediatR.RemoteAttribute.html"
+          "relative_path": "api/DMediatR.Remote.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.RemoteConfigExtension.yml",
+      "source_relative_path": "api/DMediatR.RemoteAttribute.yml",
       "output": {
         ".html": {
-          "relative_path": "api/DMediatR.RemoteConfigExtension.html"
+          "relative_path": "api/DMediatR.RemoteAttribute.html"
         }
       },
       "version": ""
@@ -332,200 +202,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.RenewClientCertificateNotification.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.RenewClientCertificateNotification.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.RenewIntermediateCertificateNotification.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.RenewIntermediateCertificateNotification.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.RenewNotification.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.RenewNotification.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.RenewNotificationForwarder.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.RenewNotificationForwarder.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.RenewRootCertificateNotification.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.RenewRootCertificateNotification.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.RenewServerCertificateNotification.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.RenewServerCertificateNotification.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.RootCertificateProvider.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.RootCertificateProvider.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.RootCertificateProviderRemote.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.RootCertificateProviderRemote.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.RootCertificateRequest.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.RootCertificateRequest.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.Serializer-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.Serializer-1.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.Serializer.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.Serializer.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.ServerCertificateFileWatcher.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.ServerCertificateFileWatcher.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.ServerCertificateProvider.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.ServerCertificateProvider.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.ServerCertificateProviderRemote.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.ServerCertificateProviderRemote.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.ServerCertificateRequest.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.ServerCertificateRequest.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/DMediatR.ServiceCollectionExtension.yml",
       "output": {
         ".html": {
           "relative_path": "api/DMediatR.ServiceCollectionExtension.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.ValidateCertificateOptions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.ValidateCertificateOptions.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.ValidateHostOptions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.ValidateHostOptions.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.ValidateRemotesOptions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.ValidateRemotesOptions.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.X509CertificateSerializer.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.X509CertificateSerializer.html"
         }
       },
       "version": ""

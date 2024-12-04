@@ -5,13 +5,6 @@ using System.Security.Cryptography.X509Certificates;
 namespace DMediatR
 {
     /// <summary>
-    /// Inherit from this interface to add the SendRemote extension.
-    /// </summary>
-    public interface IRemote
-    {
-    }
-
-    /// <summary>
     /// IRemote extension methods for connecting to a Dto gRPC service from a MediatR handler.
     /// </summary>
     public static class RemoteExtension
@@ -26,7 +19,7 @@ namespace DMediatR
         /// <returns>The MediatR TResponse.</returns>
         public static async Task<TResponse> SendRemote<TResponse>(this IRemote provider, IRequest<TResponse> request, CancellationToken cancellationToken)
         {
-            return await RemoteInternalExtension.SendRemote((IRemoteInternal)provider, request, cancellationToken);
+            return await RemoteInternalExtension.InternalSendRemote(provider, request, cancellationToken);
         }
 
         /// <summary>
@@ -38,22 +31,13 @@ namespace DMediatR
         /// <returns></returns>
         public static async Task PublishRemote(this IRemote provider, INotification notification, CancellationToken cancellationToken)
         {
-            await RemoteInternalExtension.PublishRemote((IRemoteInternal)provider, notification, cancellationToken);
+            await RemoteInternalExtension.InternalPublishRemote(provider, notification, cancellationToken);
         }
-    }
-
-    internal interface IRemoteInternal : IRemote
-    {
-        CertificateOptions Options { get; }
-        IMediator Mediator { get; }
-        ISerializer Serializer { get; }
-        IGrpcChannelPool ChannelPool { get; }
-        RemotesOptions Remotes { get; }
     }
 
     internal static class RemoteInternalExtension
     {
-        internal static async Task<TResponse> SendRemote<TResponse>(this IRemoteInternal provider, IRequest<TResponse> request, CancellationToken cancellationToken)
+        internal static async Task<TResponse> InternalSendRemote<TResponse>(this IRemote provider, IRequest<TResponse> request, CancellationToken cancellationToken)
         {
             var handler = await provider.GetHttpClientHandler(cancellationToken);
             var requestDto = Dto(provider, request);
@@ -62,43 +46,43 @@ namespace DMediatR
             var oldAddress = $"https://{Remote(provider).Host}:{Remote(provider).OldPort}";
             try
             {
-                var channel = provider.ChannelPool.ForAddress(address, handler);
+                var channel = provider.Remote.ChannelPool.ForAddress(address, handler);
                 var client = channel.CreateGrpcService<IDtoService>();
                 responseDto = await client.SendAsync(requestDto);
             }
             catch (HttpRequestException defaultPortEx)
             {
-                provider.ChannelPool.Remove(address); // reconnect
+                provider.Remote.ChannelPool.Remove(address); // reconnect
                 try
                 {
                     // 1. Request a new client certificate through the old certificate chain.
-                    var oldChannel = provider.ChannelPool.ForAddress(oldAddress, handler);
+                    var oldChannel = provider.Remote.ChannelPool.ForAddress(oldAddress, handler);
                     var certClient = oldChannel.CreateGrpcService<IDtoService>();
                     await certClient.SendAsync(Dto(provider, new ClientCertificateRequest()));
 
                     // 2. Reconnect with the obtained new client certificate.
-                    var channel = provider.ChannelPool.ForAddress(address, handler);
+                    var channel = provider.Remote.ChannelPool.ForAddress(address, handler);
                     var client = channel.CreateGrpcService<IDtoService>();
                     responseDto = await client.SendAsync(requestDto);
                 }
                 catch (Exception oldPortEx)
                 {
-                    provider.ChannelPool.Remove(oldAddress);
+                    provider.Remote.ChannelPool.Remove(oldAddress);
                     throw new AggregateException(defaultPortEx, oldPortEx);
                 }
             }
-            var response = provider.Serializer.Deserialize<TResponse>(typeof(TResponse), responseDto.Bytes);
+            var response = provider.Remote.Serializer.Deserialize<TResponse>(typeof(TResponse), responseDto.Bytes);
             return response;
         }
 
-        public static async Task PublishRemote(this IRemoteInternal provider, INotification notification, CancellationToken cancellationToken)
+        public static async Task InternalPublishRemote(this IRemote provider, INotification notification, CancellationToken cancellationToken)
         {
-            if (provider.Remotes.Count > 0)
+            if (provider.Remote.Remotes.Count > 0)
             {
                 var tasks = new List<Task>();
                 var notificationDto = Dto(provider, notification);
                 var handler = await provider.GetHttpClientHandler(cancellationToken);
-                foreach (var remote in provider.Remotes.Values)
+                foreach (var remote in provider.Remote.Remotes.Values)
                 {
                     var t = PublishNotificationDtoRemote(provider, remote, notificationDto, handler);
                     tasks.Add(t);
@@ -111,28 +95,28 @@ namespace DMediatR
             }
         }
 
-        private static async Task PublishNotificationDtoRemote(IRemoteInternal provider, HostOptions remote, Dto notificationDto, HttpClientHandler handler)
+        private static async Task PublishNotificationDtoRemote(IRemote provider, HostOptions remote, Dto notificationDto, HttpClientHandler handler)
         {
             var address = $"https://{remote.Host}:{remote.Port}";
             var oldAddress = $"https://{remote.Host}:{remote.OldPort}";
             try
             {
-                var channel = provider.ChannelPool.ForAddress(address, handler);
+                var channel = provider.Remote.ChannelPool.ForAddress(address, handler);
                 var client = channel.CreateGrpcService<IDtoService>();
                 await client.PublishAsync(notificationDto);
             }
             catch (HttpRequestException defaultPortEx)
             {
-                provider.ChannelPool.Remove(address); // reconnect
+                provider.Remote.ChannelPool.Remove(address); // reconnect
                 try
                 {
                     // 1. Request a new client certificate through the old certificate chain.
-                    var oldChannel = provider.ChannelPool.ForAddress(oldAddress, handler);
+                    var oldChannel = provider.Remote.ChannelPool.ForAddress(oldAddress, handler);
                     var certClient = oldChannel.CreateGrpcService<IDtoService>();
                     await certClient.SendAsync(Dto(provider, new ClientCertificateRequest()));
 
                     // 2. Reconnect with the obtained new client certificate.
-                    var channel = provider.ChannelPool.ForAddress(address, handler);
+                    var channel = provider.Remote.ChannelPool.ForAddress(address, handler);
                     var client = channel.CreateGrpcService<IDtoService>();
                     await client.PublishAsync(notificationDto); ;
                 }
@@ -143,15 +127,15 @@ namespace DMediatR
             }
         }
 
-        private static Dto Dto(this IRemoteInternal provider, object obj)
+        private static Dto Dto(this IRemote provider, object obj)
         {
-            return new Dto() { Type = obj.GetType(), Bytes = provider.Serializer.Serialize(obj) };
+            return new Dto() { Type = obj.GetType(), Bytes = provider.Remote.Serializer.Serialize(obj) };
         }
 
-        private static HostOptions Remote(this IRemoteInternal provider)
+        private static HostOptions Remote(this IRemote provider)
         {
             var remoteName = RemoteAttribute.Name(provider.GetType())!;
-            return provider.Remotes[remoteName];
+            return provider.Remote.Remotes[remoteName];
         }
 
         /// <summary>
@@ -160,14 +144,14 @@ namespace DMediatR
         /// <param name="provider"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        private static async Task<HttpClientHandler> GetHttpClientHandler(this IRemoteInternal provider, CancellationToken cancellationToken)
+        private static async Task<HttpClientHandler> GetHttpClientHandler(this IRemote provider, CancellationToken cancellationToken)
         {
             var handler = new HttpClientHandler
             {
                 ClientCertificateOptions = ClientCertificateOption.Manual,
                 ServerCertificateCustomValidationCallback = ServerCertificateCustomValidation
             };
-            var clientCertificate = await provider.Mediator.Send(new ClientCertificateRequest(), cancellationToken);
+            var clientCertificate = await provider.Remote.Mediator.Send(new ClientCertificateRequest(), cancellationToken);
             handler.ClientCertificates.Add(clientCertificate);
             return handler;
         }

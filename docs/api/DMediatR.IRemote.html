@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Interface IRemote | DMediatR ">
       
-      <meta name="description" content="Inherit from this interface to add the SendRemote extension.">
+      <meta name="description" content="Inherit from IRemote and inject Remote to add the SendRemote extension.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,7 +97,7 @@ Interface IRemote
   <dl><dt>Assembly</dt><dd>DMediatR.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Inherit from this interface to add the SendRemote extension.</p>
+  <div class="markdown summary"><p>Inherit from IRemote and inject Remote to add the SendRemote extension.</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -122,6 +122,41 @@ Interface IRemote
       <a class="xref" href="DMediatR.RemoteExtension.html#DMediatR_RemoteExtension_SendRemote__1_DMediatR_IRemote_MediatR_IRequest___0__System_Threading_CancellationToken_">RemoteExtension.SendRemote&lt;TResponse&gt;(IRemote, IRequest&lt;TResponse&gt;, CancellationToken)</a>
   </div>
   </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="DMediatR_IRemote_Remote_" data-uid="DMediatR.IRemote.Remote*"></a>
+
+  <h3 id="DMediatR_IRemote_Remote" data-uid="DMediatR.IRemote.Remote">
+  Remote
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Remote Remote { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="DMediatR.Remote.html">Remote</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
 
 
 
