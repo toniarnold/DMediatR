@@ -95,13 +95,29 @@
 Classes
 </h3>
     <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.Bing.html">Bing</a></dt>
+      <dd><p>Broadcast Ping as MediatR INotification.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.CertificateOptions.html">CertificateOptions</a></dt>
-      <dd><p>X509 certificate specification, including the password.</p>
+      <dd><p>X509 certificate specification, inheriting the password.</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.Certificates.html">Certificates</a></dt>
       <dd><p>Utility to create a valid initial X509 certificate chain offline to be distributed to all gRPC nodes.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.CorrelatedNotification.html">CorrelatedNotification</a></dt>
+      <dd><p>Static configuration of ICorrelatedNotification for extreme workload patterns.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.CustomSerializer-1.html">CustomSerializer&lt;T&gt;</a></dt>
+      <dd><p>Generic custom binary serializer to inherit from when implementing a concrete custom serializer
+for a specific type T. Types deriving from T will also use that serializer.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -127,6 +143,11 @@ Classes
     <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.LocalAttribute.html">LocalAttribute</a></dt>
       <dd><p>Marks the handlers in this class as local double of a [Remote] class.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.PasswordOptions.html">PasswordOptions</a></dt>
+      <dd><p>X509 certificate password.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -161,6 +182,21 @@ of the corresponding host if it is not handled locally.</p>
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.SerializationCountMessage.html">SerializationCountMessage</a></dt>
+      <dd><p>Base class for tracing the number of hops a DMediatR message (IRequest or INotification) has taken.
+The SerializationCountSerializer increments the count.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.SerializationCountSerializer.html">SerializationCountSerializer</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.Serializer.html">Serializer</a></dt>
+      <dd><p>General serializer gathering required specialized serializers from the ServiceCollection.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.ServiceCollectionExtension.html">ServiceCollectionExtension</a></dt>
       <dd><p>Provides services.AddDMediatR() as a drop-in replacement for AddMediatR().</p>
 </dd>
@@ -192,8 +228,10 @@ To handle them only once as in a monolith correlate these remote Notifications w
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.ISerializer.html">ISerializer</a></dt>
-      <dd><p>Interface for injecting alternate serializer implementations.
-The default implementation uses MessagePackSerializer.Typeless.</p>
+      <dd><p>Interface for the base serializer and all specialized serializers.
+Use it for injecting an alternate base BinarySerializer implementation with
+services.AddKeyedSingleton&lt;ISerializer, BinarySerializer&gt;(typeof(object));
+Its pluggable default implementation is a tiny wrapper around MessagePackSerializer.Typeless.</p>
 </dd>
     </dl>
     <h3 id="enums">

@@ -48,7 +48,7 @@ namespace DMediatR.Tests.Grpc
         [Test]
         public async Task TestFourNodesWithClient()
         {
-            await Task.CompletedTask;
+            await DMediatRNodeAnswersPing();
         }
 
         #region Given
@@ -116,11 +116,23 @@ namespace DMediatR.Tests.Grpc
             SetUp.SetUpDMediatRServices("RemotePing");
         }
 
+        /// <summary>
+        /// Side-effect free simple HTTP/2 request
+        /// </summary>
+        /// <returns></returns>
         private async Task Given_DMediatRNodeRechable()
         {
-            var pongFromRemote = await Mediator.Send(new Ping("NUnit"));
+            using var httpClient = await SetUp.GetHttpClientAsync();
+            var response = await httpClient.GetStringAsync("https://localhost:18007/"); // appsettings.RemotePing.json
+            Assert.That(response, Is.EqualTo("DMediatR gRPC endpoint"));
+        }
+
+        private async Task DMediatRNodeAnswersPing()
+        {
+            var pongFromRemote = await Mediator.Send(new Ping("from NUnit"));
             Assert.That(pongFromRemote, Is.Not.Null);
-            Assert.That(pongFromRemote.Message, Is.EqualTo("NUnit from ClientCertifier"));
+            Assert.That(pongFromRemote.Message, Is.EqualTo("Ping 1 hops from NUnit from ClientCertifier"));
+            Assert.That(pongFromRemote.Count, Is.EqualTo(2));   // 2 hops
         }
 
         #endregion Given

@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Logging;
 
 namespace DMediatR
 {
@@ -7,7 +7,7 @@ namespace DMediatR
     {
         private readonly Remote _remote;
 
-        public PingHandlerRemote(Remote remote, IServiceProvider serviceProvider) : base(serviceProvider)
+        public PingHandlerRemote(Remote remote, IServiceProvider serviceProvider, ILogger<PingHandlerRemote> logger) : base(serviceProvider, logger)
         {
             _remote = remote;
         }

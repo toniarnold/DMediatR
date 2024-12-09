@@ -3,7 +3,7 @@
     /// <summary>
     /// Simple MediatR IRequest for diagnosis.
     /// </summary>
-    public class Ping : IRequest<Pong>
+    public class Ping : SerializationCountMessage, IRequest<Pong>
     {
         public string? Message { get; set; }
 

@@ -10,7 +10,7 @@ namespace DMediatR
                 guid,
                 entry =>
                 {
-                    entry.AbsoluteExpirationRelativeToNow = RenewNotification.MaxLatency;
+                    entry.AbsoluteExpirationRelativeToNow = CorrelatedNotification.MaxLatency;
                     return new object();
                 });
             return cached != null;

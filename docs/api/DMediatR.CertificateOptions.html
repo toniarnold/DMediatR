@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class CertificateOptions | DMediatR ">
       
-      <meta name="description" content="X509 certificate specification, including the password.">
+      <meta name="description" content="X509 certificate specification, inheriting the password.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,12 +97,12 @@ Class CertificateOptions
   <dl><dt>Assembly</dt><dd>DMediatR.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>X509 certificate specification, including the password.</p>
+  <div class="markdown summary"><p>X509 certificate specification, inheriting the password.</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class CertificateOptions</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class CertificateOptions : PasswordOptions</code></pre>
   </div>
 
 
@@ -112,6 +112,7 @@ Class CertificateOptions
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="DMediatR.PasswordOptions.html">PasswordOptions</a></div>
       <div><span class="xref">CertificateOptions</span></div>
     </dd>
   </dl>
@@ -121,6 +122,12 @@ Class CertificateOptions
   <dl class="typelist inheritedMembers">
     <dt>Inherited Members</dt>
     <dd>
+    <div>
+      <a class="xref" href="DMediatR.PasswordOptions.html#DMediatR_PasswordOptions_SectionName">PasswordOptions.SectionName</a>
+    </div>
+    <div>
+      <a class="xref" href="DMediatR.PasswordOptions.html#DMediatR_PasswordOptions_Password">PasswordOptions.Password</a>
+    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -140,40 +147,6 @@ Class CertificateOptions
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
   </dd></dl>
-
-
-
-
-
-
-  <h2 class="section" id="fields">Fields
-</h2>
-
-
-
-  <h3 id="DMediatR_CertificateOptions_SectionName" data-uid="DMediatR.CertificateOptions.SectionName">
-  SectionName
-  
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public const string SectionName = &quot;Certificate&quot;</code></pre>
-  </div>
-
-
-
-
-  <h4 class="section">Field Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
 
 
 
@@ -261,38 +234,6 @@ public string? FilenamePrefix { get; set; }</code></pre>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Required]
 public string? HostName { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="DMediatR_CertificateOptions_Password_" data-uid="DMediatR.CertificateOptions.Password*"></a>
-
-  <h3 id="DMediatR_CertificateOptions_Password" data-uid="DMediatR.CertificateOptions.Password">
-  Password
-  
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Required]
-public string? Password { get; set; }</code></pre>
   </div>
 
 

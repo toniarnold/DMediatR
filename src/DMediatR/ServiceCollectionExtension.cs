@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Reflection;
 
@@ -29,12 +30,15 @@ namespace DMediatR
             // Use TryAdd as MediatR itself, so any existing registration doesn't get overridden
             services.TryAddSingleton(config);
             services.TryAddSingleton(sp => sp);
+            services.AddLogging(builder => builder.AddConsole());
 
             // Options
             services.Configure<HostOptions>(config.GetSection(HostOptions.SectionName));
             services.TryAddSingleton<IValidateOptions<HostOptions>, ValidateHostOptions>();
             services.Configure<CertificateOptions>(config.GetSection(CertificateOptions.SectionName));
             services.TryAddSingleton<IValidateOptions<CertificateOptions>, ValidateCertificateOptions>();
+            services.Configure<PasswordOptions>(config.GetSection(PasswordOptions.SectionName));
+            services.TryAddSingleton<IValidateOptions<PasswordOptions>, ValidatePasswordOptions>();
             services.Configure<RemotesOptions>(config.GetSection(RemotesOptions.SectionName));
             services.TryAddSingleton<IValidateOptions<RemotesOptions>, ValidateRemotesOptions>();
 
@@ -58,10 +62,6 @@ namespace DMediatR
             services.TryAddSingleton<IGrpcChannelPool, GrpcChannelPool>();
             services.AddMemoryCache();
 
-            // Ping-Pong
-            services.TryAddSingleton<PingHandler>();
-            services.TryAddSingleton<PingHandlerRemote>();
-
             // Certificates
             services.AddCertificateManager();
             services.TryAddSingleton<RootCertificateProvider>();
@@ -74,8 +74,16 @@ namespace DMediatR
             services.TryAddSingleton<ClientCertificateProviderRemote>();
             services.TryAddSingleton<Certificates>();
 
+            // Ping-Pong
+            services.TryAddSingleton<PingHandler>();
+            services.TryAddSingleton<PingHandlerRemote>();
+            services.TryAddSingleton<BingHandler>();
+
             // Serializer default and custom
+            services.TryAddSingleton<TypedSerializer>();
             services.TryAddSingleton<ISerializer, Serializer>();
+            services.TryAddKeyedSingleton<ISerializer, BinarySerializer>(typeof(object)); // recursion base case for TypedSerializer
+            services.TryAddKeyedSingleton<ISerializer, SerializationCountSerializer>(SerializationCountSerializer.Type);
             services.TryAddKeyedSingleton<ISerializer, X509CertificateSerializer>(X509CertificateSerializer.Type);
 
             return services;

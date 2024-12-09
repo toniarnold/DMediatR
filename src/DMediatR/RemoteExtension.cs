@@ -71,7 +71,7 @@ namespace DMediatR
                     throw new AggregateException(defaultPortEx, oldPortEx);
                 }
             }
-            var response = provider.Remote.Serializer.Deserialize<TResponse>(typeof(TResponse), responseDto.Bytes);
+            var response = provider.Remote.Serializer.Deserialize<TResponse>(responseDto.Bytes);
             return response;
         }
 

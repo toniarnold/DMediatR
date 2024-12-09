@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Interface ISerializer | DMediatR ">
       
-      <meta name="description" content="Interface for injecting alternate serializer implementations. The default implementation uses MessagePackSerializer.Typeless.">
+      <meta name="description" content="Interface for the base serializer and all specialized serializers. Use it for injecting an alternate base BinarySerializer implementation with services.AddKeyedSingleton&amp;lt;ISerializer, BinarySerializer&amp;gt;(typeof(object)); Its pluggable default implementation is a tiny wrapper around MessagePackSerializer.Typeless.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,8 +97,10 @@ Interface ISerializer
   <dl><dt>Assembly</dt><dd>DMediatR.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Interface for injecting alternate serializer implementations.
-The default implementation uses MessagePackSerializer.Typeless.</p>
+  <div class="markdown summary"><p>Interface for the base serializer and all specialized serializers.
+Use it for injecting an alternate base BinarySerializer implementation with
+services.AddKeyedSingleton&lt;ISerializer, BinarySerializer&gt;(typeof(object));
+Its pluggable default implementation is a tiny wrapper around MessagePackSerializer.Typeless.</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -201,49 +203,6 @@ The default implementation uses MessagePackSerializer.Typeless.</p>
 
 
 
-  <a id="DMediatR_ISerializer_Deserialize_" data-uid="DMediatR.ISerializer.Deserialize*"></a>
-
-  <h3 id="DMediatR_ISerializer_Deserialize__1_System_Type_System_Byte___" data-uid="DMediatR.ISerializer.Deserialize``1(System.Type,System.Byte[])">
-  Deserialize&lt;T&gt;(Type, byte[])
-  
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">T Deserialize&lt;T&gt;(Type type, byte[] bytes)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>type</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
-    <dd></dd>
-    <dt><code>bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><span class="xref">T</span></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Type Parameters</h4>
-  <dl class="parameters">
-    <dt><code>T</code></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
   <a id="DMediatR_ISerializer_Serialize_" data-uid="DMediatR.ISerializer.Serialize*"></a>
 
   <h3 id="DMediatR_ISerializer_Serialize_System_Object_" data-uid="DMediatR.ISerializer.Serialize(System.Object)">
@@ -260,6 +219,44 @@ The default implementation uses MessagePackSerializer.Typeless.</p>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
+    <dt><code>obj</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="DMediatR_ISerializer_Serialize_" data-uid="DMediatR.ISerializer.Serialize*"></a>
+
+  <h3 id="DMediatR_ISerializer_Serialize_System_Type_System_Object_" data-uid="DMediatR.ISerializer.Serialize(System.Type,System.Object)">
+  Serialize(Type, object)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">byte[] Serialize(Type type, object obj)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>type</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
     <dt><code>obj</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
     <dd></dd>
   </dl>

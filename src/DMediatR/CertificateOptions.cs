@@ -8,12 +8,10 @@ namespace DMediatR
     { }
 
     /// <summary>
-    /// X509 certificate specification, including the password.
+    /// X509 certificate specification, inheriting the password.
     /// </summary>
-    public sealed class CertificateOptions
+    public sealed class CertificateOptions : PasswordOptions
     {
-        public const string SectionName = "Certificate";
-
         [Required]
         public string? HostName { get; set; }
 
@@ -22,9 +20,6 @@ namespace DMediatR
 
         [Required]
         public String? FilePath { get; set; }
-
-        [Required]
-        public String? Password { get; set; }
 
         [Required]
         [Range(typeof(int), "1", "3650")]

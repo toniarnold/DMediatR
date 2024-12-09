@@ -4,20 +4,18 @@ using Microsoft.Extensions.Options;
 
 namespace DMediatR
 {
-    [Local("Ping")]
-    internal class PingHandler : IRequestHandler<Ping, Pong>
+    internal class BingHandler
     {
         private readonly IServiceProvider _serviceProvider;
-        private readonly ILogger<PingHandler> _logger;
+        private readonly ILogger<BingHandler> _logger;
 
-        public PingHandler(IServiceProvider serviceProvider, ILogger<PingHandler> logger)
-
+        public BingHandler(IServiceProvider serviceProvider, ILogger<BingHandler> logger)
         {
             _serviceProvider = serviceProvider;
             _logger = logger;
         }
 
-        public virtual async Task<Pong> Handle(Ping request, CancellationToken cancellationToken)
+        public async Task Handle(Bing notification, CancellationToken cancellationToken)
         {
             var host = "";
             var env = Environment.GetEnvironmentVariables();
@@ -34,11 +32,10 @@ namespace DMediatR
                 }
             }
             var from = (host != "") ? $" from {host}" : "";
-            var hops = request.Count > 0 ? $"{request.Count} hops " : "";
-            var msg = $"Ping {hops}{request.Message}{from}";
+            var hops = notification.Count > 0 ? $"{notification.Count} hops " : "";
+            var msg = $"Bing {hops}{notification.Message}{from}";
             _logger.LogInformation(msg);
             await Task.CompletedTask;
-            return new Pong { Message = msg, Count = request.Count };
         }
     }
 }

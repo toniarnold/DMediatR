@@ -12,6 +12,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.Bing.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.Bing.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/DMediatR.CertificateOptions.yml",
       "output": {
         ".html": {
@@ -26,6 +36,26 @@
       "output": {
         ".html": {
           "relative_path": "api/DMediatR.Certificates.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.CorrelatedNotification.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.CorrelatedNotification.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.CustomSerializer-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.CustomSerializer-1.html"
         }
       },
       "version": ""
@@ -142,6 +172,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.PasswordOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.PasswordOptions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/DMediatR.Ping.yml",
       "output": {
         ".html": {
@@ -202,6 +242,36 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.SerializationCountMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.SerializationCountMessage.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.SerializationCountSerializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.SerializationCountSerializer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.Serializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.Serializer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/DMediatR.ServiceCollectionExtension.yml",
       "output": {
         ".html": {
@@ -249,6 +319,16 @@
       "output": {
         ".html": {
           "relative_path": "docs/introduction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/serializer.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/serializer.html"
         }
       },
       "version": ""

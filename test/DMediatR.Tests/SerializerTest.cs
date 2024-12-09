@@ -45,7 +45,7 @@ namespace DMediatR.Tests
         public void SerializeDeserializeMixedList()
         {
             // setup with direct instantiation
-            Serializer serializer = new(_serviceProvider);
+            BinarySerializer serializer = new();
 
             Mother mother = new();
             Girl girl = new() { Name = "Lucy" };
@@ -96,20 +96,28 @@ namespace DMediatR.Tests
 
         [Test]
         public void SerializeDeserializeX509Certificate()
+
         {
-            // setup
-            var serializer = _serviceProvider.GetRequiredService<ISerializer>();
+            // Check direct case and general case which needs to look up the direct serializer
+            var serializers = new ISerializer[]
+            {
+                _serviceProvider.GetRequiredKeyedService<ISerializer>(X509CertificateSerializer.Type),
+                _serviceProvider.GetRequiredService<ISerializer>()
+            };
 
-            var rootGen = _serviceProvider.GetRequiredService<RootCertificateProvider>();
-            var rootReq = new RootCertificateRequest();
-            var rootCert = rootGen.Generate(rootReq);
+            foreach (var serializer in serializers)
+            {
+                var rootGen = _serviceProvider.GetRequiredService<RootCertificateProvider>();
+                var rootReq = new RootCertificateRequest();
+                var rootCert = rootGen.Generate(rootReq);
 
-            // method under test
-            var bytes = serializer.Serialize(rootCert);
-            var copy = serializer.Deserialize<X509Certificate2>(bytes);
+                // method under test
+                var bytes = serializer.Serialize(rootCert);
+                var copy = serializer.Deserialize<X509Certificate2>(bytes);
 
-            // assertion
-            Assert.That(rootCert.Thumbprint, Is.EqualTo(((X509Certificate2)copy).Thumbprint));
+                // assertion
+                Assert.That(rootCert.Thumbprint, Is.EqualTo(((X509Certificate2)copy).Thumbprint), $" with {serializer.GetType().Name}");
+            }
         }
 
         [Test]

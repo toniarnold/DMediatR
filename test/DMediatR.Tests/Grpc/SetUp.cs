@@ -1,6 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics;
+using System.Net;
+using System.Net.Security;
 using System.Net.Sockets;
+using System.Security.Cryptography.X509Certificates;
 
 namespace DMediatR.Tests.Grpc
 {
@@ -99,6 +102,36 @@ namespace DMediatR.Tests.Grpc
             var cfg = Configuration.Get(environment);
             ServiceProvider = cs.AddDMediatR(cfg)
                 .BuildServiceProvider();
+        }
+
+        /// <summary>
+        /// Side-effect free HTTP client using the client certificate.
+        /// </summary>
+        /// <param name="address"></param>
+        /// <returns></returns>
+        public async static Task<HttpClient> GetHttpClientAsync()
+        {
+            var handler = new HttpClientHandler
+            {
+                ClientCertificateOptions = ClientCertificateOption.Manual,
+                ServerCertificateCustomValidationCallback = ServerCertificateCustomValidation
+            };
+            var clientCertificateProvider = ServiceProvider!.GetRequiredService<ClientCertificateProvider>();
+            (var loaded, var cert) = await clientCertificateProvider.TryLoad(CancellationToken.None);
+            if (!loaded)
+            {
+                throw new Exception($"Client certificate {clientCertificateProvider.FileName} not found");
+            }
+            handler.ClientCertificates.Add(cert!);
+            return new HttpClient(handler)
+            {
+                DefaultRequestVersion = HttpVersion.Version20 // HTTP/2 required for gRPC
+            };
+        }
+
+        private static bool ServerCertificateCustomValidation(HttpRequestMessage requestMessage, X509Certificate2? certificate, X509Chain? chain, SslPolicyErrors sslErrors)
+        {
+            return sslErrors == SslPolicyErrors.None;
         }
     }
 }

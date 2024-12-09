@@ -7,6 +7,25 @@ references:
   commentId: N:DMediatR
   fullName: DMediatR
   nameWithType: DMediatR
+- uid: DMediatR.Bing
+  name: Bing
+  href: api/DMediatR.Bing.html
+  commentId: T:DMediatR.Bing
+  fullName: DMediatR.Bing
+  nameWithType: Bing
+- uid: DMediatR.Bing.Message
+  name: Message
+  href: api/DMediatR.Bing.html#DMediatR_Bing_Message
+  commentId: P:DMediatR.Bing.Message
+  fullName: DMediatR.Bing.Message
+  nameWithType: Bing.Message
+- uid: DMediatR.Bing.Message*
+  name: Message
+  href: api/DMediatR.Bing.html#DMediatR_Bing_Message_
+  commentId: Overload:DMediatR.Bing.Message
+  isSpec: "True"
+  fullName: DMediatR.Bing.Message
+  nameWithType: Bing.Message
 - uid: DMediatR.CertificateOptions
   name: CertificateOptions
   href: api/DMediatR.CertificateOptions.html
@@ -52,19 +71,6 @@ references:
   isSpec: "True"
   fullName: DMediatR.CertificateOptions.HostName
   nameWithType: CertificateOptions.HostName
-- uid: DMediatR.CertificateOptions.Password
-  name: Password
-  href: api/DMediatR.CertificateOptions.html#DMediatR_CertificateOptions_Password
-  commentId: P:DMediatR.CertificateOptions.Password
-  fullName: DMediatR.CertificateOptions.Password
-  nameWithType: CertificateOptions.Password
-- uid: DMediatR.CertificateOptions.Password*
-  name: Password
-  href: api/DMediatR.CertificateOptions.html#DMediatR_CertificateOptions_Password_
-  commentId: Overload:DMediatR.CertificateOptions.Password
-  isSpec: "True"
-  fullName: DMediatR.CertificateOptions.Password
-  nameWithType: CertificateOptions.Password
 - uid: DMediatR.CertificateOptions.RenewBeforeExpirationDays
   name: RenewBeforeExpirationDays
   href: api/DMediatR.CertificateOptions.html#DMediatR_CertificateOptions_RenewBeforeExpirationDays
@@ -78,12 +84,6 @@ references:
   isSpec: "True"
   fullName: DMediatR.CertificateOptions.RenewBeforeExpirationDays
   nameWithType: CertificateOptions.RenewBeforeExpirationDays
-- uid: DMediatR.CertificateOptions.SectionName
-  name: SectionName
-  href: api/DMediatR.CertificateOptions.html#DMediatR_CertificateOptions_SectionName
-  commentId: F:DMediatR.CertificateOptions.SectionName
-  fullName: DMediatR.CertificateOptions.SectionName
-  nameWithType: CertificateOptions.SectionName
 - uid: DMediatR.CertificateOptions.ValidDays
   name: ValidDays
   href: api/DMediatR.CertificateOptions.html#DMediatR_CertificateOptions_ValidDays
@@ -148,6 +148,141 @@ references:
   isSpec: "True"
   fullName: DMediatR.Certificates.SetUpInitialChainAsync
   nameWithType: Certificates.SetUpInitialChainAsync
+- uid: DMediatR.CorrelatedNotification
+  name: CorrelatedNotification
+  href: api/DMediatR.CorrelatedNotification.html
+  commentId: T:DMediatR.CorrelatedNotification
+  fullName: DMediatR.CorrelatedNotification
+  nameWithType: CorrelatedNotification
+- uid: DMediatR.CorrelatedNotification.MaxLatency
+  name: MaxLatency
+  href: api/DMediatR.CorrelatedNotification.html#DMediatR_CorrelatedNotification_MaxLatency
+  commentId: P:DMediatR.CorrelatedNotification.MaxLatency
+  fullName: DMediatR.CorrelatedNotification.MaxLatency
+  nameWithType: CorrelatedNotification.MaxLatency
+- uid: DMediatR.CorrelatedNotification.MaxLatency*
+  name: MaxLatency
+  href: api/DMediatR.CorrelatedNotification.html#DMediatR_CorrelatedNotification_MaxLatency_
+  commentId: Overload:DMediatR.CorrelatedNotification.MaxLatency
+  isSpec: "True"
+  fullName: DMediatR.CorrelatedNotification.MaxLatency
+  nameWithType: CorrelatedNotification.MaxLatency
+- uid: DMediatR.CustomSerializer`1
+  name: CustomSerializer<T>
+  href: api/DMediatR.CustomSerializer-1.html
+  commentId: T:DMediatR.CustomSerializer`1
+  name.vb: CustomSerializer(Of T)
+  fullName: DMediatR.CustomSerializer<T>
+  fullName.vb: DMediatR.CustomSerializer(Of T)
+  nameWithType: CustomSerializer<T>
+  nameWithType.vb: CustomSerializer(Of T)
+- uid: DMediatR.CustomSerializer`1.#ctor(System.IServiceProvider)
+  name: CustomSerializer(IServiceProvider)
+  href: api/DMediatR.CustomSerializer-1.html#DMediatR_CustomSerializer_1__ctor_System_IServiceProvider_
+  commentId: M:DMediatR.CustomSerializer`1.#ctor(System.IServiceProvider)
+  name.vb: New(IServiceProvider)
+  fullName: DMediatR.CustomSerializer<T>.CustomSerializer(System.IServiceProvider)
+  fullName.vb: DMediatR.CustomSerializer(Of T).New(System.IServiceProvider)
+  nameWithType: CustomSerializer<T>.CustomSerializer(IServiceProvider)
+  nameWithType.vb: CustomSerializer(Of T).New(IServiceProvider)
+- uid: DMediatR.CustomSerializer`1.#ctor*
+  name: CustomSerializer
+  href: api/DMediatR.CustomSerializer-1.html#DMediatR_CustomSerializer_1__ctor_
+  commentId: Overload:DMediatR.CustomSerializer`1.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: DMediatR.CustomSerializer<T>.CustomSerializer
+  fullName.vb: DMediatR.CustomSerializer(Of T).New
+  nameWithType: CustomSerializer<T>.CustomSerializer
+  nameWithType.vb: CustomSerializer(Of T).New
+- uid: DMediatR.CustomSerializer`1.CheckType(System.Type)
+  name: CheckType(Type)
+  href: api/DMediatR.CustomSerializer-1.html#DMediatR_CustomSerializer_1_CheckType_System_Type_
+  commentId: M:DMediatR.CustomSerializer`1.CheckType(System.Type)
+  fullName: DMediatR.CustomSerializer<T>.CheckType(System.Type)
+  fullName.vb: DMediatR.CustomSerializer(Of T).CheckType(System.Type)
+  nameWithType: CustomSerializer<T>.CheckType(Type)
+  nameWithType.vb: CustomSerializer(Of T).CheckType(Type)
+- uid: DMediatR.CustomSerializer`1.CheckType*
+  name: CheckType
+  href: api/DMediatR.CustomSerializer-1.html#DMediatR_CustomSerializer_1_CheckType_
+  commentId: Overload:DMediatR.CustomSerializer`1.CheckType
+  isSpec: "True"
+  fullName: DMediatR.CustomSerializer<T>.CheckType
+  fullName.vb: DMediatR.CustomSerializer(Of T).CheckType
+  nameWithType: CustomSerializer<T>.CheckType
+  nameWithType.vb: CustomSerializer(Of T).CheckType
+- uid: DMediatR.CustomSerializer`1.Deserialize(System.Type,System.Byte[])
+  name: Deserialize(Type, byte[])
+  href: api/DMediatR.CustomSerializer-1.html#DMediatR_CustomSerializer_1_Deserialize_System_Type_System_Byte___
+  commentId: M:DMediatR.CustomSerializer`1.Deserialize(System.Type,System.Byte[])
+  name.vb: Deserialize(Type, Byte())
+  fullName: DMediatR.CustomSerializer<T>.Deserialize(System.Type, byte[])
+  fullName.vb: DMediatR.CustomSerializer(Of T).Deserialize(System.Type, Byte())
+  nameWithType: CustomSerializer<T>.Deserialize(Type, byte[])
+  nameWithType.vb: CustomSerializer(Of T).Deserialize(Type, Byte())
+- uid: DMediatR.CustomSerializer`1.Deserialize(System.Type,System.Byte[],System.Boolean)
+  name: Deserialize(Type, byte[], bool)
+  href: api/DMediatR.CustomSerializer-1.html#DMediatR_CustomSerializer_1_Deserialize_System_Type_System_Byte___System_Boolean_
+  commentId: M:DMediatR.CustomSerializer`1.Deserialize(System.Type,System.Byte[],System.Boolean)
+  name.vb: Deserialize(Type, Byte(), Boolean)
+  fullName: DMediatR.CustomSerializer<T>.Deserialize(System.Type, byte[], bool)
+  fullName.vb: DMediatR.CustomSerializer(Of T).Deserialize(System.Type, Byte(), Boolean)
+  nameWithType: CustomSerializer<T>.Deserialize(Type, byte[], bool)
+  nameWithType.vb: CustomSerializer(Of T).Deserialize(Type, Byte(), Boolean)
+- uid: DMediatR.CustomSerializer`1.Deserialize*
+  name: Deserialize
+  href: api/DMediatR.CustomSerializer-1.html#DMediatR_CustomSerializer_1_Deserialize_
+  commentId: Overload:DMediatR.CustomSerializer`1.Deserialize
+  isSpec: "True"
+  fullName: DMediatR.CustomSerializer<T>.Deserialize
+  fullName.vb: DMediatR.CustomSerializer(Of T).Deserialize
+  nameWithType: CustomSerializer<T>.Deserialize
+  nameWithType.vb: CustomSerializer(Of T).Deserialize
+- uid: DMediatR.CustomSerializer`1.Serialize(System.Type,System.Object)
+  name: Serialize(Type, object)
+  href: api/DMediatR.CustomSerializer-1.html#DMediatR_CustomSerializer_1_Serialize_System_Type_System_Object_
+  commentId: M:DMediatR.CustomSerializer`1.Serialize(System.Type,System.Object)
+  name.vb: Serialize(Type, Object)
+  fullName: DMediatR.CustomSerializer<T>.Serialize(System.Type, object)
+  fullName.vb: DMediatR.CustomSerializer(Of T).Serialize(System.Type, Object)
+  nameWithType: CustomSerializer<T>.Serialize(Type, object)
+  nameWithType.vb: CustomSerializer(Of T).Serialize(Type, Object)
+- uid: DMediatR.CustomSerializer`1.Serialize(System.Type,System.Object,System.Boolean)
+  name: Serialize(Type, object, bool)
+  href: api/DMediatR.CustomSerializer-1.html#DMediatR_CustomSerializer_1_Serialize_System_Type_System_Object_System_Boolean_
+  commentId: M:DMediatR.CustomSerializer`1.Serialize(System.Type,System.Object,System.Boolean)
+  name.vb: Serialize(Type, Object, Boolean)
+  fullName: DMediatR.CustomSerializer<T>.Serialize(System.Type, object, bool)
+  fullName.vb: DMediatR.CustomSerializer(Of T).Serialize(System.Type, Object, Boolean)
+  nameWithType: CustomSerializer<T>.Serialize(Type, object, bool)
+  nameWithType.vb: CustomSerializer(Of T).Serialize(Type, Object, Boolean)
+- uid: DMediatR.CustomSerializer`1.Serialize*
+  name: Serialize
+  href: api/DMediatR.CustomSerializer-1.html#DMediatR_CustomSerializer_1_Serialize_
+  commentId: Overload:DMediatR.CustomSerializer`1.Serialize
+  isSpec: "True"
+  fullName: DMediatR.CustomSerializer<T>.Serialize
+  fullName.vb: DMediatR.CustomSerializer(Of T).Serialize
+  nameWithType: CustomSerializer<T>.Serialize
+  nameWithType.vb: CustomSerializer(Of T).Serialize
+- uid: DMediatR.CustomSerializer`1.Type
+  name: Type
+  href: api/DMediatR.CustomSerializer-1.html#DMediatR_CustomSerializer_1_Type
+  commentId: P:DMediatR.CustomSerializer`1.Type
+  fullName: DMediatR.CustomSerializer<T>.Type
+  fullName.vb: DMediatR.CustomSerializer(Of T).Type
+  nameWithType: CustomSerializer<T>.Type
+  nameWithType.vb: CustomSerializer(Of T).Type
+- uid: DMediatR.CustomSerializer`1.Type*
+  name: Type
+  href: api/DMediatR.CustomSerializer-1.html#DMediatR_CustomSerializer_1_Type_
+  commentId: Overload:DMediatR.CustomSerializer`1.Type
+  isSpec: "True"
+  fullName: DMediatR.CustomSerializer<T>.Type
+  fullName.vb: DMediatR.CustomSerializer(Of T).Type
+  nameWithType: CustomSerializer<T>.Type
+  nameWithType.vb: CustomSerializer(Of T).Type
 - uid: DMediatR.Dto
   name: Dto
   href: api/DMediatR.Dto.html
@@ -503,15 +638,6 @@ references:
   fullName.vb: DMediatR.ISerializer.Deserialize(Of T)(Byte())
   nameWithType: ISerializer.Deserialize<T>(byte[])
   nameWithType.vb: ISerializer.Deserialize(Of T)(Byte())
-- uid: DMediatR.ISerializer.Deserialize``1(System.Type,System.Byte[])
-  name: Deserialize<T>(Type, byte[])
-  href: api/DMediatR.ISerializer.html#DMediatR_ISerializer_Deserialize__1_System_Type_System_Byte___
-  commentId: M:DMediatR.ISerializer.Deserialize``1(System.Type,System.Byte[])
-  name.vb: Deserialize(Of T)(Type, Byte())
-  fullName: DMediatR.ISerializer.Deserialize<T>(System.Type, byte[])
-  fullName.vb: DMediatR.ISerializer.Deserialize(Of T)(System.Type, Byte())
-  nameWithType: ISerializer.Deserialize<T>(Type, byte[])
-  nameWithType.vb: ISerializer.Deserialize(Of T)(Type, Byte())
 - uid: DMediatR.ISerializer.Serialize(System.Object)
   name: Serialize(object)
   href: api/DMediatR.ISerializer.html#DMediatR_ISerializer_Serialize_System_Object_
@@ -521,6 +647,15 @@ references:
   fullName.vb: DMediatR.ISerializer.Serialize(Object)
   nameWithType: ISerializer.Serialize(object)
   nameWithType.vb: ISerializer.Serialize(Object)
+- uid: DMediatR.ISerializer.Serialize(System.Type,System.Object)
+  name: Serialize(Type, object)
+  href: api/DMediatR.ISerializer.html#DMediatR_ISerializer_Serialize_System_Type_System_Object_
+  commentId: M:DMediatR.ISerializer.Serialize(System.Type,System.Object)
+  name.vb: Serialize(Type, Object)
+  fullName: DMediatR.ISerializer.Serialize(System.Type, object)
+  fullName.vb: DMediatR.ISerializer.Serialize(System.Type, Object)
+  nameWithType: ISerializer.Serialize(Type, object)
+  nameWithType.vb: ISerializer.Serialize(Type, Object)
 - uid: DMediatR.ISerializer.Serialize*
   name: Serialize
   href: api/DMediatR.ISerializer.html#DMediatR_ISerializer_Serialize_
@@ -566,6 +701,31 @@ references:
   isSpec: "True"
   fullName: DMediatR.LocalAttribute.RemoteName
   nameWithType: LocalAttribute.RemoteName
+- uid: DMediatR.PasswordOptions
+  name: PasswordOptions
+  href: api/DMediatR.PasswordOptions.html
+  commentId: T:DMediatR.PasswordOptions
+  fullName: DMediatR.PasswordOptions
+  nameWithType: PasswordOptions
+- uid: DMediatR.PasswordOptions.Password
+  name: Password
+  href: api/DMediatR.PasswordOptions.html#DMediatR_PasswordOptions_Password
+  commentId: P:DMediatR.PasswordOptions.Password
+  fullName: DMediatR.PasswordOptions.Password
+  nameWithType: PasswordOptions.Password
+- uid: DMediatR.PasswordOptions.Password*
+  name: Password
+  href: api/DMediatR.PasswordOptions.html#DMediatR_PasswordOptions_Password_
+  commentId: Overload:DMediatR.PasswordOptions.Password
+  isSpec: "True"
+  fullName: DMediatR.PasswordOptions.Password
+  nameWithType: PasswordOptions.Password
+- uid: DMediatR.PasswordOptions.SectionName
+  name: SectionName
+  href: api/DMediatR.PasswordOptions.html#DMediatR_PasswordOptions_SectionName
+  commentId: F:DMediatR.PasswordOptions.SectionName
+  fullName: DMediatR.PasswordOptions.SectionName
+  nameWithType: PasswordOptions.SectionName
 - uid: DMediatR.Ping
   name: Ping
   href: api/DMediatR.Ping.html
@@ -755,6 +915,141 @@ references:
   isSpec: "True"
   fullName: DMediatR.RemotesOptions.ValidatedValues
   nameWithType: RemotesOptions.ValidatedValues
+- uid: DMediatR.SerializationCountMessage
+  name: SerializationCountMessage
+  href: api/DMediatR.SerializationCountMessage.html
+  commentId: T:DMediatR.SerializationCountMessage
+  fullName: DMediatR.SerializationCountMessage
+  nameWithType: SerializationCountMessage
+- uid: DMediatR.SerializationCountMessage.Count
+  name: Count
+  href: api/DMediatR.SerializationCountMessage.html#DMediatR_SerializationCountMessage_Count
+  commentId: P:DMediatR.SerializationCountMessage.Count
+  fullName: DMediatR.SerializationCountMessage.Count
+  nameWithType: SerializationCountMessage.Count
+- uid: DMediatR.SerializationCountMessage.Count*
+  name: Count
+  href: api/DMediatR.SerializationCountMessage.html#DMediatR_SerializationCountMessage_Count_
+  commentId: Overload:DMediatR.SerializationCountMessage.Count
+  isSpec: "True"
+  fullName: DMediatR.SerializationCountMessage.Count
+  nameWithType: SerializationCountMessage.Count
+- uid: DMediatR.SerializationCountSerializer
+  name: SerializationCountSerializer
+  href: api/DMediatR.SerializationCountSerializer.html
+  commentId: T:DMediatR.SerializationCountSerializer
+  fullName: DMediatR.SerializationCountSerializer
+  nameWithType: SerializationCountSerializer
+- uid: DMediatR.SerializationCountSerializer.#ctor(System.IServiceProvider)
+  name: SerializationCountSerializer(IServiceProvider)
+  href: api/DMediatR.SerializationCountSerializer.html#DMediatR_SerializationCountSerializer__ctor_System_IServiceProvider_
+  commentId: M:DMediatR.SerializationCountSerializer.#ctor(System.IServiceProvider)
+  name.vb: New(IServiceProvider)
+  fullName: DMediatR.SerializationCountSerializer.SerializationCountSerializer(System.IServiceProvider)
+  fullName.vb: DMediatR.SerializationCountSerializer.New(System.IServiceProvider)
+  nameWithType: SerializationCountSerializer.SerializationCountSerializer(IServiceProvider)
+  nameWithType.vb: SerializationCountSerializer.New(IServiceProvider)
+- uid: DMediatR.SerializationCountSerializer.#ctor*
+  name: SerializationCountSerializer
+  href: api/DMediatR.SerializationCountSerializer.html#DMediatR_SerializationCountSerializer__ctor_
+  commentId: Overload:DMediatR.SerializationCountSerializer.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: DMediatR.SerializationCountSerializer.SerializationCountSerializer
+  fullName.vb: DMediatR.SerializationCountSerializer.New
+  nameWithType: SerializationCountSerializer.SerializationCountSerializer
+  nameWithType.vb: SerializationCountSerializer.New
+- uid: DMediatR.SerializationCountSerializer.Serialize(System.Type,System.Object)
+  name: Serialize(Type, object)
+  href: api/DMediatR.SerializationCountSerializer.html#DMediatR_SerializationCountSerializer_Serialize_System_Type_System_Object_
+  commentId: M:DMediatR.SerializationCountSerializer.Serialize(System.Type,System.Object)
+  name.vb: Serialize(Type, Object)
+  fullName: DMediatR.SerializationCountSerializer.Serialize(System.Type, object)
+  fullName.vb: DMediatR.SerializationCountSerializer.Serialize(System.Type, Object)
+  nameWithType: SerializationCountSerializer.Serialize(Type, object)
+  nameWithType.vb: SerializationCountSerializer.Serialize(Type, Object)
+- uid: DMediatR.SerializationCountSerializer.Serialize*
+  name: Serialize
+  href: api/DMediatR.SerializationCountSerializer.html#DMediatR_SerializationCountSerializer_Serialize_
+  commentId: Overload:DMediatR.SerializationCountSerializer.Serialize
+  isSpec: "True"
+  fullName: DMediatR.SerializationCountSerializer.Serialize
+  nameWithType: SerializationCountSerializer.Serialize
+- uid: DMediatR.Serializer
+  name: Serializer
+  href: api/DMediatR.Serializer.html
+  commentId: T:DMediatR.Serializer
+  fullName: DMediatR.Serializer
+  nameWithType: Serializer
+- uid: DMediatR.Serializer.#ctor(System.IServiceProvider)
+  name: Serializer(IServiceProvider)
+  href: api/DMediatR.Serializer.html#DMediatR_Serializer__ctor_System_IServiceProvider_
+  commentId: M:DMediatR.Serializer.#ctor(System.IServiceProvider)
+  name.vb: New(IServiceProvider)
+  fullName: DMediatR.Serializer.Serializer(System.IServiceProvider)
+  fullName.vb: DMediatR.Serializer.New(System.IServiceProvider)
+  nameWithType: Serializer.Serializer(IServiceProvider)
+  nameWithType.vb: Serializer.New(IServiceProvider)
+- uid: DMediatR.Serializer.#ctor*
+  name: Serializer
+  href: api/DMediatR.Serializer.html#DMediatR_Serializer__ctor_
+  commentId: Overload:DMediatR.Serializer.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: DMediatR.Serializer.Serializer
+  fullName.vb: DMediatR.Serializer.New
+  nameWithType: Serializer.Serializer
+  nameWithType.vb: Serializer.New
+- uid: DMediatR.Serializer.Deserialize(System.Type,System.Byte[])
+  name: Deserialize(Type, byte[])
+  href: api/DMediatR.Serializer.html#DMediatR_Serializer_Deserialize_System_Type_System_Byte___
+  commentId: M:DMediatR.Serializer.Deserialize(System.Type,System.Byte[])
+  name.vb: Deserialize(Type, Byte())
+  fullName: DMediatR.Serializer.Deserialize(System.Type, byte[])
+  fullName.vb: DMediatR.Serializer.Deserialize(System.Type, Byte())
+  nameWithType: Serializer.Deserialize(Type, byte[])
+  nameWithType.vb: Serializer.Deserialize(Type, Byte())
+- uid: DMediatR.Serializer.Deserialize*
+  name: Deserialize
+  href: api/DMediatR.Serializer.html#DMediatR_Serializer_Deserialize_
+  commentId: Overload:DMediatR.Serializer.Deserialize
+  isSpec: "True"
+  fullName: DMediatR.Serializer.Deserialize
+  nameWithType: Serializer.Deserialize
+- uid: DMediatR.Serializer.Deserialize``1(System.Byte[])
+  name: Deserialize<T>(byte[])
+  href: api/DMediatR.Serializer.html#DMediatR_Serializer_Deserialize__1_System_Byte___
+  commentId: M:DMediatR.Serializer.Deserialize``1(System.Byte[])
+  name.vb: Deserialize(Of T)(Byte())
+  fullName: DMediatR.Serializer.Deserialize<T>(byte[])
+  fullName.vb: DMediatR.Serializer.Deserialize(Of T)(Byte())
+  nameWithType: Serializer.Deserialize<T>(byte[])
+  nameWithType.vb: Serializer.Deserialize(Of T)(Byte())
+- uid: DMediatR.Serializer.Serialize(System.Object)
+  name: Serialize(object)
+  href: api/DMediatR.Serializer.html#DMediatR_Serializer_Serialize_System_Object_
+  commentId: M:DMediatR.Serializer.Serialize(System.Object)
+  name.vb: Serialize(Object)
+  fullName: DMediatR.Serializer.Serialize(object)
+  fullName.vb: DMediatR.Serializer.Serialize(Object)
+  nameWithType: Serializer.Serialize(object)
+  nameWithType.vb: Serializer.Serialize(Object)
+- uid: DMediatR.Serializer.Serialize(System.Type,System.Object)
+  name: Serialize(Type, object)
+  href: api/DMediatR.Serializer.html#DMediatR_Serializer_Serialize_System_Type_System_Object_
+  commentId: M:DMediatR.Serializer.Serialize(System.Type,System.Object)
+  name.vb: Serialize(Type, Object)
+  fullName: DMediatR.Serializer.Serialize(System.Type, object)
+  fullName.vb: DMediatR.Serializer.Serialize(System.Type, Object)
+  nameWithType: Serializer.Serialize(Type, object)
+  nameWithType.vb: Serializer.Serialize(Type, Object)
+- uid: DMediatR.Serializer.Serialize*
+  name: Serialize
+  href: api/DMediatR.Serializer.html#DMediatR_Serializer_Serialize_
+  commentId: Overload:DMediatR.Serializer.Serialize
+  isSpec: "True"
+  fullName: DMediatR.Serializer.Serialize
+  nameWithType: Serializer.Serialize
 - uid: DMediatR.ServiceCollectionExtension
   name: ServiceCollectionExtension
   href: api/DMediatR.ServiceCollectionExtension.html

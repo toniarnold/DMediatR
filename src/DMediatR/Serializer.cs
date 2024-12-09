@@ -1,104 +1,56 @@
-﻿using MessagePack;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace DMediatR
 {
     /// <summary>
-    /// Interface for injecting alternate serializer implementations.
-    /// The default implementation uses MessagePackSerializer.Typeless.
+    /// Interface for the base serializer and all specialized serializers.
+    /// Use it for injecting an alternate base BinarySerializer implementation with
+    /// services.AddKeyedSingleton&lt;ISerializer, BinarySerializer&gt;(typeof(object));
+    /// Its pluggable default implementation is a tiny wrapper around MessagePackSerializer.Typeless.
     /// </summary>
     public interface ISerializer
     {
         byte[] Serialize(object obj);
 
-        T Deserialize<T>(byte[] bytes);
+        byte[] Serialize(Type type, object obj);
 
-        T Deserialize<T>(Type type, byte[] bytes);
+        T Deserialize<T>(byte[] bytes);
 
         object Deserialize(Type type, byte[] bytes);
     }
 
     /// <summary>
-    /// Pluggable binary serializer for DMediatR using MessagePackSerializer.Typeless as default.
+    /// General serializer gathering required specialized serializers from the ServiceCollection.
     /// </summary>
-    internal class Serializer : ISerializer
+    public class Serializer : ISerializer
     {
-        private readonly IServiceProvider _serviceProvider;
+        private readonly TypedSerializer _typedSerializer;
 
         public Serializer(IServiceProvider serviceProvider)
+
         {
-            _serviceProvider = serviceProvider;
+            _typedSerializer = serviceProvider.GetRequiredService<TypedSerializer>();
         }
 
-        public virtual byte[] Serialize(object obj)
+        public byte[] Serialize(object obj)
         {
-            var customSerializer = _serviceProvider.GetKeyedService<ISerializer>(obj.GetType());
-            if (customSerializer != null)
-            {
-                return customSerializer.Serialize(obj);
-            }
-            else
-            {
-                return MessagePackSerializer.Typeless.Serialize(obj);
-            }
+            return Serialize(obj.GetType(), obj);
         }
 
-        public virtual T Deserialize<T>(byte[] bytes)
+        public virtual byte[] Serialize(Type type, object obj)
+        {
+            return _typedSerializer.Serialize(type, obj);
+        }
+
+        public T Deserialize<T>(byte[] bytes)
         {
             return (T)Deserialize(typeof(T), bytes);
-        }
-
-        public virtual T Deserialize<T>(Type type, byte[] bytes)
-        {
-#pragma warning disable CA2263 // Generische Überladung bevorzugen, wenn der Typ bekannt ist
-            return (T)Deserialize(typeof(T), bytes);
-#pragma warning restore CA2263 // Generische Überladung bevorzugen, wenn der Typ bekannt ist
         }
 
         public virtual object Deserialize(Type type, byte[] bytes)
         {
-            var customSerializer = _serviceProvider.GetKeyedService<ISerializer>(type);
-            if (customSerializer != null)
-            {
-                return customSerializer.Deserialize(type, bytes);
-            }
-            else
-            {
-                return MessagePackSerializer.Typeless.Deserialize(bytes)!;
-            }
-        }
-    }
-
-    /// <summary>
-    /// Generic custom binary serializer.
-    /// </summary>
-    /// <typeparam name="T">The concrete type to serialize.</typeparam>
-    internal class Serializer<T> : Serializer
-    {
-        public Serializer(IServiceProvider serviceProvider) : base(serviceProvider)
-        {
-        }
-
-        /// <summary>
-        /// Type of the serialized object as key for services.AddKeyedSingleton().
-        /// </summary>
-        public static Type Type => typeof(T);
-
-        /// <summary>
-        /// Throws an ArgumentException if the given object is not of type T.
-        /// </summary>
-        /// <param name="givenType"></param>
-        /// <exception cref="ArgumentException"></exception>
-        public void CheckType(Type givenType)
-        {
-            if (givenType != Type)
-            {
-                throw new ArgumentException(
-                   $"""
-                    {Type.Name} serializer used for type {givenType.Name}. Register the custom serializer exclusively with
-                    services.AddKeyedSingleton<ISerializer, {this.GetType().Name}>({this.GetType().Name}.Type);
-                    """);
-            }
+            var obj = _typedSerializer.Deserialize(type, bytes);
+            return (dynamic)obj!;
         }
     }
 }
