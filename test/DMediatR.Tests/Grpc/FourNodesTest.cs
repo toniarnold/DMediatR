@@ -50,7 +50,7 @@ namespace DMediatR.Tests.Grpc
             // Given_*
             await Then_DMediatRNodeRechable();
             await Then_DMediatRNodeAnswersPing();
-            //await Then_DmMediatRNodeForwardsBing(); // not yet functional
+            await Then_DmMediatRNodeForwardsBing(); // functional as long ClientCertifier is not configured in Remotes
         }
 
         #region Given
