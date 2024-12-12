@@ -42,6 +42,11 @@
       "_appTitle": "DMediatR",
       "_enableSearch": true,
       "pdf": false
+    },
+    "markdownEngineProperties": {
+      "markdigExtensions": [
+        "Footnotes"
+      ]
     }
   }
 }

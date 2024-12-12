@@ -7,8 +7,7 @@ namespace DMediatR
     {
         private readonly PasswordOptions _options;
 
-        public X509CertificateSerializer(
-            IServiceProvider serviceProvider,
+        public X509CertificateSerializer(IServiceProvider serviceProvider,
             IOptions<PasswordOptions> options) : base(serviceProvider)
         {
             _options = options.Value;

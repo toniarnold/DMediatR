@@ -42,13 +42,15 @@ namespace DMediatR.Tests.Grpc
             Given_CertificatesDistributedOffline();
             Given_FourServersStarted();
             Given_DMediatRClient();
-            await Given_DMediatRNodeRechable();
         }
 
         [Test]
         public async Task TestFourNodesWithClient()
         {
-            await DMediatRNodeAnswersPing();
+            // Given_*
+            await Then_DMediatRNodeRechable();
+            await Then_DMediatRNodeAnswersPing();
+            //await Then_DmMediatRNodeForwardsBing(); // not yet functional
         }
 
         #region Given
@@ -93,7 +95,8 @@ namespace DMediatR.Tests.Grpc
             DeployCertificate("DMediatR-ServerCertifier.pfx", "ServerCertifier");
             DeployCertificate("DMediatR-ServerCertifier.pfx", "ClientCertifier");
 
-            // The same client certificate used by all nodes except root.
+            // The same client certificate used by all nodes
+            DeployCertificate("DMediatR-ClientCertifier.pfx", "RootCertifier");
             DeployCertificate("DMediatR-ClientCertifier.pfx", "IntermediateCertifier");
             DeployCertificate("DMediatR-ClientCertifier.pfx", "ServerCertifier");
             DeployCertificate("DMediatR-ClientCertifier.pfx", "ClientCertifier");
@@ -116,26 +119,35 @@ namespace DMediatR.Tests.Grpc
             SetUp.SetUpDMediatRServices("RemotePing");
         }
 
+        #endregion Given
+
+        #region Then
+
         /// <summary>
         /// Side-effect free simple HTTP/2 request
         /// </summary>
         /// <returns></returns>
-        private async Task Given_DMediatRNodeRechable()
+        private async Task Then_DMediatRNodeRechable()
         {
             using var httpClient = await SetUp.GetHttpClientAsync();
             var response = await httpClient.GetStringAsync("https://localhost:18007/"); // appsettings.RemotePing.json
             Assert.That(response, Is.EqualTo("DMediatR gRPC endpoint"));
         }
 
-        private async Task DMediatRNodeAnswersPing()
+        private async Task Then_DMediatRNodeAnswersPing()
         {
             var pongFromRemote = await Mediator.Send(new Ping("from NUnit"));
             Assert.That(pongFromRemote, Is.Not.Null);
-            Assert.That(pongFromRemote.Message, Is.EqualTo("Ping 1 hops from NUnit from ClientCertifier"));
             Assert.That(pongFromRemote.Count, Is.EqualTo(2));   // 2 hops
+            Assert.That(pongFromRemote.Message, Is.EqualTo("Pong from NUnit via ClientCertifier 1 hops"));
         }
 
-        #endregion Given
+        private async Task Then_DmMediatRNodeForwardsBing()
+        {
+            await Mediator.Publish(new Bing("Bing from NUnit"));
+        }
+
+        #endregion Then
 
         [OneTimeTearDown]
         public void StopServers()

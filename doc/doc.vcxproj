@@ -95,6 +95,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="docfx.json" />
+    <None Include="docs\debugging.md" />
     <None Include="docs\getting-started.md" />
     <None Include="docs\introduction.md" />
     <None Include="docs\serializer.md" />

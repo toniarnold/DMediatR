@@ -102,7 +102,7 @@ Class Bing
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Bing : SerializationCountMessage, INotification</code></pre>
+    <pre><code class="lang-csharp hljs">public class Bing : SerializationCountMessage, ICorrelatedNotification, INotification</code></pre>
   </div>
 
 
@@ -120,6 +120,7 @@ Class Bing
   <dl class="typelist implements">
     <dt>Implements</dt>
     <dd>
+      <div><a class="xref" href="DMediatR.ICorrelatedNotification.html">ICorrelatedNotification</a></div>
       <div><span class="xref">INotification</span></div>
     </dd>
   </dl>
@@ -159,8 +160,102 @@ Class Bing
 
 
 
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="DMediatR_Bing__ctor_" data-uid="DMediatR.Bing.#ctor*"></a>
+
+  <h3 id="DMediatR_Bing__ctor" data-uid="DMediatR.Bing.#ctor">
+  Bing()
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Bing()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="DMediatR_Bing__ctor_" data-uid="DMediatR.Bing.#ctor*"></a>
+
+  <h3 id="DMediatR_Bing__ctor_System_String_" data-uid="DMediatR.Bing.#ctor(System.String)">
+  Bing(string)
+  
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Bing(string message)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>message</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <h2 class="section" id="properties">Properties
 </h2>
+
+
+  <a id="DMediatR_Bing_CorrelationGuid_" data-uid="DMediatR.Bing.CorrelationGuid*"></a>
+
+  <h3 id="DMediatR_Bing_CorrelationGuid" data-uid="DMediatR.Bing.CorrelationGuid">
+  CorrelationGuid
+  
+  </h3>
+
+  <div class="markdown level1 summary"><p>To be implemented as
+public Guid CorrelationGuid { get; init; } = Guid.NewGuid();</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Guid CorrelationGuid { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
 
 
   <a id="DMediatR_Bing_Message_" data-uid="DMediatR.Bing.Message*"></a>

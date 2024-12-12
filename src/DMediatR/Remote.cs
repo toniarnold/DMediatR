@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using System;
 
 namespace DMediatR
 {
@@ -15,6 +17,7 @@ namespace DMediatR
     /// </summary>
     public class Remote
     {
+        private readonly IServiceProvider _serviceProvider;
         private readonly CertificateOptions _certOptions;
         private readonly RemotesOptions _remotes;
         private readonly IMediator _mediator;
@@ -22,12 +25,14 @@ namespace DMediatR
         private readonly IGrpcChannelPool _grpcChannelProvider;
 
         public Remote(
+            IServiceProvider serviceProvider,
             IOptions<CertificateOptions> certOptions,
             IOptions<RemotesOptions> remotesOptions,
             IMediator mediator,
             ISerializer serializer,
             IGrpcChannelPool channel)
         {
+            _serviceProvider = serviceProvider;
             _certOptions = certOptions.Value;
             _remotes = remotesOptions.Value;
             _mediator = mediator;
@@ -35,6 +40,7 @@ namespace DMediatR
             _grpcChannelProvider = channel;
         }
 
+        internal IServiceProvider ServiceProvider => _serviceProvider;
         internal CertificateOptions CertificateOptions => _certOptions;
         internal RemotesOptions Remotes => _remotes;
         internal IMediator Mediator => _mediator;

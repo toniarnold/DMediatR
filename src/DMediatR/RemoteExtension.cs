@@ -1,4 +1,5 @@
-﻿using ProtoBuf.Grpc.Client;
+﻿using Microsoft.Extensions.DependencyInjection;
+using ProtoBuf.Grpc.Client;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 
@@ -39,7 +40,8 @@ namespace DMediatR
     {
         internal static async Task<TResponse> InternalSendRemote<TResponse>(this IRemote provider, IRequest<TResponse> request, CancellationToken cancellationToken)
         {
-            var handler = await provider.GetHttpClientHandler(cancellationToken);
+            var isClientCertificateRequest = request.GetType() == typeof(ClientCertificateRequest);
+            var handler = await provider.GetHttpClientHandler(isClientCertificateRequest, cancellationToken);
             var requestDto = Dto(provider, request);
             Dto responseDto;
             var address = $"https://{Remote(provider).Host}:{Remote(provider).Port}";
@@ -81,7 +83,7 @@ namespace DMediatR
             {
                 var tasks = new List<Task>();
                 var notificationDto = Dto(provider, notification);
-                var handler = await provider.GetHttpClientHandler(cancellationToken);
+                var handler = await provider.GetHttpClientHandler(false, cancellationToken);
                 foreach (var remote in provider.Remote.Remotes.Values)
                 {
                     var t = PublishNotificationDtoRemote(provider, remote, notificationDto, handler);
@@ -142,17 +144,34 @@ namespace DMediatR
         /// Get a HttpClientHandler with client certificate SSL
         /// </summary>
         /// <param name="provider"></param>
+        /// <param name="handleClientCertificateRequest">True if the remote request is a ClientCertificateRequest itself</param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        private static async Task<HttpClientHandler> GetHttpClientHandler(this IRemote provider, CancellationToken cancellationToken)
+        private static async Task<HttpClientHandler> GetHttpClientHandler(this IRemote provider,
+            bool handleClientCertificateRequest, CancellationToken cancellationToken)
         {
             var handler = new HttpClientHandler
             {
                 ClientCertificateOptions = ClientCertificateOption.Manual,
                 ServerCertificateCustomValidationCallback = ServerCertificateCustomValidation
             };
-            var clientCertificate = await provider.Remote.Mediator.Send(new ClientCertificateRequest(), cancellationToken);
-            handler.ClientCertificates.Add(clientCertificate);
+            X509Certificate2? clientCertificate;
+            if (handleClientCertificateRequest)
+            {
+                // If the remote request is a ClientCertificateRequest itself, avoid an endless loop.
+                // The connection has to happen with a local certificate anyway, thus get it directly.
+                var clientCertProvider = provider.Remote.ServiceProvider.GetRequiredService<ClientCertificateProvider>();
+                (var loaded, clientCertificate) = await clientCertProvider.TryLoad(CancellationToken.None);
+                if (!loaded)
+                {
+                    throw new Exception($"Client certificate {clientCertProvider.FileName} not found");
+                }
+            }
+            else
+            {
+                clientCertificate = await provider.Remote.Mediator.Send(new ClientCertificateRequest(), cancellationToken);
+            }
+            handler.ClientCertificates.Add(clientCertificate!);
             return handler;
         }
 

@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 
 namespace DMediatRNode
@@ -25,6 +26,11 @@ namespace DMediatRNode
             }
             else
             {
+                var env = Environment.GetEnvironmentVariables();
+                if (env.Contains("ASPNETCORE_ENVIRONMENT"))
+                {
+                    Console.Title = $"DMediatR {env["ASPNETCORE_ENVIRONMENT"]}"; // dotnet run --project
+                }
                 await Task.WhenAll(
                     GrpcServer.RunRestartWebAppAsync(args, GrpcPort.UseDefault, ct),
                     GrpcServer.RunRestartWebAppAsync(args, GrpcPort.UseRenew, ct)

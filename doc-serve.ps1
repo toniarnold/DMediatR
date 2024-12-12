@@ -1,3 +1,2 @@
- cd doc
- docfx docfx.json --serve
- 
+cd doc
+docfx docfx.json --serve

@@ -305,6 +305,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "docs/debugging.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/debugging.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "docs/getting-started.md",
       "output": {
         ".html": {

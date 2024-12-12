@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Interface ICorrelatedNotification | DMediatR </title>
+      <title>Debugging | DMediatR </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Interface ICorrelatedNotification | DMediatR ">
+      <meta name="title" content="Debugging | DMediatR ">
       
-      <meta name="description" content="Multiple DMediatR nodes can have cyclic dependencies or there might be indirect diamonds in the configured dependency graph. In such cases a single node receives and would forward the same Notification in multiple duplicate copies. To handle them only once as in a monolith correlate these remote Notifications with a Guid.">
+      
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -39,7 +39,7 @@
 
   </head>
 
-  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
     <header class="bg-body border-bottom">
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
@@ -84,84 +84,48 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="DMediatR.ICorrelatedNotification">
+        <article data-uid="">
+<h1 id="debugging">Debugging</h1>
 
-
-
-  <h1 id="DMediatR_ICorrelatedNotification" data-uid="DMediatR.ICorrelatedNotification" class="text-break">
-Interface ICorrelatedNotification  
-  </h1>
-
-  <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="DMediatR.html">DMediatR</a></dd></dl>
-  <dl><dt>Assembly</dt><dd>DMediatR.dll</dd></dl>
-  </div>
-
-  <div class="markdown summary"><p>Multiple DMediatR nodes can have cyclic dependencies or there might be indirect diamonds in the configured dependency graph.
-In such cases a single node receives and would forward the same Notification in multiple duplicate copies.
-To handle them only once as in a monolith correlate these remote Notifications with a Guid.</p>
+<p>The VS debugger can only be attached to one process at a time, so debugging a distributed system
+presents some challenges. To ease debugging, there are two scripts in the main directory:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Script</th>
+<th style="text-align: left;">NUnit Category</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>.\debug-client.ps1</code></td>
+<td style="text-align: left;"><code>[Category(&quot;DebugClient&quot;)]</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>.\debug-server.ps1</code></td>
+<td style="text-align: left;"><code>[Category(&quot;DebugServer&quot;)]</code></td>
+</tr>
+</tbody>
+</table>
+<p>As debugging tests are a kind of &quot;scaffolding tests&quot;, they are not intended to be run
+regularly to verify the code, but only upon request. So it is recommended to group the
+by &quot;Traits&quot; the VS Test-Explorer with the &quot;Group By&quot; button<a id="fnref:1" href="#fn:1" class="footnote-ref"><sup>1</sup></a>.</p>
+<h2 id="notes">Notes</h2>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://learn.microsoft.com/en-us/visualstudio/test/run-unit-tests-with-test-explorer?view=vs-2022#group-tests-in-the-test-list">Group Nunit Tests</a><a href="#fnref:1" class="footnote-back-ref">&#8617;</a></p>
+</li>
+</ol>
 </div>
-  <div class="markdown conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface ICorrelatedNotification : INotification</code></pre>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <h2 class="section" id="properties">Properties
-</h2>
-
-
-  <a id="DMediatR_ICorrelatedNotification_CorrelationGuid_" data-uid="DMediatR.ICorrelatedNotification.CorrelationGuid*"></a>
-
-  <h3 id="DMediatR_ICorrelatedNotification_CorrelationGuid" data-uid="DMediatR.ICorrelatedNotification.CorrelationGuid">
-  CorrelationGuid
-  
-  </h3>
-
-  <div class="markdown level1 summary"><p>To be implemented as
-public Guid CorrelationGuid { get; init; } = Guid.NewGuid();</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Guid CorrelationGuid { get; init; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
 
 </article>
 
         <div class="contribution d-print-none">
         </div>
 
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
 
       </div>
 

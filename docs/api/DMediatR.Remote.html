@@ -155,8 +155,8 @@ Class Remote
 
   <a id="DMediatR_Remote__ctor_" data-uid="DMediatR.Remote.#ctor*"></a>
 
-  <h3 id="DMediatR_Remote__ctor_Microsoft_Extensions_Options_IOptions_DMediatR_CertificateOptions__Microsoft_Extensions_Options_IOptions_DMediatR_RemotesOptions__MediatR_IMediator_DMediatR_ISerializer_DMediatR_IGrpcChannelPool_" data-uid="DMediatR.Remote.#ctor(Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions},Microsoft.Extensions.Options.IOptions{DMediatR.RemotesOptions},MediatR.IMediator,DMediatR.ISerializer,DMediatR.IGrpcChannelPool)">
-  Remote(IOptions&lt;CertificateOptions&gt;, IOptions&lt;RemotesOptions&gt;, IMediator, ISerializer, IGrpcChannelPool)
+  <h3 id="DMediatR_Remote__ctor_System_IServiceProvider_Microsoft_Extensions_Options_IOptions_DMediatR_CertificateOptions__Microsoft_Extensions_Options_IOptions_DMediatR_RemotesOptions__MediatR_IMediator_DMediatR_ISerializer_DMediatR_IGrpcChannelPool_" data-uid="DMediatR.Remote.#ctor(System.IServiceProvider,Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions},Microsoft.Extensions.Options.IOptions{DMediatR.RemotesOptions},MediatR.IMediator,DMediatR.ISerializer,DMediatR.IGrpcChannelPool)">
+  Remote(IServiceProvider, IOptions&lt;CertificateOptions&gt;, IOptions&lt;RemotesOptions&gt;, IMediator, ISerializer, IGrpcChannelPool)
   
   </h3>
 
@@ -164,11 +164,13 @@ Class Remote
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Remote(IOptions&lt;CertificateOptions&gt; certOptions, IOptions&lt;RemotesOptions&gt; remotesOptions, IMediator mediator, ISerializer serializer, IGrpcChannelPool channel)</code></pre>
+    <pre><code class="lang-csharp hljs">public Remote(IServiceProvider serviceProvider, IOptions&lt;CertificateOptions&gt; certOptions, IOptions&lt;RemotesOptions&gt; remotesOptions, IMediator mediator, ISerializer serializer, IGrpcChannelPool channel)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
+    <dt><code>serviceProvider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></dt>
+    <dd></dd>
     <dt><code>certOptions</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.options.ioptions-1">IOptions</a>&lt;<a class="xref" href="DMediatR.CertificateOptions.html">CertificateOptions</a>&gt;</dt>
     <dd></dd>
     <dt><code>remotesOptions</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.options.ioptions-1">IOptions</a>&lt;<a class="xref" href="DMediatR.RemotesOptions.html">RemotesOptions</a>&gt;</dt>

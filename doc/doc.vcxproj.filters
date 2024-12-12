@@ -38,5 +38,8 @@
     <None Include="docs\serializer.md">
       <Filter>DocFX\docs</Filter>
     </None>
+    <None Include="docs\debugging.md">
+      <Filter>DocFX\docs</Filter>
+    </None>
   </ItemGroup>
 </Project>

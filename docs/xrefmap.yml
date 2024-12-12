@@ -13,6 +13,47 @@ references:
   commentId: T:DMediatR.Bing
   fullName: DMediatR.Bing
   nameWithType: Bing
+- uid: DMediatR.Bing.#ctor
+  name: Bing()
+  href: api/DMediatR.Bing.html#DMediatR_Bing__ctor
+  commentId: M:DMediatR.Bing.#ctor
+  name.vb: New()
+  fullName: DMediatR.Bing.Bing()
+  fullName.vb: DMediatR.Bing.New()
+  nameWithType: Bing.Bing()
+  nameWithType.vb: Bing.New()
+- uid: DMediatR.Bing.#ctor(System.String)
+  name: Bing(string)
+  href: api/DMediatR.Bing.html#DMediatR_Bing__ctor_System_String_
+  commentId: M:DMediatR.Bing.#ctor(System.String)
+  name.vb: New(String)
+  fullName: DMediatR.Bing.Bing(string)
+  fullName.vb: DMediatR.Bing.New(String)
+  nameWithType: Bing.Bing(string)
+  nameWithType.vb: Bing.New(String)
+- uid: DMediatR.Bing.#ctor*
+  name: Bing
+  href: api/DMediatR.Bing.html#DMediatR_Bing__ctor_
+  commentId: Overload:DMediatR.Bing.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: DMediatR.Bing.Bing
+  fullName.vb: DMediatR.Bing.New
+  nameWithType: Bing.Bing
+  nameWithType.vb: Bing.New
+- uid: DMediatR.Bing.CorrelationGuid
+  name: CorrelationGuid
+  href: api/DMediatR.Bing.html#DMediatR_Bing_CorrelationGuid
+  commentId: P:DMediatR.Bing.CorrelationGuid
+  fullName: DMediatR.Bing.CorrelationGuid
+  nameWithType: Bing.CorrelationGuid
+- uid: DMediatR.Bing.CorrelationGuid*
+  name: CorrelationGuid
+  href: api/DMediatR.Bing.html#DMediatR_Bing_CorrelationGuid_
+  commentId: Overload:DMediatR.Bing.CorrelationGuid
+  isSpec: "True"
+  fullName: DMediatR.Bing.CorrelationGuid
+  nameWithType: Bing.CorrelationGuid
 - uid: DMediatR.Bing.Message
   name: Message
   href: api/DMediatR.Bing.html#DMediatR_Bing_Message
@@ -798,15 +839,15 @@ references:
   commentId: T:DMediatR.Remote
   fullName: DMediatR.Remote
   nameWithType: Remote
-- uid: DMediatR.Remote.#ctor(Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions},Microsoft.Extensions.Options.IOptions{DMediatR.RemotesOptions},MediatR.IMediator,DMediatR.ISerializer,DMediatR.IGrpcChannelPool)
-  name: Remote(IOptions<CertificateOptions>, IOptions<RemotesOptions>, IMediator, ISerializer, IGrpcChannelPool)
-  href: api/DMediatR.Remote.html#DMediatR_Remote__ctor_Microsoft_Extensions_Options_IOptions_DMediatR_CertificateOptions__Microsoft_Extensions_Options_IOptions_DMediatR_RemotesOptions__MediatR_IMediator_DMediatR_ISerializer_DMediatR_IGrpcChannelPool_
-  commentId: M:DMediatR.Remote.#ctor(Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions},Microsoft.Extensions.Options.IOptions{DMediatR.RemotesOptions},MediatR.IMediator,DMediatR.ISerializer,DMediatR.IGrpcChannelPool)
-  name.vb: New(IOptions(Of CertificateOptions), IOptions(Of RemotesOptions), IMediator, ISerializer, IGrpcChannelPool)
-  fullName: DMediatR.Remote.Remote(Microsoft.Extensions.Options.IOptions<DMediatR.CertificateOptions>, Microsoft.Extensions.Options.IOptions<DMediatR.RemotesOptions>, MediatR.IMediator, DMediatR.ISerializer, DMediatR.IGrpcChannelPool)
-  fullName.vb: DMediatR.Remote.New(Microsoft.Extensions.Options.IOptions(Of DMediatR.CertificateOptions), Microsoft.Extensions.Options.IOptions(Of DMediatR.RemotesOptions), MediatR.IMediator, DMediatR.ISerializer, DMediatR.IGrpcChannelPool)
-  nameWithType: Remote.Remote(IOptions<CertificateOptions>, IOptions<RemotesOptions>, IMediator, ISerializer, IGrpcChannelPool)
-  nameWithType.vb: Remote.New(IOptions(Of CertificateOptions), IOptions(Of RemotesOptions), IMediator, ISerializer, IGrpcChannelPool)
+- uid: DMediatR.Remote.#ctor(System.IServiceProvider,Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions},Microsoft.Extensions.Options.IOptions{DMediatR.RemotesOptions},MediatR.IMediator,DMediatR.ISerializer,DMediatR.IGrpcChannelPool)
+  name: Remote(IServiceProvider, IOptions<CertificateOptions>, IOptions<RemotesOptions>, IMediator, ISerializer, IGrpcChannelPool)
+  href: api/DMediatR.Remote.html#DMediatR_Remote__ctor_System_IServiceProvider_Microsoft_Extensions_Options_IOptions_DMediatR_CertificateOptions__Microsoft_Extensions_Options_IOptions_DMediatR_RemotesOptions__MediatR_IMediator_DMediatR_ISerializer_DMediatR_IGrpcChannelPool_
+  commentId: M:DMediatR.Remote.#ctor(System.IServiceProvider,Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions},Microsoft.Extensions.Options.IOptions{DMediatR.RemotesOptions},MediatR.IMediator,DMediatR.ISerializer,DMediatR.IGrpcChannelPool)
+  name.vb: New(IServiceProvider, IOptions(Of CertificateOptions), IOptions(Of RemotesOptions), IMediator, ISerializer, IGrpcChannelPool)
+  fullName: DMediatR.Remote.Remote(System.IServiceProvider, Microsoft.Extensions.Options.IOptions<DMediatR.CertificateOptions>, Microsoft.Extensions.Options.IOptions<DMediatR.RemotesOptions>, MediatR.IMediator, DMediatR.ISerializer, DMediatR.IGrpcChannelPool)
+  fullName.vb: DMediatR.Remote.New(System.IServiceProvider, Microsoft.Extensions.Options.IOptions(Of DMediatR.CertificateOptions), Microsoft.Extensions.Options.IOptions(Of DMediatR.RemotesOptions), MediatR.IMediator, DMediatR.ISerializer, DMediatR.IGrpcChannelPool)
+  nameWithType: Remote.Remote(IServiceProvider, IOptions<CertificateOptions>, IOptions<RemotesOptions>, IMediator, ISerializer, IGrpcChannelPool)
+  nameWithType.vb: Remote.New(IServiceProvider, IOptions(Of CertificateOptions), IOptions(Of RemotesOptions), IMediator, ISerializer, IGrpcChannelPool)
 - uid: DMediatR.Remote.#ctor*
   name: Remote
   href: api/DMediatR.Remote.html#DMediatR_Remote__ctor_

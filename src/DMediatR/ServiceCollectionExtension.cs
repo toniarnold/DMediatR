@@ -57,10 +57,13 @@ namespace DMediatR
             // Composite DMediatR dependencies
             services.TryAddSingleton<Remote>();
 
-            // MediatR NotificationForwarder
-            services.TryAddSingleton<RenewNotificationForwarder>();
+            // DMediatR
             services.TryAddSingleton<IGrpcChannelPool, GrpcChannelPool>();
+            services.TryAddSingleton<NotificationForwarder>();
             services.AddMemoryCache();
+            services.TryAddSingleton<PingHandler>();
+            services.TryAddSingleton<PingHandlerRemote>();
+            services.TryAddSingleton<BingHandler>();
 
             // Certificates
             services.AddCertificateManager();
@@ -74,17 +77,14 @@ namespace DMediatR
             services.TryAddSingleton<ClientCertificateProviderRemote>();
             services.TryAddSingleton<Certificates>();
 
-            // Ping-Pong
-            services.TryAddSingleton<PingHandler>();
-            services.TryAddSingleton<PingHandlerRemote>();
-            services.TryAddSingleton<BingHandler>();
-
             // Serializer default and custom
+            // <registerserializers>
             services.TryAddSingleton<TypedSerializer>();
             services.TryAddSingleton<ISerializer, Serializer>();
             services.TryAddKeyedSingleton<ISerializer, BinarySerializer>(typeof(object)); // recursion base case for TypedSerializer
             services.TryAddKeyedSingleton<ISerializer, SerializationCountSerializer>(SerializationCountSerializer.Type);
             services.TryAddKeyedSingleton<ISerializer, X509CertificateSerializer>(X509CertificateSerializer.Type);
+            // </registerserializers>
 
             return services;
         }

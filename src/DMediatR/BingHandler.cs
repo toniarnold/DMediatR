@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 
 namespace DMediatR
 {
-    internal class BingHandler
+    internal class BingHandler : INotificationHandler<Bing>
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly ILogger<BingHandler> _logger;
@@ -17,23 +17,7 @@ namespace DMediatR
 
         public async Task Handle(Bing notification, CancellationToken cancellationToken)
         {
-            var host = "";
-            var env = Environment.GetEnvironmentVariables();
-            if (env.Contains("ASPNETCORE_ENVIRONMENT"))
-            {
-                host = (string)env["ASPNETCORE_ENVIRONMENT"]!;  // dotnet run --project
-            }
-            else
-            {
-                var hostOptions = _serviceProvider.GetService<IOptions<HostOptions>>();
-                if (hostOptions != null)
-                {
-                    host = $"{hostOptions.Value.Host}:{hostOptions.Value.Port}";
-                }
-            }
-            var from = (host != "") ? $" from {host}" : "";
-            var hops = notification.Count > 0 ? $"{notification.Count} hops " : "";
-            var msg = $"Bing {hops}{notification.Message}{from}";
+            var msg = $"{notification.Message}";
             _logger.LogInformation(msg);
             await Task.CompletedTask;
         }

@@ -36,9 +36,18 @@ namespace DMediatR.Tests.Grpc
         public async Task GetRemoteServerCert()
         {
             var mediator = SetUp.ServiceProvider!.GetRequiredService<IMediator>();
-            var serverCertFromRemote = await mediator.Send(new ServerCertificateRequest());
-            Assert.That(serverCertFromRemote, Is.Not.Null);
-            Assert.That(serverCertFromRemote.Subject, Is.EqualTo("CN=ServerCertifier"));
+            var certFromRemote = await mediator.Send(new ServerCertificateRequest());
+            Assert.That(certFromRemote, Is.Not.Null);
+            Assert.That(certFromRemote.Subject, Is.EqualTo("CN=ServerCertifier"));
+        }
+
+        [Test]
+        public async Task GetRemoteClientCert()
+        {
+            var mediator = SetUp.ServiceProvider!.GetRequiredService<IMediator>();
+            var certFromRemote = await mediator.Send(new ClientCertificateRequest());
+            Assert.That(certFromRemote, Is.Not.Null);
+            Assert.That(certFromRemote.Subject, Is.EqualTo("CN=ClientCertifier"));
         }
 
         [Test]

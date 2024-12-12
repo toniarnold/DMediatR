@@ -6,7 +6,8 @@ namespace DMediatR
     {
         public static bool SelectLocalRemote(this IConfiguration cfg, Type t)
         {
-            return (RemoteAttribute.Name(t) != null && IsRemoteConfigured(cfg, RemoteAttribute.Name(t)))
+            return (RemoteAttribute.Name(t) == null && LocalAttribute.RemoteName(t) == null)
+                || (RemoteAttribute.Name(t) != null && IsRemoteConfigured(cfg, RemoteAttribute.Name(t)))
                 || (LocalAttribute.RemoteName(t) != null && !IsRemoteConfigured(cfg, LocalAttribute.RemoteName(t)));
         }
 

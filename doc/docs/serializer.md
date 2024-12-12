@@ -2,12 +2,12 @@
 
 DMediatR uses binary serialization with pluggable custom serializers for specific types to serialize/deserialize,
 here with the example of Ping deriving from a custom serializer which counts
-the number of times the object has been serialized:
+the number of times the object has been serialized.
+
+## Serialization Classes
 
 ```plantUml
 @startuml serialization-classes
-
-Title Serialization Classes
 
 ' Serializer
 interface ISerializer {
@@ -40,7 +40,7 @@ class TypedSerializer {
     - _serviceProvider
     Serialize(type, obj)
     Deserialize(type, bytes)
-    Serializer(type)
+    GetSerializer(type)
 }
 
 Serializer *-- TypedSerializer
@@ -71,13 +71,12 @@ class Ping extends SerializationCountMessage implements IRequest {
 @enduml
 ```
 
+## Custom Serialization Sequence for Class Ping
 
 The corresponding sequence diagram hints at the serialization class dispatch mechanism:
 
 ```plantUml
 @startuml serialization-sequence
-
-Title Custom Serialization Sequence for Class Ping
 
 participant RemoteExtension
 participant Serializer
@@ -111,3 +110,30 @@ deactivate Serializer
 
 @enduml
 ```
+
+## Injecting Custom Serializers
+
+DMediatR leverages keyed dependency injection introduced in .NET 8 to look up 
+custom serializers for a particular type. This excerpt from the
+`ServiceCollectionExtension` registers along with the required infrastructure 
+the two custom serializers `SerializationCountSerializer` and `X509CertificateSerializer`:
+
+[!code-csharp[](../../src/DMediatR/ServiceCollectionExtension.cs#registerserializers)]
+
+### Custom Serializer Implementation
+
+Custom serializers inherit from the generic class `CustomSerializer<T>` with the class to
+register the serializer for as type parameter. They can override one or both of the
+`Serialize` and `Deserialize` methods. This can be used e.g. for dehydrating an object by
+nulling out non-serializable members before serialization and then for rehydrating it after 
+deserialization by setting the members again with instances from DI on the destination node.
+
+The `SerializationCountSerializer` is used to trace the number of node hops a DMediatR 
+message (IRequest or INotification) has taken:
+
+[!code-csharp[](../../src/DMediatR/SerializationCountSerializer.cs)]
+
+The `X509CertificateSerializer` needs the injected password from configuration to decrypt
+the .pfx binary for both operations and uses plain `byte[]` serialization for it:
+
+[!code-csharp[](../../src/DMediatR/X509CertificateSerializer.cs)]
