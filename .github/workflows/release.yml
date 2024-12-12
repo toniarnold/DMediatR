@@ -42,7 +42,7 @@ jobs:
     - name: Create GitHub release "v${{ env.version }}"
       uses: ncipollo/release-action@v1
       with:
-        commit: master
+        commit: main
         tag: "v${{ env.version }}"
         artifacts: "${{ github.workspace }}/packages/*.nupkg"
         bodyFile: "${{ github.workspace }}/nuget-info/release-notes.txt"
