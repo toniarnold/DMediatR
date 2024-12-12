@@ -1,1 +1,5 @@
-* Initial alpha release
+* Second alpha release
+
+* Add recursive type search for the serializer to make it fully functional
+
+* Add MediatR Ping-Pong and Bing (broadcast Ping as notification) for diagnosis
