@@ -20,9 +20,8 @@ namespace DMediatR
         public virtual async Task<Pong> Handle(Ping request, CancellationToken cancellationToken)
         {
             await Task.CompletedTask;
-            var hops = request.Count > 0 ? $" {request.Count} hops" : "";
-            var pingMsg = $"Ping {request.Message}{hops}";
-            _logger.LogInformation(pingMsg);
+            var hops = request.Count > 0 ? $" {request.Count} hops " : "";
+            _logger.LogInformation("Ping{hops}{message}", hops, request.Message);
 
             var host = "";
             var env = Environment.GetEnvironmentVariables();
@@ -39,7 +38,7 @@ namespace DMediatR
                 }
             }
             var via = (host != "") ? $" via {host}" : "";
-            var pongMsg = $"Pong {request.Message}{via}{hops}";
+            var pongMsg = $"Pong{hops}{request.Message}{via}"; // hops of the Ping
             return new Pong { Message = pongMsg, Count = request.Count };
         }
     }

@@ -98,6 +98,7 @@
     <None Include="docs\debugging.md" />
     <None Include="docs\getting-started.md" />
     <None Include="docs\introduction.md" />
+    <None Include="docs\ping-pong-bing.md" />
     <None Include="docs\serializer.md" />
     <None Include="docs\toc.yml" />
     <None Include="index.md" />

@@ -2,6 +2,8 @@
   href: introduction.md
 - name: Getting Started
   href: getting-started.md
+- name: Ping-Pong and Bing
+  href: ping-pong-bing.md
 - name: Serializer
   href: serializer.md
 - name: Debugging

@@ -9,6 +9,6 @@
         /// <summary>
         /// Number of times the message has been serialized.
         /// </summary>
-        public int Count { get; set; } = 0;
+        public uint Count { get; set; } = 0;
     }
 }

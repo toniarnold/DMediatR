@@ -139,12 +139,12 @@ namespace DMediatR.Tests.Grpc
             var pongFromRemote = await Mediator.Send(new Ping("from NUnit"));
             Assert.That(pongFromRemote, Is.Not.Null);
             Assert.That(pongFromRemote.Count, Is.EqualTo(2));   // 2 hops
-            Assert.That(pongFromRemote.Message, Is.EqualTo("Pong from NUnit via ClientCertifier 1 hops"));
+            Assert.That(pongFromRemote.Message, Is.EqualTo("Pong 1 hops from NUnit via ClientCertifier"));
         }
 
         private async Task Then_DmMediatRNodeForwardsBing()
         {
-            await Mediator.Publish(new Bing("Bing from NUnit"));
+            await Mediator.Publish(new Bing("from NUnit"));
         }
 
         #endregion Then

@@ -1,2 +1,1 @@
-cd doc
-docfx docfx.json --serve
+docfx doc\docfx.json --serve
