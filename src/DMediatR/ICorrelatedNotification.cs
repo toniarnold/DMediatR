@@ -8,7 +8,7 @@
     public interface ICorrelatedNotification : INotification
     {
         /// <summary>
-        /// To be implemented as 
+        /// To be implemented as
         /// public Guid CorrelationGuid { get; init; } = Guid.NewGuid();
         /// </summary>
         Guid CorrelationGuid { get; init; }
