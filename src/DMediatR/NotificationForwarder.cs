@@ -36,8 +36,12 @@ namespace DMediatR
                 if (notification is SerializationCountMessage)
                 {
                     SerializationCountMessage.AddTraceToMessage(_serviceProvider, (SerializationCountMessage)notification);
+                    if (notification is Bing)
+                    {
+                        _logger.LogInformation("Forwarding {msg}", ((SerializationCountMessage)notification).Message);
+                    }
                 }
-                _logger.LogInformation("Forwarding {msg}", ((SerializationCountMessage)notification).Message);
+
                 await this.PublishRemote(notification, cancellationToken);
             }
         }

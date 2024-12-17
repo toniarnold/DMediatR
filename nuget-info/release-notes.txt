@@ -1,5 +1,7 @@
 * Third alpha release
 
+* MediatR over gRPC now appears to be fully functional (but certificate renewal is not)
+
 * Improves the debugging experience
 
 * HaveSeen for ignoring duplicate Bing handling now regards the type of the handler
