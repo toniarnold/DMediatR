@@ -36,7 +36,7 @@ namespace DMediatR.Tests.Grpc
                 .GetSection(CertificateOptions.SectionName).Get<CertificateOptions>()!;
 
         [OneTimeSetUp]
-        public async Task Given_FourNodesRunning()
+        public void Given_FourNodesRunning()
         {
             Given_InitialCertificatesChain();
             Given_CertificatesDistributedOffline();
@@ -76,11 +76,10 @@ namespace DMediatR.Tests.Grpc
             SetUp.StartServer("ServerCertifier", 18005, 18006);
             SetUp.StartServer("ClientCertifier", 18007, 18008);
 
-            Assert.That(SetUp.ServerProcesses, Has.Count.EqualTo(4));
-            for (int i = 0; i < 4; i++)
+            foreach (var process in SetUp.ServerProcesses)
             {
-                var process = SetUp.ServerProcesses[i];
-                Assert.That(process.HasExited, Is.False, $"Process {i} was not started");
+                var profile = SetUp.GetProcessProfile(process);
+                Assert.That(process.HasExited, Is.False, $"Process {profile} was not started");
             }
         }
 
@@ -139,7 +138,7 @@ namespace DMediatR.Tests.Grpc
             var pongFromRemote = await Mediator.Send(new Ping("from NUnit"));
             Assert.That(pongFromRemote, Is.Not.Null);
             Assert.That(pongFromRemote.Count, Is.EqualTo(2));
-            Assert.That(pongFromRemote.Message, Is.EqualTo("Pong 2 hops from NUnit via ClientCertifier"));
+            Assert.That(pongFromRemote.Message, Is.EqualTo("Pong 2 hops from NUnit via ClientCertifier via localhost:8081"));
         }
 
         private async Task Then_DmMediatRNodeForwardsBing()

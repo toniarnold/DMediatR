@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Text.RegularExpressions;
 
@@ -10,12 +11,14 @@ namespace DMediatR
         private readonly IServiceProvider _serviceProvider;
         private readonly Remote _remote;
         private readonly IMemoryCache _correlationGuidCache;
+        private readonly ILogger<NotificationForwarder> _logger;
 
-        public NotificationForwarder(IServiceProvider serviceProvider, Remote remote, IMemoryCache cache)
+        public NotificationForwarder(IServiceProvider serviceProvider, Remote remote, IMemoryCache cache, ILogger<NotificationForwarder> logger)
         {
             _serviceProvider = serviceProvider;
             _remote = remote;
             _correlationGuidCache = cache;
+            _logger = logger;
         }
 
         public Remote Remote => _remote;
@@ -28,56 +31,15 @@ namespace DMediatR
         /// <returns></returns>
         public async Task Handle(ICorrelatedNotification notification, CancellationToken cancellationToken)
         {
-            if (!_correlationGuidCache.HaveSeen(notification.CorrelationGuid))
+            if (!_correlationGuidCache.HaveSeen(this.GetType(), notification.CorrelationGuid))
             {
-                if (notification is Bing)
+                if (notification is SerializationCountMessage)
                 {
-                    notification = AddTraceToMessage(_serviceProvider, (Bing)notification);
+                    SerializationCountMessage.AddTraceToMessage(_serviceProvider, (SerializationCountMessage)notification);
                 }
+                _logger.LogInformation("Forwarding {msg}", ((SerializationCountMessage)notification).Message);
                 await this.PublishRemote(notification, cancellationToken);
             }
-        }
-
-        /// <summary>
-        /// Add trace diagnosis "Bing N hops {Message} via host" to the message.
-        /// </summary>
-        /// <param name="bing"></param>
-        /// <returns></returns>
-        internal static Bing AddTraceToMessage(IServiceProvider serviceProvider, Bing bing)
-        {
-            //
-            var host = "";
-            var env = Environment.GetEnvironmentVariables();
-            if (env.Contains("ASPNETCORE_ENVIRONMENT"))
-            {
-                host = (string)env["ASPNETCORE_ENVIRONMENT"]!;  // dotnet run --project
-            }
-            else
-            {
-                var hostOptions = serviceProvider.GetService<IOptions<HostOptions>>();
-                if (hostOptions != null)
-                {
-                    host = $"{hostOptions.Value.Host}:{hostOptions.Value.Port}";
-                }
-            }
-            var via = (bing.Count > 0 && host != "") ? $" via {host}" : "";
-            string msg = "";
-            switch (bing.Count)
-            {
-                case 0:
-                    msg = $"Bing {bing.Message}";
-                    break;
-
-                case 1:
-                    msg = $"{Regex.Replace($"{bing.Message}", @"(^Bing)", $"$1 {bing.Count} hops")}{via}";
-                    break;
-
-                default: // uint >1, already contains "hops", thus only replace the number and append another "via"
-                    msg = $"{Regex.Replace($"{bing.Message}", @"(^Bing)( \d+)( hops .*$)", $"$1 {bing.Count}$3")}{via}";
-                    break;
-            }
-            bing.Message = msg;
-            return bing;
         }
     }
 }

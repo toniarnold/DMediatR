@@ -1,13 +1,14 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System.Text.RegularExpressions;
 
 namespace DMediatR
 {
     [Local("Ping")]
     internal class PingHandler : IRequestHandler<Ping, Pong>
     {
-        private readonly IServiceProvider _serviceProvider;
+        protected readonly IServiceProvider _serviceProvider;
         protected readonly ILogger<PingHandler> _logger;
 
         public PingHandler(IServiceProvider serviceProvider, ILogger<PingHandler> logger)
@@ -20,29 +21,13 @@ namespace DMediatR
         public virtual async Task<Pong> Handle(Ping request, CancellationToken cancellationToken)
         {
             await Task.CompletedTask;
+            // This handler is run locally on the remote node, thus log here:
+            SerializationCountMessage.AddTraceToMessage(_serviceProvider, request); // case 1, add 1 hops
+            _logger.LogInformation("{message}", request.Message);
 
-            // This handler is run locally on the destination node, thus log here:
-            var hops = request.Count > 0 ? $" {request.Count} hops " : "";
-            _logger.LogInformation("Ping{hops}{message}", hops, request.Message);
-
-            var host = "";
-            var env = Environment.GetEnvironmentVariables();
-            if (env.Contains("ASPNETCORE_ENVIRONMENT"))
-            {
-                host = (string)env["ASPNETCORE_ENVIRONMENT"]!;  // dotnet run --project
-            }
-            else
-            {
-                var hostOptions = _serviceProvider.GetService<IOptions<HostOptions>>();
-                if (hostOptions != null)
-                {
-                    host = $"{hostOptions.Value.Host}:{hostOptions.Value.Port}";
-                }
-            }
-            var via = (host != "") ? $" via {host}" : "";
-            var pongMsg = $"Pong{hops}{request.Message}{via}"; // hops of the Ping for now
-
-            return new Pong { Message = pongMsg, Count = request.Count };
+            var pongMsg = Regex.Replace($"{request.Message}", $@"(^Ping )(.*$)", @"Pong $2");
+            var pong = new Pong { Message = pongMsg, Count = request.Count }; // Count of the Ping
+            return pong;
         }
     }
 }

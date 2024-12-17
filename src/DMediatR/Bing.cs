@@ -5,7 +5,6 @@
     /// </summary>
     public class Bing : SerializationCountMessage, ICorrelatedNotification
     {
-        public string? Message { get; set; }
         public Guid CorrelationGuid { get; init; } = Guid.NewGuid();
 
         public Bing()

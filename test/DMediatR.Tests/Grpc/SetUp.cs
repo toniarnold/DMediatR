@@ -4,14 +4,15 @@ using System.Net;
 using System.Net.Security;
 using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
+using System.Text.RegularExpressions;
 
 namespace DMediatR.Tests.Grpc
 {
     public static class SetUp
     {
-        public static string GrpcServerProject = "DMediatRNode.csproj";
-        public static string WorkDirFromTestDir = @"..\..\..\..\..\src\DMediatRNode";
-        public static int ServerStartTimeout = 1;
+        public const string GrpcServerProject = "DMediatRNode.csproj";
+        public const string WorkDirFromTestDir = @"..\..\..\..\..\src\DMediatRNode";
+        public const int ServerStartTimeout = 1;
         public static ServiceProvider? ServiceProvider { get; private set; }
         public static List<Process> ServerProcesses { get; private set; } = [];
 
@@ -34,11 +35,24 @@ namespace DMediatR.Tests.Grpc
         }
 
         /// <summary>
+        /// Extracts the profile name out of a StartInfo string like
+        /// FileName = "C:\\Program Files\\dotnet\\dotnet.exe", Arguments = "run --no-build --project DMediatRNode.csproj --launch-profile Monolith", WorkingDirectory = ...
+        /// </summary>
+        /// <param name="process"></param>
+        /// <returns></returns>
+        public static string GetProcessProfile(Process process)
+        {
+            var info = process.StartInfo;
+            var profile = Regex.Match(info.Arguments, @"--launch-profile\s+(\w+)");
+            return profile.Groups[1].Value;
+        }
+
+        /// <summary>
         /// Poll for a successful TCP connection at the given port
         /// </summary>
         /// <param name="port">port to listen on</param>
         /// <param name="timeout">expected duration of all tests in sec</param>
-        private static void WaitForServerPort(int port, int timeout)
+        public static void WaitForServerPort(int port, int timeout = ServerStartTimeout)
         {
             int interval = 1000;    // 1 sec
             int times = timeout;

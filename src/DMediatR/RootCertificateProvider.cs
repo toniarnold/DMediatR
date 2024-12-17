@@ -36,11 +36,16 @@ namespace DMediatR
 
         async Task INotificationHandler<RenewRootCertificateNotification>.Handle(RenewRootCertificateNotification notification, CancellationToken cancellationToken)
         {
-            if (File.Exists(FileName))
+            await _fileLock.WaitAsync(cancellationToken);
+            try
             {
-                var newcert = Generate(new RootCertificateRequest());
-                await Save(newcert, cancellationToken);
+                if (File.Exists(FileName))
+                {
+                    var newcert = Generate(new RootCertificateRequest());
+                    await Save(newcert, cancellationToken);
+                }
             }
+            finally { _fileLock.Release(); }
         }
 
         protected async Task<X509Certificate2> RequestCertificate(RootCertificateRequest request, CancellationToken cancellationToken)

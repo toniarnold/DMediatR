@@ -54,19 +54,6 @@ references:
   isSpec: "True"
   fullName: DMediatR.Bing.CorrelationGuid
   nameWithType: Bing.CorrelationGuid
-- uid: DMediatR.Bing.Message
-  name: Message
-  href: api/DMediatR.Bing.html#DMediatR_Bing_Message
-  commentId: P:DMediatR.Bing.Message
-  fullName: DMediatR.Bing.Message
-  nameWithType: Bing.Message
-- uid: DMediatR.Bing.Message*
-  name: Message
-  href: api/DMediatR.Bing.html#DMediatR_Bing_Message_
-  commentId: Overload:DMediatR.Bing.Message
-  isSpec: "True"
-  fullName: DMediatR.Bing.Message
-  nameWithType: Bing.Message
 - uid: DMediatR.CertificateOptions
   name: CertificateOptions
   href: api/DMediatR.CertificateOptions.html
@@ -801,38 +788,12 @@ references:
   fullName.vb: DMediatR.Ping.New
   nameWithType: Ping.Ping
   nameWithType.vb: Ping.New
-- uid: DMediatR.Ping.Message
-  name: Message
-  href: api/DMediatR.Ping.html#DMediatR_Ping_Message
-  commentId: P:DMediatR.Ping.Message
-  fullName: DMediatR.Ping.Message
-  nameWithType: Ping.Message
-- uid: DMediatR.Ping.Message*
-  name: Message
-  href: api/DMediatR.Ping.html#DMediatR_Ping_Message_
-  commentId: Overload:DMediatR.Ping.Message
-  isSpec: "True"
-  fullName: DMediatR.Ping.Message
-  nameWithType: Ping.Message
 - uid: DMediatR.Pong
   name: Pong
   href: api/DMediatR.Pong.html
   commentId: T:DMediatR.Pong
   fullName: DMediatR.Pong
   nameWithType: Pong
-- uid: DMediatR.Pong.Message
-  name: Message
-  href: api/DMediatR.Pong.html#DMediatR_Pong_Message
-  commentId: P:DMediatR.Pong.Message
-  fullName: DMediatR.Pong.Message
-  nameWithType: Pong.Message
-- uid: DMediatR.Pong.Message*
-  name: Message
-  href: api/DMediatR.Pong.html#DMediatR_Pong_Message_
-  commentId: Overload:DMediatR.Pong.Message
-  isSpec: "True"
-  fullName: DMediatR.Pong.Message
-  nameWithType: Pong.Message
 - uid: DMediatR.Remote
   name: Remote
   href: api/DMediatR.Remote.html
@@ -975,6 +936,19 @@ references:
   isSpec: "True"
   fullName: DMediatR.SerializationCountMessage.Count
   nameWithType: SerializationCountMessage.Count
+- uid: DMediatR.SerializationCountMessage.Message
+  name: Message
+  href: api/DMediatR.SerializationCountMessage.html#DMediatR_SerializationCountMessage_Message
+  commentId: P:DMediatR.SerializationCountMessage.Message
+  fullName: DMediatR.SerializationCountMessage.Message
+  nameWithType: SerializationCountMessage.Message
+- uid: DMediatR.SerializationCountMessage.Message*
+  name: Message
+  href: api/DMediatR.SerializationCountMessage.html#DMediatR_SerializationCountMessage_Message_
+  commentId: Overload:DMediatR.SerializationCountMessage.Message
+  isSpec: "True"
+  fullName: DMediatR.SerializationCountMessage.Message
+  nameWithType: SerializationCountMessage.Message
 - uid: DMediatR.SerializationCountSerializer
   name: SerializationCountSerializer
   href: api/DMediatR.SerializationCountSerializer.html

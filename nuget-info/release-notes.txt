@@ -1,5 +1,5 @@
-* Second alpha release
+* Third alpha release
 
-* Add recursive type search for the serializer to make it fully functional
+* Improves the debugging experience
 
-* Add MediatR Ping-Pong and Bing (broadcast Ping as notification) for diagnosis
+* HaveSeen for ignoring duplicate Bing handling now regards the type of the handler

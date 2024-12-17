@@ -1,9 +1,8 @@
 # Debugging
 
-
 Since DMediatR is bootstrapped in the sense that it is implemented by passing
 certificates around as MediatR `IResponse` objects, the tools used to debug it can
-also be applied to projects that only use DMediatR as a library.
+also be applied to projects that just use DMediatR as a library.
 
 The VS debugger can only be attached to one process at a time, so debugging a
 distributed system presents some challenges. To make debugging easier, there are
@@ -13,6 +12,7 @@ Script | Arguments | Usage Example
 : -- | : - | : -
 `start.ps1` | `profile1 [profile2 ...]` | `./start Monolith`
 `test.ps1` |  `[test selection]` | `./test test =~ /GetRemoteServerCert/`
+
 
 ## start.ps1
 
@@ -25,12 +25,10 @@ The `./start.ps1` script starts nodes with the specified `--launch-profile`
 separately and leaves them running until Ctrl+C is pressed. 
 After commenting out e.g.
 
-```csharp
-SetUp.StartServer("Monolith", 18001, 18002);
-```
+[!code-csharp[ServerTest.cs](../../test/DMediatR.Tests/Grpc/ServerTest.cs?name=startserver)]
 
-(and following server-related assertions) and recompiling, the client tests can
-be debugged from within VS.
+and recompiling, the client tests can be debugged from within VS.
+
 
 ## test.ps1
 

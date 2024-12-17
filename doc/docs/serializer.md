@@ -15,7 +15,7 @@ custom serializers for a particular type. This excerpt from the
 the two custom serializers `SerializationCountSerializer` and
 `X509CertificateSerializer`:
 
-[!code-csharp[](../../src/DMediatR/ServiceCollectionExtension.cs#registerserializers)]
+[!code-csharp[ServiceCollectionExtension.cs](../../src/DMediatR/ServiceCollectionExtension.cs?name=registerserializers&highlight=4-5)]
 
 ## Custom Serializer Implementation
 
@@ -28,22 +28,22 @@ deserialization by setting the members again with instances from DI on the desti
 The `SerializationCountSerializer` is used to trace the number of node hops a DMediatR 
 message (IRequest or INotification) has taken:
 
-[!code-csharp[](../../src/DMediatR/SerializationCountSerializer.cs)]
+[!code-csharp[SerializationCountSerializer.cs](../../src/DMediatR/SerializationCountSerializer.cs)]
 
 The `X509CertificateSerializer` needs the injected password from configuration
 to decrypt the .pfx binary for deserialization and uses plain `byte[]`
 serialization for the encrypted `RawData` exposed by the `X509Certificate2`
 object:
 
-[!code-csharp[](../../src/DMediatR/X509CertificateSerializer.cs)]
+[!code-csharp[X509CertificateSerializer.cs](../../src/DMediatR/X509CertificateSerializer.cs)]
 
 
 ## Serialization Classes
 
 ### Classes for serializing `Ping` objects
 
-This diagram exemplifies the `Ping` class deriving from
-`SerializationCountSerializer`:
+This diagram exemplifies the context for serializing of the `Ping` class
+deriving from `SerializationCountSerializer`:
 
 ```plantUml
 @startuml serialization-classes
@@ -71,7 +71,10 @@ class BinarySerializer implements ISerializer {
     Deserialize(type, bytes)
 }
 
-class MessagePackSerializer.Typeless
+class MessagePackSerializer.Typeless {
+    Serialize(obj)
+    Deserialize(bytes)
+}
 
 BinarySerializer --> Typeless
 
@@ -98,8 +101,10 @@ class SerializationCountSerializer extends CustomSerializer {
 
 interface IRequest<TResponse>
 
+interface INotification
 
-class SerializationCountMessage  {
+
+abstract class SerializationCountMessage  {
     + Count
 }
 
@@ -107,7 +112,16 @@ class Ping extends SerializationCountMessage implements IRequest {
     + Message
 }
 
+class Pong extends SerializationCountMessage implements IRequest {
+    + Message
+}
+
+class Bing extends SerializationCountMessage implements INotification {
+    + Message
+}
+
 @enduml
+
 ```
 
 ### Serialization Sequence for `Ping`

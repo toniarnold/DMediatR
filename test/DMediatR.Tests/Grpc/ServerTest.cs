@@ -10,12 +10,12 @@ namespace DMediatR.Tests.Grpc
         {
             SetUp.SetUpDMediatRServices("Monolith");
             SetUp.SetUpInitialCertificates();
-
             SetUp.SetUpDMediatRServices("RemoteServerCert");
+
+            // <startserver>
             SetUp.StartServer("Monolith", 18001, 18002);
-            Assert.That(SetUp.ServerProcesses, Has.Count.EqualTo(1));
-            var process = SetUp.ServerProcesses[0];
-            Assert.That(process.HasExited, Is.False, "Process was not started");
+            Assert.That(SetUp.ServerProcesses[0].HasExited, Is.False, "Process was not started");
+            // </startserver>
         }
 
         [OneTimeTearDown]
@@ -30,6 +30,16 @@ namespace DMediatR.Tests.Grpc
             var mediator = SetUp.ServiceProvider!.GetRequiredService<IMediator>();
             await mediator.Send(new ServerCertificateRequest());
             await mediator.Send(new ServerCertificateRequest());
+        }
+
+        [Test]
+        public async Task PingPongTest()
+        {
+            var mediator = SetUp.ServiceProvider!.GetRequiredService<IMediator>();
+            var pongFromRemote = await mediator.Send(new Ping("from NUnit"));
+            Assert.That(pongFromRemote, Is.Not.Null);
+            Assert.That(pongFromRemote.Count, Is.EqualTo(2));
+            Assert.That(pongFromRemote.Message, Is.EqualTo("Pong 2 hops from NUnit via Monolith via localhost:8081"));
         }
 
         [Test]
@@ -60,7 +70,8 @@ namespace DMediatR.Tests.Grpc
             Assert.That(oldCertFromRemote.Thumbprint, Is.EqualTo(oldCertDouble.Thumbprint));
 
             await mediator.Publish(new RenewServerCertificateNotification());
-            // After explicit renewal the gRPC server is restarted and yelds a new certificate.
+            // After explicit renewal the gRPC server is restarted and yields a new certificate.
+            SetUp.WaitForServerPort(18001);
             var newCertFromRemote = await mediator.Send(new ServerCertificateRequest());
             Assert.That(newCertFromRemote.Thumbprint, Is.Not.EqualTo(oldCertDouble.Thumbprint));
         }

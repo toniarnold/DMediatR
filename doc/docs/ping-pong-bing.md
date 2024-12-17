@@ -2,8 +2,8 @@
 
 MediatR itself uses the classes `Ping` and `Pong`[^mediatr] as examples for
 `IRequest` request/response messages that are dispatched to a single handler. It
-also uses `Ping` for notification messages sent to multiple handlers. To avoid a
-name clash, DMediatR calls its built-in diagnostic `INotification` message
+also uses `Ping` for notification messages sent to multiple handlers. To
+distinguish it, DMediatR calls its built-in diagnostic `INotification` message 
 `Bing` for "Broadcast Ping".
 
 In a distributed scenario, `Ping` gets sent to a specific remote node when
@@ -57,10 +57,19 @@ await Mediator.Publish(new Bing("from NUnit"));
 ... logs the number of hops and the nodes it has traversed:
 
 ```text
-info: DMediatR.BingHandler[0]
-      Bing 3 hops from NUnit via ClientCertifier via IntermediateCertifier via RootCertifier
+info: DMediatR.NotificationForwarder[0]
+      Forwarding Bing 2 hops from NUnit via ClientCertifier via IntermediateCertifier
 ```
 
+Multiple DMediatR nodes can have cyclic dependencies or there might be
+indirect diamonds in the configured dependency graph. In such cases a
+single node receives and would forward the same `INotification` in multiple
+duplicate copies. To handle them only once as in a monolith, they are correlated
+with the handler class and a Guid. It is the responsibility of the concrete
+handler to query the injected `IMemoryCache` with the `HaveSeen` extension
+as here in BingHandler.cs:
+
+[!code-csharp[BingHandler.cs](../../src/DMediatR/BingHandler.cs?name=binghandler&highlight=3)]
 
 [^mediatr]: [MediatR Wiki](https://github.com/jbogard/MediatR/wiki)
 

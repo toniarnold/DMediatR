@@ -2,7 +2,7 @@
 
 namespace DMediatR.Tests
 {
-    internal class NotificationForwarderTest
+    internal class SerializationCountMessageTest
     {
         private ServiceProvider _serviceProvider;
 
@@ -26,15 +26,15 @@ namespace DMediatR.Tests
         public void AddTraceToMessageTest()
         {
             var bing = new Bing("-msg-");
-            NotificationForwarder.AddTraceToMessage(_serviceProvider, bing);
+            SerializationCountMessage.AddTraceToMessage(_serviceProvider, bing);
             Assert.That(bing.Message, Is.EqualTo("Bing -msg-"));
 
             bing.Count++;
-            NotificationForwarder.AddTraceToMessage(_serviceProvider, bing);
+            SerializationCountMessage.AddTraceToMessage(_serviceProvider, bing);
             Assert.That(bing.Message, Is.EqualTo("Bing 1 hops -msg- via localhost:8081"));
 
             bing.Count++;
-            NotificationForwarder.AddTraceToMessage(_serviceProvider, bing);
+            SerializationCountMessage.AddTraceToMessage(_serviceProvider, bing);
             Assert.That(bing.Message, Is.EqualTo("Bing 2 hops -msg- via localhost:8081 via localhost:8081"));
         }
     }

@@ -6,6 +6,5 @@
     /// </summary>
     public class Pong : SerializationCountMessage
     {
-        public string? Message { get; set; }
     }
 }

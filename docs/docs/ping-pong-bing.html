@@ -89,8 +89,8 @@
 
 <p>MediatR itself uses the classes <code>Ping</code> and <code>Pong</code><a id="fnref:1" href="#fn:1" class="footnote-ref"><sup>1</sup></a> as examples for
 <code>IRequest</code> request/response messages that are dispatched to a single handler. It
-also uses <code>Ping</code> for notification messages sent to multiple handlers. To avoid a
-name clash, DMediatR calls its built-in diagnostic <code>INotification</code> message
+also uses <code>Ping</code> for notification messages sent to multiple handlers. To
+distinguish it, DMediatR calls its built-in diagnostic <code>INotification</code> message
 <code>Bing</code> for &quot;Broadcast Ping&quot;.</p>
 <p>In a distributed scenario, <code>Ping</code> gets sent to a specific remote node when
 configured so. <code>Bing</code> messages get transitively forwarded to all configured
@@ -123,8 +123,26 @@ gets written with tracing information:</p>
 <pre><code class="lang-csharp">await Mediator.Publish(new Bing(&quot;from NUnit&quot;));
 </code></pre>
 <p>... logs the number of hops and the nodes it has traversed:</p>
-<pre><code class="lang-text">info: DMediatR.BingHandler[0]
-      Bing 3 hops from NUnit via ClientCertifier via IntermediateCertifier via RootCertifier
+<pre><code class="lang-text">info: DMediatR.NotificationForwarder[0]
+      Forwarding Bing 2 hops from NUnit via ClientCertifier via IntermediateCertifier
+</code></pre>
+<p>Multiple DMediatR nodes can have cyclic dependencies or there might be
+indirect diamonds in the configured dependency graph. In such cases a
+single node receives and would forward the same <code>INotification</code> in multiple
+duplicate copies. To handle them only once as in a monolith, they are correlated
+with the handler class and a Guid. It is the responsibility of the concrete
+handler to query the injected <code>IMemoryCache</code> with the <code>HaveSeen</code> extension
+as here in BingHandler.cs:</p>
+<pre><code class="lang-csharp" name="BingHandler.cs" highlight-lines="3">public async Task Handle(Bing notification, CancellationToken cancellationToken)
+{
+    if (!_correlationGuidCache.HaveSeen(this.GetType(), notification.CorrelationGuid))
+    {
+        var msg = $&quot;{notification.Message}&quot;;
+        _logger.LogInformation(&quot;Handling {msg}&quot;, msg);
+        await Task.CompletedTask;
+    }
+}
+
 </code></pre>
 <div class="footnotes">
 <hr>

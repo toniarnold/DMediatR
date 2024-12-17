@@ -89,7 +89,7 @@
 
 <p>Since DMediatR is bootstrapped in the sense that it is implemented by passing
 certificates around as MediatR <code>IResponse</code> objects, the tools used to debug it can
-also be applied to projects that only use DMediatR as a library.</p>
+also be applied to projects that just use DMediatR as a library.</p>
 <p>The VS debugger can only be attached to one process at a time, so debugging a
 distributed system presents some challenges. To make debugging easier, there are
 two scripts in the root directory:</p>
@@ -122,10 +122,10 @@ and its output disappears.</p>
 <p>The <code>./start.ps1</code> script starts nodes with the specified <code>--launch-profile</code>
 separately and leaves them running until Ctrl+C is pressed.
 After commenting out e.g.</p>
-<pre><code class="lang-csharp">SetUp.StartServer(&quot;Monolith&quot;, 18001, 18002);
+<pre><code class="lang-csharp" name="ServerTest.cs">SetUp.StartServer(&quot;Monolith&quot;, 18001, 18002);
+Assert.That(SetUp.ServerProcesses[0].HasExited, Is.False, &quot;Process was not started&quot;);
 </code></pre>
-<p>(and following server-related assertions) and recompiling, the client tests can
-be debugged from within VS.</p>
+<p>and recompiling, the client tests can be debugged from within VS.</p>
 <h2 id="testps1">test.ps1</h2>
 <p>To debug a <code>DMediatRNode</code> instance itself in the VS debugger, the tests must be
 run from another process. The <code>./test.ps1</code> script executes NUnit tests with the

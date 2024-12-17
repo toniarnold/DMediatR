@@ -206,9 +206,11 @@ Interfaces
 </h3>
     <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.ICorrelatedNotification.html">ICorrelatedNotification</a></dt>
-      <dd><p>Multiple DMediatR nodes can have cyclic dependencies or there might be indirect diamonds in the configured dependency graph.
-In such cases a single node receives and would forward the same Notification in multiple duplicate copies.
-To handle them only once as in a monolith correlate these remote Notifications with a Guid.</p>
+      <dd><p>Multiple DMediatR nodes can have cyclic dependencies or there might be
+indirect diamonds in the configured dependency graph. In such cases a
+single node receives and would forward the same INotification in multiple
+duplicate copies. To handle them only once as in a monolith correlate
+these remote Notifications with a Guid.</p>
 </dd>
     </dl>
     <dl class="jumplist">

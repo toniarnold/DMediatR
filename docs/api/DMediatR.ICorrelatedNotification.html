@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Interface ICorrelatedNotification | DMediatR ">
       
-      <meta name="description" content="Multiple DMediatR nodes can have cyclic dependencies or there might be indirect diamonds in the configured dependency graph. In such cases a single node receives and would forward the same Notification in multiple duplicate copies. To handle them only once as in a monolith correlate these remote Notifications with a Guid.">
+      <meta name="description" content="Multiple DMediatR nodes can have cyclic dependencies or there might be indirect diamonds in the configured dependency graph. In such cases a single node receives and would forward the same INotification in multiple duplicate copies. To handle them only once as in a monolith correlate these remote Notifications with a Guid.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,9 +97,11 @@ Interface ICorrelatedNotification
   <dl><dt>Assembly</dt><dd>DMediatR.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Multiple DMediatR nodes can have cyclic dependencies or there might be indirect diamonds in the configured dependency graph.
-In such cases a single node receives and would forward the same Notification in multiple duplicate copies.
-To handle them only once as in a monolith correlate these remote Notifications with a Guid.</p>
+  <div class="markdown summary"><p>Multiple DMediatR nodes can have cyclic dependencies or there might be
+indirect diamonds in the configured dependency graph. In such cases a
+single node receives and would forward the same INotification in multiple
+duplicate copies. To handle them only once as in a monolith correlate
+these remote Notifications with a Guid.</p>
 </div>
   <div class="markdown conceptual"></div>
 

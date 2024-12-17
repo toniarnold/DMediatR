@@ -5,8 +5,6 @@
     /// </summary>
     public class Ping : SerializationCountMessage, IRequest<Pong>
     {
-        public string? Message { get; set; }
-
         public Ping()
         {
         }

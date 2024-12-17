@@ -79,8 +79,8 @@ namespace DMediatR
 
             // Serializer default and custom
             // <registerserializers>
-            services.TryAddSingleton<TypedSerializer>();
             services.TryAddSingleton<ISerializer, Serializer>();
+            services.TryAddSingleton<TypedSerializer>();
             services.TryAddKeyedSingleton<ISerializer, BinarySerializer>(typeof(object)); // recursion base case for TypedSerializer
             services.TryAddKeyedSingleton<ISerializer, SerializationCountSerializer>(SerializationCountSerializer.Type);
             services.TryAddKeyedSingleton<ISerializer, X509CertificateSerializer>(X509CertificateSerializer.Type);

@@ -36,10 +36,15 @@ namespace DMediatR
 
         async Task INotificationHandler<RenewClientCertificateNotification>.Handle(RenewClientCertificateNotification notification, CancellationToken cancellationToken)
         {
-            if (File.Exists(FileName))
+            await _fileLock.WaitAsync(cancellationToken);
+            try
             {
-                await base.Generate(new ClientCertificateRequest(), cancellationToken);
+                if (File.Exists(FileName))
+                {
+                    await base.Generate(new ClientCertificateRequest(), cancellationToken);
+                }
             }
+            finally { _fileLock.Release(); }
         }
 
         internal override X509Certificate2 Generate(ChainedCertificateRequest request, X509Certificate2 parentCert)

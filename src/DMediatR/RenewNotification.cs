@@ -1,6 +1,6 @@
 ﻿namespace DMediatR
 {
-    internal abstract class RenewNotification : ICorrelatedNotification
+    internal abstract class RenewNotification : SerializationCountMessage, ICorrelatedNotification
     {
         public Guid CorrelationGuid { get; init; } = Guid.NewGuid();
     }

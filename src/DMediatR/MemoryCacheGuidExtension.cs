@@ -10,11 +10,11 @@ namespace DMediatR
         /// <param name="cache"></param>
         /// <param name="guid"></param>
         /// <returns></returns>
-        public static bool HaveSeen(this IMemoryCache cache, Guid guid)
+        public static bool HaveSeen(this IMemoryCache cache, Type handlerClass, Guid guid)
         {
             var cached = true;
             cache.GetOrCreate(
-                guid,
+                (handlerClass, guid),
                 entry => // Create
                 {
                     cached = false;
