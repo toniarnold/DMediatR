@@ -24,13 +24,13 @@ namespace DMediatR
         }
 
         /// <summary>
-        /// Publish a MediatR INotification to a remote node.
+        /// Publish a MediatR notification to a remote node.
         /// </summary>
         /// <param name="provider">The class providing a MediatR handler</param>
-        /// <param name="notification">The MediatR INotification.</param>
+        /// <param name="notification">The MediatR ICorrelatedNotification.</param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public static async Task PublishRemote(this IRemote provider, INotification notification, CancellationToken cancellationToken)
+        public static async Task PublishRemote(this IRemote provider, ICorrelatedNotification notification, CancellationToken cancellationToken)
         {
             await RemoteInternalExtension.InternalPublishRemote(provider, notification, cancellationToken);
         }
@@ -77,7 +77,7 @@ namespace DMediatR
             return response;
         }
 
-        public static async Task InternalPublishRemote(this IRemote provider, INotification notification, CancellationToken cancellationToken)
+        public static async Task InternalPublishRemote(this IRemote provider, ICorrelatedNotification notification, CancellationToken cancellationToken)
         {
             if (provider.Remote.Remotes.Count > 0)
             {

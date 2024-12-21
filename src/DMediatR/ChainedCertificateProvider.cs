@@ -1,4 +1,6 @@
 ﻿using CertificateManager;
+using MediatR;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Security.Cryptography.X509Certificates;
 
@@ -8,8 +10,9 @@ namespace DMediatR
     {
         public ChainedCertificateProvider(Remote remote,
             IOptions<HostOptions> hostOptions,
-            ImportExportCertificate ioCert)
-                : base(remote, hostOptions, ioCert)
+            ImportExportCertificate ioCert,
+            ILogger<CertificateProvider> logger)
+                : base(remote, hostOptions, ioCert, logger)
         {
         }
 
@@ -24,9 +27,11 @@ namespace DMediatR
                 var valid = chain.Build(cert);
                 if (valid)
                 {
+                    _logger.LogDebug("{request}: load existing certificate", request.GetType().Name);
                     return cert;
                 }
             }
+            _logger.LogDebug("{request}: generate new certificate", request.GetType().Name);
             var newcert = await Generate(request, cancellationToken);
             return newcert;
         }

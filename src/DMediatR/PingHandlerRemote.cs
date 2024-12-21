@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using System.ServiceModel.Channels;
-using System.Text.RegularExpressions;
 
 namespace DMediatR
 {

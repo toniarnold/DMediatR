@@ -11,7 +11,8 @@ namespace DMediatR
     }
 
     /// <summary>
-    /// Composite object injecting all required dependencies for SendRemote().
+    /// Public composite object injecting all internal dependencies required for
+    /// RemoteExtension.SendRemote().
     /// </summary>
     public class Remote
     {

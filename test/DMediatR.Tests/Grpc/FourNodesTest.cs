@@ -44,6 +44,12 @@ namespace DMediatR.Tests.Grpc
             Given_DMediatRClient();
         }
 
+        [OneTimeTearDown]
+        public void StopServers()
+        {
+            SetUp.StopAllServers();
+        }
+
         [Test]
         public async Task TestFourNodesWithClient()
         {
@@ -51,6 +57,13 @@ namespace DMediatR.Tests.Grpc
             await Then_DMediatRNodeRechable();
             await Then_DMediatRNodeAnswersPing();
             await Then_DmMediatRNodeForwardsBing(); // functional as long ClientCertifier is not configured in Remotes
+
+            await When_RootCertificateIsRenewed();
+            await Then_DMediatRNodeRechable(); // still reachable, as the chain is not verified
+            //await When_IntermediateCertificateIsRenewed();
+            //await Then_DMediatRNodeRechable();
+            //await When_ServerCertificateIsRenewed();
+            //await Then_DMediatRNodeRechable(); // boonm!
         }
 
         #region Given
@@ -75,12 +88,7 @@ namespace DMediatR.Tests.Grpc
             SetUp.StartServer("IntermediateCertifier", 18003, 18004);
             SetUp.StartServer("ServerCertifier", 18005, 18006);
             SetUp.StartServer("ClientCertifier", 18007, 18008);
-
-            foreach (var process in SetUp.ServerProcesses)
-            {
-                var profile = SetUp.GetProcessProfile(process);
-                Assert.That(process.HasExited, Is.False, $"Process {profile} was not started");
-            }
+            SetUp.AssertServersStarted();
         }
 
         /// <summary>
@@ -120,6 +128,25 @@ namespace DMediatR.Tests.Grpc
 
         #endregion Given
 
+        #region When
+
+        public async Task When_RootCertificateIsRenewed()
+        {
+            await Mediator.Publish(new RenewRootCertificateNotification());
+        }
+
+        public async Task When_IntermediateCertificateIsRenewed()
+        {
+            await Mediator.Publish(new RenewIntermediateCertificateNotification());
+        }
+
+        public async Task When_ServerCertificateIsRenewed()
+        {
+            await Mediator.Publish(new RenewServerCertificateNotification());
+        }
+
+        #endregion When
+
         #region Then
 
         /// <summary>
@@ -147,11 +174,5 @@ namespace DMediatR.Tests.Grpc
         }
 
         #endregion Then
-
-        [OneTimeTearDown]
-        public void StopServers()
-        {
-            SetUp.StopAllServers();
-        }
     }
 }

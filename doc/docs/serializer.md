@@ -3,7 +3,7 @@
 DMediatR uses typed binary serialization with pluggable custom serializers to
 transmit MediatR `IRequest`/`IResponse` messages over gRPC. Custom serializers
 for specific types can be added to the service collection.  There are two
-built-in custom serializers: One for serializing `X509Certificate2` objects and
+internal custom serializers: One for serializing `X509Certificate2` objects and
 one for tracing purposes counting the  the number of times the object has been
 serialized.
 
@@ -25,22 +25,22 @@ register the serializer for as type parameter. They can override one or both of 
 nulling out non-serializable members before serialization and then for rehydrating it after 
 deserialization by setting the members again with instances from DI on the destination node.
 
-The `SerializationCountSerializer` is used to trace the number of node hops a DMediatR 
-message (IRequest or INotification) has taken:
+The `SerializationCountSerializer` is used to trace the number of node hops a
+DMediatR message (IRequest or INotification) has taken by incrementing the
+object's Count property:
 
 [!code-csharp[SerializationCountSerializer.cs](../../src/DMediatR/SerializationCountSerializer.cs)]
 
 The `X509CertificateSerializer` needs the injected password from configuration
 to decrypt the .pfx binary for deserialization and uses plain `byte[]`
-serialization for the encrypted `RawData` exposed by the `X509Certificate2`
-object:
+serialization for the data exported by the `X509Certificate2` object:
 
 [!code-csharp[X509CertificateSerializer.cs](../../src/DMediatR/X509CertificateSerializer.cs)]
 
 
 ## Serialization Classes
 
-### Classes for serializing `Ping` objects
+### Context for serializing `Ping` objects
 
 This diagram exemplifies the context for serializing of the `Ping` class
 deriving from `SerializationCountSerializer`:

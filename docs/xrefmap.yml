@@ -349,15 +349,15 @@ references:
   commentId: T:DMediatR.DtoService
   fullName: DMediatR.DtoService
   nameWithType: DtoService
-- uid: DMediatR.DtoService.#ctor(System.IServiceProvider,MediatR.IMediator,DMediatR.ISerializer)
-  name: DtoService(IServiceProvider, IMediator, ISerializer)
-  href: api/DMediatR.DtoService.html#DMediatR_DtoService__ctor_System_IServiceProvider_MediatR_IMediator_DMediatR_ISerializer_
-  commentId: M:DMediatR.DtoService.#ctor(System.IServiceProvider,MediatR.IMediator,DMediatR.ISerializer)
-  name.vb: New(IServiceProvider, IMediator, ISerializer)
-  fullName: DMediatR.DtoService.DtoService(System.IServiceProvider, MediatR.IMediator, DMediatR.ISerializer)
-  fullName.vb: DMediatR.DtoService.New(System.IServiceProvider, MediatR.IMediator, DMediatR.ISerializer)
-  nameWithType: DtoService.DtoService(IServiceProvider, IMediator, ISerializer)
-  nameWithType.vb: DtoService.New(IServiceProvider, IMediator, ISerializer)
+- uid: DMediatR.DtoService.#ctor(System.IServiceProvider,MediatR.IMediator,DMediatR.ISerializer,Microsoft.Extensions.Caching.Memory.IMemoryCache)
+  name: DtoService(IServiceProvider, IMediator, ISerializer, IMemoryCache)
+  href: api/DMediatR.DtoService.html#DMediatR_DtoService__ctor_System_IServiceProvider_MediatR_IMediator_DMediatR_ISerializer_Microsoft_Extensions_Caching_Memory_IMemoryCache_
+  commentId: M:DMediatR.DtoService.#ctor(System.IServiceProvider,MediatR.IMediator,DMediatR.ISerializer,Microsoft.Extensions.Caching.Memory.IMemoryCache)
+  name.vb: New(IServiceProvider, IMediator, ISerializer, IMemoryCache)
+  fullName: DMediatR.DtoService.DtoService(System.IServiceProvider, MediatR.IMediator, DMediatR.ISerializer, Microsoft.Extensions.Caching.Memory.IMemoryCache)
+  fullName.vb: DMediatR.DtoService.New(System.IServiceProvider, MediatR.IMediator, DMediatR.ISerializer, Microsoft.Extensions.Caching.Memory.IMemoryCache)
+  nameWithType: DtoService.DtoService(IServiceProvider, IMediator, ISerializer, IMemoryCache)
+  nameWithType.vb: DtoService.New(IServiceProvider, IMediator, ISerializer, IMemoryCache)
 - uid: DMediatR.DtoService.#ctor*
   name: DtoService
   href: api/DMediatR.DtoService.html#DMediatR_DtoService__ctor_
@@ -863,12 +863,12 @@ references:
   commentId: T:DMediatR.RemoteExtension
   fullName: DMediatR.RemoteExtension
   nameWithType: RemoteExtension
-- uid: DMediatR.RemoteExtension.PublishRemote(DMediatR.IRemote,MediatR.INotification,System.Threading.CancellationToken)
-  name: PublishRemote(IRemote, INotification, CancellationToken)
-  href: api/DMediatR.RemoteExtension.html#DMediatR_RemoteExtension_PublishRemote_DMediatR_IRemote_MediatR_INotification_System_Threading_CancellationToken_
-  commentId: M:DMediatR.RemoteExtension.PublishRemote(DMediatR.IRemote,MediatR.INotification,System.Threading.CancellationToken)
-  fullName: DMediatR.RemoteExtension.PublishRemote(DMediatR.IRemote, MediatR.INotification, System.Threading.CancellationToken)
-  nameWithType: RemoteExtension.PublishRemote(IRemote, INotification, CancellationToken)
+- uid: DMediatR.RemoteExtension.PublishRemote(DMediatR.IRemote,DMediatR.ICorrelatedNotification,System.Threading.CancellationToken)
+  name: PublishRemote(IRemote, ICorrelatedNotification, CancellationToken)
+  href: api/DMediatR.RemoteExtension.html#DMediatR_RemoteExtension_PublishRemote_DMediatR_IRemote_DMediatR_ICorrelatedNotification_System_Threading_CancellationToken_
+  commentId: M:DMediatR.RemoteExtension.PublishRemote(DMediatR.IRemote,DMediatR.ICorrelatedNotification,System.Threading.CancellationToken)
+  fullName: DMediatR.RemoteExtension.PublishRemote(DMediatR.IRemote, DMediatR.ICorrelatedNotification, System.Threading.CancellationToken)
+  nameWithType: RemoteExtension.PublishRemote(IRemote, ICorrelatedNotification, CancellationToken)
 - uid: DMediatR.RemoteExtension.PublishRemote*
   name: PublishRemote
   href: api/DMediatR.RemoteExtension.html#DMediatR_RemoteExtension_PublishRemote_
@@ -949,47 +949,6 @@ references:
   isSpec: "True"
   fullName: DMediatR.SerializationCountMessage.Message
   nameWithType: SerializationCountMessage.Message
-- uid: DMediatR.SerializationCountSerializer
-  name: SerializationCountSerializer
-  href: api/DMediatR.SerializationCountSerializer.html
-  commentId: T:DMediatR.SerializationCountSerializer
-  fullName: DMediatR.SerializationCountSerializer
-  nameWithType: SerializationCountSerializer
-- uid: DMediatR.SerializationCountSerializer.#ctor(System.IServiceProvider)
-  name: SerializationCountSerializer(IServiceProvider)
-  href: api/DMediatR.SerializationCountSerializer.html#DMediatR_SerializationCountSerializer__ctor_System_IServiceProvider_
-  commentId: M:DMediatR.SerializationCountSerializer.#ctor(System.IServiceProvider)
-  name.vb: New(IServiceProvider)
-  fullName: DMediatR.SerializationCountSerializer.SerializationCountSerializer(System.IServiceProvider)
-  fullName.vb: DMediatR.SerializationCountSerializer.New(System.IServiceProvider)
-  nameWithType: SerializationCountSerializer.SerializationCountSerializer(IServiceProvider)
-  nameWithType.vb: SerializationCountSerializer.New(IServiceProvider)
-- uid: DMediatR.SerializationCountSerializer.#ctor*
-  name: SerializationCountSerializer
-  href: api/DMediatR.SerializationCountSerializer.html#DMediatR_SerializationCountSerializer__ctor_
-  commentId: Overload:DMediatR.SerializationCountSerializer.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: DMediatR.SerializationCountSerializer.SerializationCountSerializer
-  fullName.vb: DMediatR.SerializationCountSerializer.New
-  nameWithType: SerializationCountSerializer.SerializationCountSerializer
-  nameWithType.vb: SerializationCountSerializer.New
-- uid: DMediatR.SerializationCountSerializer.Serialize(System.Type,System.Object)
-  name: Serialize(Type, object)
-  href: api/DMediatR.SerializationCountSerializer.html#DMediatR_SerializationCountSerializer_Serialize_System_Type_System_Object_
-  commentId: M:DMediatR.SerializationCountSerializer.Serialize(System.Type,System.Object)
-  name.vb: Serialize(Type, Object)
-  fullName: DMediatR.SerializationCountSerializer.Serialize(System.Type, object)
-  fullName.vb: DMediatR.SerializationCountSerializer.Serialize(System.Type, Object)
-  nameWithType: SerializationCountSerializer.Serialize(Type, object)
-  nameWithType.vb: SerializationCountSerializer.Serialize(Type, Object)
-- uid: DMediatR.SerializationCountSerializer.Serialize*
-  name: Serialize
-  href: api/DMediatR.SerializationCountSerializer.html#DMediatR_SerializationCountSerializer_Serialize_
-  commentId: Overload:DMediatR.SerializationCountSerializer.Serialize
-  isSpec: "True"
-  fullName: DMediatR.SerializationCountSerializer.Serialize
-  nameWithType: SerializationCountSerializer.Serialize
 - uid: DMediatR.Serializer
   name: Serializer
   href: api/DMediatR.Serializer.html

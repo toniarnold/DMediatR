@@ -1,4 +1,5 @@
-﻿using ProtoBuf.Grpc;
+﻿using Microsoft.Extensions.Caching.Memory;
+using ProtoBuf.Grpc;
 
 namespace DMediatR
 
@@ -11,15 +12,18 @@ namespace DMediatR
         private readonly IServiceProvider _serviceProvider;
         private readonly IMediator _mediator;
         private readonly ISerializer _serializer;
+        private readonly IMemoryCache _cache;
 
         public DtoService(
             IServiceProvider serviceProvider,
             IMediator mediator,
-            ISerializer serializer)
+            ISerializer serializer,
+            IMemoryCache cache)
         {
             _serviceProvider = serviceProvider;
             _mediator = mediator;
             _serializer = serializer;
+            _cache = cache;
         }
 
         /// <summary>
@@ -46,7 +50,9 @@ namespace DMediatR
         }
 
         /// <summary>
-        /// Send the deserialized notification to the local handlers and to all configured remotws.
+        /// Send the deserialized notification to the local handlers including
+        /// NotificationForwarder. De-duplicates notifications received in
+        /// multiple copies over different network paths.
         /// </summary>
         /// <param name="notificationDto"></param>
         /// <param name="context"></param>
@@ -54,7 +60,14 @@ namespace DMediatR
         public async Task PublishAsync(Dto notificationDto, CallContext context = default)
         {
             var notification = _serializer.Deserialize(notificationDto.Type, notificationDto.Bytes);
-            await _mediator.Publish(notification);
+            if (notification is not ICorrelatedNotification) // from RemoteExtension.PublishRemote
+            {
+                throw new ArgumentException($"Expected ICorrelatedNotification, but got {notification.GetType()}");
+            }
+            if (!_cache.HaveSeen(((ICorrelatedNotification)notification).CorrelationGuid))
+            {
+                await _mediator.Publish(notification);
+            }
         }
     }
 }

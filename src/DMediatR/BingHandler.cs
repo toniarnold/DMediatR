@@ -1,32 +1,27 @@
-﻿using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 namespace DMediatR
 {
-    internal class BingHandler : INotificationHandler<Bing>
+    internal class BingHandler : INotificationHandler<Bing>, IRemote
     {
         private readonly IServiceProvider _serviceProvider;
-        private readonly IMemoryCache _correlationGuidCache;
+        private readonly Remote _remote;
         private readonly ILogger<BingHandler> _logger;
 
-        public BingHandler(IServiceProvider serviceProvider, IMemoryCache cache, ILogger<BingHandler> logger)
+        public BingHandler(IServiceProvider serviceProvider, Remote remote, ILogger<BingHandler> logger)
         {
             _serviceProvider = serviceProvider;
-            _correlationGuidCache = cache;
+            _remote = remote;
             _logger = logger;
         }
 
-        // <binghandler>
+        public Remote Remote => _remote;
+
         public async Task Handle(Bing notification, CancellationToken cancellationToken)
         {
-            if (!_correlationGuidCache.HaveSeen(this.GetType(), notification.CorrelationGuid))
-            {
-                var msg = $"{notification.Message}";
-                _logger.LogInformation("Handling {msg}", msg);
-                await Task.CompletedTask;
-            }
+            var msg = $"{notification.Message}";
+            _logger.LogInformation("Handling {msg}", msg);
+            await Task.CompletedTask;
         }
-
-        // </binghandler>
     }
 }

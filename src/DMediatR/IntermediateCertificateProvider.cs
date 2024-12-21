@@ -1,5 +1,6 @@
 ﻿using CertificateManager;
 using CertificateManager.Models;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Security.Cryptography.X509Certificates;
 
@@ -12,14 +13,16 @@ namespace DMediatR
     {
         private readonly CreateCertificatesClientServerAuth _createCert;
         private static SemaphoreSlim _fileLock = new(1, 1);
+
         private string CommonName => $"{RemoteName}";
         private string FriendlyName => $"DMediatR {CommonName} intermediate L2 certificate";
 
         public IntermediateCertificateProvider(Remote remote,
             CreateCertificatesClientServerAuth createCert,
             IOptions<HostOptions> hostOptions,
-            ImportExportCertificate ioCert)
-                : base(remote, hostOptions, ioCert)
+            ImportExportCertificate ioCert,
+            ILogger<CertificateProvider> logger)
+                : base(remote, hostOptions, ioCert, logger)
         {
             _createCert = createCert;
         }
@@ -34,13 +37,14 @@ namespace DMediatR
             finally { _fileLock.Release(); }
         }
 
-        async Task INotificationHandler<RenewIntermediateCertificateNotification>.Handle(RenewIntermediateCertificateNotification notification, CancellationToken cancellationToken)
+        public async Task Handle(RenewIntermediateCertificateNotification notification, CancellationToken cancellationToken)
         {
             await _fileLock.WaitAsync(cancellationToken);
             try
             {
                 if (File.Exists(FileName))
                 {
+                    _logger.LogDebug("Renewing Intermediate Certificate");
                     await base.Generate(new IntermediateCertificateRequest(), cancellationToken);
                 }
             }

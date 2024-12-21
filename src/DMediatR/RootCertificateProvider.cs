@@ -1,5 +1,7 @@
 ﻿using CertificateManager;
 using CertificateManager.Models;
+using MediatR;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Security.Cryptography.X509Certificates;
 
@@ -12,14 +14,17 @@ namespace DMediatR
     {
         private readonly CreateCertificatesClientServerAuth _createCert;
         private static SemaphoreSlim _fileLock = new(1, 1);
+
         private string CommonName => $"{RemoteName}";
         private string FriendlyName => $"DMediatR {CommonName} root CA L1 certificate";
 
         public RootCertificateProvider(Remote remote,
             CreateCertificatesClientServerAuth createCert,
             IOptions<HostOptions> hostOptions,
-            ImportExportCertificate ioCert)
-                : base(remote, hostOptions, ioCert)
+            ImportExportCertificate ioCert,
+            ILogger<CertificateProvider> logger
+            )
+                : base(remote, hostOptions, ioCert, logger)
         {
             _createCert = createCert;
         }
@@ -34,13 +39,14 @@ namespace DMediatR
             finally { _fileLock.Release(); }
         }
 
-        async Task INotificationHandler<RenewRootCertificateNotification>.Handle(RenewRootCertificateNotification notification, CancellationToken cancellationToken)
+        public async Task Handle(RenewRootCertificateNotification notification, CancellationToken cancellationToken)
         {
             await _fileLock.WaitAsync(cancellationToken);
             try
             {
                 if (File.Exists(FileName))
                 {
+                    _logger.LogDebug("{notification}: renew existing certificate", notification.GetType().Name);
                     var newcert = Generate(new RootCertificateRequest());
                     await Save(newcert, cancellationToken);
                 }
@@ -53,10 +59,12 @@ namespace DMediatR
             (var loaded, var cert) = await TryLoad(cancellationToken);
             if (loaded && ((cert!.NotAfter - DateTime.Now).TotalDays > Options.RenewBeforeExpirationDays))
             {
+                _logger.LogDebug("{request}: load existing certificate", request.GetType().Name);
                 return cert!;
             }
             else
             {
+                _logger.LogDebug("{request}: generate new certificate", request.GetType().Name);
                 var newcert = await Generate(request, cancellationToken);
                 return newcert;
             }

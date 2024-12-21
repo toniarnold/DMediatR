@@ -126,24 +126,6 @@ gets written with tracing information:</p>
 <pre><code class="lang-text">info: DMediatR.NotificationForwarder[0]
       Forwarding Bing 2 hops from NUnit via ClientCertifier via IntermediateCertifier
 </code></pre>
-<p>Multiple DMediatR nodes can have cyclic dependencies or there might be
-indirect diamonds in the configured dependency graph. In such cases a
-single node receives and would forward the same <code>INotification</code> in multiple
-duplicate copies. To handle them only once as in a monolith, they are correlated
-with the handler class and a Guid. It is the responsibility of the concrete
-handler to query the injected <code>IMemoryCache</code> with the <code>HaveSeen</code> extension
-as here in BingHandler.cs:</p>
-<pre><code class="lang-csharp" name="BingHandler.cs" highlight-lines="3">public async Task Handle(Bing notification, CancellationToken cancellationToken)
-{
-    if (!_correlationGuidCache.HaveSeen(this.GetType(), notification.CorrelationGuid))
-    {
-        var msg = $&quot;{notification.Message}&quot;;
-        _logger.LogInformation(&quot;Handling {msg}&quot;, msg);
-        await Task.CompletedTask;
-    }
-}
-
-</code></pre>
 <div class="footnotes">
 <hr>
 <ol>

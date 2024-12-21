@@ -10,11 +10,11 @@ namespace DMediatR.Tests.Grpc
         {
             SetUp.SetUpDMediatRServices("Monolith");
             SetUp.SetUpInitialCertificates();
-            SetUp.SetUpDMediatRServices("RemoteServerCert");
+            SetUp.SetUpDMediatRServices("RemoteAllCerts"); // smoke test mode, as the remote shares the cert location
 
             // <startserver>
             SetUp.StartServer("Monolith", 18001, 18002);
-            Assert.That(SetUp.ServerProcesses[0].HasExited, Is.False, "Process was not started");
+            SetUp.AssertServersStarted();
             // </startserver>
         }
 
@@ -61,7 +61,7 @@ namespace DMediatR.Tests.Grpc
         }
 
         [Test]
-        public async Task ForceRenewRemoteServerCert()
+        public async Task ForceRenewServerCertRemote()
         {
             var mediator = SetUp.ServiceProvider!.GetRequiredService<IMediator>();
             // Requesting it twice yields the same certificate from the filesysem.
@@ -74,6 +74,49 @@ namespace DMediatR.Tests.Grpc
             SetUp.WaitForServerPort(18001);
             var newCertFromRemote = await mediator.Send(new ServerCertificateRequest());
             Assert.That(newCertFromRemote.Thumbprint, Is.Not.EqualTo(oldCertDouble.Thumbprint));
+        }
+
+        [Test]
+        public async Task ForceRenewCertChainRemote()
+        {
+            var mediator = SetUp.ServiceProvider!.GetRequiredService<IMediator>();
+
+            var oldRoot = await mediator.Send(new RootCertificateRequest());
+            var oldInter = await mediator.Send(new IntermediateCertificateRequest());
+            var oldServer = await mediator.Send(new ServerCertificateRequest());
+            var oldClient = await mediator.Send(new ClientCertificateRequest());
+
+            var sameRoot = await mediator.Send(new RootCertificateRequest());
+            var sameInter = await mediator.Send(new IntermediateCertificateRequest());
+            var sameServer = await mediator.Send(new ServerCertificateRequest());
+            var sameClient = await mediator.Send(new ClientCertificateRequest());
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(sameRoot.Thumbprint, Is.EqualTo(oldRoot.Thumbprint));
+                Assert.That(sameInter.Thumbprint, Is.EqualTo(oldInter.Thumbprint));
+                Assert.That(sameServer.Thumbprint, Is.EqualTo(oldServer.Thumbprint));
+                Assert.That(sameClient.Thumbprint, Is.EqualTo(oldClient.Thumbprint));
+            });
+
+            await mediator.Publish(new RenewRootCertificateNotification());
+            await mediator.Publish(new RenewIntermediateCertificateNotification());
+            await mediator.Publish(new RenewServerCertificateNotification());
+            await mediator.Publish(new RenewClientCertificateNotification());
+            SetUp.WaitForServerPort(18001); // defensive
+
+            var newRoot = await mediator.Send(new RootCertificateRequest());
+            var newInter = await mediator.Send(new IntermediateCertificateRequest());
+            var newServer = await mediator.Send(new ServerCertificateRequest());
+            var newClient = await mediator.Send(new ClientCertificateRequest());
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(newRoot.Thumbprint, Is.Not.EqualTo(oldRoot.Thumbprint));
+                Assert.That(newInter.Thumbprint, Is.Not.EqualTo(oldInter.Thumbprint));
+                Assert.That(newServer.Thumbprint, Is.Not.EqualTo(oldServer.Thumbprint));
+                Assert.That(newClient.Thumbprint, Is.Not.EqualTo(oldClient.Thumbprint));
+            });
         }
     }
 }

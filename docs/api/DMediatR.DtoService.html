@@ -161,8 +161,8 @@ Class DtoService
 
   <a id="DMediatR_DtoService__ctor_" data-uid="DMediatR.DtoService.#ctor*"></a>
 
-  <h3 id="DMediatR_DtoService__ctor_System_IServiceProvider_MediatR_IMediator_DMediatR_ISerializer_" data-uid="DMediatR.DtoService.#ctor(System.IServiceProvider,MediatR.IMediator,DMediatR.ISerializer)">
-  DtoService(IServiceProvider, IMediator, ISerializer)
+  <h3 id="DMediatR_DtoService__ctor_System_IServiceProvider_MediatR_IMediator_DMediatR_ISerializer_Microsoft_Extensions_Caching_Memory_IMemoryCache_" data-uid="DMediatR.DtoService.#ctor(System.IServiceProvider,MediatR.IMediator,DMediatR.ISerializer,Microsoft.Extensions.Caching.Memory.IMemoryCache)">
+  DtoService(IServiceProvider, IMediator, ISerializer, IMemoryCache)
   
   </h3>
 
@@ -170,7 +170,7 @@ Class DtoService
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DtoService(IServiceProvider serviceProvider, IMediator mediator, ISerializer serializer)</code></pre>
+    <pre><code class="lang-csharp hljs">public DtoService(IServiceProvider serviceProvider, IMediator mediator, ISerializer serializer, IMemoryCache cache)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -180,6 +180,8 @@ Class DtoService
     <dt><code>mediator</code> <span class="xref">IMediator</span></dt>
     <dd></dd>
     <dt><code>serializer</code> <a class="xref" href="DMediatR.ISerializer.html">ISerializer</a></dt>
+    <dd></dd>
+    <dt><code>cache</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.caching.memory.imemorycache">IMemoryCache</a></dt>
     <dd></dd>
   </dl>
 
@@ -205,7 +207,9 @@ Class DtoService
   
   </h3>
 
-  <div class="markdown level1 summary"><p>Send the deserialized notification to the local handlers and to all configured remotws.</p>
+  <div class="markdown level1 summary"><p>Send the deserialized notification to the local handlers including
+NotificationForwarder. De-duplicates notifications received in
+multiple copies over different network paths.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 

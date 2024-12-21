@@ -61,16 +61,6 @@ info: DMediatR.NotificationForwarder[0]
       Forwarding Bing 2 hops from NUnit via ClientCertifier via IntermediateCertifier
 ```
 
-Multiple DMediatR nodes can have cyclic dependencies or there might be
-indirect diamonds in the configured dependency graph. In such cases a
-single node receives and would forward the same `INotification` in multiple
-duplicate copies. To handle them only once as in a monolith, they are correlated
-with the handler class and a Guid. It is the responsibility of the concrete
-handler to query the injected `IMemoryCache` with the `HaveSeen` extension
-as here in BingHandler.cs:
-
-[!code-csharp[BingHandler.cs](../../src/DMediatR/BingHandler.cs?name=binghandler&highlight=3)]
-
 [^mediatr]: [MediatR Wiki](https://github.com/jbogard/MediatR/wiki)
 
 [^serializer]: [DMediatR Serializer](serializer.md)

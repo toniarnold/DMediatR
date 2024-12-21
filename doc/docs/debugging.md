@@ -23,11 +23,12 @@ and its output disappears.
 
 The `./start.ps1` script starts nodes with the specified `--launch-profile`
 separately and leaves them running until Ctrl+C is pressed. 
-After commenting out e.g.
+After commenting out `StartServer` in e.g. ServerTest.cs:
 
-[!code-csharp[ServerTest.cs](../../test/DMediatR.Tests/Grpc/ServerTest.cs?name=startserver)]
+[!code-csharp[ServerTest.cs](../../test/DMediatR.Tests/Grpc/ServerTest.cs?name=startserver&highlight=1)]
 
-and recompiling, the client tests can be debugged from within VS.
+and recompiling, the client tests can be debugged from within VS after running
+`./start Monolith`.
 
 
 ## test.ps1
@@ -38,7 +39,7 @@ specified `NUnit.Where` test selection[^selection]. It is assumed that the
 selected test executed by the script expects a `DMediatRNode` with a matching
 configuration profile running in the VS debugger.
 
-This eliminates the need to attempt to teach tools like Postman to talk binary
-gRPC MediatR.
+Running e.g. `test test =~ /Test1/` in the VS Developer-PowerShell eliminates the
+need to attempt to teach tools like Postman to talk binary gRPC MediatR.
 
 [^selection]: [NUnit Test Selection Language](https://docs.nunit.org/articles/nunit/running-tests/Test-Selection-Language.html)

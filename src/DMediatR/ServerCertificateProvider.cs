@@ -1,6 +1,7 @@
 ﻿using CertificateManager;
 using CertificateManager.Models;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Security.Cryptography.X509Certificates;
 
@@ -13,16 +14,43 @@ namespace DMediatR
     {
         private readonly CreateCertificatesClientServerAuth _createCert;
         private static SemaphoreSlim _fileLock = new(1, 1);
+
         private string CommonName => $"{RemoteName}";
         private string FriendlyName => $"DMediatR {CommonName} server L3 certificate";
 
         public ServerCertificateProvider(Remote remote,
             CreateCertificatesClientServerAuth createCert,
             IOptions<HostOptions> hostOptions,
-            ImportExportCertificate ioCert)
-                : base(remote, hostOptions, ioCert)
+            ImportExportCertificate ioCert,
+            ILogger<CertificateProvider> logger
+            )
+                : base(remote, hostOptions, ioCert, logger)
         {
             _createCert = createCert;
+        }
+
+        public virtual async Task<X509Certificate2> Handle(ServerCertificateRequest request, CancellationToken cancellationToken)
+        {
+            await _fileLock.WaitAsync(cancellationToken);
+            try
+            {
+                return await RequestCertificate(request, cancellationToken);
+            }
+            finally { _fileLock.Release(); }
+        }
+
+        public async Task Handle(RenewServerCertificateNotification notification, CancellationToken cancellationToken)
+        {
+            await _fileLock.WaitAsync(cancellationToken);
+            try
+            {
+                if (File.Exists(FileName))
+                {
+                    _logger.LogDebug("{notification}: renew existing certificate", notification.GetType().Name);
+                    await base.Generate(new ServerCertificateRequest(), cancellationToken);
+                }
+            }
+            finally { _fileLock.Release(); }
         }
 
         public static string CertificateFilename(IConfiguration cfg)
@@ -78,34 +106,6 @@ namespace DMediatR
         internal static CertificateOptions GetOptionsFrom(IConfiguration cfg)
         {
             return cfg.GetSection(CertificateOptions.SectionName).Get<CertificateOptions>()!;
-        }
-
-        private static X509Certificate2 LoadCertificate(IConfiguration cfg, string FileName)
-        {
-            return new X509Certificate2(File.ReadAllBytes(FileName), GetOptionsFrom(cfg).Password);
-        }
-
-        public virtual async Task<X509Certificate2> Handle(ServerCertificateRequest request, CancellationToken cancellationToken)
-        {
-            await _fileLock.WaitAsync(cancellationToken);
-            try
-            {
-                return await RequestCertificate(request, cancellationToken);
-            }
-            finally { _fileLock.Release(); }
-        }
-
-        async Task INotificationHandler<RenewServerCertificateNotification>.Handle(RenewServerCertificateNotification notification, CancellationToken cancellationToken)
-        {
-            await _fileLock.WaitAsync(cancellationToken);
-            try
-            {
-                if (File.Exists(FileName))
-                {
-                    await base.Generate(new ServerCertificateRequest(), cancellationToken);
-                }
-            }
-            finally { _fileLock.Release(); }
         }
 
         internal override X509Certificate2 Generate(ChainedCertificateRequest request, X509Certificate2 parentCert)

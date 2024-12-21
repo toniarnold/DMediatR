@@ -47,15 +47,16 @@ namespace DMediatR
             certWatcher.Renamed += OnCertChanged;
             certWatcher.EnableRaisingEvents = true;
 
-            await Task.Delay(-1, cancellationToken);
+            try
+            {
+                await Task.Delay(-1, cancellationToken);
+            }
+            catch (OperationCanceledException) { } // restarting is normal control flow
         }
 
         private void OnCertChanged(object sender, FileSystemEventArgs e)
         {
-            if (_logger.IsEnabled(LogLevel.Information))
-            {
-                _logger.LogInformation($"Certificate file changed: {e.FullPath}");
-            }
+            _logger.LogInformation("Restarting as the Certificate file changed: {path}", e.FullPath);
             _appLifetime.StopApplication();
         }
     }

@@ -121,19 +121,20 @@ these instances are automatically terminated by the <code>[OneTimeTearDown]</cod
 and its output disappears.</p>
 <p>The <code>./start.ps1</code> script starts nodes with the specified <code>--launch-profile</code>
 separately and leaves them running until Ctrl+C is pressed.
-After commenting out e.g.</p>
-<pre><code class="lang-csharp" name="ServerTest.cs">SetUp.StartServer(&quot;Monolith&quot;, 18001, 18002);
-Assert.That(SetUp.ServerProcesses[0].HasExited, Is.False, &quot;Process was not started&quot;);
+After commenting out <code>StartServer</code> in e.g. ServerTest.cs:</p>
+<pre><code class="lang-csharp" name="ServerTest.cs" highlight-lines="1">SetUp.StartServer(&quot;Monolith&quot;, 18001, 18002);
+SetUp.AssertServersStarted();
 </code></pre>
-<p>and recompiling, the client tests can be debugged from within VS.</p>
+<p>and recompiling, the client tests can be debugged from within VS after running
+<code>./start Monolith</code>.</p>
 <h2 id="testps1">test.ps1</h2>
 <p>To debug a <code>DMediatRNode</code> instance itself in the VS debugger, the tests must be
 run from another process. The <code>./test.ps1</code> script executes NUnit tests with the
 specified <code>NUnit.Where</code> test selection<a id="fnref:1" href="#fn:1" class="footnote-ref"><sup>1</sup></a>. It is assumed that the
 selected test executed by the script expects a <code>DMediatRNode</code> with a matching
 configuration profile running in the VS debugger.</p>
-<p>This eliminates the need to attempt to teach tools like Postman to talk binary
-gRPC MediatR.</p>
+<p>Running e.g. <code>test test =~ /Test1/</code> in the VS Developer-PowerShell eliminates the
+need to attempt to teach tools like Postman to talk binary gRPC MediatR.</p>
 <div class="footnotes">
 <hr>
 <ol>

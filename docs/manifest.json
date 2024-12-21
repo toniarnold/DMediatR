@@ -252,16 +252,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.SerializationCountSerializer.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.SerializationCountSerializer.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/DMediatR.Serializer.yml",
       "output": {
         ".html": {

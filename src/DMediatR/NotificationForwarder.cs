@@ -1,8 +1,4 @@
-﻿using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using System.Text.RegularExpressions;
+﻿using Microsoft.Extensions.Logging;
 
 namespace DMediatR
 {
@@ -10,14 +6,12 @@ namespace DMediatR
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly Remote _remote;
-        private readonly IMemoryCache _correlationGuidCache;
         private readonly ILogger<NotificationForwarder> _logger;
 
-        public NotificationForwarder(IServiceProvider serviceProvider, Remote remote, IMemoryCache cache, ILogger<NotificationForwarder> logger)
+        public NotificationForwarder(IServiceProvider serviceProvider, Remote remote, ILogger<NotificationForwarder> logger)
         {
             _serviceProvider = serviceProvider;
             _remote = remote;
-            _correlationGuidCache = cache;
             _logger = logger;
         }
 
@@ -31,19 +25,16 @@ namespace DMediatR
         /// <returns></returns>
         public async Task Handle(ICorrelatedNotification notification, CancellationToken cancellationToken)
         {
-            if (!_correlationGuidCache.HaveSeen(this.GetType(), notification.CorrelationGuid))
+            if (notification is SerializationCountMessage sc)
             {
-                if (notification is SerializationCountMessage)
+                SerializationCountMessage.AddTraceToMessage(_serviceProvider, sc);
+                if (notification is Bing)
                 {
-                    SerializationCountMessage.AddTraceToMessage(_serviceProvider, (SerializationCountMessage)notification);
-                    if (notification is Bing)
-                    {
-                        _logger.LogInformation("Forwarding {msg}", ((SerializationCountMessage)notification).Message);
-                    }
+                    _logger.LogInformation("Forwarding {msg}", sc.Message);
                 }
-
-                await this.PublishRemote(notification, cancellationToken);
             }
+            _logger.LogDebug("Forwarding {msg}", notification.GetType().Name);
+            await this.PublishRemote(notification, cancellationToken);
         }
     }
 }

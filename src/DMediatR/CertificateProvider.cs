@@ -1,4 +1,5 @@
 ﻿using CertificateManager;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Security.Cryptography.X509Certificates;
 
@@ -9,14 +10,17 @@ namespace DMediatR
         protected readonly Remote _remote;
         protected readonly HostOptions _hostOptions;
         protected readonly ImportExportCertificate _importExportCertificate;
+        protected readonly ILogger<CertificateProvider> _logger;
 
         protected CertificateProvider(Remote remote,
                 IOptions<HostOptions> hostOptions,
-                ImportExportCertificate ioCert)
+                ImportExportCertificate ioCert,
+                ILogger<CertificateProvider> logger)
         {
             _remote = remote;
             _hostOptions = hostOptions.Value;
             _importExportCertificate = ioCert;
+            _logger = logger;
         }
 
         public Remote Remote => _remote;
@@ -34,7 +38,7 @@ namespace DMediatR
             if (File.Exists(FileName))
             {
                 var bytes = await File.ReadAllBytesAsync(FileName, cancellationToken);
-                var cert = new X509Certificate2(bytes, Options.Password);
+                var cert = new X509Certificate2(bytes, Options.Password, X509KeyStorageFlags.Exportable);
                 return (true, cert);
             }
             else

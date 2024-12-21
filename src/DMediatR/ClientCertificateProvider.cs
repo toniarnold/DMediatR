@@ -1,5 +1,6 @@
 ﻿using CertificateManager;
 using CertificateManager.Models;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Security.Cryptography.X509Certificates;
 
@@ -11,15 +12,18 @@ namespace DMediatR
         INotificationHandler<RenewClientCertificateNotification>
     {
         private readonly CreateCertificatesClientServerAuth _createCert;
+
         private static readonly SemaphoreSlim _fileLock = new(1, 1);
+
         private string CommonName => $"{RemoteName}";
         private string FriendlyName => $"DMediatR {CommonName} client L3 certificate";
 
         public ClientCertificateProvider(Remote remote,
             CreateCertificatesClientServerAuth createCert,
             IOptions<HostOptions> hostOptions,
-            ImportExportCertificate ioCert)
-                : base(remote, hostOptions, ioCert)
+            ImportExportCertificate ioCert,
+            ILogger<CertificateProvider> logger)
+                : base(remote, hostOptions, ioCert, logger)
         {
             _createCert = createCert;
         }
@@ -34,13 +38,14 @@ namespace DMediatR
             finally { _fileLock.Release(); }
         }
 
-        async Task INotificationHandler<RenewClientCertificateNotification>.Handle(RenewClientCertificateNotification notification, CancellationToken cancellationToken)
+        public async Task Handle(RenewClientCertificateNotification notification, CancellationToken cancellationToken)
         {
             await _fileLock.WaitAsync(cancellationToken);
             try
             {
                 if (File.Exists(FileName))
                 {
+                    _logger.LogDebug("{notification}: renew existing certificate", notification.GetType().Name);
                     await base.Generate(new ClientCertificateRequest(), cancellationToken);
                 }
             }

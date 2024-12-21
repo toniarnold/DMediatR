@@ -1,4 +1,5 @@
 ﻿using CertificateManager;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Security.Cryptography.X509Certificates;
 
@@ -10,8 +11,9 @@ namespace DMediatR
         public RootCertificateProviderRemote(Remote remote,
             CreateCertificatesClientServerAuth createCert,
             IOptions<HostOptions> hostOptions,
-            ImportExportCertificate ioCert)
-                : base(remote, createCert, hostOptions, ioCert) { }
+            ImportExportCertificate ioCert,
+            ILogger<RootCertificateProvider> logger)
+                : base(remote, createCert, hostOptions, ioCert, logger) { }
 
         public override async Task<X509Certificate2> Handle(RootCertificateRequest request, CancellationToken cancellationToken)
         {

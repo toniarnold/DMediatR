@@ -34,6 +34,18 @@ namespace DMediatR.Tests.Grpc
             WaitForServerPort(oldPort, ServerStartTimeout);
         }
 
+        public static void AssertServersStarted()
+        {
+            Assert.Multiple(() =>
+            {
+                foreach (var process in ServerProcesses)
+                {
+                    var profile = GetProcessProfile(process);
+                    Assert.That(process.HasExited, Is.False, $"Process {profile} was not started");
+                }
+            });
+        }
+
         /// <summary>
         /// Extracts the profile name out of a StartInfo string like
         /// FileName = "C:\\Program Files\\dotnet\\dotnet.exe", Arguments = "run --no-build --project DMediatRNode.csproj --launch-profile Monolith", WorkingDirectory = ...

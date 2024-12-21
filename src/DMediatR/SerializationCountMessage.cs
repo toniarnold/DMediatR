@@ -28,7 +28,7 @@ namespace DMediatR
         internal static void AddTraceToMessage(IServiceProvider serviceProvider, SerializationCountMessage messageObject)
         {
             var className = messageObject.GetType().Name;
-            
+
             var host = "";
             var env = Environment.GetEnvironmentVariables();
             if (env.Contains("ASPNETCORE_ENVIRONMENT"))
@@ -44,7 +44,7 @@ namespace DMediatR
                 }
             }
             var via = (messageObject.Count > 0 && host != "") ? $" via {host}" : "";
-            
+
             string newMessage = "";
             switch (messageObject.Count)
             {
