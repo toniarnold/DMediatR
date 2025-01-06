@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Reflection;
 
@@ -30,7 +29,6 @@ namespace DMediatR
             // Use TryAdd as MediatR itself, so any existing registration doesn't get overridden
             services.TryAddSingleton(config);
             services.TryAddSingleton(sp => sp);
-            services.AddLogging(builder => builder.AddConsole());
 
             // Options
             services.Configure<HostOptions>(config.GetSection(HostOptions.SectionName));
@@ -84,6 +82,7 @@ namespace DMediatR
             services.TryAddKeyedSingleton<ISerializer, BinarySerializer>(typeof(object)); // recursion base case for TypedSerializer
             services.TryAddKeyedSingleton<ISerializer, SerializationCountSerializer>(SerializationCountSerializer.Type);
             services.TryAddKeyedSingleton<ISerializer, X509CertificateSerializer>(X509CertificateSerializer.Type);
+            services.TryAddKeyedSingleton<ISerializedInterface, ILockISerializedInterface>(typeof(ILock));
             // </registerserializers>
 
             return services;

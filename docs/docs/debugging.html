@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      
+      <meta name="docfx:docurl" content="https://github.com/toniarnold/DMediatR/blob/main/doc/docs/debugging.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -118,11 +118,12 @@ two scripts in the root directory:</p>
 <p>Tests of category <code>Integration</code> expect one or more running <code>DMediatRNode</code>
 instances to talk to. They start these by themselves with <code>SetUp.StartServer()</code>. But
 these instances are automatically terminated by the <code>[OneTimeTearDown]</code> method,
-and its output disappears.</p>
+and its output disappears - at least unless there’s a breakpoint before its
+<code>SetUp.StopAllServers();</code>.</p>
 <p>The <code>./start.ps1</code> script starts nodes with the specified <code>--launch-profile</code>
 separately and leaves them running until Ctrl+C is pressed.
 After commenting out <code>StartServer</code> in e.g. ServerTest.cs:</p>
-<pre><code class="lang-csharp" name="ServerTest.cs" highlight-lines="1">SetUp.StartServer(&quot;Monolith&quot;, 18001, 18002);
+<pre><code class="lang-csharp" name="ServerTest.cs" highlight-lines="1">//SetUp.StartServer(&quot;Monolith&quot;, 18001, 18002); // or ./start Monolith
 SetUp.AssertServersStarted();
 </code></pre>
 <p>and recompiling, the client tests can be debugged from within VS after running
@@ -147,6 +148,7 @@ need to attempt to teach tools like Postman to talk binary gRPC MediatR.</p>
 </article>
 
         <div class="contribution d-print-none">
+          <a href="https://github.com/toniarnold/DMediatR/blob/main/doc/docs/debugging.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

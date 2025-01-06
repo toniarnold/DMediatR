@@ -18,22 +18,22 @@ namespace DMediatR
         public Remote Remote => _remote;
 
         /// <summary>
-        /// Distribute the notification to all connected remote nodes.
+        /// Publish the notification to all distinct connected remote nodes.
         /// </summary>
         /// <param name="notification"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         public async Task Handle(ICorrelatedNotification notification, CancellationToken cancellationToken)
         {
+            _logger.LogDebug("Handling/Forwarding {msg}", notification.GetType().Name);
             if (notification is SerializationCountMessage sc)
             {
                 SerializationCountMessage.AddTraceToMessage(_serviceProvider, sc);
                 if (notification is Bing)
                 {
-                    _logger.LogInformation("Forwarding {msg}", sc.Message);
+                    _logger.LogInformation("Handling/Forwarding Bing {msg}", sc.Message);
                 }
             }
-            _logger.LogDebug("Forwarding {msg}", notification.GetType().Name);
             await this.PublishRemote(notification, cancellationToken);
         }
     }

@@ -28,12 +28,13 @@ namespace DMediatR
             string activeCertFileName = "";
             switch (_hostOptions.GrpcPort)
             {
+                default:
                 case GrpcPort.UseDefault:
-                    activeCertFileName = _certificateProvider.FileName;
+                    activeCertFileName = _certificateProvider.FileNamePfx;
                     break;
 
                 case GrpcPort.UseRenew:
-                    activeCertFileName = _certificateProvider.FileNameOld;
+                    activeCertFileName = _certificateProvider.FileNameOldPfx;
                     break;
             }
             using var certWatcher = new FileSystemWatcher(

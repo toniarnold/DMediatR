@@ -141,9 +141,17 @@ for a specific type T. Types deriving from T will also use that serializer.</p>
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.ILockISerializedInterface.html">ILockISerializedInterface</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.LocalAttribute.html">LocalAttribute</a></dt>
       <dd><p>Marks the handlers in this class as local double of a [Remote] class.</p>
 </dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.LockExtension.html">LockExtension</a></dt>
+      <dd></dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.PasswordOptions.html">PasswordOptions</a></dt>
@@ -183,9 +191,44 @@ RemoteExtension.SendRemote().</p>
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.RenewClientCertificateNotification.html">RenewClientCertificateNotification</a></dt>
+      <dd><p>Renew the client certificates on all reachable nodes acting as client.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.RenewIntermediateCertificateNotification.html">RenewIntermediateCertificateNotification</a></dt>
+      <dd><p>Renew the intermediate certificate on the node which has it stored.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.RenewNotification.html">RenewNotification</a></dt>
+      <dd><p>Base class for MediatR notifications enforcing certificate renewal.
+Requires explicitly setting &quot;RenewFirewallEnabled&quot;: &quot;False&quot; in the
+&quot;Certificate&quot; configuration section, otherwise it is ignored.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.RenewRootCertificateNotification.html">RenewRootCertificateNotification</a></dt>
+      <dd><p>Renew the root certificate on the node which has it stored.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.RenewServerCertificateNotification.html">RenewServerCertificateNotification</a></dt>
+      <dd><p>Renew the server certificates on all nodes acting as server.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.SerializationCountMessage.html">SerializationCountMessage</a></dt>
       <dd><p>Base class for tracing the number of hops a DMediatR message (IRequest or INotification) has taken.
 Its Count property gets incremented whenever it gets serialized.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.SerializedInterface-1.html">SerializedInterface&lt;T&gt;</a></dt>
+      <dd><p>Interface custom serialization is orthogonal to a CustomSerializer class
+hierarchy: Serializable classes can implement multiple interfaces, which
+in turn require e.g. specific members which must be dehydrated before
+serialization.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -221,8 +264,23 @@ these remote Notifications with a Guid.</p>
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.ILock.html">ILock</a></dt>
+      <dd><p>Requests resp. notifications can recursively issue the same requests
+resp. notifications again. Attempting to lock a second time when the
+handler already holds a lock on that semaphore would cause a deadlock,
+therefore remember the locks already held for that message chain in the
+HasLocked set.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.IRemote.html">IRemote</a></dt>
       <dd><p>Inherit from IRemote and inject Remote to add the SendRemote extension.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.ISerializedInterface.html">ISerializedInterface</a></dt>
+      <dd><p>Interface for adding concrete SerializedInterface&lt;T&gt; classes with
+services.TryAddKeyedSingleton()</p>
 </dd>
     </dl>
     <dl class="jumplist">

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace DMediatR.Tests
 {
@@ -22,6 +23,7 @@ namespace DMediatR.Tests
             var cfg = Configuration.Get();
             ServiceCollection cs = new();
             _serviceProvider = cs.AddDMediatR(cfg)
+                .AddLogging(builder => builder.AddConsole())
                 .BuildServiceProvider();
 
             DeleteTestFiles();
@@ -57,22 +59,22 @@ namespace DMediatR.Tests
             var provider = _serviceProvider.GetRequiredService<RootCertificateProvider>();
             Assert.Multiple(() =>
             {
-                Assert.That(File.Exists(provider.FileName), Is.False);
-                Assert.That(File.Exists(provider.FileNameOld), Is.False);
+                Assert.That(File.Exists(provider.FileNamePfx), Is.False);
+                Assert.That(File.Exists(provider.FileNameOldPfx), Is.False);
             });
 
-            await provider.Save(Array.Empty<byte>(), CancellationToken.None);
+            await provider.SavePfx(Array.Empty<byte>(), CancellationToken.None);
             Assert.Multiple(() =>   // only the saved file exists
             {
-                Assert.That(File.Exists(provider.FileName), Is.True);
-                Assert.That(File.Exists(provider.FileNameOld), Is.False);
+                Assert.That(File.Exists(provider.FileNamePfx), Is.True);
+                Assert.That(File.Exists(provider.FileNameOldPfx), Is.False);
             });
 
-            await provider.Save(Array.Empty<byte>(), CancellationToken.None);
+            await provider.SavePfx(Array.Empty<byte>(), CancellationToken.None);
             Assert.Multiple(() =>   // above file was moved
             {
-                Assert.That(File.Exists(provider.FileName), Is.True);
-                Assert.That(File.Exists(provider.FileNameOld), Is.True);
+                Assert.That(File.Exists(provider.FileNamePfx), Is.True);
+                Assert.That(File.Exists(provider.FileNameOldPfx), Is.True);
             });
         }
 
@@ -88,7 +90,7 @@ namespace DMediatR.Tests
             {
                 Assert.That(newCert, Is.Not.Null);
                 Assert.That(File.Exists(
-                    Path.Join(Options.FilePath, $"{Options.FilenamePrefix}-RootCertifier.pfx")),
+                    Path.Join(Options.FilePath, $"{Options.FilenamePrefix}-Root.pfx")),
                     Is.True);
             });
             // Smoke Test: a second requests loads the same certificate just saved
@@ -110,10 +112,10 @@ namespace DMediatR.Tests
             {
                 Assert.That(newCert, Is.Not.Null);
                 Assert.That(File.Exists(
-                    Path.Join(Options.FilePath, $"{Options.FilenamePrefix}-RootCertifier.pfx")),
+                    Path.Join(Options.FilePath, $"{Options.FilenamePrefix}-Root.pfx")),
                     Is.True);
                 Assert.That(File.Exists(
-                    Path.Join(Options.FilePath, $"{Options.FilenamePrefix}-IntermediateCertifier.pfx")),
+                    Path.Join(Options.FilePath, $"{Options.FilenamePrefix}-Intermediate.pfx")),
                     Is.True);
             });
             // Smoke Test: a second requests loads the same certificate just saved
@@ -135,13 +137,13 @@ namespace DMediatR.Tests
             {
                 Assert.That(newCert, Is.Not.Null);
                 Assert.That(File.Exists(
-                    Path.Join(Options.FilePath, $"{Options.FilenamePrefix}-RootCertifier.pfx")),
+                    Path.Join(Options.FilePath, $"{Options.FilenamePrefix}-Root.pfx")),
                     Is.True);
                 Assert.That(File.Exists(
-                    Path.Join(Options.FilePath, $"{Options.FilenamePrefix}-IntermediateCertifier.pfx")),
+                    Path.Join(Options.FilePath, $"{Options.FilenamePrefix}-Intermediate.pfx")),
                     Is.True);
                 Assert.That(File.Exists(
-                    Path.Join(Options.FilePath, $"{Options.FilenamePrefix}-ServerCertifier.pfx")),
+                    Path.Join(Options.FilePath, $"{Options.FilenamePrefix}-Server.pfx")),
                     Is.True);
             });
             // Smoke Test: a second requests loads the same certificate just saved
@@ -163,13 +165,13 @@ namespace DMediatR.Tests
             {
                 Assert.That(newCert, Is.Not.Null);
                 Assert.That(File.Exists(
-                    Path.Join(Options.FilePath, $"{Options.FilenamePrefix}-RootCertifier.pfx")),
+                    Path.Join(Options.FilePath, $"{Options.FilenamePrefix}-Root.pfx")),
                     Is.True);
                 Assert.That(File.Exists(
-                    Path.Join(Options.FilePath, $"{Options.FilenamePrefix}-IntermediateCertifier.pfx")),
+                    Path.Join(Options.FilePath, $"{Options.FilenamePrefix}-Intermediate.pfx")),
                     Is.True);
                 Assert.That(File.Exists(
-                    Path.Join(Options.FilePath, $"{Options.FilenamePrefix}-ClientCertifier.pfx")),
+                    Path.Join(Options.FilePath, $"{Options.FilenamePrefix}-Client.pfx")),
                     Is.True);
             });
             // Smoke Test: a second requests loads the same certificate just saved

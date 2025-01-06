@@ -19,7 +19,8 @@ Script | Arguments | Usage Example
 Tests of category `Integration` expect one or more running `DMediatRNode`
 instances to talk to. They start these by themselves with `SetUp.StartServer()`. But
 these instances are automatically terminated by the `[OneTimeTearDown]` method,
-and its output disappears.
+and its output disappears - at least unless there’s a breakpoint before its
+`SetUp.StopAllServers();`.
 
 The `./start.ps1` script starts nodes with the specified `--launch-profile`
 separately and leaves them running until Ctrl+C is pressed. 

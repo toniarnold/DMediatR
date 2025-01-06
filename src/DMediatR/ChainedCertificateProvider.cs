@@ -1,5 +1,4 @@
 ﻿using CertificateManager;
-using MediatR;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Security.Cryptography.X509Certificates;
@@ -19,37 +18,74 @@ namespace DMediatR
         protected async Task<X509Certificate2> RequestCertificate(ChainedCertificateRequest request, CancellationToken cancellationToken)
         {
             (var loaded, var cert) = await TryLoad(cancellationToken);
-            if (loaded && ((cert!.NotAfter - DateTime.Now).TotalDays > Options.RenewBeforeExpirationDays))
+            if (loaded && (request.Renew || ((cert!.NotAfter - DateTime.Now).TotalDays > Options.RenewBeforeExpirationDays)))
             {
-                using X509Chain chain = new();
-                chain.ChainPolicy.RevocationMode = X509RevocationMode.NoCheck;
-                chain.ChainPolicy.VerificationFlags = X509VerificationFlags.AllowUnknownCertificateAuthority;
-                var valid = chain.Build(cert);
+                // Validate the chain with an additionally obtained parent
+                // certificate only if not renewing the at that moment
+                // inconsistent chain.
+                var valid = request.Renew;
+                if (!request.Renew)
+                {
+                    var policy = new X509ChainPolicy();
+                    policy.RevocationFlag = X509RevocationFlag.ExcludeRoot;
+                    policy.RevocationMode = X509RevocationMode.NoCheck;
+                    policy.VerificationFlags = X509VerificationFlags.AllowUnknownCertificateAuthority;
+                    var parentRequest = request.ParentCertificateRequest;
+                    parentRequest.Renew = true; // not transitively validate the parent here
+                    parentRequest.HasLocked.UnionWith(request.HasLocked);
+                    var parentCert = await Remote.Mediator.Send(parentRequest, cancellationToken);
+                    policy.ExtraStore.Add(parentCert);
+                    using var chain = new X509Chain() { ChainPolicy = policy };
+                    valid = chain.Build(cert!);
+                    if (!valid)
+                    {
+                        var status = from s in chain.ChainStatus select $"{s.Status}: {s.StatusInformation}";
+                        string failures = System.String.Join("\n          ", status);
+                        _logger.LogWarning("{request}: Existing certificate is not valid\n          {failures}", request.GetType().Name, failures);
+                    }
+                }
                 if (valid)
                 {
-                    _logger.LogDebug("{request}: load existing certificate", request.GetType().Name);
-                    return cert;
+                    _logger.LogTrace("{request}: Load existing certificate", request.GetType().Name);
+                    return cert!;
                 }
             }
-            _logger.LogDebug("{request}: generate new certificate", request.GetType().Name);
+            // request.Renew or !valid
+            request.Renew = true;
+            return await GetNewCertificate(request, cancellationToken);
+        }
+
+        protected virtual async Task<X509Certificate2> GetNewCertificate(ChainedCertificateRequest request, CancellationToken cancellationToken)
+        {
+            _logger.LogDebug("{request}: Generate new certificate", request.GetType().Name);
             var newcert = await Generate(request, cancellationToken);
             return newcert;
         }
 
         protected async Task<X509Certificate2> Generate(ChainedCertificateRequest request, CancellationToken cancellationToken)
         {
-            var parentCert = await Remote.Mediator.Send(request.ParentCertificateRequest, cancellationToken);
+            var parentRequest = request.ParentCertificateRequest;
+            parentRequest.Renew = request.Renew;
+            parentRequest.HasLocked!.UnionWith(request.HasLocked!);
+            var parentCert = await Remote.Mediator.Send(parentRequest, cancellationToken);
             var newcert = Generate(request, parentCert);
             await Save(newcert, parentCert, cancellationToken);
             return newcert;
         }
 
-        internal abstract X509Certificate2 Generate(ChainedCertificateRequest request, X509Certificate2 parentCert);
+        public abstract X509Certificate2 Generate(ChainedCertificateRequest request, X509Certificate2 parentCert);
 
-        internal async Task Save(X509Certificate2 certificate, X509Certificate2 signingCert, CancellationToken cancellationToken)
+        public async Task Save(X509Certificate2 certificate, X509Certificate2 signingCert, CancellationToken cancellationToken)
         {
-            var interCertBytes = _importExportCertificate.ExportChainedCertificatePfx(Options.Password, certificate, signingCert);
-            await Save(interCertBytes, cancellationToken);
+            var bytesPfx = _importExportCertificate.ExportChainedCertificatePfx(Options.Password, certificate, signingCert);
+            await SavePfx(bytesPfx, cancellationToken);
+            await SaveCrt(certificate, cancellationToken);
+        }
+
+        public async Task SaveCrt(X509Certificate2 certificate, CancellationToken cancellationToken)
+        {
+            var bytesCrt = _importExportCertificate.ExportCertificatePublicKey(certificate).RawData;
+            await SaveCrt(bytesCrt, cancellationToken);
         }
     }
 }

@@ -15,6 +15,7 @@ namespace DMediatR
 
         private static readonly SemaphoreSlim _fileLock = new(1, 1);
 
+        protected override string? CertificateName => "Client";
         private string CommonName => $"{RemoteName}";
         private string FriendlyName => $"DMediatR {CommonName} client L3 certificate";
 
@@ -30,36 +31,36 @@ namespace DMediatR
 
         public virtual async Task<X509Certificate2> Handle(ClientCertificateRequest request, CancellationToken cancellationToken)
         {
-            await _fileLock.WaitAsync(cancellationToken);
+            var locked = await request.Lock(_fileLock, cancellationToken);
             try
             {
                 return await RequestCertificate(request, cancellationToken);
             }
-            finally { _fileLock.Release(); }
+            finally { if (locked) _fileLock.Release(); }
         }
 
-        public async Task Handle(RenewClientCertificateNotification notification, CancellationToken cancellationToken)
+        public virtual async Task Handle(RenewClientCertificateNotification notification, CancellationToken cancellationToken)
         {
-            await _fileLock.WaitAsync(cancellationToken);
+            var locked = await notification.Lock(_fileLock, cancellationToken);
             try
             {
-                if (File.Exists(FileName))
+                if (File.Exists(FileNamePfx))
                 {
                     _logger.LogDebug("{notification}: renew existing certificate", notification.GetType().Name);
-                    await base.Generate(new ClientCertificateRequest(), cancellationToken);
+                    await base.Generate(new ClientCertificateRequest() { Renew = true, HasLocked = notification.HasLocked }, cancellationToken);
                 }
             }
-            finally { _fileLock.Release(); }
+            finally { if (locked) _fileLock.Release(); }
         }
 
-        internal override X509Certificate2 Generate(ChainedCertificateRequest request, X509Certificate2 parentCert)
+        public override X509Certificate2 Generate(ChainedCertificateRequest request, X509Certificate2 parentCert)
         {
             var cert = _createCert.NewClientChainedCertificate(
                 new DistinguishedName { CommonName = CommonName },
                 new ValidityPeriod
                 {
                     ValidFrom = DateTime.UtcNow,
-                    ValidTo = DateTime.UtcNow.AddDays((int)Options.ValidDays!)
+                    ValidTo = DateTime.UtcNow.AddDays((int)(Options.ClientCertificateValidDays ?? Options.ValidDays!))
                 },
                 Options.HostName,
                 parentCert);

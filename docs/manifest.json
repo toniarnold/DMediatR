@@ -1,5 +1,5 @@
 {
-  "source_base_path": "C:/Users/tarnold/Documents/DMediatR/dev/DMediatR/doc",
+  "source_base_path": "C:/Users/tarnold/Documents/DMediatR/github/DMediatR/doc",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -142,10 +142,40 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.ILock.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.ILock.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.ILockISerializedInterface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.ILockISerializedInterface.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/DMediatR.IRemote.yml",
       "output": {
         ".html": {
           "relative_path": "api/DMediatR.IRemote.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.ISerializedInterface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.ISerializedInterface.html"
         }
       },
       "version": ""
@@ -166,6 +196,16 @@
       "output": {
         ".html": {
           "relative_path": "api/DMediatR.LocalAttribute.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.LockExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.LockExtension.html"
         }
       },
       "version": ""
@@ -242,10 +282,70 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.RenewClientCertificateNotification.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.RenewClientCertificateNotification.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.RenewIntermediateCertificateNotification.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.RenewIntermediateCertificateNotification.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.RenewNotification.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.RenewNotification.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.RenewRootCertificateNotification.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.RenewRootCertificateNotification.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.RenewServerCertificateNotification.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.RenewServerCertificateNotification.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/DMediatR.SerializationCountMessage.yml",
       "output": {
         ".html": {
           "relative_path": "api/DMediatR.SerializationCountMessage.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.SerializedInterface-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.SerializedInterface-1.html"
         }
       },
       "version": ""

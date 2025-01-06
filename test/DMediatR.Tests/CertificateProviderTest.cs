@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CertificateManager;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using System.Security.Cryptography.X509Certificates;
 
 namespace DMediatR.Tests
 {
@@ -13,6 +16,7 @@ namespace DMediatR.Tests
             var cfg = Configuration.Get();
             ServiceCollection cs = new();
             _serviceProvider = cs.AddDMediatR(cfg)
+                .AddLogging(builder => builder.AddConsole())
                 .BuildServiceProvider();
         }
 
@@ -53,6 +57,29 @@ namespace DMediatR.Tests
                 Assert.That(serverCert.Subject, Is.EqualTo("CN=ServerCertifier"));
                 Assert.That(clientCert.Subject, Is.EqualTo("CN=ClientCertifier"));
             });
+
+            // Throughout X509Chain validation
+            var policy = new X509ChainPolicy();
+            policy.RevocationFlag = X509RevocationFlag.ExcludeRoot;
+            policy.RevocationMode = X509RevocationMode.NoCheck;
+            policy.ApplicationPolicy.Add(OidLookup.ClientAuthentication);
+            policy.VerificationFlags = X509VerificationFlags.AllowUnknownCertificateAuthority;
+            policy.ExtraStore.Add(rootCert);
+            policy.ExtraStore.Add(interCert);
+            policy.ExtraStore.Add(serverCert);
+            policy.ExtraStore.Add(clientCert);
+
+            using var chain = new X509Chain() { ChainPolicy = policy };
+            var valid = chain.Build(clientCert);
+            var errors = new List<X509ChainStatusFlags>();
+            if (!valid)
+            {
+                foreach (var validationFailure in chain.ChainStatus)
+                {
+                    errors.Add(validationFailure.Status);
+                }
+            }
+            Assert.That(valid, Is.True);
         }
     }
 }

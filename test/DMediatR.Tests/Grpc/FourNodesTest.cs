@@ -25,6 +25,7 @@ The test structure follows loosely the Gherkin syntax: https://cucumber.io/docs/
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Text.RegularExpressions;
 
 namespace DMediatR.Tests.Grpc
 {
@@ -40,7 +41,7 @@ namespace DMediatR.Tests.Grpc
         {
             Given_InitialCertificatesChain();
             Given_CertificatesDistributedOffline();
-            Given_FourServersStarted();
+            Given_FourServersStarted(); // or ./start RootCertifier IntermediateCertifier ServerCertifier ClientCertifier
             Given_DMediatRClient();
         }
 
@@ -60,10 +61,10 @@ namespace DMediatR.Tests.Grpc
 
             await When_RootCertificateIsRenewed();
             await Then_DMediatRNodeRechable(); // still reachable, as the chain is not verified
-            //await When_IntermediateCertificateIsRenewed();
-            //await Then_DMediatRNodeRechable();
-            //await When_ServerCertificateIsRenewed();
-            //await Then_DMediatRNodeRechable(); // boonm!
+            await When_IntermediateCertificateIsRenewed();
+            await Then_DMediatRNodeRechable();
+            await When_ServerCertificateIsRenewed();
+            await Then_DMediatRNodeRechable();
         }
 
         #region Given
@@ -96,21 +97,29 @@ namespace DMediatR.Tests.Grpc
         /// </summary>
         private void Given_CertificatesDistributedOffline()
         {
-            // The same server certificates for all nodes
-            DeployCertificate("DMediatR-ServerCertifier.pfx", "RootCertifier");
-            DeployCertificate("DMediatR-ServerCertifier.pfx", "IntermediateCertifier");
-            DeployCertificate("DMediatR-ServerCertifier.pfx", "ServerCertifier");
-            DeployCertificate("DMediatR-ServerCertifier.pfx", "ClientCertifier");
+            // The same server certificates for all nodes.
+            DeployCertificate("DMediatR-Server.pfx", "RootCertifier");
+            DeployCertificate("DMediatR-Server.pfx", "IntermediateCertifier");
+            DeployCertificate("DMediatR-Server.pfx", "ServerCertifier");
+            DeployCertificate("DMediatR-Server.pfx", "ClientCertifier");
 
-            // The same client certificate used by all nodes
-            DeployCertificate("DMediatR-ClientCertifier.pfx", "RootCertifier");
-            DeployCertificate("DMediatR-ClientCertifier.pfx", "IntermediateCertifier");
-            DeployCertificate("DMediatR-ClientCertifier.pfx", "ServerCertifier");
-            DeployCertificate("DMediatR-ClientCertifier.pfx", "ClientCertifier");
+            // The same client certificate used by all nodes.
+            DeployCertificate("DMediatR-Client.pfx", "RootCertifier");
+            DeployCertificate("DMediatR-Client.pfx", "IntermediateCertifier");
+            DeployCertificate("DMediatR-Client.pfx", "ServerCertifier");
+            DeployCertificate("DMediatR-Client.pfx", "ClientCertifier");
 
-            // The specifically created certificates not deployed yet that each node creates.
-            DeployCertificate("DMediatR-RootCertifier.pfx", "RootCertifier");
-            DeployCertificate("DMediatR-IntermediateCertifier.pfx", "IntermediateCertifier");
+            // The intermediate certificate without key is required by all nodes
+            // for validation.
+            DeployCertificate("DMediatR-Intermediate.crt", "RootCertifier");
+            DeployCertificate("DMediatR-Intermediate.crt", "IntermediateCertifier");
+            DeployCertificate("DMediatR-Intermediate.crt", "ServerCertifier");
+            DeployCertificate("DMediatR-Intermediate.crt", "ClientCertifier");
+
+            // The self signed root certificate and the intermediate certificate
+            // with key are not required for validation.
+            DeployCertificate("DMediatR-Intermediate.pfx", "IntermediateCertifier");
+            DeployCertificate("DMediatR-Root.pfx", "RootCertifier");
         }
 
         private void DeployCertificate(string certificate, string node)
@@ -118,7 +127,8 @@ namespace DMediatR.Tests.Grpc
             var path = CertificateOptions.FilePath!;
 
             File.Copy(Path.Combine(path, certificate), Path.Combine(path, node, certificate), true);
-            File.Copy(Path.Combine(path, certificate), Path.Combine(path, node, certificate.Replace(".pfx", "-old.pfx")), true);
+            var oldCertificate = Regex.Replace(certificate, @".(\w\w\w)$", @"-old.$1");
+            File.Copy(Path.Combine(path, certificate), Path.Combine(path, node, oldCertificate), true);
         }
 
         private void Given_DMediatRClient()

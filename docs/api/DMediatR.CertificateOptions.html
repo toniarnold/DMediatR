@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      
+      <meta name="docfx:docurl" content="https://github.com/toniarnold/DMediatR/new/main/apiSpec/new?filename=DMediatR_CertificateOptions.md&amp;value=---%0Auid%3A%20DMediatR.CertificateOptions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="DMediatR_CertificateOptions" data-uid="DMediatR.CertificateOptions" class="text-break">
-Class CertificateOptions  
+Class CertificateOptions  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/CertificateOptions.cs/#L13"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -157,11 +157,43 @@ Class CertificateOptions
 </h2>
 
 
+  <a id="DMediatR_CertificateOptions_ClientCertificateValidDays_" data-uid="DMediatR.CertificateOptions.ClientCertificateValidDays*"></a>
+
+  <h3 id="DMediatR_CertificateOptions_ClientCertificateValidDays" data-uid="DMediatR.CertificateOptions.ClientCertificateValidDays">
+  ClientCertificateValidDays
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/CertificateOptions.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Range(typeof(int), &quot;1&quot;, &quot;9125&quot;)]
+public int? ClientCertificateValidDays { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="DMediatR_CertificateOptions_FilePath_" data-uid="DMediatR.CertificateOptions.FilePath*"></a>
 
   <h3 id="DMediatR_CertificateOptions_FilePath" data-uid="DMediatR.CertificateOptions.FilePath">
   FilePath
-  
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/CertificateOptions.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -193,7 +225,7 @@ public string? FilePath { get; set; }</code></pre>
 
   <h3 id="DMediatR_CertificateOptions_FilenamePrefix" data-uid="DMediatR.CertificateOptions.FilenamePrefix">
   FilenamePrefix
-  
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/CertificateOptions.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -225,7 +257,7 @@ public string? FilenamePrefix { get; set; }</code></pre>
 
   <h3 id="DMediatR_CertificateOptions_HostName" data-uid="DMediatR.CertificateOptions.HostName">
   HostName
-  
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/CertificateOptions.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -253,11 +285,43 @@ public string? HostName { get; set; }</code></pre>
 
 
 
+  <a id="DMediatR_CertificateOptions_IntermediateCertificateValidDays_" data-uid="DMediatR.CertificateOptions.IntermediateCertificateValidDays*"></a>
+
+  <h3 id="DMediatR_CertificateOptions_IntermediateCertificateValidDays" data-uid="DMediatR.CertificateOptions.IntermediateCertificateValidDays">
+  IntermediateCertificateValidDays
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/CertificateOptions.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Range(typeof(int), &quot;1&quot;, &quot;9125&quot;)]
+public int? IntermediateCertificateValidDays { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="DMediatR_CertificateOptions_RenewBeforeExpirationDays_" data-uid="DMediatR.CertificateOptions.RenewBeforeExpirationDays*"></a>
 
   <h3 id="DMediatR_CertificateOptions_RenewBeforeExpirationDays" data-uid="DMediatR.CertificateOptions.RenewBeforeExpirationDays">
   RenewBeforeExpirationDays
-  
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/CertificateOptions.cs/#L32"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -265,8 +329,112 @@ public string? HostName { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Required]
-[Range(typeof(int), &quot;0&quot;, &quot;3650&quot;)]
+[Range(typeof(int), &quot;0&quot;, &quot;9125&quot;)]
 public int? RenewBeforeExpirationDays { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="DMediatR_CertificateOptions_RenewFirewallEnabled_" data-uid="DMediatR.CertificateOptions.RenewFirewallEnabled*"></a>
+
+  <h3 id="DMediatR_CertificateOptions_RenewFirewallEnabled" data-uid="DMediatR.CertificateOptions.RenewFirewallEnabled">
+  RenewFirewallEnabled
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/CertificateOptions.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Defaults to True. If the firewall is explicitly disabled, any node
+on the network can publish two
+RenewIntermediateCertificateNotification messages in a row to bring
+down the entire network, which may not be desirable. Chicago-style
+functional unit tests are one use case for disabling the firewall.
+Another one might be, in a highly trusted scenario, some kind of
+intrusion detection on a remote node  that declares the entire
+network to be potentially compromised and thus requiring manual
+recertification.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RenewFirewallEnabled { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="DMediatR_CertificateOptions_RootCertificateValidDays_" data-uid="DMediatR.CertificateOptions.RootCertificateValidDays*"></a>
+
+  <h3 id="DMediatR_CertificateOptions_RootCertificateValidDays" data-uid="DMediatR.CertificateOptions.RootCertificateValidDays">
+  RootCertificateValidDays
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/CertificateOptions.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Range(typeof(int), &quot;1&quot;, &quot;9125&quot;)]
+public int? RootCertificateValidDays { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="DMediatR_CertificateOptions_ServerCertificateValidDays_" data-uid="DMediatR.CertificateOptions.ServerCertificateValidDays*"></a>
+
+  <h3 id="DMediatR_CertificateOptions_ServerCertificateValidDays" data-uid="DMediatR.CertificateOptions.ServerCertificateValidDays">
+  ServerCertificateValidDays
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/CertificateOptions.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Range(typeof(int), &quot;1&quot;, &quot;9125&quot;)]
+public int? ServerCertificateValidDays { get; set; }</code></pre>
   </div>
 
 
@@ -290,15 +458,17 @@ public int? RenewBeforeExpirationDays { get; set; }</code></pre>
 
   <h3 id="DMediatR_CertificateOptions_ValidDays" data-uid="DMediatR.CertificateOptions.ValidDays">
   ValidDays
-  
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/CertificateOptions.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Default validity period, overridable by optional values for specific certificates.
+The upper limit is set to 25 years, but DMediatR encourages short-lived certificates.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Required]
-[Range(typeof(int), &quot;1&quot;, &quot;3650&quot;)]
+[Range(typeof(int), &quot;1&quot;, &quot;9125&quot;)]
 public int? ValidDays { get; set; }</code></pre>
   </div>
 
@@ -323,6 +493,7 @@ public int? ValidDays { get; set; }</code></pre>
 </article>
 
         <div class="contribution d-print-none">
+          <a href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/CertificateOptions.cs/#L13" class="edit-link">Edit this page</a>
         </div>
 
 

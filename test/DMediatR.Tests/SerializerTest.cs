@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Security.Cryptography.X509Certificates;
 
@@ -15,6 +16,7 @@ namespace DMediatR.Tests
             var cfg = Configuration.Get();
             ServiceCollection cs = new();
             _serviceProvider = cs.AddDMediatR(cfg)
+                .AddLogging(builder => builder.AddConsole())
                 .BuildServiceProvider();
         }
 

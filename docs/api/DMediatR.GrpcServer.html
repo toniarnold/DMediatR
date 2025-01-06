@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      
+      <meta name="docfx:docurl" content="https://github.com/toniarnold/DMediatR/new/main/apiSpec/new?filename=DMediatR_GrpcServer.md&amp;value=---%0Auid%3A%20DMediatR.GrpcServer%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="DMediatR_GrpcServer" data-uid="DMediatR.GrpcServer" class="text-break">
-Class GrpcServer  
+Class GrpcServer  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcServer.cs/#L36"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -149,6 +149,107 @@ Class GrpcServer
 
 
 
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="DMediatR_GrpcServer_IntermediateCrt_" data-uid="DMediatR.GrpcServer.IntermediateCrt*"></a>
+
+  <h3 id="DMediatR_GrpcServer_IntermediateCrt" data-uid="DMediatR.GrpcServer.IntermediateCrt">
+  IntermediateCrt
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcServer.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The intermediate certificate client and server certificates are
+validated against.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static X509Certificate2? IntermediateCrt { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.x509certificates.x509certificate2">X509Certificate2</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="DMediatR_GrpcServer_IntermediateCrtOld_" data-uid="DMediatR.GrpcServer.IntermediateCrtOld*"></a>
+
+  <h3 id="DMediatR_GrpcServer_IntermediateCrtOld" data-uid="DMediatR.GrpcServer.IntermediateCrtOld">
+  IntermediateCrtOld
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcServer.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The old intermediate certificate client and server certificates were
+validated against. Used for certificate renewal</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static X509Certificate2? IntermediateCrtOld { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.x509certificates.x509certificate2">X509Certificate2</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="DMediatR_GrpcServer_Logger_" data-uid="DMediatR.GrpcServer.Logger*"></a>
+
+  <h3 id="DMediatR_GrpcServer_Logger" data-uid="DMediatR.GrpcServer.Logger">
+  Logger
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcServer.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ILogger&lt;X509Chain&gt;? Logger { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1">ILogger</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.x509certificates.x509chain">X509Chain</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
 
@@ -157,7 +258,7 @@ Class GrpcServer
 
   <h3 id="DMediatR_GrpcServer_CreateWebApp_Microsoft_AspNetCore_Builder_WebApplicationBuilder_DMediatR_GrpcPort_" data-uid="DMediatR.GrpcServer.CreateWebApp(Microsoft.AspNetCore.Builder.WebApplicationBuilder,DMediatR.GrpcPort)">
   CreateWebApp(WebApplicationBuilder, GrpcPort)
-  
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcServer.cs/#L130"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -193,21 +294,23 @@ Class GrpcServer
 
   <a id="DMediatR_GrpcServer_CreateWebAppBuilder_" data-uid="DMediatR.GrpcServer.CreateWebAppBuilder*"></a>
 
-  <h3 id="DMediatR_GrpcServer_CreateWebAppBuilder_System_String___" data-uid="DMediatR.GrpcServer.CreateWebAppBuilder(System.String[])">
-  CreateWebAppBuilder(string[])
-  
+  <h3 id="DMediatR_GrpcServer_CreateWebAppBuilder_System_String___DMediatR_GrpcPort_" data-uid="DMediatR.GrpcServer.CreateWebAppBuilder(System.String[],DMediatR.GrpcPort)">
+  CreateWebAppBuilder(string[], GrpcPort)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcServer.cs/#L56"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static WebApplicationBuilder CreateWebAppBuilder(string[] args)</code></pre>
+    <pre><code class="lang-csharp hljs">public static WebApplicationBuilder CreateWebAppBuilder(string[] args, GrpcPort usePort = GrpcPort.UseDefault)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
+    <dd></dd>
+    <dt><code>usePort</code> <a class="xref" href="DMediatR.GrpcPort.html">GrpcPort</a></dt>
     <dd></dd>
   </dl>
 
@@ -227,19 +330,95 @@ Class GrpcServer
 
 
 
-  <a id="DMediatR_GrpcServer_RunRestartWebAppAsync_" data-uid="DMediatR.GrpcServer.RunRestartWebAppAsync*"></a>
+  <a id="DMediatR_GrpcServer_GetHostOptions_" data-uid="DMediatR.GrpcServer.GetHostOptions*"></a>
 
-  <h3 id="DMediatR_GrpcServer_RunRestartWebAppAsync_System_String___DMediatR_GrpcPort_System_Threading_CancellationToken_" data-uid="DMediatR.GrpcServer.RunRestartWebAppAsync(System.String[],DMediatR.GrpcPort,System.Threading.CancellationToken)">
-  RunRestartWebAppAsync(string[], GrpcPort, CancellationToken)
-  
+  <h3 id="DMediatR_GrpcServer_GetHostOptions_System_String_" data-uid="DMediatR.GrpcServer.GetHostOptions(System.String)">
+  GetHostOptions(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcServer.cs/#L187"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Build and run the WebApplication, repeat after it was stopped with IHostApplicationLifetime.StopApplication()</p>
+  <div class="markdown level1 summary"><p>Get the Host options outside of the WebApplicationBuilder.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task RunRestartWebAppAsync(string[] args, GrpcPort usePort, CancellationToken cancellationToken)</code></pre>
+    <pre><code class="lang-csharp hljs">public static HostOptions GetHostOptions(string environment)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>environment</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="DMediatR.HostOptions.html">HostOptions</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="DMediatR_GrpcServer_LoadIntermediateCertificates_" data-uid="DMediatR.GrpcServer.LoadIntermediateCertificates*"></a>
+
+  <h3 id="DMediatR_GrpcServer_LoadIntermediateCertificates_System_IServiceProvider_" data-uid="DMediatR.GrpcServer.LoadIntermediateCertificates(System.IServiceProvider)">
+  LoadIntermediateCertificates(IServiceProvider)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcServer.cs/#L205"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Used only for validation, thus take the .crt file and ignore
+RenewBeforeExpirationDays.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void LoadIntermediateCertificates(IServiceProvider serviceProvider)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>serviceProvider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+  <a id="DMediatR_GrpcServer_RunRestartWebAppAsync_" data-uid="DMediatR.GrpcServer.RunRestartWebAppAsync*"></a>
+
+  <h3 id="DMediatR_GrpcServer_RunRestartWebAppAsync_System_String___DMediatR_GrpcPort_System_Action_Microsoft_AspNetCore_Builder_WebApplicationBuilder__System_Threading_CancellationToken_" data-uid="DMediatR.GrpcServer.RunRestartWebAppAsync(System.String[],DMediatR.GrpcPort,System.Action{Microsoft.AspNetCore.Builder.WebApplicationBuilder},System.Threading.CancellationToken)">
+  RunRestartWebAppAsync(string[], GrpcPort, Action&lt;WebApplicationBuilder&gt;?, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcServer.cs/#L165"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Build and run the WebApplication, repeat after it was stopped with
+IHostApplicationLifetime.StopApplication().</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task RunRestartWebAppAsync(string[] args, GrpcPort usePort, Action&lt;WebApplicationBuilder&gt;? builderCfg, CancellationToken cancellationToken)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -248,6 +427,11 @@ Class GrpcServer
     <dd></dd>
     <dt><code>usePort</code> <a class="xref" href="DMediatR.GrpcPort.html">GrpcPort</a></dt>
     <dd></dd>
+    <dt><code>builderCfg</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.webapplicationbuilder">WebApplicationBuilder</a>&gt;</dt>
+    <dd><p>Optional callback for additional
+configuration of the WebApplicationBuilder, such as adding a
+concrete logger.</p>
+</dd>
     <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
     <dd></dd>
   </dl>
@@ -272,6 +456,7 @@ Class GrpcServer
 </article>
 
         <div class="contribution d-print-none">
+          <a href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcServer.cs/#L36" class="edit-link">Edit this page</a>
         </div>
 
 

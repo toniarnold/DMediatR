@@ -29,7 +29,8 @@
 
         public override object Deserialize(Type type, byte[] bytes)
         {
-            return Deserialize(type, bytes, checkType: true);
+            var obj = Deserialize(type, bytes, checkType: true);
+            return obj;
         }
 
         protected object Deserialize(Type type, byte[] bytes, bool checkType)
@@ -48,7 +49,7 @@
             Type type = givenType;
             while (true)
             {
-                if (type == Type) return; // ok, found
+                if (type == Type) return; // OK, found
                 if (type.BaseType == null) break; // object, thus throw as not found
                 type = type.BaseType;
             }

@@ -26,8 +26,18 @@ namespace DMediatR
         public String? OldPort { get; set; }
 
         /// <summary>
-        /// Programmatically set during WebApplication configuration, not bound from config
+        /// Programmatically set during WebApplication configuration, not bound from config.
         /// </summary>
-        public GrpcPort GrpcPort { get; set; } = GrpcPort.UseDefault;
+        internal GrpcPort GrpcPort { get; set; } = GrpcPort.UseDefault;
+
+        /// <summary>
+        /// HTTPS gRPC address for the default port.
+        /// </summary>
+        internal string Address => $"https://{Host}:{Port}/";
+
+        /// <summary>
+        /// HTTPS gRPC address for the renewal port.
+        /// </summary>
+        internal string OldAddress => $"https://{Host}:{OldPort}/";
     }
 }

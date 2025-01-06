@@ -4,8 +4,9 @@ DMediatR uses typed binary serialization with pluggable custom serializers to
 transmit MediatR `IRequest`/`IResponse` messages over gRPC. Custom serializers
 for specific types can be added to the service collection.  There are two
 internal custom serializers: One for serializing `X509Certificate2` objects and
-one for tracing purposes counting the  the number of times the object has been
+one for tracing purposes counting the number of times the object has been
 serialized.
+
 
 ## Injecting Custom Serializers
 
@@ -15,7 +16,12 @@ custom serializers for a particular type. This excerpt from the
 the two custom serializers `SerializationCountSerializer` and
 `X509CertificateSerializer`:
 
-[!code-csharp[ServiceCollectionExtension.cs](../../src/DMediatR/ServiceCollectionExtension.cs?name=registerserializers&highlight=4-5)]
+[!code-csharp[ServiceCollectionExtension.cs](../../src/DMediatR/ServiceCollectionExtension.cs?name=registerserializers&highlight=4-6)]
+
+The `ILockSerializedInterface` is a special case, as it is declared for the
+`ILock` interface and not a concrete class, as multiple class hierarchies can
+implement the same interface.
+
 
 ## Custom Serializer Implementation
 
@@ -36,6 +42,19 @@ to decrypt the .pfx binary for deserialization and uses plain `byte[]`
 serialization for the data exported by the `X509Certificate2` object:
 
 [!code-csharp[X509CertificateSerializer.cs](../../src/DMediatR/X509CertificateSerializer.cs)]
+
+When de- resp. rehydrating is required by an interface requiring a
+non-serializable member, a `CustomSerializer<T>` based on a class hierarchy is
+not appropriate, as interface custom serialization is orthogonal to the class
+hierarchy: Serializable classes can implement multiple interfaces, which in turn
+require e.g. specific members which must be dehydrated before serialization for
+each interface implemented. 
+
+The `ILockSerializedInterface` is defined for the
+interface `ILock` and overrides the two `PreSerialize`/`PostDeserialize` hooks
+called by the general `Serializer` class:
+
+[!code-csharp[ILockISerializedInterface.cs](../../src/DMediatR/ILockISerializedInterface.cs)]
 
 
 ## Serialization Classes

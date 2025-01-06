@@ -26,7 +26,7 @@ namespace DMediatR
             CheckType(type);
             var rawData = (byte[])base.Deserialize(typeof(byte[]), bytes, checkType: false);
             var cert = new X509Certificate2(rawData, _options.Password, X509KeyStorageFlags.Exportable);
-            return (dynamic)cert;
+            return cert;
         }
     }
 }

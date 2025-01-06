@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      
+      <meta name="docfx:docurl" content="https://github.com/toniarnold/DMediatR/blob/main/doc/docs/serializer.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -91,7 +91,7 @@
 transmit MediatR <code>IRequest</code>/<code>IResponse</code> messages over gRPC. Custom serializers
 for specific types can be added to the service collection.  There are two
 internal custom serializers: One for serializing <code>X509Certificate2</code> objects and
-one for tracing purposes counting the  the number of times the object has been
+one for tracing purposes counting the number of times the object has been
 serialized.</p>
 <h2 id="injecting-custom-serializers">Injecting Custom Serializers</h2>
 <p>DMediatR leverages keyed dependency injection, introduced in .NET 8, to look up
@@ -99,12 +99,17 @@ custom serializers for a particular type. This excerpt from the
 <code>ServiceCollectionExtension</code> registers, along with the required infrastructure,
 the two custom serializers <code>SerializationCountSerializer</code> and
 <code>X509CertificateSerializer</code>:</p>
-<pre><code class="lang-csharp" name="ServiceCollectionExtension.cs" highlight-lines="4-5">services.TryAddSingleton&lt;ISerializer, Serializer&gt;();
+<pre><code class="lang-csharp" name="ServiceCollectionExtension.cs" highlight-lines="4-6">services.TryAddSingleton&lt;ISerializer, Serializer&gt;();
 services.TryAddSingleton&lt;TypedSerializer&gt;();
 services.TryAddKeyedSingleton&lt;ISerializer, BinarySerializer&gt;(typeof(object)); // recursion base case for TypedSerializer
 services.TryAddKeyedSingleton&lt;ISerializer, SerializationCountSerializer&gt;(SerializationCountSerializer.Type);
 services.TryAddKeyedSingleton&lt;ISerializer, X509CertificateSerializer&gt;(X509CertificateSerializer.Type);
-</code></pre><h2 id="custom-serializer-implementation">Custom Serializer Implementation</h2>
+services.TryAddKeyedSingleton&lt;ISerializedInterface, ILockISerializedInterface&gt;(typeof(ILock));
+</code></pre>
+<p>The <code>ILockSerializedInterface</code> is a special case, as it is declared for the
+<code>ILock</code> interface and not a concrete class, as multiple class hierarchies can
+implement the same interface.</p>
+<h2 id="custom-serializer-implementation">Custom Serializer Implementation</h2>
 <p>Custom serializers inherit from the generic class <code>CustomSerializer&lt;T&gt;</code> with the class to
 register the serializer for as type parameter. They can override one or both of the
 <code>Serialize</code> and <code>Deserialize</code> methods. This can be used e.g. for dehydrating an object by
@@ -161,7 +166,32 @@ namespace DMediatR
             CheckType(type);
             var rawData = (byte[])base.Deserialize(typeof(byte[]), bytes, checkType: false);
             var cert = new X509Certificate2(rawData, _options.Password, X509KeyStorageFlags.Exportable);
-            return (dynamic)cert;
+            return cert;
+        }
+    }
+}
+</code></pre>
+<p>When de- resp. rehydrating is required by an interface requiring a
+non-serializable member, a <code>CustomSerializer&lt;T&gt;</code> based on a class hierarchy is
+not appropriate, as interface custom serialization is orthogonal to the class
+hierarchy: Serializable classes can implement multiple interfaces, which in turn
+require e.g. specific members which must be dehydrated before serialization for
+each interface implemented.</p>
+<p>The <code>ILockSerializedInterface</code> is defined for the
+interface <code>ILock</code> and overrides the two <code>PreSerialize</code>/<code>PostDeserialize</code> hooks
+called by the general <code>Serializer</code> class:</p>
+<pre><code class="lang-csharp" name="ILockISerializedInterface.cs">namespace DMediatR
+{
+    public class ILockISerializedInterface : SerializedInterface&lt;ILock&gt;
+    {
+        protected override void PreSerialize(ILock obj)
+        {
+            obj.HasLocked = null; // dehydrate as SemaphoreSlim is not serializable
+        }
+
+        protected override void PostDeserialize(ILock obj)
+        {
+            obj.HasLocked = []; // rehydrate
         }
     }
 }
@@ -177,6 +207,7 @@ deriving from <code>SerializationCountSerializer</code>:</p>
 </article>
 
         <div class="contribution d-print-none">
+          <a href="https://github.com/toniarnold/DMediatR/blob/main/doc/docs/serializer.md/#L1" class="edit-link">Edit this page</a>
         </div>
 
         <div class="next-article d-print-none border-top" id="nextArticle"></div>

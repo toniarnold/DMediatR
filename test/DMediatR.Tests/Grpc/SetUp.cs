@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Security;
@@ -41,7 +42,7 @@ namespace DMediatR.Tests.Grpc
                 foreach (var process in ServerProcesses)
                 {
                     var profile = GetProcessProfile(process);
-                    Assert.That(process.HasExited, Is.False, $"Process {profile} was not started");
+                    Assert.That(process.HasExited, Is.False, $"Process {profile} has exited");
                 }
             });
         }
@@ -113,20 +114,21 @@ namespace DMediatR.Tests.Grpc
 
         public static void SetUpInitialCertificates()
         {
-            var mediator = ServiceProvider!.GetRequiredService<IMediator>();
-            Task.Run(() => mediator.Send(new ServerCertificateRequest())).Wait();
-            Task.Run(() => mediator.Send(new ClientCertificateRequest())).Wait();
+            var certs = ServiceProvider!.GetRequiredService<Certificates>();
+            Task.Run(() => certs.SetUpInitialChainAsync(CancellationToken.None)).Wait();
         }
 
         /// <summary>
         /// Instantiate the ServiceProvider with appsettings[.environment].json
+        /// and Extensions.Logging.NUnit
         /// </summary>
         /// <param name="environment"></param>
-        public static void SetUpDMediatRServices(string? environment)
+        public static void SetUpDMediatRServices(string? environment = null)
         {
             ServiceCollection cs = new();
             var cfg = Configuration.Get(environment);
             ServiceProvider = cs.AddDMediatR(cfg)
+                .AddLogging(builder => builder.AddNUnit())
                 .BuildServiceProvider();
         }
 
@@ -146,7 +148,7 @@ namespace DMediatR.Tests.Grpc
             (var loaded, var cert) = await clientCertificateProvider.TryLoad(CancellationToken.None);
             if (!loaded)
             {
-                throw new Exception($"Client certificate {clientCertificateProvider.FileName} not found");
+                throw new Exception($"Client certificate {clientCertificateProvider.FileNamePfx} not found");
             }
             handler.ClientCertificates.Add(cert!);
             return new HttpClient(handler)

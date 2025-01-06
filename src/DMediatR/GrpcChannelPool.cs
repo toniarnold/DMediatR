@@ -10,7 +10,7 @@ namespace DMediatR
     {
         GrpcChannel ForAddress(string address, HttpClientHandler handler);
 
-        void Remove(string address);
+        bool Remove(string address);
     }
 
     /// <summary>
@@ -37,10 +37,11 @@ namespace DMediatR
             return channel;
         }
 
-        public void Remove(string address)
+        public bool Remove(string address)
         {
-            _channelCache.Remove(address, out GrpcChannel? channel);
+            var found = _channelCache.Remove(address, out GrpcChannel? channel);
             channel?.Dispose();
+            return found;
         }
 
         public void Dispose()

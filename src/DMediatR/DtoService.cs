@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Options;
 using ProtoBuf.Grpc;
 
 namespace DMediatR
@@ -9,21 +10,21 @@ namespace DMediatR
     /// </summary>
     public class DtoService : IDtoService
     {
-        private readonly IServiceProvider _serviceProvider;
         private readonly IMediator _mediator;
         private readonly ISerializer _serializer;
         private readonly IMemoryCache _cache;
+        private readonly CertificateOptions _certOptions;
 
         public DtoService(
-            IServiceProvider serviceProvider,
             IMediator mediator,
             ISerializer serializer,
-            IMemoryCache cache)
+            IMemoryCache cache,
+            IOptions<CertificateOptions> certOptions)
         {
-            _serviceProvider = serviceProvider;
             _mediator = mediator;
             _serializer = serializer;
             _cache = cache;
+            _certOptions = certOptions.Value;
         }
 
         /// <summary>
@@ -52,7 +53,9 @@ namespace DMediatR
         /// <summary>
         /// Send the deserialized notification to the local handlers including
         /// NotificationForwarder. De-duplicates notifications received in
-        /// multiple copies over different network paths.
+        /// multiple copies over different network paths. Also ignores
+        /// certificate RenewNotification messages if RenewFirewallEnabled is
+        /// true in CertificateOptions (default).
         /// </summary>
         /// <param name="notificationDto"></param>
         /// <param name="context"></param>
@@ -64,7 +67,8 @@ namespace DMediatR
             {
                 throw new ArgumentException($"Expected ICorrelatedNotification, but got {notification.GetType()}");
             }
-            if (!_cache.HaveSeen(((ICorrelatedNotification)notification).CorrelationGuid))
+            if (!(notification is RenewNotification && _certOptions.RenewFirewallEnabled) &&
+               (!_cache.HaveSeen(((ICorrelatedNotification)notification).CorrelationGuid)))
             {
                 await _mediator.Publish(notification);
             }

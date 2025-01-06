@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace DMediatR
 {
@@ -22,6 +23,7 @@ namespace DMediatR
         private readonly IMediator _mediator;
         private readonly ISerializer _serializer;
         private readonly IGrpcChannelPool _grpcChannelProvider;
+        private readonly ILogger<Remote> _logger;
 
         public Remote(
             IServiceProvider serviceProvider,
@@ -29,7 +31,8 @@ namespace DMediatR
             IOptions<RemotesOptions> remotesOptions,
             IMediator mediator,
             ISerializer serializer,
-            IGrpcChannelPool channel)
+            IGrpcChannelPool channel,
+            ILogger<Remote> logger)
         {
             _serviceProvider = serviceProvider;
             _certOptions = certOptions.Value;
@@ -37,6 +40,7 @@ namespace DMediatR
             _mediator = mediator;
             _serializer = serializer;
             _grpcChannelProvider = channel;
+            _logger = logger;
         }
 
         internal IServiceProvider ServiceProvider => _serviceProvider;
@@ -45,5 +49,6 @@ namespace DMediatR
         internal IMediator Mediator => _mediator;
         internal ISerializer Serializer => _serializer;
         internal IGrpcChannelPool ChannelPool => _grpcChannelProvider;
+        internal ILogger<Remote> Logger => _logger;
     }
 }

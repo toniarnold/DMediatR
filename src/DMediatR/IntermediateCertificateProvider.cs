@@ -13,7 +13,7 @@ namespace DMediatR
     {
         private readonly CreateCertificatesClientServerAuth _createCert;
         private static SemaphoreSlim _fileLock = new(1, 1);
-
+        protected override string? CertificateName => "Intermediate";
         private string CommonName => $"{RemoteName}";
         private string FriendlyName => $"DMediatR {CommonName} intermediate L2 certificate";
 
@@ -29,36 +29,45 @@ namespace DMediatR
 
         public virtual async Task<X509Certificate2> Handle(IntermediateCertificateRequest request, CancellationToken cancellationToken)
         {
-            await _fileLock.WaitAsync(cancellationToken);
+            var locked = await request.Lock(_fileLock, cancellationToken);
             try
             {
                 return await RequestCertificate(request, cancellationToken);
             }
-            finally { _fileLock.Release(); }
+            finally { if (locked) _fileLock.Release(); }
         }
 
-        public async Task Handle(RenewIntermediateCertificateNotification notification, CancellationToken cancellationToken)
+        public virtual async Task Handle(RenewIntermediateCertificateNotification notification, CancellationToken cancellationToken)
         {
-            await _fileLock.WaitAsync(cancellationToken);
+            var locked = await notification.Lock(_fileLock, cancellationToken);
             try
             {
-                if (File.Exists(FileName))
+                if (File.Exists(FileNamePfx))
                 {
-                    _logger.LogDebug("Renewing Intermediate Certificate");
-                    await base.Generate(new IntermediateCertificateRequest(), cancellationToken);
+                    _logger.LogDebug("{notification}: renew existing certificate", notification.GetType().Name);
+                    await base.Generate(new IntermediateCertificateRequest() { Renew = true, HasLocked = notification.HasLocked }, cancellationToken);
+
+                    // As the intermediate certificate is used to validate
+                    // client and server certificates, renewing the server
+                    // certificate as last action will immediately abort this
+                    // task and restart the server due to the
+                    // ServerCertificateFileWatcher. The client certificates
+                    // will be renewed by connecting with the old certificate to
+                    // the OldPort chain.
+                    await Remote.Mediator.Publish(new RenewServerCertificateNotification() { HasLocked = notification.HasLocked }, cancellationToken);
                 }
             }
-            finally { _fileLock.Release(); }
+            finally { if (locked) _fileLock.Release(); }
         }
 
-        internal override X509Certificate2 Generate(ChainedCertificateRequest request, X509Certificate2 parentCert)
+        public override X509Certificate2 Generate(ChainedCertificateRequest request, X509Certificate2 parentCert)
         {
             var cert = _createCert.NewIntermediateChainedCertificate(
                 new DistinguishedName { CommonName = CommonName },
                 new ValidityPeriod
                 {
                     ValidFrom = DateTime.UtcNow,
-                    ValidTo = DateTime.UtcNow.AddDays((int)Options.ValidDays!)
+                    ValidTo = DateTime.UtcNow.AddDays((int)(Options.IntermediateCertificateValidDays ?? Options.ValidDays!))
                 },
                 2,
                 Options.HostName,

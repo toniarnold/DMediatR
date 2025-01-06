@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace DMediatR.Tests
 {
@@ -14,6 +15,7 @@ namespace DMediatR.Tests
             var cfg = Configuration.Get();
             ServiceCollection cs = new();
             _serviceProvider = cs.AddDMediatR(cfg)
+                .AddLogging(builder => builder.AddConsole())
                 .BuildServiceProvider();
         }
 

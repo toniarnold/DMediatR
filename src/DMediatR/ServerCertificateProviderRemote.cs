@@ -17,7 +17,19 @@ namespace DMediatR
 
         public override async Task<X509Certificate2> Handle(ServerCertificateRequest request, CancellationToken cancellationToken)
         {
-            return await this.SendRemote(request, cancellationToken);
+            return await base.Handle(request, cancellationToken);
+        }
+
+        protected override async Task<X509Certificate2> GetNewCertificate(ChainedCertificateRequest request, CancellationToken cancellationToken)
+        {
+            _logger.LogDebug("{request}: Request certificate from remote", request.GetType().Name);
+            var newcert = await this.SendRemote(request, cancellationToken);
+            return newcert;
+        }
+
+        public override async Task Handle(RenewServerCertificateNotification notification, CancellationToken cancellationToken)
+        {
+            await Task.CompletedTask; // handled by NotificationForwarder
         }
     }
 }

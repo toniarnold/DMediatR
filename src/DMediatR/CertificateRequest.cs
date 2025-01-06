@@ -12,8 +12,16 @@ namespace DMediatR
      *                                                     -- Client Certificate
      */
 
-    internal abstract class CertificateRequest : IRequest<X509Certificate2>
-    { }
+    internal abstract class CertificateRequest : ILock, IRequest<X509Certificate2>
+    {
+        /// <summary>
+        /// When true, ignore RenewBeforeExpirationDays and validation for an
+        /// explicit Renew request.
+        /// </summary>
+        public bool Renew { get; set; } = false;
+
+        public HashSet<SemaphoreSlim>? HasLocked { get; set; } = new();
+    }
 
     internal class RootCertificateRequest : CertificateRequest
     { }
