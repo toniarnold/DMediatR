@@ -1397,3 +1397,202 @@ references:
   isSpec: "True"
   fullName: DMediatR.ServiceCollectionExtension.AddDMediatR
   nameWithType: ServiceCollectionExtension.AddDMediatR
+- uid: DMediatR.TestSetUp
+  name: TestSetUp
+  href: api/DMediatR.TestSetUp.html
+  commentId: T:DMediatR.TestSetUp
+  fullName: DMediatR.TestSetUp
+  nameWithType: TestSetUp
+- uid: DMediatR.TestSetUp.AssertServersStarted(System.Action{System.Diagnostics.Process,System.String})
+  name: AssertServersStarted(Action<Process, string>)
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_AssertServersStarted_System_Action_System_Diagnostics_Process_System_String__
+  commentId: M:DMediatR.TestSetUp.AssertServersStarted(System.Action{System.Diagnostics.Process,System.String})
+  name.vb: AssertServersStarted(Action(Of Process, String))
+  fullName: DMediatR.TestSetUp.AssertServersStarted(System.Action<System.Diagnostics.Process, string>)
+  fullName.vb: DMediatR.TestSetUp.AssertServersStarted(System.Action(Of System.Diagnostics.Process, String))
+  nameWithType: TestSetUp.AssertServersStarted(Action<Process, string>)
+  nameWithType.vb: TestSetUp.AssertServersStarted(Action(Of Process, String))
+- uid: DMediatR.TestSetUp.AssertServersStarted*
+  name: AssertServersStarted
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_AssertServersStarted_
+  commentId: Overload:DMediatR.TestSetUp.AssertServersStarted
+  isSpec: "True"
+  fullName: DMediatR.TestSetUp.AssertServersStarted
+  nameWithType: TestSetUp.AssertServersStarted
+- uid: DMediatR.TestSetUp.CertificateOptions
+  name: CertificateOptions
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_CertificateOptions
+  commentId: P:DMediatR.TestSetUp.CertificateOptions
+  fullName: DMediatR.TestSetUp.CertificateOptions
+  nameWithType: TestSetUp.CertificateOptions
+- uid: DMediatR.TestSetUp.CertificateOptions*
+  name: CertificateOptions
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_CertificateOptions_
+  commentId: Overload:DMediatR.TestSetUp.CertificateOptions
+  isSpec: "True"
+  fullName: DMediatR.TestSetUp.CertificateOptions
+  nameWithType: TestSetUp.CertificateOptions
+- uid: DMediatR.TestSetUp.DeployCertificate(System.String,System.String)
+  name: DeployCertificate(string, string)
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_DeployCertificate_System_String_System_String_
+  commentId: M:DMediatR.TestSetUp.DeployCertificate(System.String,System.String)
+  name.vb: DeployCertificate(String, String)
+  fullName: DMediatR.TestSetUp.DeployCertificate(string, string)
+  fullName.vb: DMediatR.TestSetUp.DeployCertificate(String, String)
+  nameWithType: TestSetUp.DeployCertificate(string, string)
+  nameWithType.vb: TestSetUp.DeployCertificate(String, String)
+- uid: DMediatR.TestSetUp.DeployCertificate*
+  name: DeployCertificate
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_DeployCertificate_
+  commentId: Overload:DMediatR.TestSetUp.DeployCertificate
+  isSpec: "True"
+  fullName: DMediatR.TestSetUp.DeployCertificate
+  nameWithType: TestSetUp.DeployCertificate
+- uid: DMediatR.TestSetUp.GetConfiguration(System.String)
+  name: GetConfiguration(string?)
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_GetConfiguration_System_String_
+  commentId: M:DMediatR.TestSetUp.GetConfiguration(System.String)
+  name.vb: GetConfiguration(String)
+  fullName: DMediatR.TestSetUp.GetConfiguration(string?)
+  fullName.vb: DMediatR.TestSetUp.GetConfiguration(String)
+  nameWithType: TestSetUp.GetConfiguration(string?)
+  nameWithType.vb: TestSetUp.GetConfiguration(String)
+- uid: DMediatR.TestSetUp.GetConfiguration*
+  name: GetConfiguration
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_GetConfiguration_
+  commentId: Overload:DMediatR.TestSetUp.GetConfiguration
+  isSpec: "True"
+  fullName: DMediatR.TestSetUp.GetConfiguration
+  nameWithType: TestSetUp.GetConfiguration
+- uid: DMediatR.TestSetUp.GetHttpClientAsync
+  name: GetHttpClientAsync()
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_GetHttpClientAsync
+  commentId: M:DMediatR.TestSetUp.GetHttpClientAsync
+  fullName: DMediatR.TestSetUp.GetHttpClientAsync()
+  nameWithType: TestSetUp.GetHttpClientAsync()
+- uid: DMediatR.TestSetUp.GetHttpClientAsync*
+  name: GetHttpClientAsync
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_GetHttpClientAsync_
+  commentId: Overload:DMediatR.TestSetUp.GetHttpClientAsync
+  isSpec: "True"
+  fullName: DMediatR.TestSetUp.GetHttpClientAsync
+  nameWithType: TestSetUp.GetHttpClientAsync
+- uid: DMediatR.TestSetUp.GetProcessProfile(System.Diagnostics.Process)
+  name: GetProcessProfile(Process)
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_GetProcessProfile_System_Diagnostics_Process_
+  commentId: M:DMediatR.TestSetUp.GetProcessProfile(System.Diagnostics.Process)
+  fullName: DMediatR.TestSetUp.GetProcessProfile(System.Diagnostics.Process)
+  nameWithType: TestSetUp.GetProcessProfile(Process)
+- uid: DMediatR.TestSetUp.GetProcessProfile*
+  name: GetProcessProfile
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_GetProcessProfile_
+  commentId: Overload:DMediatR.TestSetUp.GetProcessProfile
+  isSpec: "True"
+  fullName: DMediatR.TestSetUp.GetProcessProfile
+  nameWithType: TestSetUp.GetProcessProfile
+- uid: DMediatR.TestSetUp.ServerProcesses
+  name: ServerProcesses
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_ServerProcesses
+  commentId: P:DMediatR.TestSetUp.ServerProcesses
+  fullName: DMediatR.TestSetUp.ServerProcesses
+  nameWithType: TestSetUp.ServerProcesses
+- uid: DMediatR.TestSetUp.ServerProcesses*
+  name: ServerProcesses
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_ServerProcesses_
+  commentId: Overload:DMediatR.TestSetUp.ServerProcesses
+  isSpec: "True"
+  fullName: DMediatR.TestSetUp.ServerProcesses
+  nameWithType: TestSetUp.ServerProcesses
+- uid: DMediatR.TestSetUp.ServerStartTimeout
+  name: ServerStartTimeout
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_ServerStartTimeout
+  commentId: F:DMediatR.TestSetUp.ServerStartTimeout
+  fullName: DMediatR.TestSetUp.ServerStartTimeout
+  nameWithType: TestSetUp.ServerStartTimeout
+- uid: DMediatR.TestSetUp.ServiceProvider
+  name: ServiceProvider
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_ServiceProvider
+  commentId: P:DMediatR.TestSetUp.ServiceProvider
+  fullName: DMediatR.TestSetUp.ServiceProvider
+  nameWithType: TestSetUp.ServiceProvider
+- uid: DMediatR.TestSetUp.ServiceProvider*
+  name: ServiceProvider
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_ServiceProvider_
+  commentId: Overload:DMediatR.TestSetUp.ServiceProvider
+  isSpec: "True"
+  fullName: DMediatR.TestSetUp.ServiceProvider
+  nameWithType: TestSetUp.ServiceProvider
+- uid: DMediatR.TestSetUp.SetUpDMediatRServices(System.String,System.Func{Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.DependencyInjection.IServiceCollection})
+  name: SetUpDMediatRServices(string?, Func<IServiceCollection, IServiceCollection>?)
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_SetUpDMediatRServices_System_String_System_Func_Microsoft_Extensions_DependencyInjection_IServiceCollection_Microsoft_Extensions_DependencyInjection_IServiceCollection__
+  commentId: M:DMediatR.TestSetUp.SetUpDMediatRServices(System.String,System.Func{Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.DependencyInjection.IServiceCollection})
+  name.vb: SetUpDMediatRServices(String, Func(Of IServiceCollection, IServiceCollection))
+  fullName: DMediatR.TestSetUp.SetUpDMediatRServices(string?, System.Func<Microsoft.Extensions.DependencyInjection.IServiceCollection, Microsoft.Extensions.DependencyInjection.IServiceCollection>?)
+  fullName.vb: DMediatR.TestSetUp.SetUpDMediatRServices(String, System.Func(Of Microsoft.Extensions.DependencyInjection.IServiceCollection, Microsoft.Extensions.DependencyInjection.IServiceCollection))
+  nameWithType: TestSetUp.SetUpDMediatRServices(string?, Func<IServiceCollection, IServiceCollection>?)
+  nameWithType.vb: TestSetUp.SetUpDMediatRServices(String, Func(Of IServiceCollection, IServiceCollection))
+- uid: DMediatR.TestSetUp.SetUpDMediatRServices*
+  name: SetUpDMediatRServices
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_SetUpDMediatRServices_
+  commentId: Overload:DMediatR.TestSetUp.SetUpDMediatRServices
+  isSpec: "True"
+  fullName: DMediatR.TestSetUp.SetUpDMediatRServices
+  nameWithType: TestSetUp.SetUpDMediatRServices
+- uid: DMediatR.TestSetUp.SetUpInitialCertificates
+  name: SetUpInitialCertificates()
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_SetUpInitialCertificates
+  commentId: M:DMediatR.TestSetUp.SetUpInitialCertificates
+  fullName: DMediatR.TestSetUp.SetUpInitialCertificates()
+  nameWithType: TestSetUp.SetUpInitialCertificates()
+- uid: DMediatR.TestSetUp.SetUpInitialCertificates*
+  name: SetUpInitialCertificates
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_SetUpInitialCertificates_
+  commentId: Overload:DMediatR.TestSetUp.SetUpInitialCertificates
+  isSpec: "True"
+  fullName: DMediatR.TestSetUp.SetUpInitialCertificates
+  nameWithType: TestSetUp.SetUpInitialCertificates
+- uid: DMediatR.TestSetUp.StartServer(System.String,System.String,System.String,System.Int32,System.Int32)
+  name: StartServer(string, string, string, int, int)
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_StartServer_System_String_System_String_System_String_System_Int32_System_Int32_
+  commentId: M:DMediatR.TestSetUp.StartServer(System.String,System.String,System.String,System.Int32,System.Int32)
+  name.vb: StartServer(String, String, String, Integer, Integer)
+  fullName: DMediatR.TestSetUp.StartServer(string, string, string, int, int)
+  fullName.vb: DMediatR.TestSetUp.StartServer(String, String, String, Integer, Integer)
+  nameWithType: TestSetUp.StartServer(string, string, string, int, int)
+  nameWithType.vb: TestSetUp.StartServer(String, String, String, Integer, Integer)
+- uid: DMediatR.TestSetUp.StartServer*
+  name: StartServer
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_StartServer_
+  commentId: Overload:DMediatR.TestSetUp.StartServer
+  isSpec: "True"
+  fullName: DMediatR.TestSetUp.StartServer
+  nameWithType: TestSetUp.StartServer
+- uid: DMediatR.TestSetUp.StopAllServers
+  name: StopAllServers()
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_StopAllServers
+  commentId: M:DMediatR.TestSetUp.StopAllServers
+  fullName: DMediatR.TestSetUp.StopAllServers()
+  nameWithType: TestSetUp.StopAllServers()
+- uid: DMediatR.TestSetUp.StopAllServers*
+  name: StopAllServers
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_StopAllServers_
+  commentId: Overload:DMediatR.TestSetUp.StopAllServers
+  isSpec: "True"
+  fullName: DMediatR.TestSetUp.StopAllServers
+  nameWithType: TestSetUp.StopAllServers
+- uid: DMediatR.TestSetUp.WaitForServerPort(System.Int32,System.Int32)
+  name: WaitForServerPort(int, int)
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_WaitForServerPort_System_Int32_System_Int32_
+  commentId: M:DMediatR.TestSetUp.WaitForServerPort(System.Int32,System.Int32)
+  name.vb: WaitForServerPort(Integer, Integer)
+  fullName: DMediatR.TestSetUp.WaitForServerPort(int, int)
+  fullName.vb: DMediatR.TestSetUp.WaitForServerPort(Integer, Integer)
+  nameWithType: TestSetUp.WaitForServerPort(int, int)
+  nameWithType.vb: TestSetUp.WaitForServerPort(Integer, Integer)
+- uid: DMediatR.TestSetUp.WaitForServerPort*
+  name: WaitForServerPort
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_WaitForServerPort_
+  commentId: Overload:DMediatR.TestSetUp.WaitForServerPort
+  isSpec: "True"
+  fullName: DMediatR.TestSetUp.WaitForServerPort
+  nameWithType: TestSetUp.WaitForServerPort

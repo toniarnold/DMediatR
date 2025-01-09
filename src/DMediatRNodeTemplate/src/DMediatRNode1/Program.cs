@@ -27,6 +27,7 @@ namespace DMediatRNode
             }
             else
             {
+                var env = Environment.GetEnvironmentVariables();
                 if (env.Contains("ASPNETCORE_ENVIRONMENT")) // dotnet run --project
                 {
                     var environment = (string)env["ASPNETCORE_ENVIRONMENT"]!;
@@ -35,10 +36,15 @@ namespace DMediatRNode
                     Console.Title = $"DMediatR {environment} on {opt.Host}:{opt.Port}";
                 }
                 await Task.WhenAll(
-                    GrpcServer.RunRestartWebAppAsync(args, GrpcPort.UseDefault, ct),
-                    GrpcServer.RunRestartWebAppAsync(args, GrpcPort.UseRenew, ct)
+                    GrpcServer.RunRestartWebAppAsync(args, GrpcPort.UseDefault, AddLogger, ct),
+                    GrpcServer.RunRestartWebAppAsync(args, GrpcPort.UseRenew, AddLogger, ct)
                     );
             }
+        }
+
+        private static void AddLogger(WebApplicationBuilder builder)
+        {
+            builder.Logging.AddConsole();
         }
     }
 }

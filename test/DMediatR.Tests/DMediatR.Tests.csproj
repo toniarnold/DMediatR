@@ -44,7 +44,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>appsettings.json</DependentUpon>
     </None>
-    <None Update="Grpc\appsettings.Monolith.json">
+    <None Update="appsettings.Monolith.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>appsettings.json</DependentUpon>
     </None>

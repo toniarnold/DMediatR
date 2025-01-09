@@ -8,18 +8,18 @@ namespace DMediatR.Tests.Grpc
         [OneTimeSetUp]
         public void SetUpInitialCertificatesStartServer()
         {
-            SetUp.SetUpDMediatRServices("Monolith");
-            SetUp.SetUpInitialCertificates();
+            SetUp.SetUpDMediatRServices("Monolith"); // generate locally
+            TestSetUp.SetUpInitialCertificates();
             SetUp.SetUpDMediatRServices("RemoteAllCerts"); // smoke test mode, as the remote shares the cert location
 
             // <startserver>
-            //SetUp.StartServer("Monolith", 18001, 18002); // or ./start Monolith
+            SetUp.StartServer("Monolith", 18001, 18002); // or ./start Monolith
             SetUp.AssertServersStarted();
             // </startserver>
         }
 
         [OneTimeTearDown]
-        public void StopServer()
+        public void StopServers()
         {
             SetUp.StopAllServers();
         }
@@ -71,33 +71,34 @@ namespace DMediatR.Tests.Grpc
 
             await mediator.Publish(new RenewServerCertificateNotification());
             // After explicit renewal the gRPC server is restarted and yields a new certificate.
-            SetUp.WaitForServerPort(18001);
+            TestSetUp.WaitForServerPort(18001);
             var newCertFromRemote = await mediator.Send(new ServerCertificateRequest());
             Assert.That(newCertFromRemote.Thumbprint, Is.Not.EqualTo(oldCertDouble.Thumbprint));
         }
 
+        [Ignore("not functional yet")]
         [Test]
         public async Task ForceRenewCertChainRemote()
         {
             var mediator = SetUp.ServiceProvider!.GetRequiredService<IMediator>();
 
-            //var oldRoot = await mediator.Send(new RootCertificateRequest());
-            //var oldInter = await mediator.Send(new IntermediateCertificateRequest());
-            //var oldServer = await mediator.Send(new ServerCertificateRequest());
-            //var oldClient = await mediator.Send(new ClientCertificateRequest());
+            var oldRoot = await mediator.Send(new RootCertificateRequest());
+            var oldInter = await mediator.Send(new IntermediateCertificateRequest());
+            var oldServer = await mediator.Send(new ServerCertificateRequest());
+            var oldClient = await mediator.Send(new ClientCertificateRequest());
 
-            //var sameRoot = await mediator.Send(new RootCertificateRequest());
-            //var sameInter = await mediator.Send(new IntermediateCertificateRequest());
-            //var sameServer = await mediator.Send(new ServerCertificateRequest());
-            //var sameClient = await mediator.Send(new ClientCertificateRequest());
+            var sameRoot = await mediator.Send(new RootCertificateRequest());
+            var sameInter = await mediator.Send(new IntermediateCertificateRequest());
+            var sameServer = await mediator.Send(new ServerCertificateRequest());
+            var sameClient = await mediator.Send(new ClientCertificateRequest());
 
-            //Assert.Multiple(() =>
-            //{
-            //    Assert.That(sameRoot.Thumbprint, Is.EqualTo(oldRoot.Thumbprint));
-            //    Assert.That(sameInter.Thumbprint, Is.EqualTo(oldInter.Thumbprint));
-            //    Assert.That(sameServer.Thumbprint, Is.EqualTo(oldServer.Thumbprint));
-            //    Assert.That(sameClient.Thumbprint, Is.EqualTo(oldClient.Thumbprint));
-            //});
+            Assert.Multiple(() =>
+            {
+                Assert.That(sameRoot.Thumbprint, Is.EqualTo(oldRoot.Thumbprint));
+                Assert.That(sameInter.Thumbprint, Is.EqualTo(oldInter.Thumbprint));
+                Assert.That(sameServer.Thumbprint, Is.EqualTo(oldServer.Thumbprint));
+                Assert.That(sameClient.Thumbprint, Is.EqualTo(oldClient.Thumbprint));
+            });
 
             await mediator.Publish(new RenewRootCertificateNotification());
 
@@ -109,13 +110,13 @@ namespace DMediatR.Tests.Grpc
             var newServer = await mediator.Send(new ServerCertificateRequest());
             var newClient = await mediator.Send(new ClientCertificateRequest());
 
-            //Assert.Multiple(() =>
-            //{
-            //    Assert.That(newRoot.Thumbprint, Is.Not.EqualTo(oldRoot.Thumbprint), "Root");
-            //    Assert.That(newInter.Thumbprint, Is.Not.EqualTo(oldInter.Thumbprint), "Intermediate");
-            //    Assert.That(newServer.Thumbprint, Is.Not.EqualTo(oldServer.Thumbprint), "Server");
-            //    Assert.That(newClient.Thumbprint, Is.Not.EqualTo(oldClient.Thumbprint), "Client");
-            //});
+            Assert.Multiple(() =>
+            {
+                Assert.That(newRoot.Thumbprint, Is.Not.EqualTo(oldRoot.Thumbprint), "Root");
+                Assert.That(newInter.Thumbprint, Is.Not.EqualTo(oldInter.Thumbprint), "Intermediate");
+                Assert.That(newServer.Thumbprint, Is.Not.EqualTo(oldServer.Thumbprint), "Server");
+                Assert.That(newClient.Thumbprint, Is.Not.EqualTo(oldClient.Thumbprint), "Client");
+            });
         }
     }
 }

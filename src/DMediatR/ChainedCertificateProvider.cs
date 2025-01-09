@@ -32,7 +32,7 @@ namespace DMediatR
                     policy.VerificationFlags = X509VerificationFlags.AllowUnknownCertificateAuthority;
                     var parentRequest = request.ParentCertificateRequest;
                     parentRequest.Renew = true; // not transitively validate the parent here
-                    parentRequest.HasLocked.UnionWith(request.HasLocked);
+                    parentRequest.HasLocked!.UnionWith(request.HasLocked!);
                     var parentCert = await Remote.Mediator.Send(parentRequest, cancellationToken);
                     policy.ExtraStore.Add(parentCert);
                     using var chain = new X509Chain() { ChainPolicy = policy };

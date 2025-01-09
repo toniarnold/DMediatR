@@ -11,8 +11,8 @@
     {
         /// <summary>
         /// To be implemented as
-        /// public HashSet&lt;SemaphoreSlim&gt; HasLocked { get; set; } = new();
-        /// </summary>>
+        /// public HashSet&lt;SemaphoreSlim&gt;? HasLocked { get; set; } = [];
+        /// </summary>
         HashSet<SemaphoreSlim>? HasLocked { get; set; }
     }
 
@@ -28,8 +28,8 @@
         /// <param name="semaphore">SemaphoreSlim(1,1) object of the handler
         /// class.</param>
         /// <param name="cancellationToken"></param>
-        /// <returns>True if a lock was acquired before that must be released
-        /// afterwards by the caller.</returns>
+        /// <returns>True if a lock has been acquired on the semaphore that
+        /// finally must be released by the caller.</returns>
         public static async Task<bool> Lock(this ILock message, SemaphoreSlim semaphore, CancellationToken cancellationToken)
         {
             if (message.HasLocked.Add(semaphore)) // acquire the first lock

@@ -12,7 +12,7 @@ namespace DMediatR
     /// </summary>
     public class PasswordOptions
     {
-        public const string SectionName = "Certificate";
+        public const string SectionName = "DMediatR:Certificate";
 
         [Required]
         public String? Password { get; set; }

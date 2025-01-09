@@ -226,10 +226,8 @@ public Guid CorrelationGuid { get; init; } = Guid.NewGuid();</p>
   <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/RenewNotification.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><summary>
-  To be implemented as
-  public HashSet&lt;SemaphoreSlim&gt; HasLocked { get; set; } = new();
-  </summary>&gt;
+  <div class="markdown level1 summary"><p>To be implemented as
+public HashSet&lt;SemaphoreSlim&gt;? HasLocked { get; set; } = [];</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 

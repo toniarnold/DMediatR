@@ -1,121 +1,59 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
-using System.Net;
-using System.Net.Security;
-using System.Net.Sockets;
-using System.Security.Cryptography.X509Certificates;
-using System.Text.RegularExpressions;
 
 namespace DMediatR.Tests.Grpc
 {
+    /// <summary>
+    /// Project- and NUnit specific TestSetUp methods.
+    /// </summary>
     public static class SetUp
     {
         public const string GrpcServerProject = "DMediatRNode.csproj";
         public const string WorkDirFromTestDir = @"..\..\..\..\..\src\DMediatRNode";
         public const int ServerStartTimeout = 1;
-        public static ServiceProvider? ServiceProvider { get; private set; }
-        public static List<Process> ServerProcesses { get; private set; } = [];
+        public static ServiceProvider ServiceProvider => TestSetUp.ServiceProvider!;
+        public static CertificateOptions CertificateOptions => TestSetUp.CertificateOptions;
 
         /// <summary>
-        /// Start the server with the launch profile
+        /// Start the gRPC server project with the working directory determined here.
         /// </summary>
-        /// <param name="launchProfile">defined in its Properties\launchSettings.json</param>
-        /// <param name="port">The main port to wait for accepting TCP connections.</param>
-        /// <param name="oldPort">The TCP renewal port to wait for accepting TCP connections.</param>
+        /// <param name="launchProfile"></param>
+        /// <param name="port"></param>
+        /// <param name="oldPort"></param>
         public static void StartServer(string launchProfile, int port, int oldPort)
         {
-            var info = new ProcessStartInfo();
-            info.FileName = Path.Join(System.Environment.GetEnvironmentVariable("ProgramFiles"), "dotnet", "dotnet.exe");
-            info.Arguments = $"run --no-build --project {GrpcServerProject} --launch-profile {launchProfile}";
-            info.WorkingDirectory = Path.GetFullPath(Path.Join(TestContext.CurrentContext.WorkDirectory, WorkDirFromTestDir));
-            info.UseShellExecute = true;
-            ServerProcesses.Add(Process.Start(info)!);
-            WaitForServerPort(port, ServerStartTimeout);
-            WaitForServerPort(oldPort, ServerStartTimeout);
+            var workDir = Path.GetFullPath(Path.Join(TestContext.CurrentContext.WorkDirectory, WorkDirFromTestDir));
+            TestSetUp.StartServer(workDir, GrpcServerProject, launchProfile, port, oldPort);
         }
 
         public static void AssertServersStarted()
         {
             Assert.Multiple(() =>
             {
-                foreach (var process in ServerProcesses)
-                {
-                    var profile = GetProcessProfile(process);
-                    Assert.That(process.HasExited, Is.False, $"Process {profile} has exited");
-                }
+                TestSetUp.AssertServersStarted(ProcessAssert);
             });
         }
 
-        /// <summary>
-        /// Extracts the profile name out of a StartInfo string like
-        /// FileName = "C:\\Program Files\\dotnet\\dotnet.exe", Arguments = "run --no-build --project DMediatRNode.csproj --launch-profile Monolith", WorkingDirectory = ...
-        /// </summary>
-        /// <param name="process"></param>
-        /// <returns></returns>
-        public static string GetProcessProfile(Process process)
+        private static void ProcessAssert(Process process, string profile)
         {
-            var info = process.StartInfo;
-            var profile = Regex.Match(info.Arguments, @"--launch-profile\s+(\w+)");
-            return profile.Groups[1].Value;
-        }
-
-        /// <summary>
-        /// Poll for a successful TCP connection at the given port
-        /// </summary>
-        /// <param name="port">port to listen on</param>
-        /// <param name="timeout">expected duration of all tests in sec</param>
-        public static void WaitForServerPort(int port, int timeout = ServerStartTimeout)
-        {
-            int interval = 1000;    // 1 sec
-            int times = timeout;
-            bool success = false;
-            using (var client = new TcpClient())
-            {
-                while (!success && times >= 0)
-                {
-                    try
-                    {
-                        var asyncResult = client.BeginConnect("localhost", port, null, null);
-                        while (!asyncResult.AsyncWaitHandle.WaitOne(interval)) { }
-                        client.EndConnect(asyncResult);
-                    }
-                    catch
-                    {
-                        timeout--;
-                    }
-                    success = true;
-                }
-            }
-            if (!success)
-            {
-                throw new Exception(String.Format("Server on Port {0} not reachable within {1} seconds",
-                                                    port, timeout));
-            }
+            Assert.That(process.HasExited, Is.False, $"Process {profile} has exited");
         }
 
         public static void StopAllServers()
         {
-            foreach (var process in ServerProcesses)
-            {
-                try
-                {
-                    process.Kill();
-                    process.WaitForExit();
-                }
-                catch { }
-                finally
-                {
-                    process.Dispose();
-                }
-            }
-            ServerProcesses.Clear();
+            TestSetUp.StopAllServers();
         }
 
         public static void SetUpInitialCertificates()
         {
             var certs = ServiceProvider!.GetRequiredService<Certificates>();
             Task.Run(() => certs.SetUpInitialChainAsync(CancellationToken.None)).Wait();
+        }
+
+        public static void DeployCertificate(string certificate, string node)
+        {
+            TestSetUp.DeployCertificate(certificate, node);
         }
 
         /// <summary>
@@ -125,41 +63,7 @@ namespace DMediatR.Tests.Grpc
         /// <param name="environment"></param>
         public static void SetUpDMediatRServices(string? environment = null)
         {
-            ServiceCollection cs = new();
-            var cfg = Configuration.Get(environment);
-            ServiceProvider = cs.AddDMediatR(cfg)
-                .AddLogging(builder => builder.AddNUnit())
-                .BuildServiceProvider();
-        }
-
-        /// <summary>
-        /// Side-effect free HTTP client using the client certificate.
-        /// </summary>
-        /// <param name="address"></param>
-        /// <returns></returns>
-        public async static Task<HttpClient> GetHttpClientAsync()
-        {
-            var handler = new HttpClientHandler
-            {
-                ClientCertificateOptions = ClientCertificateOption.Manual,
-                ServerCertificateCustomValidationCallback = ServerCertificateCustomValidation
-            };
-            var clientCertificateProvider = ServiceProvider!.GetRequiredService<ClientCertificateProvider>();
-            (var loaded, var cert) = await clientCertificateProvider.TryLoad(CancellationToken.None);
-            if (!loaded)
-            {
-                throw new Exception($"Client certificate {clientCertificateProvider.FileNamePfx} not found");
-            }
-            handler.ClientCertificates.Add(cert!);
-            return new HttpClient(handler)
-            {
-                DefaultRequestVersion = HttpVersion.Version20 // HTTP/2 required for gRPC
-            };
-        }
-
-        private static bool ServerCertificateCustomValidation(HttpRequestMessage requestMessage, X509Certificate2? certificate, X509Chain? chain, SslPolicyErrors sslErrors)
-        {
-            return sslErrors == SslPolicyErrors.None;
+            TestSetUp.SetUpDMediatRServices(environment, cs => cs.AddLogging(builder => builder.AddNUnit()));
         }
     }
 }

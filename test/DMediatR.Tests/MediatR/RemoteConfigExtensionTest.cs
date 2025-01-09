@@ -12,13 +12,15 @@ namespace DMediatR.Tests
             // check  an inexistent class and the implicitly given name for RemoteHandler
             const string configRemote = /*lang=json,strict*/ """"
                 {
-                    "Remotes": {
-                        "RemoteHandler": {
-                            "Host": "localhost",
-                            "Port": 8081,
-                            "OldPort": 8082
-                            }
-                    }
+                	"DMediatR": {
+                		"Remotes": {
+                			"RemoteHandler": {
+                				"Host": "localhost",
+                				"Port": 8081,
+                				"OldPort": 8082
+                				}
+                		}
+                	}
                 }
                 """";
             var config = new ConfigurationBuilder()

@@ -11,7 +11,7 @@ namespace DMediatR
     /// </summary>
     public sealed class RemotesOptions : Dictionary<string, HostOptions>
     {
-        public const string SectionName = "Remotes";
+        public const string SectionName = "DMediatR:Remotes";
 
         [ValidateEnumeratedItems]
         public IEnumerable<HostOptions> ValidatedValues => Values;

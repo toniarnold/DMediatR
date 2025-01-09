@@ -123,7 +123,7 @@ and its output disappears - at least unless there’s a breakpoint before its
 <p>The <code>./start.ps1</code> script starts nodes with the specified <code>--launch-profile</code>
 separately and leaves them running until Ctrl+C is pressed.
 After commenting out <code>StartServer</code> in e.g. ServerTest.cs:</p>
-<pre><code class="lang-csharp" name="ServerTest.cs" highlight-lines="1">//SetUp.StartServer(&quot;Monolith&quot;, 18001, 18002); // or ./start Monolith
+<pre><code class="lang-csharp" name="ServerTest.cs" highlight-lines="1">SetUp.StartServer(&quot;Monolith&quot;, 18001, 18002); // or ./start Monolith
 SetUp.AssertServersStarted();
 </code></pre>
 <p>and recompiling, the client tests can be debugged from within VS after running

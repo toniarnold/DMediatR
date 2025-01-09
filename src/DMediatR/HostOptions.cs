@@ -12,7 +12,7 @@ namespace DMediatR
     /// </summary>
     public sealed class HostOptions
     {
-        public const string SectionName = "Host";
+        public const string SectionName = "DMediatR:Host";
 
         [Required]
         public String? Host { get; set; }

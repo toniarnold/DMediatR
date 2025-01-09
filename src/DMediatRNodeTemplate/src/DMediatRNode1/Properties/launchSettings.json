@@ -1,18 +1,18 @@
 ﻿{
   "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
-    "Monolith": {
+    "Blue": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Monolith"
+        "ASPNETCORE_ENVIRONMENT": "Blue"
       }
     },
-    "RemoteRoot": {
+    "Red": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "RemoteRoot"
+        "ASPNETCORE_ENVIRONMENT": "Red"
       }
     }
   }

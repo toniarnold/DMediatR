@@ -32,10 +32,6 @@ namespace DMediatR.Tests.Grpc
     [Category("Integration")]
     public class FourNodesTest
     {
-        private CertificateOptions CertificateOptions =>
-            SetUp.ServiceProvider!.GetRequiredService<IConfiguration>()
-                .GetSection(CertificateOptions.SectionName).Get<CertificateOptions>()!;
-
         [OneTimeSetUp]
         public void Given_FourNodesRunning()
         {
@@ -98,37 +94,28 @@ namespace DMediatR.Tests.Grpc
         private void Given_CertificatesDistributedOffline()
         {
             // The same server certificates for all nodes.
-            DeployCertificate("DMediatR-Server.pfx", "RootCertifier");
-            DeployCertificate("DMediatR-Server.pfx", "IntermediateCertifier");
-            DeployCertificate("DMediatR-Server.pfx", "ServerCertifier");
-            DeployCertificate("DMediatR-Server.pfx", "ClientCertifier");
+            SetUp.DeployCertificate("DMediatR-Server.pfx", "RootCertifier");
+            SetUp.DeployCertificate("DMediatR-Server.pfx", "IntermediateCertifier");
+            SetUp.DeployCertificate("DMediatR-Server.pfx", "ServerCertifier");
+            SetUp.DeployCertificate("DMediatR-Server.pfx", "ClientCertifier");
 
             // The same client certificate used by all nodes.
-            DeployCertificate("DMediatR-Client.pfx", "RootCertifier");
-            DeployCertificate("DMediatR-Client.pfx", "IntermediateCertifier");
-            DeployCertificate("DMediatR-Client.pfx", "ServerCertifier");
-            DeployCertificate("DMediatR-Client.pfx", "ClientCertifier");
+            SetUp.DeployCertificate("DMediatR-Client.pfx", "RootCertifier");
+            SetUp.DeployCertificate("DMediatR-Client.pfx", "IntermediateCertifier");
+            SetUp.DeployCertificate("DMediatR-Client.pfx", "ServerCertifier");
+            SetUp.DeployCertificate("DMediatR-Client.pfx", "ClientCertifier");
 
             // The intermediate certificate without key is required by all nodes
             // for validation.
-            DeployCertificate("DMediatR-Intermediate.crt", "RootCertifier");
-            DeployCertificate("DMediatR-Intermediate.crt", "IntermediateCertifier");
-            DeployCertificate("DMediatR-Intermediate.crt", "ServerCertifier");
-            DeployCertificate("DMediatR-Intermediate.crt", "ClientCertifier");
+            SetUp.DeployCertificate("DMediatR-Intermediate.crt", "RootCertifier");
+            SetUp.DeployCertificate("DMediatR-Intermediate.crt", "IntermediateCertifier");
+            SetUp.DeployCertificate("DMediatR-Intermediate.crt", "ServerCertifier");
+            SetUp.DeployCertificate("DMediatR-Intermediate.crt", "ClientCertifier");
 
             // The self signed root certificate and the intermediate certificate
             // with key are not required for validation.
-            DeployCertificate("DMediatR-Intermediate.pfx", "IntermediateCertifier");
-            DeployCertificate("DMediatR-Root.pfx", "RootCertifier");
-        }
-
-        private void DeployCertificate(string certificate, string node)
-        {
-            var path = CertificateOptions.FilePath!;
-
-            File.Copy(Path.Combine(path, certificate), Path.Combine(path, node, certificate), true);
-            var oldCertificate = Regex.Replace(certificate, @".(\w\w\w)$", @"-old.$1");
-            File.Copy(Path.Combine(path, certificate), Path.Combine(path, node, oldCertificate), true);
+            SetUp.DeployCertificate("DMediatR-Intermediate.pfx", "IntermediateCertifier");
+            SetUp.DeployCertificate("DMediatR-Root.pfx", "RootCertifier");
         }
 
         private void Given_DMediatRClient()
@@ -165,7 +152,7 @@ namespace DMediatR.Tests.Grpc
         /// <returns></returns>
         private async Task Then_DMediatRNodeRechable()
         {
-            using var httpClient = await SetUp.GetHttpClientAsync();
+            using var httpClient = await TestSetUp.GetHttpClientAsync();
             var response = await httpClient.GetStringAsync("https://localhost:18007/"); // appsettings.RemotePing.json
             Assert.That(response, Is.EqualTo("DMediatR gRPC endpoint"));
         }

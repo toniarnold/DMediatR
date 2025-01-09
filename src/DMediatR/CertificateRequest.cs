@@ -20,7 +20,7 @@ namespace DMediatR
         /// </summary>
         public bool Renew { get; set; } = false;
 
-        public HashSet<SemaphoreSlim>? HasLocked { get; set; } = new();
+        public HashSet<SemaphoreSlim>? HasLocked { get; set; } = [];
     }
 
     internal class RootCertificateRequest : CertificateRequest

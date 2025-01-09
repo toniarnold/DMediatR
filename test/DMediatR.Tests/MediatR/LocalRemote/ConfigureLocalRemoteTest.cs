@@ -30,12 +30,14 @@ namespace DMediatR.Tests.MediatR.LocalRemote
         {
             const string remoteConfig = /*lang=json,strict*/ """
                 {
-                    "Remotes": {
-                        "RemoteHandler": {
-                            "Host": "localhost",
-                            "Port": 8081,
-                            "OldPort": 8082
-                            }
+                    "DMediatR": {
+                        "Remotes": {
+                            "RemoteHandler": {
+                                "Host": "localhost",
+                                "Port": 8081,
+                                "OldPort": 8082
+                                }
+                        }
                     }
                 }
                 """;
@@ -52,32 +54,6 @@ namespace DMediatR.Tests.MediatR.LocalRemote
             var mediator = provider.GetRequiredService<IMediator>();
             var pong = await mediator.Send(new Ping { Message = "Ping" });
             Assert.That(pong.Message, Is.EqualTo("Ping remote Pong"));
-        }
-
-        private IConfiguration LocalConfig()
-        {
-            return new ConfigurationBuilder()
-               .AddJsonStream(new MemoryStream(Encoding.UTF8.GetBytes("{}")))
-               .Build();
-        }
-
-        private IConfiguration RemoteConfig()
-        {
-            const string configWithRemotes =  /*lang=json,strict*/ """
-                {
-                    "Remotes": [
-                        {
-                            "name": "RemoteHandler",
-                            "host": "localhost",
-                            "port": "2001"
-                        }
-                    ]
-                }
-                """;
-            var config = new ConfigurationBuilder()
-               .AddJsonStream(new MemoryStream(Encoding.UTF8.GetBytes(configWithRemotes)))
-               .Build();
-            return config;
         }
     }
 }
