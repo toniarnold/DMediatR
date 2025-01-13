@@ -1,9 +1,14 @@
-﻿using MediatR;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace DMediatRNode1.Test
 {
-    public class TwoNodesTest
+    /// <summary>
+    /// The unit test assembly is the client, the one remote is DMediatRNode1 in
+    /// the configuration "Red". Request1 is configured to be locally handled,
+    /// red, its encapsulated Ping is handled remotely on Red and thus adds its
+    /// hops trace information.
+    /// </summary>
+    public class PingRedTest
     {
         [OneTimeSetUp]
         public void Setup()
@@ -11,8 +16,8 @@ namespace DMediatRNode1.Test
             SetUp.SetUpDMediatRServices();
             SetUp.SetUpInitialCertificates();
             DeployCertificates();
-            SetUp.SetUpDMediatRServices("RemoteBlueRed");
-            StartServers(); // or ./start Red Blue
+            SetUp.SetUpDMediatRServices("RemotePingRed");
+            SetUp.StartServer("Red", 18005, 18006); // or ./start Red
             SetUp.AssertServersStarted();
         }
 
@@ -24,28 +29,17 @@ namespace DMediatRNode1.Test
 
         private void DeployCertificates()
         {
-            SetUp.DeployCertificate("DMediatR-Server.pfx", "Blue");
-            SetUp.DeployCertificate("DMediatR-Intermediate.crt", "Blue");
-
             SetUp.DeployCertificate("DMediatR-Server.pfx", "Red");
             SetUp.DeployCertificate("DMediatR-Intermediate.crt", "Red");
-            SetUp.DeployCertificate("DMediatR-Client.pfx", "Red");
-        }
-
-        private void StartServers()
-        {
-            SetUp.StartServer("Blue", 18003, 18004);
-            SetUp.StartServer("Red", 18005, 18006);
         }
 
         [Test]
-        public async Task PingPongTest()
+        public async Task RequestResponseTest()
         {
             var mediator = SetUp.ServiceProvider.GetRequiredService<IMediator>();
-            var pongFromRemote = await mediator.Send(new Ping("from NUnit"));
-            Assert.That(pongFromRemote, Is.Not.Null);
-            Assert.That(pongFromRemote.Count, Is.EqualTo(2));
-            Assert.That(pongFromRemote.Message, Is.EqualTo("Pong 2 hops from NUnit via Red via localhost:8081"));
+            var response = await mediator.Send(new Request1 { Message = "from NUnit" });
+            Assert.That(response, Is.Not.Null);
+            Assert.That(response.Message, Is.EqualTo("Pong 2 hops from NUnit via Red via localhost:8081"));
         }
 
         [Test]

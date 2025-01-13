@@ -1,6 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using DMediatRNode;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace DMediatRNode1.Test
 {
@@ -63,7 +65,9 @@ namespace DMediatRNode1.Test
         /// <param name="environment"></param>
         public static void SetUpDMediatRServices(string? environment = null)
         {
-            TestSetUp.SetUpDMediatRServices(environment, cs => cs.AddLogging(builder => builder.AddNUnit()));
+            TestSetUp.SetUpDMediatRServices(environment,
+                cfg => cfg.RegisterServicesFromAssembly(Assembly.GetAssembly(typeof(Program))!),
+                sc => sc.AddLogging(builder => builder.AddNUnit()));
         }
     }
 }

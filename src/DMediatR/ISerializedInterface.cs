@@ -22,16 +22,46 @@
     {
         public void PreSerialize(object obj)
         {
+            CheckType(obj);
             PreSerialize((T)obj);
         }
 
         public void PostDeserialize(object obj)
         {
+            CheckType(obj);
             PostDeserialize((T)obj);
         }
 
-        protected abstract void PreSerialize(T obj);
+        protected virtual void PreSerialize(T obj)
+        {
+        }
 
-        protected abstract void PostDeserialize(T obj);
+        protected virtual void PostDeserialize(T obj)
+        {
+        }
+
+        /// <summary>
+        /// Throws an ArgumentException if the given object is not derived of type T of the generic class.
+        /// </summary>
+        /// <param name="givenType"></param>
+        /// <exception cref="ArgumentException"></exception>
+        private void CheckType(object obj)
+        {
+            foreach (var @interface in obj.GetType().GetInterfaces())
+            {
+                var tocheck = @interface;
+                while (true)
+                {
+                    if (tocheck == typeof(T)) return; // OK, found
+                    if (tocheck.BaseType == null) break; // try next interface
+                    tocheck = tocheck.BaseType;
+                }
+            }
+            throw new ArgumentException(
+               $"""
+                {typeof(T).Name} SerializedInterface used for type {obj.GetType().Name}. Register the interface exclusively with
+                services.AddKeyedSingleton<ISerializedInterface, {this.GetType().Name}>(typeof({typeof(T).Name}));
+                """);
+        }
     }
 }

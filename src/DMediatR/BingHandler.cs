@@ -8,14 +8,14 @@ namespace DMediatR
         private readonly Remote _remote;
         private readonly ILogger<BingHandler> _logger;
 
+        public Remote Remote => _remote;
+
         public BingHandler(IServiceProvider serviceProvider, Remote remote, ILogger<BingHandler> logger)
         {
             _serviceProvider = serviceProvider;
             _remote = remote;
             _logger = logger;
         }
-
-        public Remote Remote => _remote;
 
         public async Task Handle(Bing notification, CancellationToken cancellationToken)
         {

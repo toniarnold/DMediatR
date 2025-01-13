@@ -47,14 +47,9 @@ namespace DMediatR
 
         /// <summary>
         /// Defaults to True. If the firewall is explicitly disabled, any node
-        /// on the network can publish two
-        /// RenewIntermediateCertificateNotification messages in a row to bring
-        /// down the entire network, which may not be desirable. Chicago-style
-        /// functional unit tests are one use case for disabling the firewall.
-        /// Another one might be, in a highly trusted scenario, some kind of
-        /// intrusion detection on a remote node  that declares the entire
-        /// network to be potentially compromised and thus requiring manual
-        /// recertification.
+        /// on the network can publish two RenewRootCertificateNotification
+        /// messages in a row to bring down the entire network, which may not be
+        /// desirable.
         /// </summary>
         public bool RenewFirewallEnabled { get; set; } = true;
     }

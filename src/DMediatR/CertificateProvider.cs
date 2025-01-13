@@ -13,6 +13,9 @@ namespace DMediatR
         protected readonly ILogger<CertificateProvider> _logger;
         private static readonly SemaphoreSlim _fileLock = new(1, 1);
 
+        public Remote Remote => _remote;
+        public CertificateOptions Options => _remote.CertificateOptions;
+
         protected CertificateProvider(Remote remote,
                 IOptions<HostOptions> hostOptions,
                 ImportExportCertificate ioCert,
@@ -24,8 +27,6 @@ namespace DMediatR
             _logger = logger;
         }
 
-        public Remote Remote => _remote;
-        public CertificateOptions Options => _remote.CertificateOptions;
         protected string? RemoteName => LocalAttribute.RemoteName(this.GetType());
 
         protected abstract string? CertificateName { get; }

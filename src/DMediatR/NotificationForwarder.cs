@@ -8,14 +8,14 @@ namespace DMediatR
         private readonly Remote _remote;
         private readonly ILogger<NotificationForwarder> _logger;
 
+        public Remote Remote => _remote;
+
         public NotificationForwarder(IServiceProvider serviceProvider, Remote remote, ILogger<NotificationForwarder> logger)
         {
             _serviceProvider = serviceProvider;
             _remote = remote;
             _logger = logger;
         }
-
-        public Remote Remote => _remote;
 
         /// <summary>
         /// Publish the notification to all distinct connected remote nodes.

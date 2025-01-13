@@ -14,8 +14,8 @@ namespace DMediatR.Tests
 
         {
             var cfg = Configuration.Get();
-            ServiceCollection cs = new();
-            _serviceProvider = cs.AddDMediatR(cfg)
+            ServiceCollection sc = new();
+            _serviceProvider = sc.AddDMediatR(cfg)
                 .AddLogging(builder => builder.AddConsole())
                 .BuildServiceProvider();
         }
@@ -131,6 +131,15 @@ namespace DMediatR.Tests
                 Options.Create(new CertificateOptions()));
             //x509Serializer.Serialize(new OneWay());
             Assert.That(() => x509Serializer.Serialize(new OneWay()),
+                Throws.TypeOf<ArgumentException>());
+        }
+
+        [Test]
+        public void SerializedInterfaceWrongTypeThrows()
+        {
+            var serializedInterface = new ILockISerializedInterface();
+            //serializedInterface.PreSerialize(new object());
+            Assert.That(() => serializedInterface.PreSerialize(new object()),
                 Throws.TypeOf<ArgumentException>());
         }
     }

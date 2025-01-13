@@ -30,16 +30,19 @@ namespace DMediatR
 
         public virtual async Task<X509Certificate2> Handle(RootCertificateRequest request, CancellationToken cancellationToken)
         {
+            // <lock>
             var locked = await request.Lock(_fileLock, cancellationToken);
             try
             {
                 return await RequestCertificate(request, cancellationToken);
             }
             finally { if (locked) _fileLock.Release(); }
+            // </lock>
         }
 
         public virtual async Task Handle(RenewRootCertificateNotification notification, CancellationToken cancellationToken)
         {
+            // <notificationlock>
             var locked = await notification.Lock(_fileLock, cancellationToken);
             try
             {
@@ -56,6 +59,7 @@ namespace DMediatR
                 }
             }
             finally { if (locked) _fileLock.Release(); }
+            // </notificationlock>
         }
 
         protected async Task<X509Certificate2> RequestCertificate(RootCertificateRequest request, CancellationToken cancellationToken)

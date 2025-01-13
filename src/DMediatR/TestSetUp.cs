@@ -26,13 +26,13 @@ namespace DMediatR
             .GetSection(CertificateOptions.SectionName).Get<CertificateOptions>()!;
 
         /// <summary>
-        /// Start the gRPC server project with the launch profile
+        /// Start the gRPC server project with the launch profile.
         /// </summary>
-        /// <param name="workingDirectory">The server project directory/param>
-        /// <param name="serverProject">The .csproj file of the server project</param>
-        /// <param name="launchProfile">defined in its Properties\launchSettings.json</param>
+        /// <param name="workingDirectory">The server project directory.</param>
+        /// <param name="serverProject">The .csproj file of the server project.</param>
+        /// <param name="launchProfile">Defined in its Properties\launchSettings.json.</param>
         /// <param name="port">The main port to wait for accepting TCP connections.</param>
-        /// <param name="oldPort">The TCP renewal port to wait for accepting TCP connections.</param>
+        /// <param name="oldPort">he TCP renewal port to wait for accepting TCP connections.</param>
         public static void StartServer(string workingDirectory, string serverProject, string launchProfile, int port, int oldPort)
         {
             var info = new ProcessStartInfo();
@@ -127,16 +127,18 @@ namespace DMediatR
         /// Instantiate the ServiceProvider with appsettings[.environment].json
         /// </summary>
         /// <param name="environment"></param>
-        public static void SetUpDMediatRServices(string? environment = null, Func<IServiceCollection, IServiceCollection>? serviceCollectionAction = null)
+        public static void SetUpDMediatRServices(string? environment,
+            Action<MediatRServiceConfiguration> mediatrCfg,
+            Func<IServiceCollection, IServiceCollection>? serviceCollectionAction = null)
         {
-            ServiceCollection cs = new();
-            var cfg = GetConfiguration(environment);
-            cs.AddDMediatR(cfg);
-            serviceCollectionAction?.Invoke(cs);
-            ServiceProvider = cs.BuildServiceProvider();
+            ServiceCollection sc = new();
+            var cfg = GetConfiguration(environment ?? "");
+            sc.AddDMediatR(cfg, mediatrCfg);
+            serviceCollectionAction?.Invoke(sc);
+            ServiceProvider = sc.BuildServiceProvider();
         }
 
-        public static IConfiguration GetConfiguration(string? environment)
+        public static IConfiguration GetConfiguration(string environment)
         {
             var builder = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", optional: false)

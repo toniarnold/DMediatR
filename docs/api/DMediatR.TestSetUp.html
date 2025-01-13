@@ -320,7 +320,7 @@ tests without a dependency to a specific test framework.</p>
 
   <h3 id="DMediatR_TestSetUp_DeployCertificate_System_String_System_String_" data-uid="DMediatR.TestSetUp.DeployCertificate(System.String,System.String)">
   DeployCertificate(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/TestSetUp.cs/#L192"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/TestSetUp.cs/#L194"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -352,15 +352,15 @@ tests without a dependency to a specific test framework.</p>
   <a id="DMediatR_TestSetUp_GetConfiguration_" data-uid="DMediatR.TestSetUp.GetConfiguration*"></a>
 
   <h3 id="DMediatR_TestSetUp_GetConfiguration_System_String_" data-uid="DMediatR.TestSetUp.GetConfiguration(System.String)">
-  GetConfiguration(string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/TestSetUp.cs/#L139"><i class="bi bi-code-slash"></i></a>
+  GetConfiguration(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/TestSetUp.cs/#L141"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IConfiguration GetConfiguration(string? environment)</code></pre>
+    <pre><code class="lang-csharp hljs">public static IConfiguration GetConfiguration(string environment)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -389,7 +389,7 @@ tests without a dependency to a specific test framework.</p>
 
   <h3 id="DMediatR_TestSetUp_GetHttpClientAsync" data-uid="DMediatR.TestSetUp.GetHttpClientAsync">
   GetHttpClientAsync()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/TestSetUp.cs/#L167"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/TestSetUp.cs/#L169"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Side-effect free HTTPS client using the client certificate.</p>
@@ -457,8 +457,8 @@ FileName = &quot;C:\Program Files\dotnet\dotnet.exe&quot;, Arguments = &quot;run
 
   <a id="DMediatR_TestSetUp_SetUpDMediatRServices_" data-uid="DMediatR.TestSetUp.SetUpDMediatRServices*"></a>
 
-  <h3 id="DMediatR_TestSetUp_SetUpDMediatRServices_System_String_System_Func_Microsoft_Extensions_DependencyInjection_IServiceCollection_Microsoft_Extensions_DependencyInjection_IServiceCollection__" data-uid="DMediatR.TestSetUp.SetUpDMediatRServices(System.String,System.Func{Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.DependencyInjection.IServiceCollection})">
-  SetUpDMediatRServices(string?, Func&lt;IServiceCollection, IServiceCollection&gt;?)
+  <h3 id="DMediatR_TestSetUp_SetUpDMediatRServices_System_String_System_Action_Microsoft_Extensions_DependencyInjection_MediatRServiceConfiguration__System_Func_Microsoft_Extensions_DependencyInjection_IServiceCollection_Microsoft_Extensions_DependencyInjection_IServiceCollection__" data-uid="DMediatR.TestSetUp.SetUpDMediatRServices(System.String,System.Action{Microsoft.Extensions.DependencyInjection.MediatRServiceConfiguration},System.Func{Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.DependencyInjection.IServiceCollection})">
+  SetUpDMediatRServices(string?, Action&lt;MediatRServiceConfiguration&gt;, Func&lt;IServiceCollection, IServiceCollection&gt;?)
   <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/TestSetUp.cs/#L130"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -467,12 +467,14 @@ FileName = &quot;C:\Program Files\dotnet\dotnet.exe&quot;, Arguments = &quot;run
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void SetUpDMediatRServices(string? environment = null, Func&lt;IServiceCollection, IServiceCollection&gt;? serviceCollectionAction = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void SetUpDMediatRServices(string? environment, Action&lt;MediatRServiceConfiguration&gt; mediatrCfg, Func&lt;IServiceCollection, IServiceCollection&gt;? serviceCollectionAction = null)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>environment</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>mediatrCfg</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<span class="xref">MediatRServiceConfiguration</span>&gt;</dt>
     <dd></dd>
     <dt><code>serviceCollectionAction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a>&gt;</dt>
     <dd></dd>
@@ -493,7 +495,7 @@ FileName = &quot;C:\Program Files\dotnet\dotnet.exe&quot;, Arguments = &quot;run
 
   <h3 id="DMediatR_TestSetUp_SetUpInitialCertificates" data-uid="DMediatR.TestSetUp.SetUpInitialCertificates">
   SetUpInitialCertificates()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/TestSetUp.cs/#L156"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/TestSetUp.cs/#L158"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Create an initial valid X509 certificate chain in the directory
@@ -524,7 +526,8 @@ configured in the Certificate section.</p>
   <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/TestSetUp.cs/#L36"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Start the gRPC server project with the launch profile.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -534,15 +537,20 @@ configured in the Certificate section.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>workingDirectory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The server project directory.</p>
+</dd>
     <dt><code>serverProject</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The .csproj file of the server project.</p>
+</dd>
     <dt><code>launchProfile</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>Defined in its Properties\launchSettings.json.</p>
+</dd>
     <dt><code>port</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
+    <dd><p>The main port to wait for accepting TCP connections.</p>
+</dd>
     <dt><code>oldPort</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
+    <dd><p>he TCP renewal port to wait for accepting TCP connections.</p>
+</dd>
   </dl>
 
 

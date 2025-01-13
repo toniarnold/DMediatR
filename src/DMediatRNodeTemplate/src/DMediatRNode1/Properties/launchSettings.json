@@ -14,6 +14,13 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Red"
       }
+    },
+    "RedPingBlue": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "RedPingBlue"
+      }
     }
   }
 }

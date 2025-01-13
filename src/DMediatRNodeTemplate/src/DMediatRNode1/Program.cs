@@ -1,6 +1,5 @@
-using DMediatR;
 using Microsoft.Extensions.Options;
-using System;
+using System.Reflection;
 
 namespace DMediatRNode
 {
@@ -36,15 +35,17 @@ namespace DMediatRNode
                     Console.Title = $"DMediatR {environment} on {opt.Host}:{opt.Port}";
                 }
                 await Task.WhenAll(
-                    GrpcServer.RunRestartWebAppAsync(args, GrpcPort.UseDefault, AddLogger, ct),
-                    GrpcServer.RunRestartWebAppAsync(args, GrpcPort.UseRenew, AddLogger, ct)
+                    GrpcServer.RunRestartWebAppAsync(args, GrpcPort.UseDefault, AddServices, ct),
+                    GrpcServer.RunRestartWebAppAsync(args, GrpcPort.UseRenew, AddServices, ct)
                     );
             }
         }
 
-        private static void AddLogger(WebApplicationBuilder builder)
+        private static void AddServices(WebApplicationBuilder builder)
         {
             builder.Logging.AddConsole();
+            builder.Services.AddDMediatR(builder.Configuration,
+                cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
         }
     }
 }

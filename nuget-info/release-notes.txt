@@ -1,5 +1,7 @@
-* x509 certificate validation
+* Implemented custom X509 certificate validation (renewal is still not functional)
 
-* ILock with the HasLocked SemaphoreSlim collection allows recursive message handling requiring a lock without deadlocks
+* New ILock with the HasLocked SemaphoreSlim collection avoids deadlocks with recursive messages that require locking shared resources
 
-* SerializedInterface<T> for de- resp. rehydration when serializing messages with non-serializable members like SemaphoreSlim
+* New SerializedInterface<T> for de- resp. rehydration when serializing objects with non-serializable members like above SemaphoreSlim
+
+* Added DMediatRNode1.Test project to the DMediatRNodeTemplate with integration tests using one and two gRPC node processes

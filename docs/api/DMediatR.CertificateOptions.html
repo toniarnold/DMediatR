@@ -354,18 +354,13 @@ public int? RenewBeforeExpirationDays { get; set; }</code></pre>
 
   <h3 id="DMediatR_CertificateOptions_RenewFirewallEnabled" data-uid="DMediatR.CertificateOptions.RenewFirewallEnabled">
   RenewFirewallEnabled
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/CertificateOptions.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/CertificateOptions.cs/#L54"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Defaults to True. If the firewall is explicitly disabled, any node
-on the network can publish two
-RenewIntermediateCertificateNotification messages in a row to bring
-down the entire network, which may not be desirable. Chicago-style
-functional unit tests are one use case for disabling the firewall.
-Another one might be, in a highly trusted scenario, some kind of
-intrusion detection on a remote node  that declares the entire
-network to be potentially compromised and thus requiring manual
-recertification.</p>
+on the network can publish two RenewRootCertificateNotification
+messages in a row to bring down the entire network, which may not be
+desirable.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 

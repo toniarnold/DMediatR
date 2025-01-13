@@ -435,6 +435,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "docs/misc.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/misc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "docs/ping-pong-bing.md",
       "output": {
         ".html": {

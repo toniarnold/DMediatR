@@ -1449,13 +1449,13 @@ references:
   fullName: DMediatR.TestSetUp.DeployCertificate
   nameWithType: TestSetUp.DeployCertificate
 - uid: DMediatR.TestSetUp.GetConfiguration(System.String)
-  name: GetConfiguration(string?)
+  name: GetConfiguration(string)
   href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_GetConfiguration_System_String_
   commentId: M:DMediatR.TestSetUp.GetConfiguration(System.String)
   name.vb: GetConfiguration(String)
-  fullName: DMediatR.TestSetUp.GetConfiguration(string?)
+  fullName: DMediatR.TestSetUp.GetConfiguration(string)
   fullName.vb: DMediatR.TestSetUp.GetConfiguration(String)
-  nameWithType: TestSetUp.GetConfiguration(string?)
+  nameWithType: TestSetUp.GetConfiguration(string)
   nameWithType.vb: TestSetUp.GetConfiguration(String)
 - uid: DMediatR.TestSetUp.GetConfiguration*
   name: GetConfiguration
@@ -1522,15 +1522,15 @@ references:
   isSpec: "True"
   fullName: DMediatR.TestSetUp.ServiceProvider
   nameWithType: TestSetUp.ServiceProvider
-- uid: DMediatR.TestSetUp.SetUpDMediatRServices(System.String,System.Func{Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.DependencyInjection.IServiceCollection})
-  name: SetUpDMediatRServices(string?, Func<IServiceCollection, IServiceCollection>?)
-  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_SetUpDMediatRServices_System_String_System_Func_Microsoft_Extensions_DependencyInjection_IServiceCollection_Microsoft_Extensions_DependencyInjection_IServiceCollection__
-  commentId: M:DMediatR.TestSetUp.SetUpDMediatRServices(System.String,System.Func{Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.DependencyInjection.IServiceCollection})
-  name.vb: SetUpDMediatRServices(String, Func(Of IServiceCollection, IServiceCollection))
-  fullName: DMediatR.TestSetUp.SetUpDMediatRServices(string?, System.Func<Microsoft.Extensions.DependencyInjection.IServiceCollection, Microsoft.Extensions.DependencyInjection.IServiceCollection>?)
-  fullName.vb: DMediatR.TestSetUp.SetUpDMediatRServices(String, System.Func(Of Microsoft.Extensions.DependencyInjection.IServiceCollection, Microsoft.Extensions.DependencyInjection.IServiceCollection))
-  nameWithType: TestSetUp.SetUpDMediatRServices(string?, Func<IServiceCollection, IServiceCollection>?)
-  nameWithType.vb: TestSetUp.SetUpDMediatRServices(String, Func(Of IServiceCollection, IServiceCollection))
+- uid: DMediatR.TestSetUp.SetUpDMediatRServices(System.String,System.Action{Microsoft.Extensions.DependencyInjection.MediatRServiceConfiguration},System.Func{Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.DependencyInjection.IServiceCollection})
+  name: SetUpDMediatRServices(string?, Action<MediatRServiceConfiguration>, Func<IServiceCollection, IServiceCollection>?)
+  href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_SetUpDMediatRServices_System_String_System_Action_Microsoft_Extensions_DependencyInjection_MediatRServiceConfiguration__System_Func_Microsoft_Extensions_DependencyInjection_IServiceCollection_Microsoft_Extensions_DependencyInjection_IServiceCollection__
+  commentId: M:DMediatR.TestSetUp.SetUpDMediatRServices(System.String,System.Action{Microsoft.Extensions.DependencyInjection.MediatRServiceConfiguration},System.Func{Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.DependencyInjection.IServiceCollection})
+  name.vb: SetUpDMediatRServices(String, Action(Of MediatRServiceConfiguration), Func(Of IServiceCollection, IServiceCollection))
+  fullName: DMediatR.TestSetUp.SetUpDMediatRServices(string?, System.Action<Microsoft.Extensions.DependencyInjection.MediatRServiceConfiguration>, System.Func<Microsoft.Extensions.DependencyInjection.IServiceCollection, Microsoft.Extensions.DependencyInjection.IServiceCollection>?)
+  fullName.vb: DMediatR.TestSetUp.SetUpDMediatRServices(String, System.Action(Of Microsoft.Extensions.DependencyInjection.MediatRServiceConfiguration), System.Func(Of Microsoft.Extensions.DependencyInjection.IServiceCollection, Microsoft.Extensions.DependencyInjection.IServiceCollection))
+  nameWithType: TestSetUp.SetUpDMediatRServices(string?, Action<MediatRServiceConfiguration>, Func<IServiceCollection, IServiceCollection>?)
+  nameWithType.vb: TestSetUp.SetUpDMediatRServices(String, Action(Of MediatRServiceConfiguration), Func(Of IServiceCollection, IServiceCollection))
 - uid: DMediatR.TestSetUp.SetUpDMediatRServices*
   name: SetUpDMediatRServices
   href: api/DMediatR.TestSetUp.html#DMediatR_TestSetUp_SetUpDMediatRServices_

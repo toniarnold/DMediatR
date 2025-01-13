@@ -7,12 +7,12 @@ namespace DMediatR
     {
         private readonly Remote _remote;
 
+        public Remote Remote => _remote;
+
         public PingHandlerRemote(Remote remote, IServiceProvider serviceProvider, ILogger<PingHandlerRemote> logger) : base(serviceProvider, logger)
         {
             _remote = remote;
         }
-
-        public Remote Remote => _remote;
 
         public override async Task<Pong> Handle(Ping request, CancellationToken cancellationToken)
         {

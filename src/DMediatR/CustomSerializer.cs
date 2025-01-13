@@ -55,7 +55,7 @@
             }
             throw new ArgumentException(
                $"""
-                {Type.Name} serializer used for type {givenType.Name}. Register the custom serializer exclusively with
+                {Type.Name} CustomSerializer used for type {givenType.Name}. Register the custom serializer exclusively with
                 services.AddKeyedSingleton<ISerializer, {this.GetType().Name}>({this.GetType().Name}.Type);
                 """);
         }

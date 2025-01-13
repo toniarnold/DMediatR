@@ -44,5 +44,8 @@
     <None Include="docs\ping-pong-bing.md">
       <Filter>DocFX\docs</Filter>
     </None>
+    <None Include="docs\misc.md">
+      <Filter>DocFX\docs</Filter>
+    </None>
   </ItemGroup>
 </Project>

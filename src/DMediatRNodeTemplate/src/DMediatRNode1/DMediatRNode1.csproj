@@ -9,4 +9,9 @@
   <ItemGroup>
     <PackageReference Include="DMediatR" Version="0.0.1-alpha-4" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="MediatR" />
+    <Using Include="DMediatR" />
+  </ItemGroup>
 </Project>

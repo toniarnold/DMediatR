@@ -32,7 +32,7 @@
         /// finally must be released by the caller.</returns>
         public static async Task<bool> Lock(this ILock message, SemaphoreSlim semaphore, CancellationToken cancellationToken)
         {
-            if (message.HasLocked.Add(semaphore)) // acquire the first lock
+            if (message.HasLocked!.Add(semaphore)) // acquire the first lock
             {
                 await semaphore.WaitAsync(cancellationToken);
                 return true;

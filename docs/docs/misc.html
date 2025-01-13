@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Misc | DMediatR </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Misc | DMediatR ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/toniarnold/DMediatR/blob/main/doc/docs/misc.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="DMediatR">
+            DMediatR
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="misc">Misc</h1>
+
+<h2 id="lock-async-reentrant-locking">Lock: async reentrant locking</h2>
+<p>DMEdiatR's certificate generation operates on a single external resource: the
+<code>cert</code> folder on the filesystem. During an operation, concurring certificate
+requests are blocked from access with a <code>SemaphoreSlim.WaitAsync()</code>.</p>
+<p>As certificate requests of different kind are implemented recursively in
+DMediatR, a recursive request hitting the lock would cause a deadlock. To avoid
+that, the locking messages carry with them a <code>HasLocked</code> set of locked
+<code>SemaphoreSlim</code> instances to avoid attempting to lock it twice..</p>
+<p>The <code>ILock</code> extension encapsulates that logic. Its simplest form e.g. in the
+<code>RootCertificateRequest</code> handler of the <code>RootCertificateProvider</code> acquires the
+lock and releases it only if it was acquired before:</p>
+<pre><code class="lang-csharp" name="RootCertificateProvider.cs" highlight-lines="1,6">var locked = await request.Lock(_fileLock, cancellationToken);
+try
+{
+    return await RequestCertificate(request, cancellationToken);
+}
+finally { if (locked) _fileLock.Release(); }
+</code></pre>
+<p>But the <code>RenewRootCertificateNotification</code> causes the dependent certificates to
+be renewed, too. This entails recursively publishing subsequent messages
+through <code>MediatR</code>. The <code>HasLocked</code> property has to be carried along manually, as
+in the <code>RenewRootCertificateNotification</code> handler:</p>
+<pre><code class="lang-csharp" name="RootCertificateProvider.cs" highlight-lines="7,13">var locked = await notification.Lock(_fileLock, cancellationToken);
+try
+{
+    if (File.Exists(FileNamePfx))
+    {
+        _logger.LogDebug(&quot;{notification}: renew existing certificate&quot;, notification.GetType().Name);
+        var newcert = Generate(new RootCertificateRequest() { Renew = true, HasLocked = notification.HasLocked });
+        await Save(newcert, cancellationToken);
+
+        // Only renewing the root certificate would leave the system
+        // in an inconsistent state, thus transitively renew the
+        // dependent child certificates immediately.
+        await Remote.Mediator.Publish(new RenewIntermediateCertificateNotification() { HasLocked = notification.HasLocked }, cancellationToken);
+    }
+}
+finally { if (locked) _fileLock.Release(); }
+</code></pre>
+<p>Unexpected deadlocks are often caused by not handling down the <code>HasLocked</code>
+property.</p>
+<h2 id="remote-certificate-renewal-firewall">Remote certificate renewal firewall</h2>
+<p>There is an optional <code>RenewFirewallEnabled</code> setting in the <code>Certificate</code> section
+of the DMediatR configuration which defaults to <code>True</code>. If the firewall is
+explicitly disabled, any node on the network can publish two
+RenewRootCertificateNotification messages in a row to bring down the entire
+network, which may not be desirable. Chicago-style functional unit testing is one
+use case for disabling the firewall. Another one might be, in a highly trusted
+IoT scenario, some kind of intrusion detection on a remote node  that declares
+the entire network to be potentially compromised and thus requiring manual
+recertification.</p>
+<p>It would have been security by obscurity to just hide the recertification
+messages as internal: Any malicious client can construct a serialized
+(supposedly) internal-only object which the target node will happily deserialize
+and execute. This was the reason for not hiding these messages, but making them
+public along with the aforementioned firewall.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/toniarnold/DMediatR/blob/main/doc/docs/misc.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
