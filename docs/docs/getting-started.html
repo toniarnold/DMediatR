@@ -97,10 +97,10 @@ its nuget.org page. Then, in an empty folder, create the solution e.g. with the 
 <pre><code class="lang-plaintext">cert/            ← Directory for the generated X509 certificates
 src/Grpc/        ← DMediatR gRPC node project
 test/Grpc.Test/  ← Integration tests for above project
-Grpc.sln         ← Solution file for VS 202
+Grpc.sln         ← Solution file for VS 2022
 README.md
-start.ps1        ← PowerShell script for starting up gRPC nodes       
-test.ps1         ← PowerShell for running tests
+start.ps1        ← Script for starting up gRPC nodes by launchSettings profile names
+test.ps1         ← Script for running a test by NUnit Test Selection Language
 </code></pre>
 <p>Open and build the solution. Open the Test-Explorer<a id="fnref:2" href="#fn:2" class="footnote-ref"><sup>2</sup></a> and run all
 tests. Several .NET process windows will pop up and disappear quickly.</p>

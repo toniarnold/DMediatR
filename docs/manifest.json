@@ -82,6 +82,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.GrpcOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.GrpcOptions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/DMediatR.GrpcPort.yml",
       "output": {
         ".html": {

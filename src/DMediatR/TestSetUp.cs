@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Security;
@@ -136,6 +137,8 @@ namespace DMediatR
             sc.AddDMediatR(cfg, mediatrCfg);
             serviceCollectionAction?.Invoke(sc);
             ServiceProvider = sc.BuildServiceProvider();
+            // Implicitly sets static properties as MessagePackCompression
+            var _ = ServiceProvider!.GetRequiredService<IOptions<GrpcOptions>>().Value;
         }
 
         public static IConfiguration GetConfiguration(string environment)

@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class CorrelatedNotification | DMediatR </title>
+      <title>Class GrpcOptions | DMediatR </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class CorrelatedNotification | DMediatR ">
+      <meta name="title" content="Class GrpcOptions | DMediatR ">
       
-      <meta name="description" content="Static configuration of ICorrelatedNotification for extreme workload patterns.">
+      <meta name="description" content="Optional gRPC configuration Facade aligning client and server configuration with single values.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/toniarnold/DMediatR/new/main/apiSpec/new?filename=DMediatR_CorrelatedNotification.md&amp;value=---%0Auid%3A%20DMediatR.CorrelatedNotification%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/toniarnold/DMediatR/new/main/apiSpec/new?filename=DMediatR_GrpcOptions.md&amp;value=---%0Auid%3A%20DMediatR.GrpcOptions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,12 +84,12 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="DMediatR.CorrelatedNotification">
+        <article data-uid="DMediatR.GrpcOptions">
 
 
 
-  <h1 id="DMediatR_CorrelatedNotification" data-uid="DMediatR.CorrelatedNotification" class="text-break">
-Class CorrelatedNotification  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/ICorrelatedNotification.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  <h1 id="DMediatR_GrpcOptions" data-uid="DMediatR.GrpcOptions" class="text-break">
+Class GrpcOptions  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,12 +97,13 @@ Class CorrelatedNotification  <a class="header-action link-secondary" title="Vie
   <dl><dt>Assembly</dt><dd>DMediatR.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Static configuration of ICorrelatedNotification for extreme workload patterns.</p>
+  <div class="markdown summary"><p>Optional gRPC configuration Facade aligning client and server
+configuration with single values.</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class CorrelatedNotification</code></pre>
+    <pre><code class="lang-csharp hljs">public class GrpcOptions</code></pre>
   </div>
 
 
@@ -112,7 +113,7 @@ Class CorrelatedNotification  <a class="header-action link-secondary" title="Vie
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><span class="xref">CorrelatedNotification</span></div>
+      <div><span class="xref">GrpcOptions</span></div>
     </dd>
   </dl>
 
@@ -149,28 +150,57 @@ Class CorrelatedNotification  <a class="header-action link-secondary" title="Vie
 
 
 
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="DMediatR_GrpcOptions_SectionName" data-uid="DMediatR.GrpcOptions.SectionName">
+  SectionName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string SectionName = &quot;DMediatR:Grpc&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
   <h2 class="section" id="properties">Properties
 </h2>
 
 
-  <a id="DMediatR_CorrelatedNotification_MaxLatency_" data-uid="DMediatR.CorrelatedNotification.MaxLatency*"></a>
+  <a id="DMediatR_GrpcOptions_EnableDetailedErrors_" data-uid="DMediatR.GrpcOptions.EnableDetailedErrors*"></a>
 
-  <h3 id="DMediatR_CorrelatedNotification_MaxLatency" data-uid="DMediatR.CorrelatedNotification.MaxLatency">
-  MaxLatency
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/ICorrelatedNotification.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <h3 id="DMediatR_GrpcOptions_EnableDetailedErrors" data-uid="DMediatR.GrpcOptions.EnableDetailedErrors">
+  EnableDetailedErrors
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Duration the CorrelationGuid should stay in the cache. Required to
-prevent it from indefinitely growing. Afterwards, received duplicate
-copies of a notifications can no more be correlated and thus
-ignored. Defaults to 1 day, but can be adjusted to specific
-workloads programmatically here or via appsettings.json in the
-section DMediatR:Grpc:MaxLatency in TimeSpan.Parse() format.</p>
+  <div class="markdown level1 summary"><p>GrpcServiceOptions.EnableDetailedErrors</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static TimeSpan MaxLatency { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool? EnableDetailedErrors { get; set; }</code></pre>
   </div>
 
 
@@ -179,7 +209,110 @@ section DMediatR:Grpc:MaxLatency in TimeSpan.Parse() format.</p>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="DMediatR_GrpcOptions_MaxLatency_" data-uid="DMediatR.GrpcOptions.MaxLatency*"></a>
+
+  <h3 id="DMediatR_GrpcOptions_MaxLatency" data-uid="DMediatR.GrpcOptions.MaxLatency">
+  MaxLatency
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Proxy for static CorrelatedNotification.MaxLatency</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TimeSpan? MaxLatency { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timespan">TimeSpan</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="DMediatR_GrpcOptions_MaxMessageSize_" data-uid="DMediatR.GrpcOptions.MaxMessageSize*"></a>
+
+  <h3 id="DMediatR_GrpcOptions_MaxMessageSize" data-uid="DMediatR.GrpcOptions.MaxMessageSize">
+  MaxMessageSize
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Aligns
+GrpcServiceOptions.MaxReceiveMessageSize
+GrpcServiceOptions.MaxSendMessageSize
+GrpcChannelOptions.MaxReceiveMessageSize
+GrpcChannelOptions.MaxSendMessageSize</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int? MaxMessageSize { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="DMediatR_GrpcOptions_MessagePackCompression_" data-uid="DMediatR.GrpcOptions.MessagePackCompression*"></a>
+
+  <h3 id="DMediatR_GrpcOptions_MessagePackCompression" data-uid="DMediatR.GrpcOptions.MessagePackCompression">
+  MessagePackCompression
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Proxy for static MessagePack.MessagePackCompression. Ensure that all
+clients and servers are configured for compression or omit it on all
+nodes to avoid a MessagePackSerializationException. Enum values:
+None|Lz4Block|Lz4BlockArray</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static MessagePackCompression? MessagePackCompression { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">MessagePackCompression</span>?</dt>
     <dd></dd>
   </dl>
 
@@ -194,7 +327,7 @@ section DMediatR:Grpc:MaxLatency in TimeSpan.Parse() format.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/ICorrelatedNotification.cs/#L22" class="edit-link">Edit this page</a>
+          <a href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L11" class="edit-link">Edit this page</a>
         </div>
 
 

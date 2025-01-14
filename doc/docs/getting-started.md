@@ -16,10 +16,10 @@ This template creates the following directory structure:
 cert/            ← Directory for the generated X509 certificates
 src/Grpc/        ← DMediatR gRPC node project
 test/Grpc.Test/  ← Integration tests for above project
-Grpc.sln         ← Solution file for VS 202
+Grpc.sln         ← Solution file for VS 2022
 README.md
-start.ps1        ← PowerShell script for starting up gRPC nodes       
-test.ps1         ← PowerShell for running tests
+start.ps1        ← Script for starting up gRPC nodes by launchSettings profile names
+test.ps1         ← Script for running a test by NUnit Test Selection Language
 ```
 
 Open and build the solution. Open the Test-Explorer[^explorer] and run all

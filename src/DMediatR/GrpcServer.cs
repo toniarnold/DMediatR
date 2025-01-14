@@ -61,7 +61,9 @@ namespace DMediatR
             builder.Services.AddDMediatR(builder.Configuration);
 
             // Grpc
-            builder.Services.AddCodeFirstGrpc();
+            var sp = builder.Services.BuildServiceProvider();
+            var grpcOptions = sp.GetRequiredService<IOptions<GrpcOptions>>().Value; // implicitly sets the static properties
+            builder.Services.AddCodeFirstGrpc(grpcOptions.AssignOptions);
 
             builder.Services.AddAuthentication(
                 CertificateAuthenticationDefaults.AuthenticationScheme)
@@ -131,18 +133,19 @@ namespace DMediatR
         {
             var app = builder.Build();
             app.UseAuthentication();
+            var grpcOptions = app.Services.GetRequiredService<IOptions<GrpcOptions>>().Value;
             app.MapGrpcService<DtoService>();
-            var options = app.Services.GetRequiredService<IOptions<HostOptions>>().Value;
-            options.GrpcPort = usePort;
+            var hostOptions = app.Services.GetRequiredService<IOptions<HostOptions>>().Value;
+            hostOptions.GrpcPort = usePort;
             switch (usePort)
             {
                 default:
                 case GrpcPort.UseDefault:
-                    app.Urls.Add(options.Address);
+                    app.Urls.Add(hostOptions.Address);
                     break;
 
                 case GrpcPort.UseRenew:
-                    app.Urls.Add(options.OldAddress);
+                    app.Urls.Add(hostOptions.OldAddress);
                     break;
             }
             _logger = app.Services.GetRequiredService<ILogger<X509Chain>>();

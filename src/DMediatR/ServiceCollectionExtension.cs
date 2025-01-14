@@ -39,6 +39,7 @@ namespace DMediatR
             services.TryAddSingleton<IValidateOptions<PasswordOptions>, ValidatePasswordOptions>();
             services.Configure<RemotesOptions>(config.GetSection(RemotesOptions.SectionName));
             services.TryAddSingleton<IValidateOptions<RemotesOptions>, ValidateRemotesOptions>();
+            services.Configure<GrpcOptions>(config.GetSection(GrpcOptions.SectionName));
 
             // MediatR
             services.AddMediatR(cfg =>
