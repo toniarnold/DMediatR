@@ -15,20 +15,4 @@
         /// </summary>
         Guid CorrelationGuid { get; init; }
     }
-
-    /// <summary>
-    /// Static configuration of ICorrelatedNotification for extreme workload patterns.
-    /// </summary>
-    public static class CorrelatedNotification
-    {
-        /// <summary>
-        /// Duration the CorrelationGuid should stay in the cache. Required to
-        /// prevent it from indefinitely growing. Afterwards, received duplicate
-        /// copies of a notifications can no more be correlated and thus
-        /// ignored. Defaults to 1 day, but can be adjusted to specific
-        /// workloads programmatically here or via appsettings.json in the
-        /// section DMediatR:Grpc:MaxLatency in TimeSpan.Parse() format.
-        /// </summary>
-        public static TimeSpan MaxLatency { get; set; } = new(1, 0, 0, 0);
-    }
 }

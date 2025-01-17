@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ByteSize" Version="2.1.2" />
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
     <PackageReference Include="Extensions.Logging.NUnit" Version="1.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
@@ -32,7 +33,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="appsettings - Kopieren.RemotePing.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DependentUpon>appsettings.json</DependentUpon>
+    </None>
     <None Update="appsettings.RemoteAllCerts.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DependentUpon>appsettings.json</DependentUpon>
+    </None>
+    <None Update="appsettings.RemotePingLz4.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>appsettings.json</DependentUpon>
     </None>

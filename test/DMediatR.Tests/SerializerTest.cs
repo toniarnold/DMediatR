@@ -138,8 +138,8 @@ namespace DMediatR.Tests
         public void SerializedInterfaceWrongTypeThrows()
         {
             var serializedInterface = new ILockISerializedInterface();
-            //serializedInterface.PreSerialize(new object());
-            Assert.That(() => serializedInterface.PreSerialize(new object()),
+            //serializedInterface.Dehydrate(new object());
+            Assert.That(() => serializedInterface.Dehydrate(new object()),
                 Throws.TypeOf<ArgumentException>());
         }
     }

@@ -4,7 +4,7 @@
 
 To get started quickly, install the current DMediatRNodeTemplate[^template]
 NuGet template with the .NET CLI command with the exact preview version shown on
-its nuget.org page. Then, in an empty folder, create the solution e.g. with the name:
+its webpage. Then, in an empty folder, create the solution e.g. with the name:
 
 ```ps
 dotnet new  DMediatRNode -n Grpc

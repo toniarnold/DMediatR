@@ -36,7 +36,7 @@ namespace DMediatR
 
         public byte[] Serialize(object obj)
         {
-            PreSerialize(obj);
+            Dehydrate(obj);
             return Serialize(obj.GetType(), obj);
         }
 
@@ -53,25 +53,25 @@ namespace DMediatR
         public virtual object Deserialize(Type type, byte[] bytes)
         {
             var obj = _typedSerializer.Deserialize(type, bytes);
-            PostDeserialize(obj);
+            Rehydrate(obj);
             return (dynamic)obj!;
         }
 
-        private void PreSerialize(object obj)
+        private void Dehydrate(object obj)
         {
             foreach (var @interface in obj.GetType().GetInterfaces())
             {
                 var processorFor = GetSerializedInterface(@interface);
-                processorFor?.PreSerialize(obj);
+                processorFor?.Dehydrate(obj);
             }
         }
 
-        private void PostDeserialize(object obj)
+        private void Rehydrate(object obj)
         {
             foreach (var @interface in obj.GetType().GetInterfaces())
             {
                 var processorFor = GetSerializedInterface(@interface);
-                processorFor?.PostDeserialize(obj);
+                processorFor?.Rehydrate(obj);
             }
         }
 

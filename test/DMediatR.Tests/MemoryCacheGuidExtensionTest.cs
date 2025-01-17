@@ -31,12 +31,13 @@ namespace DMediatR.Tests
             var cache = _serviceProvider.GetRequiredService<IMemoryCache>();
             var guid1 = Guid.NewGuid();
             var guid2 = Guid.NewGuid();
-            Assert.That(cache.HaveSeen(guid1), Is.False);
-            Assert.That(cache.HaveSeen(guid2), Is.False);
+            var latency = new TimeSpan(1, 0, 0, 0, 0);
+            Assert.That(cache.HaveSeen(guid1, latency), Is.False);
+            Assert.That(cache.HaveSeen(guid2, latency), Is.False);
 
             // Solely querying HaveSeen adds it to the cache:
-            Assert.That(cache.HaveSeen(guid1), Is.True);
-            Assert.That(cache.HaveSeen(guid2), Is.True);
+            Assert.That(cache.HaveSeen(guid1, latency), Is.True);
+            Assert.That(cache.HaveSeen(guid2, latency), Is.True);
         }
     }
 }

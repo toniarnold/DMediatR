@@ -8,7 +8,7 @@ namespace DMediatR
     /// </summary>
     public interface IGrpcChannelPool : IDisposable
     {
-        GrpcChannel ForAddress(string address, HttpClientHandler handler);
+        GrpcChannel ForAddress(string address, GrpcChannelOptions options, HttpClientHandler handler);
 
         bool Remove(string address);
     }
@@ -20,13 +20,13 @@ namespace DMediatR
     {
         private readonly ConcurrentDictionary<string, GrpcChannel> _channelCache = new();
 
-        public GrpcChannel ForAddress(string address, HttpClientHandler handler)
+        public GrpcChannel ForAddress(string address, GrpcChannelOptions options, HttpClientHandler handler)
         {
             var channel = _channelCache.AddOrUpdate<HttpMessageHandler>(address,
                 (address, handler) => // addValueFactory
                 {
-                    return GrpcChannel.ForAddress(address,
-                         new GrpcChannelOptions { HttpHandler = handler });
+                    options.HttpHandler = handler;
+                    return GrpcChannel.ForAddress(address, options);
                 },
                 (address, channel, handler) => // updateValueFactory
                 {

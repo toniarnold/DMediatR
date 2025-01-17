@@ -14,17 +14,20 @@ namespace DMediatR
         private readonly ISerializer _serializer;
         private readonly IMemoryCache _cache;
         private readonly CertificateOptions _certOptions;
+        private readonly GrpcOptions _grpcOptions;
 
         public DtoService(
             IMediator mediator,
             ISerializer serializer,
             IMemoryCache cache,
-            IOptions<CertificateOptions> certOptions)
+            IOptions<CertificateOptions> certOptions,
+            IOptions<GrpcOptions> grpcOptions)
         {
             _mediator = mediator;
             _serializer = serializer;
             _cache = cache;
             _certOptions = certOptions.Value;
+            _grpcOptions = grpcOptions.Value;
         }
 
         /// <summary>
@@ -68,7 +71,7 @@ namespace DMediatR
                 throw new ArgumentException($"Expected ICorrelatedNotification, but got {notification.GetType()}");
             }
             if (!(notification is RenewNotification && _certOptions.RenewFirewallEnabled) &&
-               (!_cache.HaveSeen(((ICorrelatedNotification)notification).CorrelationGuid)))
+               (!_cache.HaveSeen(((ICorrelatedNotification)notification).CorrelationGuid, _grpcOptions.MaxLatency)))
             {
                 await _mediator.Publish(notification);
             }

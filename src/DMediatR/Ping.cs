@@ -5,6 +5,11 @@
     /// </summary>
     public class Ping : SerializationCountMessage, IRequest<Pong>
     {
+        /// <summary>
+        /// Payload for performance testing.
+        /// </summary>
+        public byte[] Payload { get; set; } = [];
+
         public Ping()
         {
         }

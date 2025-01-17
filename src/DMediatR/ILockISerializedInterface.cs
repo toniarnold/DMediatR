@@ -2,14 +2,14 @@
 {
     public class ILockISerializedInterface : SerializedInterface<ILock>
     {
-        protected override void PreSerialize(ILock obj)
+        protected override void Dehydrate(ILock obj)
         {
-            obj.HasLocked = null; // dehydrate as SemaphoreSlim is not serializable
+            obj.HasLocked = null; // SemaphoreSlim is not serializable
         }
 
-        protected override void PostDeserialize(ILock obj)
+        protected override void Rehydrate(ILock obj)
         {
-            obj.HasLocked = []; // rehydrate
+            obj.HasLocked = [];
         }
     }
 }

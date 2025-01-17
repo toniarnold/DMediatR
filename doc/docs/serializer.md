@@ -51,7 +51,7 @@ require e.g. specific members which must be dehydrated before serialization for
 each interface implemented. 
 
 The `ILockSerializedInterface` is defined for the
-interface `ILock` and overrides the two `PreSerialize`/`PostDeserialize` hooks
+interface `ILock` and overrides the two `Dehydrate`/`Rehydrate` hooks
 called by the general `Serializer` class:
 
 [!code-csharp[ILockISerializedInterface.cs](../../src/DMediatR/ILockISerializedInterface.cs)]

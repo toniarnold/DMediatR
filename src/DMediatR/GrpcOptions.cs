@@ -1,6 +1,7 @@
 ﻿using Grpc.AspNetCore.Server;
 using Grpc.Net.Client;
 using MessagePack;
+using System.IO.Compression;
 
 namespace DMediatR
 {
@@ -27,14 +28,24 @@ namespace DMediatR
         public int? MaxMessageSize { get; set; }
 
         /// <summary>
-        /// Proxy for static CorrelatedNotification.MaxLatency
+        /// Duration the CorrelationGuid of a ICorrelatedNotification should
+        /// stay in the cache. Required to prevent it from indefinitely growing.
+        /// Afterwards, received duplicate copies of a notifications can no more
+        /// be correlated and thus ignored. Defaults to 1 day, but can be
+        /// adjusted to specific workloads here.
         /// </summary>
+        public TimeSpan? MaxLatency { get; set; }
 
-        public static TimeSpan? MaxLatency
-        {
-            get { return CorrelatedNotification.MaxLatency; }
-            set { if (value != null) CorrelatedNotification.MaxLatency = (TimeSpan)value; }
-        }
+        /// <summary>
+        /// Header grpc-accept-encoding compression algorithm natively
+        /// supported: gzip
+        /// </summary>
+        public string? ResponseCompressionAlgorithm { get; set; }
+
+        /// <summary>
+        /// The compress level used to compress messages sent from the server.
+        /// </summary>
+        public CompressionLevel? ResponseCompressionLevel { get; set; }
 
         /// <summary>
         /// Proxy for static MessagePack.MessagePackCompression. Ensure that all
@@ -42,7 +53,6 @@ namespace DMediatR
         /// nodes to avoid a MessagePackSerializationException. Enum values:
         /// None|Lz4Block|Lz4BlockArray
         /// </summary>
-
         public static MessagePackCompression? MessagePackCompression
         {
             get { return MessagePackSerializer.Typeless.DefaultOptions.Compression; }
@@ -62,42 +72,41 @@ namespace DMediatR
         }
 
         /// <summary>
-        /// AddCodeFirstGrpc exposes configuration as
+        /// GrpcChannel.ForAddress expects a GrpcChannelOptions object for
+        /// configuration. Configure it if MaxMessageSize is set.
+        /// </summary>
+        /// <returns>Configured GrpcChannelOptions object</returns>
+        internal GrpcChannelOptions GrpcChannelOptions
+        {
+            get
+            {
+                var options = new GrpcChannelOptions();
+                if (MaxMessageSize != null)
+                {
+                    options.MaxSendMessageSize = MaxMessageSize;
+                    options.MaxReceiveMessageSize = MaxMessageSize;
+                }
+                return options;
+            }
+        }
+
+        /// <summary>
+        /// AddCodeFirstGrpc exposes the configuration as
         /// Action<GrpcServiceOptions>. Setting null for *MessageSize properties
-        /// of GrpcServiceOptions is not exactly side-effect-free, thus only
-        /// assign when not null.
+        /// of GrpcServiceOptions also sets _maxSendMessageSizeConfigured, thus
+        /// only assign them when not null.
         /// </summary>
         /// <param name="serverOptions"></param>
         internal void AssignOptions(GrpcServiceOptions serverOptions)
         {
-            if (EnableDetailedErrors != null) serverOptions.EnableDetailedErrors = EnableDetailedErrors;
             if (MaxMessageSize != null)
             {
                 serverOptions.MaxSendMessageSize = MaxMessageSize;
                 serverOptions.MaxReceiveMessageSize = MaxMessageSize;
             }
-        }
-
-        /// <summary>
-        /// GrpcChannel.ForAddress expects a GrpcChannelOptions object for
-        /// configuration. Configure it if MaxMessageSize is set.
-        /// </summary>
-        /// <returns>Configured GrpcChannelOptions object</returns>
-        internal GrpcChannelOptions GetGrpcChannelOptions()
-        {
-            var options = new GrpcChannelOptions();
-            if (MaxMessageSize != null)
-            {
-                options.MaxSendMessageSize = MaxMessageSize;
-                options.MaxReceiveMessageSize = MaxMessageSize;
-
-                if (options.MaxRetryAttempts != null)
-                {
-                    options.MaxRetryBufferPerCallSize = MaxMessageSize;
-                    options.MaxRetryBufferPerCallSize = options.MaxRetryAttempts * MaxMessageSize;
-                }
-            }
-            return options;
+            serverOptions.EnableDetailedErrors = EnableDetailedErrors;
+            serverOptions.ResponseCompressionAlgorithm = ResponseCompressionAlgorithm;
+            serverOptions.ResponseCompressionLevel = ResponseCompressionLevel;
         }
     }
 }

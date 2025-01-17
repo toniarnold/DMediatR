@@ -6,9 +6,9 @@
     /// </summary>
     public interface ISerializedInterface
     {
-        public void PreSerialize(object obj);
+        public void Dehydrate(object obj);
 
-        public void PostDeserialize(object obj);
+        public void Rehydrate(object obj);
     }
 
     /// <summary>
@@ -20,23 +20,23 @@
     /// <typeparam name="T"></typeparam>
     public abstract class SerializedInterface<T> : ISerializedInterface
     {
-        public void PreSerialize(object obj)
+        public void Dehydrate(object obj)
         {
             CheckType(obj);
-            PreSerialize((T)obj);
+            Dehydrate((T)obj);
         }
 
-        public void PostDeserialize(object obj)
+        public void Rehydrate(object obj)
         {
             CheckType(obj);
-            PostDeserialize((T)obj);
+            Rehydrate((T)obj);
         }
 
-        protected virtual void PreSerialize(T obj)
+        protected virtual void Dehydrate(T obj)
         {
         }
 
-        protected virtual void PostDeserialize(T obj)
+        protected virtual void Rehydrate(T obj)
         {
         }
 

@@ -20,6 +20,7 @@ namespace DMediatR
         private readonly IServiceProvider _serviceProvider;
         private readonly CertificateOptions _certOptions;
         private readonly RemotesOptions _remotes;
+        private readonly GrpcOptions _grpcOptions;
         private readonly IMediator _mediator;
         private readonly ISerializer _serializer;
         private readonly IGrpcChannelPool _grpcChannelProvider;
@@ -29,6 +30,7 @@ namespace DMediatR
             IServiceProvider serviceProvider,
             IOptions<CertificateOptions> certOptions,
             IOptions<RemotesOptions> remotesOptions,
+            IOptions<GrpcOptions> grpcOptions,
             IMediator mediator,
             ISerializer serializer,
             IGrpcChannelPool channel,
@@ -37,6 +39,7 @@ namespace DMediatR
             _serviceProvider = serviceProvider;
             _certOptions = certOptions.Value;
             _remotes = remotesOptions.Value;
+            _grpcOptions = grpcOptions.Value;
             _mediator = mediator;
             _serializer = serializer;
             _grpcChannelProvider = channel;
@@ -45,6 +48,7 @@ namespace DMediatR
 
         internal IServiceProvider ServiceProvider => _serviceProvider;
         internal CertificateOptions CertificateOptions => _certOptions;
+        internal GrpcOptions GrpcOptions => _grpcOptions;
         internal RemotesOptions Remotes => _remotes;
         internal IMediator Mediator => _mediator;
         internal ISerializer Serializer => _serializer;

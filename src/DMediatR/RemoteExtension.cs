@@ -1,5 +1,6 @@
 ﻿using CertificateManager;
 using Grpc.Core;
+using Grpc.Net.Client;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ProtoBuf.Grpc.Client;
@@ -48,13 +49,14 @@ namespace DMediatR
             Dto responseDto;
             var address = Remote(provider).Address;
             var oldAddress = Remote(provider).OldAddress;
+            var options = provider.Remote.GrpcOptions.GrpcChannelOptions;
             bool renew = request is CertificateRequest && ((CertificateRequest)request).Renew;
             try
             {
                 provider.Remote.Logger.LogDebug("Send {request} to {address}",
                     request.GetType().Name, address);
                 var handler = await provider.GetHttpClientHandler(renew, GrpcPort.UseDefault, hasLocked, cancellationToken);
-                var channel = provider.Remote.ChannelPool.ForAddress(address, handler);
+                var channel = provider.Remote.ChannelPool.ForAddress(address, options, handler);
                 var client = channel.CreateGrpcService<IDtoService>();
                 responseDto = await client.SendAsync(requestDto);
             }
@@ -69,11 +71,11 @@ namespace DMediatR
 
                     // Request a new client certificate through the old certificate chain.
                     var oldHandler = await provider.GetHttpClientHandler(true, GrpcPort.UseRenew, hasLocked, cancellationToken);
-                    await RenewClientCertificate(provider, oldAddress, oldHandler, cancellationToken);
+                    await RenewClientCertificate(provider, oldAddress, oldHandler, options, cancellationToken);
 
                     // Reconnect and repeat with the obtained new client certificate.
                     var handler = await provider.GetHttpClientHandler(false, GrpcPort.UseDefault, hasLocked, cancellationToken);
-                    var channel = provider.Remote.ChannelPool.ForAddress(address, oldHandler);
+                    var channel = provider.Remote.ChannelPool.ForAddress(address, options, oldHandler);
                     var client = channel.CreateGrpcService<IDtoService>();
                     responseDto = await client.SendAsync(requestDto);
                 }
@@ -128,10 +130,11 @@ namespace DMediatR
         {
             var address = remoteHost.Address;
             var oldAddress = remoteHost.OldAddress;
+            var options = provider.Remote.GrpcOptions.GrpcChannelOptions;
             try
             {
                 var handler = await provider.GetHttpClientHandler(false, GrpcPort.UseDefault, hasLocked, cancellationToken);
-                var channel = provider.Remote.ChannelPool.ForAddress(address, handler);
+                var channel = provider.Remote.ChannelPool.ForAddress(address, options, handler);
                 var client = channel.CreateGrpcService<IDtoService>();
                 await client.PublishAsync(notificationDto);
             }
@@ -146,11 +149,11 @@ namespace DMediatR
 
                     // Request a new client certificate through the old certificate chain.
                     var oldHandler = await provider.GetHttpClientHandler(true, GrpcPort.UseRenew, hasLocked, cancellationToken);
-                    await RenewClientCertificate(provider, oldAddress, oldHandler, cancellationToken);
+                    await RenewClientCertificate(provider, oldAddress, oldHandler, options, cancellationToken);
 
                     // Reconnect and repeat with the obtained new client certificate.
                     var handler = await provider.GetHttpClientHandler(false, GrpcPort.UseDefault, hasLocked, cancellationToken);
-                    var channel = provider.Remote.ChannelPool.ForAddress(address, handler);
+                    var channel = provider.Remote.ChannelPool.ForAddress(address, options, handler);
                     var client = channel.CreateGrpcService<IDtoService>();
                     await client.PublishAsync(notificationDto); ;
                 }
@@ -168,7 +171,12 @@ namespace DMediatR
 
         private static HostOptions Remote(this IRemote provider)
         {
-            var remoteName = RemoteAttribute.Name(provider.GetType())!;
+            var remoteName = RemoteAttribute.Name(provider.GetType());
+            if (remoteName == null)
+            {
+                throw new Exception(
+                    "Called SendRemote() from a class without matching [Remote(\"<Name>\")] attribute");
+            }
             return provider.Remote.Remotes[remoteName];
         }
 
@@ -198,9 +206,9 @@ namespace DMediatR
         }
 
         private static async Task RenewClientCertificate(IRemote provider,
-            string oldAddress, HttpClientHandler handler, CancellationToken cancellationToken)
+            string oldAddress, HttpClientHandler handler, GrpcChannelOptions options, CancellationToken cancellationToken)
         {
-            var oldChannel = provider.Remote.ChannelPool.ForAddress(oldAddress, handler);
+            var oldChannel = provider.Remote.ChannelPool.ForAddress(oldAddress, options, handler);
             var dtoService = oldChannel.CreateGrpcService<IDtoService>();
 
             // 1. Obtain the new client certificate and the validation intermediate certificate

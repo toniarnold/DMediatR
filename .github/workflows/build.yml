@@ -29,7 +29,7 @@ jobs:
     - name: Test the solution
       run: >
         dotnet test DMediatR.sln --configuration=Release --no-build --verbosity normal 
-        -- NUnit.Where="(cat != Integration)"
+        -- NUnit.Where="(cat != Integration) and (cat != Performance)"
       
     - name: Create .nupkg packages
       run: dotnet pack DMediatR.sln --configuration Release --no-restore -o ${{ github.workspace }}/packages

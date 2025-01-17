@@ -35,6 +35,27 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "ClientCertifier"
       }
+    },
+    "Quiet": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Quiet"
+      }
+    },
+    "Gzip": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Gzip"
+      }
+    },
+    "Lz4BlockArray": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Lz4BlockArray"
+      }
     }
   }
 }
