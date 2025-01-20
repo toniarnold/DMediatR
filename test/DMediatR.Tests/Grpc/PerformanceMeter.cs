@@ -5,38 +5,37 @@ using System.Diagnostics;
 
 namespace DMediatR.Tests.Grpc
 {
+    // <class>
     [Category("Performance")]
     [Remote("Ping")]
     public class PerformanceMeter : IRemote
-
     {
+        public Remote Remote { get; set; } = default!;
+        // </class>
+
         // Test volume configuration, set to 1/1 if the test is not run to
         // measure accurate performance numbers.
 
         /// <summary>
-        /// Duration in seconds for all three payload types for each payload
-        /// size datapoint in the [DatapointSource].
+        /// Duration in seconds for one of the three payload types for each
+        /// payload size datapoint in the [DatapointSource].
         /// </summary>
-        private const int TEST_DURATION_SECONDS = 1; // 10;
+        private const int TEST_DURATION_SECONDS = 1; // 5;
 
         /// <summary>
         /// Number of tasks to run in parallel.
         /// </summary>
-        private const int TEST_PARALLEL_TASKS = 1; // 8;
+        private const int TEST_PARALLEL_TASKS = 8;
 
         [DatapointSource]
         private int[] sizes = { 0, 1024, 1024 * 1024, 10 * 1024 * 1024 };
 
-        public Remote Remote { get; set; } = default!;
-
+        [OneTimeSetUp]
         public void SetUpInitialCertificatesStartServer()
         {
             SetUp.SetUpDMediatRServices("RemotePing");
             SetUp.SetUpInitialCertificates();
-            Remote = SetUp.ServiceProvider!.GetRequiredService<Remote>();
-
-            SetUp.StartServer("Quiet", 18007, 18008);
-            SetUp.AssertServersStarted();
+            Remote = SetUp.ServiceProvider.GetRequiredService<Remote>();
         }
 
         [TearDown]
@@ -59,10 +58,10 @@ namespace DMediatR.Tests.Grpc
         {
             SetUp.SetUpDMediatRServices("RemotePing");
             SetUp.SetUpInitialCertificates();
-            Remote = SetUp.ServiceProvider!.GetRequiredService<Remote>();
             SetUp.StartServer("Quiet", 18007, 18008);
             SetUp.AssertServersStarted();
 
+            await this.SendRemote(new Ping("Connect"), CancellationToken.None);
             var pings = new Ping[]
             {
                 new Ping { Message = "GrpcRaw Zero", Payload = GetBloatedPayload(size) },
@@ -81,10 +80,11 @@ namespace DMediatR.Tests.Grpc
         {
             SetUp.SetUpDMediatRServices("RemotePing");
             SetUp.SetUpInitialCertificates();
-            Remote = SetUp.ServiceProvider!.GetRequiredService<Remote>();
             SetUp.StartServer("Gzip", 18007, 18008);
             SetUp.AssertServersStarted();
-
+            // <sendremote>
+            await this.SendRemote(new Ping("Connect"), CancellationToken.None);
+            // </sendremote>
             var pings = new Ping[]
             {
                 new Ping { Message = "GrpcGzip Zero", Payload = GetBloatedPayload(size) },
@@ -103,10 +103,10 @@ namespace DMediatR.Tests.Grpc
         {
             SetUp.SetUpDMediatRServices("RemotePingLz4");
             SetUp.SetUpInitialCertificates();
-            Remote = SetUp.ServiceProvider!.GetRequiredService<Remote>();
             SetUp.StartServer("Lz4BlockArray", 18007, 18008);
             SetUp.AssertServersStarted();
 
+            await this.SendRemote(new Ping("Connect"), CancellationToken.None);
             var pings = new Ping[]
             {
                 new Ping { Message = "GrpcLz4 Zero", Payload = GetBloatedPayload(size) },
@@ -155,7 +155,7 @@ namespace DMediatR.Tests.Grpc
             var bytes = ByteSize.FromBytes(totalBytes);
             var bytesSec = ByteSize.FromBytes(totalBytes / elapsed.TotalSeconds);
             var pingsSec = count / elapsed.TotalSeconds;
-            TestContext.WriteLine($"{ping.Message} Data: {bytesSec}/Sec Pings: {pingsSec,0:n}/Sec");
+            TestContext.WriteLine($"{ping.Message} Data: {bytesSec}/Sec Pings: {pingsSec,0:n}/Sec Count:{count}");
         }
 
         #endregion Remote Ping
@@ -224,7 +224,7 @@ namespace DMediatR.Tests.Grpc
         }
 
         /// <summary>
-        /// Takes the a .cs source file and repeats its content until the desired size is reached.
+        /// Takes a .cs source file and repeats its content until the desired size is reached.
         /// As Lz4 recognizes the identical blocks, dirty them randomly.
         /// </summary>
         /// <param name="size"></param>

@@ -1,4 +1,4 @@
-# Ping-Pong and Bing
+﻿# Ping-Pong and Bing
 
 MediatR itself uses the classes `Ping` and `Pong`[^mediatr] as examples for
 `IRequest` request/response messages that are dispatched to a single handler. It

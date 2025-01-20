@@ -130,8 +130,8 @@ Interface IGrpcChannelPool  <a class="header-action link-secondary" title="View 
 
   <a id="DMediatR_IGrpcChannelPool_ForAddress_" data-uid="DMediatR.IGrpcChannelPool.ForAddress*"></a>
 
-  <h3 id="DMediatR_IGrpcChannelPool_ForAddress_System_String_System_Net_Http_HttpClientHandler_" data-uid="DMediatR.IGrpcChannelPool.ForAddress(System.String,System.Net.Http.HttpClientHandler)">
-  ForAddress(string, HttpClientHandler)
+  <h3 id="DMediatR_IGrpcChannelPool_ForAddress_System_String_Grpc_Net_Client_GrpcChannelOptions_System_Net_Http_HttpClientHandler_" data-uid="DMediatR.IGrpcChannelPool.ForAddress(System.String,Grpc.Net.Client.GrpcChannelOptions,System.Net.Http.HttpClientHandler)">
+  ForAddress(string, GrpcChannelOptions, HttpClientHandler)
   <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcChannelPool.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -139,12 +139,14 @@ Interface IGrpcChannelPool  <a class="header-action link-secondary" title="View 
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">GrpcChannel ForAddress(string address, HttpClientHandler handler)</code></pre>
+    <pre><code class="lang-csharp hljs">GrpcChannel ForAddress(string address, GrpcChannelOptions options, HttpClientHandler handler)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>address</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>options</code> <a class="xref" href="https://github.com/grpc/grpc-dotnet/blob/64e87a676b6aba16945f70aed3bb1c1dbbbbbad0/src/Grpc.Net.Client/GrpcChannelOptions.cs">GrpcChannelOptions</a></dt>
     <dd></dd>
     <dt><code>handler</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclienthandler">HttpClientHandler</a></dt>
     <dd></dd>

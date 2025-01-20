@@ -161,16 +161,16 @@ Class DtoService  <a class="header-action link-secondary" title="View source" hr
 
   <a id="DMediatR_DtoService__ctor_" data-uid="DMediatR.DtoService.#ctor*"></a>
 
-  <h3 id="DMediatR_DtoService__ctor_MediatR_IMediator_DMediatR_ISerializer_Microsoft_Extensions_Caching_Memory_IMemoryCache_Microsoft_Extensions_Options_IOptions_DMediatR_CertificateOptions__" data-uid="DMediatR.DtoService.#ctor(MediatR.IMediator,DMediatR.ISerializer,Microsoft.Extensions.Caching.Memory.IMemoryCache,Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions})">
-  DtoService(IMediator, ISerializer, IMemoryCache, IOptions&lt;CertificateOptions&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/DtoService.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <h3 id="DMediatR_DtoService__ctor_MediatR_IMediator_DMediatR_ISerializer_Microsoft_Extensions_Caching_Memory_IMemoryCache_Microsoft_Extensions_Options_IOptions_DMediatR_CertificateOptions__Microsoft_Extensions_Options_IOptions_DMediatR_GrpcOptions__" data-uid="DMediatR.DtoService.#ctor(MediatR.IMediator,DMediatR.ISerializer,Microsoft.Extensions.Caching.Memory.IMemoryCache,Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions},Microsoft.Extensions.Options.IOptions{DMediatR.GrpcOptions})">
+  DtoService(IMediator, ISerializer, IMemoryCache, IOptions&lt;CertificateOptions&gt;, IOptions&lt;GrpcOptions&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/DtoService.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DtoService(IMediator mediator, ISerializer serializer, IMemoryCache cache, IOptions&lt;CertificateOptions&gt; certOptions)</code></pre>
+    <pre><code class="lang-csharp hljs">public DtoService(IMediator mediator, ISerializer serializer, IMemoryCache cache, IOptions&lt;CertificateOptions&gt; certOptions, IOptions&lt;GrpcOptions&gt; grpcOptions)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -182,6 +182,8 @@ Class DtoService  <a class="header-action link-secondary" title="View source" hr
     <dt><code>cache</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.caching.memory.imemorycache">IMemoryCache</a></dt>
     <dd></dd>
     <dt><code>certOptions</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.options.ioptions-1">IOptions</a>&lt;<a class="xref" href="DMediatR.CertificateOptions.html">CertificateOptions</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>grpcOptions</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.options.ioptions-1">IOptions</a>&lt;<a class="xref" href="DMediatR.GrpcOptions.html">GrpcOptions</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -204,7 +206,7 @@ Class DtoService  <a class="header-action link-secondary" title="View source" hr
 
   <h3 id="DMediatR_DtoService_PublishAsync_DMediatR_Dto_ProtoBuf_Grpc_CallContext_" data-uid="DMediatR.DtoService.PublishAsync(DMediatR.Dto,ProtoBuf.Grpc.CallContext)">
   PublishAsync(Dto, CallContext)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/DtoService.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/DtoService.cs/#L66"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Send the deserialized notification to the local handlers including
@@ -247,7 +249,7 @@ true in CertificateOptions (default).</p>
 
   <h3 id="DMediatR_DtoService_SendAsync_DMediatR_Dto_ProtoBuf_Grpc_CallContext_" data-uid="DMediatR.DtoService.SendAsync(DMediatR.Dto,ProtoBuf.Grpc.CallContext)">
   SendAsync(Dto, CallContext)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/DtoService.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/DtoService.cs/#L39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Send the deserialized request to the local handler.</p>

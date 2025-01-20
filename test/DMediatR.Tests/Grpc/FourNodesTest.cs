@@ -66,7 +66,7 @@ namespace DMediatR.Tests.Grpc
 
         #region Given
 
-        private IMediator Mediator => SetUp.ServiceProvider!.GetRequiredService<IMediator>();
+        private IMediator Mediator => SetUp.ServiceProvider.GetRequiredService<IMediator>();
 
         /// <summary>
         /// The initial certificate chain is created on a monolith without any gRPC.

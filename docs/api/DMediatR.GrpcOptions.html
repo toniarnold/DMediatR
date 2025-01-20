@@ -89,7 +89,7 @@
 
 
   <h1 id="DMediatR_GrpcOptions" data-uid="DMediatR.GrpcOptions" class="text-break">
-Class GrpcOptions  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L11"><i class="bi bi-code-slash"></i></a>
+Class GrpcOptions  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L12"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -157,7 +157,7 @@ configuration with single values.</p>
 
   <h3 id="DMediatR_GrpcOptions_SectionName" data-uid="DMediatR.GrpcOptions.SectionName">
   SectionName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L14"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -192,7 +192,7 @@ configuration with single values.</p>
 
   <h3 id="DMediatR_GrpcOptions_EnableDetailedErrors" data-uid="DMediatR.GrpcOptions.EnableDetailedErrors">
   EnableDetailedErrors
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>GrpcServiceOptions.EnableDetailedErrors</p>
@@ -224,15 +224,19 @@ configuration with single values.</p>
 
   <h3 id="DMediatR_GrpcOptions_MaxLatency" data-uid="DMediatR.GrpcOptions.MaxLatency">
   MaxLatency
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L37"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Proxy for static CorrelatedNotification.MaxLatency</p>
+  <div class="markdown level1 summary"><p>Duration the CorrelationGuid of a ICorrelatedNotification should
+stay in the cache. Required to prevent it from indefinitely growing.
+Afterwards, received duplicate copies of a notifications can no more
+be correlated and thus ignored. Defaults to 1 day, but can be
+adjusted to specific workloads here.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static TimeSpan? MaxLatency { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public TimeSpan? MaxLatency { get; set; }</code></pre>
   </div>
 
 
@@ -256,7 +260,7 @@ configuration with single values.</p>
 
   <h3 id="DMediatR_GrpcOptions_MaxMessageSize" data-uid="DMediatR.GrpcOptions.MaxMessageSize">
   MaxMessageSize
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Aligns
@@ -292,7 +296,7 @@ GrpcChannelOptions.MaxSendMessageSize</p>
 
   <h3 id="DMediatR_GrpcOptions_MessagePackCompression" data-uid="DMediatR.GrpcOptions.MessagePackCompression">
   MessagePackCompression
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L56"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Proxy for static MessagePack.MessagePackCompression. Ensure that all
@@ -323,11 +327,76 @@ None|Lz4Block|Lz4BlockArray</p>
 
 
 
+  <a id="DMediatR_GrpcOptions_ResponseCompressionAlgorithm_" data-uid="DMediatR.GrpcOptions.ResponseCompressionAlgorithm*"></a>
+
+  <h3 id="DMediatR_GrpcOptions_ResponseCompressionAlgorithm" data-uid="DMediatR.GrpcOptions.ResponseCompressionAlgorithm">
+  ResponseCompressionAlgorithm
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Header grpc-accept-encoding compression algorithm natively
+supported: gzip</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? ResponseCompressionAlgorithm { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="DMediatR_GrpcOptions_ResponseCompressionLevel_" data-uid="DMediatR.GrpcOptions.ResponseCompressionLevel*"></a>
+
+  <h3 id="DMediatR_GrpcOptions_ResponseCompressionLevel" data-uid="DMediatR.GrpcOptions.ResponseCompressionLevel">
+  ResponseCompressionLevel
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The compress level used to compress messages sent from the server.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CompressionLevel? ResponseCompressionLevel { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.compression.compressionlevel">CompressionLevel</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L11" class="edit-link">Edit this page</a>
+          <a href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L12" class="edit-link">Edit this page</a>
         </div>
 
 

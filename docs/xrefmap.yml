@@ -241,25 +241,6 @@ references:
   isSpec: "True"
   fullName: DMediatR.Certificates.SetUpInitialChainAsync
   nameWithType: Certificates.SetUpInitialChainAsync
-- uid: DMediatR.CorrelatedNotification
-  name: CorrelatedNotification
-  href: api/DMediatR.CorrelatedNotification.html
-  commentId: T:DMediatR.CorrelatedNotification
-  fullName: DMediatR.CorrelatedNotification
-  nameWithType: CorrelatedNotification
-- uid: DMediatR.CorrelatedNotification.MaxLatency
-  name: MaxLatency
-  href: api/DMediatR.CorrelatedNotification.html#DMediatR_CorrelatedNotification_MaxLatency
-  commentId: P:DMediatR.CorrelatedNotification.MaxLatency
-  fullName: DMediatR.CorrelatedNotification.MaxLatency
-  nameWithType: CorrelatedNotification.MaxLatency
-- uid: DMediatR.CorrelatedNotification.MaxLatency*
-  name: MaxLatency
-  href: api/DMediatR.CorrelatedNotification.html#DMediatR_CorrelatedNotification_MaxLatency_
-  commentId: Overload:DMediatR.CorrelatedNotification.MaxLatency
-  isSpec: "True"
-  fullName: DMediatR.CorrelatedNotification.MaxLatency
-  nameWithType: CorrelatedNotification.MaxLatency
 - uid: DMediatR.CustomSerializer`1
   name: CustomSerializer<T>
   href: api/DMediatR.CustomSerializer-1.html
@@ -414,15 +395,15 @@ references:
   commentId: T:DMediatR.DtoService
   fullName: DMediatR.DtoService
   nameWithType: DtoService
-- uid: DMediatR.DtoService.#ctor(MediatR.IMediator,DMediatR.ISerializer,Microsoft.Extensions.Caching.Memory.IMemoryCache,Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions})
-  name: DtoService(IMediator, ISerializer, IMemoryCache, IOptions<CertificateOptions>)
-  href: api/DMediatR.DtoService.html#DMediatR_DtoService__ctor_MediatR_IMediator_DMediatR_ISerializer_Microsoft_Extensions_Caching_Memory_IMemoryCache_Microsoft_Extensions_Options_IOptions_DMediatR_CertificateOptions__
-  commentId: M:DMediatR.DtoService.#ctor(MediatR.IMediator,DMediatR.ISerializer,Microsoft.Extensions.Caching.Memory.IMemoryCache,Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions})
-  name.vb: New(IMediator, ISerializer, IMemoryCache, IOptions(Of CertificateOptions))
-  fullName: DMediatR.DtoService.DtoService(MediatR.IMediator, DMediatR.ISerializer, Microsoft.Extensions.Caching.Memory.IMemoryCache, Microsoft.Extensions.Options.IOptions<DMediatR.CertificateOptions>)
-  fullName.vb: DMediatR.DtoService.New(MediatR.IMediator, DMediatR.ISerializer, Microsoft.Extensions.Caching.Memory.IMemoryCache, Microsoft.Extensions.Options.IOptions(Of DMediatR.CertificateOptions))
-  nameWithType: DtoService.DtoService(IMediator, ISerializer, IMemoryCache, IOptions<CertificateOptions>)
-  nameWithType.vb: DtoService.New(IMediator, ISerializer, IMemoryCache, IOptions(Of CertificateOptions))
+- uid: DMediatR.DtoService.#ctor(MediatR.IMediator,DMediatR.ISerializer,Microsoft.Extensions.Caching.Memory.IMemoryCache,Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions},Microsoft.Extensions.Options.IOptions{DMediatR.GrpcOptions})
+  name: DtoService(IMediator, ISerializer, IMemoryCache, IOptions<CertificateOptions>, IOptions<GrpcOptions>)
+  href: api/DMediatR.DtoService.html#DMediatR_DtoService__ctor_MediatR_IMediator_DMediatR_ISerializer_Microsoft_Extensions_Caching_Memory_IMemoryCache_Microsoft_Extensions_Options_IOptions_DMediatR_CertificateOptions__Microsoft_Extensions_Options_IOptions_DMediatR_GrpcOptions__
+  commentId: M:DMediatR.DtoService.#ctor(MediatR.IMediator,DMediatR.ISerializer,Microsoft.Extensions.Caching.Memory.IMemoryCache,Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions},Microsoft.Extensions.Options.IOptions{DMediatR.GrpcOptions})
+  name.vb: New(IMediator, ISerializer, IMemoryCache, IOptions(Of CertificateOptions), IOptions(Of GrpcOptions))
+  fullName: DMediatR.DtoService.DtoService(MediatR.IMediator, DMediatR.ISerializer, Microsoft.Extensions.Caching.Memory.IMemoryCache, Microsoft.Extensions.Options.IOptions<DMediatR.CertificateOptions>, Microsoft.Extensions.Options.IOptions<DMediatR.GrpcOptions>)
+  fullName.vb: DMediatR.DtoService.New(MediatR.IMediator, DMediatR.ISerializer, Microsoft.Extensions.Caching.Memory.IMemoryCache, Microsoft.Extensions.Options.IOptions(Of DMediatR.CertificateOptions), Microsoft.Extensions.Options.IOptions(Of DMediatR.GrpcOptions))
+  nameWithType: DtoService.DtoService(IMediator, ISerializer, IMemoryCache, IOptions<CertificateOptions>, IOptions<GrpcOptions>)
+  nameWithType.vb: DtoService.New(IMediator, ISerializer, IMemoryCache, IOptions(Of CertificateOptions), IOptions(Of GrpcOptions))
 - uid: DMediatR.DtoService.#ctor*
   name: DtoService
   href: api/DMediatR.DtoService.html#DMediatR_DtoService__ctor_
@@ -517,6 +498,32 @@ references:
   isSpec: "True"
   fullName: DMediatR.GrpcOptions.MessagePackCompression
   nameWithType: GrpcOptions.MessagePackCompression
+- uid: DMediatR.GrpcOptions.ResponseCompressionAlgorithm
+  name: ResponseCompressionAlgorithm
+  href: api/DMediatR.GrpcOptions.html#DMediatR_GrpcOptions_ResponseCompressionAlgorithm
+  commentId: P:DMediatR.GrpcOptions.ResponseCompressionAlgorithm
+  fullName: DMediatR.GrpcOptions.ResponseCompressionAlgorithm
+  nameWithType: GrpcOptions.ResponseCompressionAlgorithm
+- uid: DMediatR.GrpcOptions.ResponseCompressionAlgorithm*
+  name: ResponseCompressionAlgorithm
+  href: api/DMediatR.GrpcOptions.html#DMediatR_GrpcOptions_ResponseCompressionAlgorithm_
+  commentId: Overload:DMediatR.GrpcOptions.ResponseCompressionAlgorithm
+  isSpec: "True"
+  fullName: DMediatR.GrpcOptions.ResponseCompressionAlgorithm
+  nameWithType: GrpcOptions.ResponseCompressionAlgorithm
+- uid: DMediatR.GrpcOptions.ResponseCompressionLevel
+  name: ResponseCompressionLevel
+  href: api/DMediatR.GrpcOptions.html#DMediatR_GrpcOptions_ResponseCompressionLevel
+  commentId: P:DMediatR.GrpcOptions.ResponseCompressionLevel
+  fullName: DMediatR.GrpcOptions.ResponseCompressionLevel
+  nameWithType: GrpcOptions.ResponseCompressionLevel
+- uid: DMediatR.GrpcOptions.ResponseCompressionLevel*
+  name: ResponseCompressionLevel
+  href: api/DMediatR.GrpcOptions.html#DMediatR_GrpcOptions_ResponseCompressionLevel_
+  commentId: Overload:DMediatR.GrpcOptions.ResponseCompressionLevel
+  isSpec: "True"
+  fullName: DMediatR.GrpcOptions.ResponseCompressionLevel
+  nameWithType: GrpcOptions.ResponseCompressionLevel
 - uid: DMediatR.GrpcOptions.SectionName
   name: SectionName
   href: api/DMediatR.GrpcOptions.html#DMediatR_GrpcOptions_SectionName
@@ -768,15 +775,15 @@ references:
   commentId: T:DMediatR.IGrpcChannelPool
   fullName: DMediatR.IGrpcChannelPool
   nameWithType: IGrpcChannelPool
-- uid: DMediatR.IGrpcChannelPool.ForAddress(System.String,System.Net.Http.HttpClientHandler)
-  name: ForAddress(string, HttpClientHandler)
-  href: api/DMediatR.IGrpcChannelPool.html#DMediatR_IGrpcChannelPool_ForAddress_System_String_System_Net_Http_HttpClientHandler_
-  commentId: M:DMediatR.IGrpcChannelPool.ForAddress(System.String,System.Net.Http.HttpClientHandler)
-  name.vb: ForAddress(String, HttpClientHandler)
-  fullName: DMediatR.IGrpcChannelPool.ForAddress(string, System.Net.Http.HttpClientHandler)
-  fullName.vb: DMediatR.IGrpcChannelPool.ForAddress(String, System.Net.Http.HttpClientHandler)
-  nameWithType: IGrpcChannelPool.ForAddress(string, HttpClientHandler)
-  nameWithType.vb: IGrpcChannelPool.ForAddress(String, HttpClientHandler)
+- uid: DMediatR.IGrpcChannelPool.ForAddress(System.String,Grpc.Net.Client.GrpcChannelOptions,System.Net.Http.HttpClientHandler)
+  name: ForAddress(string, GrpcChannelOptions, HttpClientHandler)
+  href: api/DMediatR.IGrpcChannelPool.html#DMediatR_IGrpcChannelPool_ForAddress_System_String_Grpc_Net_Client_GrpcChannelOptions_System_Net_Http_HttpClientHandler_
+  commentId: M:DMediatR.IGrpcChannelPool.ForAddress(System.String,Grpc.Net.Client.GrpcChannelOptions,System.Net.Http.HttpClientHandler)
+  name.vb: ForAddress(String, GrpcChannelOptions, HttpClientHandler)
+  fullName: DMediatR.IGrpcChannelPool.ForAddress(string, Grpc.Net.Client.GrpcChannelOptions, System.Net.Http.HttpClientHandler)
+  fullName.vb: DMediatR.IGrpcChannelPool.ForAddress(String, Grpc.Net.Client.GrpcChannelOptions, System.Net.Http.HttpClientHandler)
+  nameWithType: IGrpcChannelPool.ForAddress(string, GrpcChannelOptions, HttpClientHandler)
+  nameWithType.vb: IGrpcChannelPool.ForAddress(String, GrpcChannelOptions, HttpClientHandler)
 - uid: DMediatR.IGrpcChannelPool.ForAddress*
   name: ForAddress
   href: api/DMediatR.IGrpcChannelPool.html#DMediatR_IGrpcChannelPool_ForAddress_
@@ -825,32 +832,32 @@ references:
   commentId: T:DMediatR.ILockISerializedInterface
   fullName: DMediatR.ILockISerializedInterface
   nameWithType: ILockISerializedInterface
-- uid: DMediatR.ILockISerializedInterface.PostDeserialize(DMediatR.ILock)
-  name: PostDeserialize(ILock)
-  href: api/DMediatR.ILockISerializedInterface.html#DMediatR_ILockISerializedInterface_PostDeserialize_DMediatR_ILock_
-  commentId: M:DMediatR.ILockISerializedInterface.PostDeserialize(DMediatR.ILock)
-  fullName: DMediatR.ILockISerializedInterface.PostDeserialize(DMediatR.ILock)
-  nameWithType: ILockISerializedInterface.PostDeserialize(ILock)
-- uid: DMediatR.ILockISerializedInterface.PostDeserialize*
-  name: PostDeserialize
-  href: api/DMediatR.ILockISerializedInterface.html#DMediatR_ILockISerializedInterface_PostDeserialize_
-  commentId: Overload:DMediatR.ILockISerializedInterface.PostDeserialize
+- uid: DMediatR.ILockISerializedInterface.Dehydrate(DMediatR.ILock)
+  name: Dehydrate(ILock)
+  href: api/DMediatR.ILockISerializedInterface.html#DMediatR_ILockISerializedInterface_Dehydrate_DMediatR_ILock_
+  commentId: M:DMediatR.ILockISerializedInterface.Dehydrate(DMediatR.ILock)
+  fullName: DMediatR.ILockISerializedInterface.Dehydrate(DMediatR.ILock)
+  nameWithType: ILockISerializedInterface.Dehydrate(ILock)
+- uid: DMediatR.ILockISerializedInterface.Dehydrate*
+  name: Dehydrate
+  href: api/DMediatR.ILockISerializedInterface.html#DMediatR_ILockISerializedInterface_Dehydrate_
+  commentId: Overload:DMediatR.ILockISerializedInterface.Dehydrate
   isSpec: "True"
-  fullName: DMediatR.ILockISerializedInterface.PostDeserialize
-  nameWithType: ILockISerializedInterface.PostDeserialize
-- uid: DMediatR.ILockISerializedInterface.PreSerialize(DMediatR.ILock)
-  name: PreSerialize(ILock)
-  href: api/DMediatR.ILockISerializedInterface.html#DMediatR_ILockISerializedInterface_PreSerialize_DMediatR_ILock_
-  commentId: M:DMediatR.ILockISerializedInterface.PreSerialize(DMediatR.ILock)
-  fullName: DMediatR.ILockISerializedInterface.PreSerialize(DMediatR.ILock)
-  nameWithType: ILockISerializedInterface.PreSerialize(ILock)
-- uid: DMediatR.ILockISerializedInterface.PreSerialize*
-  name: PreSerialize
-  href: api/DMediatR.ILockISerializedInterface.html#DMediatR_ILockISerializedInterface_PreSerialize_
-  commentId: Overload:DMediatR.ILockISerializedInterface.PreSerialize
+  fullName: DMediatR.ILockISerializedInterface.Dehydrate
+  nameWithType: ILockISerializedInterface.Dehydrate
+- uid: DMediatR.ILockISerializedInterface.Rehydrate(DMediatR.ILock)
+  name: Rehydrate(ILock)
+  href: api/DMediatR.ILockISerializedInterface.html#DMediatR_ILockISerializedInterface_Rehydrate_DMediatR_ILock_
+  commentId: M:DMediatR.ILockISerializedInterface.Rehydrate(DMediatR.ILock)
+  fullName: DMediatR.ILockISerializedInterface.Rehydrate(DMediatR.ILock)
+  nameWithType: ILockISerializedInterface.Rehydrate(ILock)
+- uid: DMediatR.ILockISerializedInterface.Rehydrate*
+  name: Rehydrate
+  href: api/DMediatR.ILockISerializedInterface.html#DMediatR_ILockISerializedInterface_Rehydrate_
+  commentId: Overload:DMediatR.ILockISerializedInterface.Rehydrate
   isSpec: "True"
-  fullName: DMediatR.ILockISerializedInterface.PreSerialize
-  nameWithType: ILockISerializedInterface.PreSerialize
+  fullName: DMediatR.ILockISerializedInterface.Rehydrate
+  nameWithType: ILockISerializedInterface.Rehydrate
 - uid: DMediatR.IRemote
   name: IRemote
   href: api/DMediatR.IRemote.html
@@ -876,38 +883,38 @@ references:
   commentId: T:DMediatR.ISerializedInterface
   fullName: DMediatR.ISerializedInterface
   nameWithType: ISerializedInterface
-- uid: DMediatR.ISerializedInterface.PostDeserialize(System.Object)
-  name: PostDeserialize(object)
-  href: api/DMediatR.ISerializedInterface.html#DMediatR_ISerializedInterface_PostDeserialize_System_Object_
-  commentId: M:DMediatR.ISerializedInterface.PostDeserialize(System.Object)
-  name.vb: PostDeserialize(Object)
-  fullName: DMediatR.ISerializedInterface.PostDeserialize(object)
-  fullName.vb: DMediatR.ISerializedInterface.PostDeserialize(Object)
-  nameWithType: ISerializedInterface.PostDeserialize(object)
-  nameWithType.vb: ISerializedInterface.PostDeserialize(Object)
-- uid: DMediatR.ISerializedInterface.PostDeserialize*
-  name: PostDeserialize
-  href: api/DMediatR.ISerializedInterface.html#DMediatR_ISerializedInterface_PostDeserialize_
-  commentId: Overload:DMediatR.ISerializedInterface.PostDeserialize
+- uid: DMediatR.ISerializedInterface.Dehydrate(System.Object)
+  name: Dehydrate(object)
+  href: api/DMediatR.ISerializedInterface.html#DMediatR_ISerializedInterface_Dehydrate_System_Object_
+  commentId: M:DMediatR.ISerializedInterface.Dehydrate(System.Object)
+  name.vb: Dehydrate(Object)
+  fullName: DMediatR.ISerializedInterface.Dehydrate(object)
+  fullName.vb: DMediatR.ISerializedInterface.Dehydrate(Object)
+  nameWithType: ISerializedInterface.Dehydrate(object)
+  nameWithType.vb: ISerializedInterface.Dehydrate(Object)
+- uid: DMediatR.ISerializedInterface.Dehydrate*
+  name: Dehydrate
+  href: api/DMediatR.ISerializedInterface.html#DMediatR_ISerializedInterface_Dehydrate_
+  commentId: Overload:DMediatR.ISerializedInterface.Dehydrate
   isSpec: "True"
-  fullName: DMediatR.ISerializedInterface.PostDeserialize
-  nameWithType: ISerializedInterface.PostDeserialize
-- uid: DMediatR.ISerializedInterface.PreSerialize(System.Object)
-  name: PreSerialize(object)
-  href: api/DMediatR.ISerializedInterface.html#DMediatR_ISerializedInterface_PreSerialize_System_Object_
-  commentId: M:DMediatR.ISerializedInterface.PreSerialize(System.Object)
-  name.vb: PreSerialize(Object)
-  fullName: DMediatR.ISerializedInterface.PreSerialize(object)
-  fullName.vb: DMediatR.ISerializedInterface.PreSerialize(Object)
-  nameWithType: ISerializedInterface.PreSerialize(object)
-  nameWithType.vb: ISerializedInterface.PreSerialize(Object)
-- uid: DMediatR.ISerializedInterface.PreSerialize*
-  name: PreSerialize
-  href: api/DMediatR.ISerializedInterface.html#DMediatR_ISerializedInterface_PreSerialize_
-  commentId: Overload:DMediatR.ISerializedInterface.PreSerialize
+  fullName: DMediatR.ISerializedInterface.Dehydrate
+  nameWithType: ISerializedInterface.Dehydrate
+- uid: DMediatR.ISerializedInterface.Rehydrate(System.Object)
+  name: Rehydrate(object)
+  href: api/DMediatR.ISerializedInterface.html#DMediatR_ISerializedInterface_Rehydrate_System_Object_
+  commentId: M:DMediatR.ISerializedInterface.Rehydrate(System.Object)
+  name.vb: Rehydrate(Object)
+  fullName: DMediatR.ISerializedInterface.Rehydrate(object)
+  fullName.vb: DMediatR.ISerializedInterface.Rehydrate(Object)
+  nameWithType: ISerializedInterface.Rehydrate(object)
+  nameWithType.vb: ISerializedInterface.Rehydrate(Object)
+- uid: DMediatR.ISerializedInterface.Rehydrate*
+  name: Rehydrate
+  href: api/DMediatR.ISerializedInterface.html#DMediatR_ISerializedInterface_Rehydrate_
+  commentId: Overload:DMediatR.ISerializedInterface.Rehydrate
   isSpec: "True"
-  fullName: DMediatR.ISerializedInterface.PreSerialize
-  nameWithType: ISerializedInterface.PreSerialize
+  fullName: DMediatR.ISerializedInterface.Rehydrate
+  nameWithType: ISerializedInterface.Rehydrate
 - uid: DMediatR.ISerializer
   name: ISerializer
   href: api/DMediatR.ISerializer.html
@@ -1080,27 +1087,53 @@ references:
   fullName.vb: DMediatR.Ping.New
   nameWithType: Ping.Ping
   nameWithType.vb: Ping.New
+- uid: DMediatR.Ping.Payload
+  name: Payload
+  href: api/DMediatR.Ping.html#DMediatR_Ping_Payload
+  commentId: P:DMediatR.Ping.Payload
+  fullName: DMediatR.Ping.Payload
+  nameWithType: Ping.Payload
+- uid: DMediatR.Ping.Payload*
+  name: Payload
+  href: api/DMediatR.Ping.html#DMediatR_Ping_Payload_
+  commentId: Overload:DMediatR.Ping.Payload
+  isSpec: "True"
+  fullName: DMediatR.Ping.Payload
+  nameWithType: Ping.Payload
 - uid: DMediatR.Pong
   name: Pong
   href: api/DMediatR.Pong.html
   commentId: T:DMediatR.Pong
   fullName: DMediatR.Pong
   nameWithType: Pong
+- uid: DMediatR.Pong.Payload
+  name: Payload
+  href: api/DMediatR.Pong.html#DMediatR_Pong_Payload
+  commentId: P:DMediatR.Pong.Payload
+  fullName: DMediatR.Pong.Payload
+  nameWithType: Pong.Payload
+- uid: DMediatR.Pong.Payload*
+  name: Payload
+  href: api/DMediatR.Pong.html#DMediatR_Pong_Payload_
+  commentId: Overload:DMediatR.Pong.Payload
+  isSpec: "True"
+  fullName: DMediatR.Pong.Payload
+  nameWithType: Pong.Payload
 - uid: DMediatR.Remote
   name: Remote
   href: api/DMediatR.Remote.html
   commentId: T:DMediatR.Remote
   fullName: DMediatR.Remote
   nameWithType: Remote
-- uid: DMediatR.Remote.#ctor(System.IServiceProvider,Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions},Microsoft.Extensions.Options.IOptions{DMediatR.RemotesOptions},MediatR.IMediator,DMediatR.ISerializer,DMediatR.IGrpcChannelPool,Microsoft.Extensions.Logging.ILogger{DMediatR.Remote})
-  name: Remote(IServiceProvider, IOptions<CertificateOptions>, IOptions<RemotesOptions>, IMediator, ISerializer, IGrpcChannelPool, ILogger<Remote>)
-  href: api/DMediatR.Remote.html#DMediatR_Remote__ctor_System_IServiceProvider_Microsoft_Extensions_Options_IOptions_DMediatR_CertificateOptions__Microsoft_Extensions_Options_IOptions_DMediatR_RemotesOptions__MediatR_IMediator_DMediatR_ISerializer_DMediatR_IGrpcChannelPool_Microsoft_Extensions_Logging_ILogger_DMediatR_Remote__
-  commentId: M:DMediatR.Remote.#ctor(System.IServiceProvider,Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions},Microsoft.Extensions.Options.IOptions{DMediatR.RemotesOptions},MediatR.IMediator,DMediatR.ISerializer,DMediatR.IGrpcChannelPool,Microsoft.Extensions.Logging.ILogger{DMediatR.Remote})
-  name.vb: New(IServiceProvider, IOptions(Of CertificateOptions), IOptions(Of RemotesOptions), IMediator, ISerializer, IGrpcChannelPool, ILogger(Of Remote))
-  fullName: DMediatR.Remote.Remote(System.IServiceProvider, Microsoft.Extensions.Options.IOptions<DMediatR.CertificateOptions>, Microsoft.Extensions.Options.IOptions<DMediatR.RemotesOptions>, MediatR.IMediator, DMediatR.ISerializer, DMediatR.IGrpcChannelPool, Microsoft.Extensions.Logging.ILogger<DMediatR.Remote>)
-  fullName.vb: DMediatR.Remote.New(System.IServiceProvider, Microsoft.Extensions.Options.IOptions(Of DMediatR.CertificateOptions), Microsoft.Extensions.Options.IOptions(Of DMediatR.RemotesOptions), MediatR.IMediator, DMediatR.ISerializer, DMediatR.IGrpcChannelPool, Microsoft.Extensions.Logging.ILogger(Of DMediatR.Remote))
-  nameWithType: Remote.Remote(IServiceProvider, IOptions<CertificateOptions>, IOptions<RemotesOptions>, IMediator, ISerializer, IGrpcChannelPool, ILogger<Remote>)
-  nameWithType.vb: Remote.New(IServiceProvider, IOptions(Of CertificateOptions), IOptions(Of RemotesOptions), IMediator, ISerializer, IGrpcChannelPool, ILogger(Of Remote))
+- uid: DMediatR.Remote.#ctor(System.IServiceProvider,Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions},Microsoft.Extensions.Options.IOptions{DMediatR.RemotesOptions},Microsoft.Extensions.Options.IOptions{DMediatR.GrpcOptions},MediatR.IMediator,DMediatR.ISerializer,DMediatR.IGrpcChannelPool,Microsoft.Extensions.Logging.ILogger{DMediatR.Remote})
+  name: Remote(IServiceProvider, IOptions<CertificateOptions>, IOptions<RemotesOptions>, IOptions<GrpcOptions>, IMediator, ISerializer, IGrpcChannelPool, ILogger<Remote>)
+  href: api/DMediatR.Remote.html#DMediatR_Remote__ctor_System_IServiceProvider_Microsoft_Extensions_Options_IOptions_DMediatR_CertificateOptions__Microsoft_Extensions_Options_IOptions_DMediatR_RemotesOptions__Microsoft_Extensions_Options_IOptions_DMediatR_GrpcOptions__MediatR_IMediator_DMediatR_ISerializer_DMediatR_IGrpcChannelPool_Microsoft_Extensions_Logging_ILogger_DMediatR_Remote__
+  commentId: M:DMediatR.Remote.#ctor(System.IServiceProvider,Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions},Microsoft.Extensions.Options.IOptions{DMediatR.RemotesOptions},Microsoft.Extensions.Options.IOptions{DMediatR.GrpcOptions},MediatR.IMediator,DMediatR.ISerializer,DMediatR.IGrpcChannelPool,Microsoft.Extensions.Logging.ILogger{DMediatR.Remote})
+  name.vb: New(IServiceProvider, IOptions(Of CertificateOptions), IOptions(Of RemotesOptions), IOptions(Of GrpcOptions), IMediator, ISerializer, IGrpcChannelPool, ILogger(Of Remote))
+  fullName: DMediatR.Remote.Remote(System.IServiceProvider, Microsoft.Extensions.Options.IOptions<DMediatR.CertificateOptions>, Microsoft.Extensions.Options.IOptions<DMediatR.RemotesOptions>, Microsoft.Extensions.Options.IOptions<DMediatR.GrpcOptions>, MediatR.IMediator, DMediatR.ISerializer, DMediatR.IGrpcChannelPool, Microsoft.Extensions.Logging.ILogger<DMediatR.Remote>)
+  fullName.vb: DMediatR.Remote.New(System.IServiceProvider, Microsoft.Extensions.Options.IOptions(Of DMediatR.CertificateOptions), Microsoft.Extensions.Options.IOptions(Of DMediatR.RemotesOptions), Microsoft.Extensions.Options.IOptions(Of DMediatR.GrpcOptions), MediatR.IMediator, DMediatR.ISerializer, DMediatR.IGrpcChannelPool, Microsoft.Extensions.Logging.ILogger(Of DMediatR.Remote))
+  nameWithType: Remote.Remote(IServiceProvider, IOptions<CertificateOptions>, IOptions<RemotesOptions>, IOptions<GrpcOptions>, IMediator, ISerializer, IGrpcChannelPool, ILogger<Remote>)
+  nameWithType.vb: Remote.New(IServiceProvider, IOptions(Of CertificateOptions), IOptions(Of RemotesOptions), IOptions(Of GrpcOptions), IMediator, ISerializer, IGrpcChannelPool, ILogger(Of Remote))
 - uid: DMediatR.Remote.#ctor*
   name: Remote
   href: api/DMediatR.Remote.html#DMediatR_Remote__ctor_
@@ -1306,58 +1339,58 @@ references:
   fullName.vb: DMediatR.SerializedInterface(Of T)
   nameWithType: SerializedInterface<T>
   nameWithType.vb: SerializedInterface(Of T)
-- uid: DMediatR.SerializedInterface`1.PostDeserialize(System.Object)
-  name: PostDeserialize(object)
-  href: api/DMediatR.SerializedInterface-1.html#DMediatR_SerializedInterface_1_PostDeserialize_System_Object_
-  commentId: M:DMediatR.SerializedInterface`1.PostDeserialize(System.Object)
-  name.vb: PostDeserialize(Object)
-  fullName: DMediatR.SerializedInterface<T>.PostDeserialize(object)
-  fullName.vb: DMediatR.SerializedInterface(Of T).PostDeserialize(Object)
-  nameWithType: SerializedInterface<T>.PostDeserialize(object)
-  nameWithType.vb: SerializedInterface(Of T).PostDeserialize(Object)
-- uid: DMediatR.SerializedInterface`1.PostDeserialize(`0)
-  name: PostDeserialize(T)
-  href: api/DMediatR.SerializedInterface-1.html#DMediatR_SerializedInterface_1_PostDeserialize__0_
-  commentId: M:DMediatR.SerializedInterface`1.PostDeserialize(`0)
-  fullName: DMediatR.SerializedInterface<T>.PostDeserialize(T)
-  fullName.vb: DMediatR.SerializedInterface(Of T).PostDeserialize(T)
-  nameWithType: SerializedInterface<T>.PostDeserialize(T)
-  nameWithType.vb: SerializedInterface(Of T).PostDeserialize(T)
-- uid: DMediatR.SerializedInterface`1.PostDeserialize*
-  name: PostDeserialize
-  href: api/DMediatR.SerializedInterface-1.html#DMediatR_SerializedInterface_1_PostDeserialize_
-  commentId: Overload:DMediatR.SerializedInterface`1.PostDeserialize
+- uid: DMediatR.SerializedInterface`1.Dehydrate(System.Object)
+  name: Dehydrate(object)
+  href: api/DMediatR.SerializedInterface-1.html#DMediatR_SerializedInterface_1_Dehydrate_System_Object_
+  commentId: M:DMediatR.SerializedInterface`1.Dehydrate(System.Object)
+  name.vb: Dehydrate(Object)
+  fullName: DMediatR.SerializedInterface<T>.Dehydrate(object)
+  fullName.vb: DMediatR.SerializedInterface(Of T).Dehydrate(Object)
+  nameWithType: SerializedInterface<T>.Dehydrate(object)
+  nameWithType.vb: SerializedInterface(Of T).Dehydrate(Object)
+- uid: DMediatR.SerializedInterface`1.Dehydrate(`0)
+  name: Dehydrate(T)
+  href: api/DMediatR.SerializedInterface-1.html#DMediatR_SerializedInterface_1_Dehydrate__0_
+  commentId: M:DMediatR.SerializedInterface`1.Dehydrate(`0)
+  fullName: DMediatR.SerializedInterface<T>.Dehydrate(T)
+  fullName.vb: DMediatR.SerializedInterface(Of T).Dehydrate(T)
+  nameWithType: SerializedInterface<T>.Dehydrate(T)
+  nameWithType.vb: SerializedInterface(Of T).Dehydrate(T)
+- uid: DMediatR.SerializedInterface`1.Dehydrate*
+  name: Dehydrate
+  href: api/DMediatR.SerializedInterface-1.html#DMediatR_SerializedInterface_1_Dehydrate_
+  commentId: Overload:DMediatR.SerializedInterface`1.Dehydrate
   isSpec: "True"
-  fullName: DMediatR.SerializedInterface<T>.PostDeserialize
-  fullName.vb: DMediatR.SerializedInterface(Of T).PostDeserialize
-  nameWithType: SerializedInterface<T>.PostDeserialize
-  nameWithType.vb: SerializedInterface(Of T).PostDeserialize
-- uid: DMediatR.SerializedInterface`1.PreSerialize(System.Object)
-  name: PreSerialize(object)
-  href: api/DMediatR.SerializedInterface-1.html#DMediatR_SerializedInterface_1_PreSerialize_System_Object_
-  commentId: M:DMediatR.SerializedInterface`1.PreSerialize(System.Object)
-  name.vb: PreSerialize(Object)
-  fullName: DMediatR.SerializedInterface<T>.PreSerialize(object)
-  fullName.vb: DMediatR.SerializedInterface(Of T).PreSerialize(Object)
-  nameWithType: SerializedInterface<T>.PreSerialize(object)
-  nameWithType.vb: SerializedInterface(Of T).PreSerialize(Object)
-- uid: DMediatR.SerializedInterface`1.PreSerialize(`0)
-  name: PreSerialize(T)
-  href: api/DMediatR.SerializedInterface-1.html#DMediatR_SerializedInterface_1_PreSerialize__0_
-  commentId: M:DMediatR.SerializedInterface`1.PreSerialize(`0)
-  fullName: DMediatR.SerializedInterface<T>.PreSerialize(T)
-  fullName.vb: DMediatR.SerializedInterface(Of T).PreSerialize(T)
-  nameWithType: SerializedInterface<T>.PreSerialize(T)
-  nameWithType.vb: SerializedInterface(Of T).PreSerialize(T)
-- uid: DMediatR.SerializedInterface`1.PreSerialize*
-  name: PreSerialize
-  href: api/DMediatR.SerializedInterface-1.html#DMediatR_SerializedInterface_1_PreSerialize_
-  commentId: Overload:DMediatR.SerializedInterface`1.PreSerialize
+  fullName: DMediatR.SerializedInterface<T>.Dehydrate
+  fullName.vb: DMediatR.SerializedInterface(Of T).Dehydrate
+  nameWithType: SerializedInterface<T>.Dehydrate
+  nameWithType.vb: SerializedInterface(Of T).Dehydrate
+- uid: DMediatR.SerializedInterface`1.Rehydrate(System.Object)
+  name: Rehydrate(object)
+  href: api/DMediatR.SerializedInterface-1.html#DMediatR_SerializedInterface_1_Rehydrate_System_Object_
+  commentId: M:DMediatR.SerializedInterface`1.Rehydrate(System.Object)
+  name.vb: Rehydrate(Object)
+  fullName: DMediatR.SerializedInterface<T>.Rehydrate(object)
+  fullName.vb: DMediatR.SerializedInterface(Of T).Rehydrate(Object)
+  nameWithType: SerializedInterface<T>.Rehydrate(object)
+  nameWithType.vb: SerializedInterface(Of T).Rehydrate(Object)
+- uid: DMediatR.SerializedInterface`1.Rehydrate(`0)
+  name: Rehydrate(T)
+  href: api/DMediatR.SerializedInterface-1.html#DMediatR_SerializedInterface_1_Rehydrate__0_
+  commentId: M:DMediatR.SerializedInterface`1.Rehydrate(`0)
+  fullName: DMediatR.SerializedInterface<T>.Rehydrate(T)
+  fullName.vb: DMediatR.SerializedInterface(Of T).Rehydrate(T)
+  nameWithType: SerializedInterface<T>.Rehydrate(T)
+  nameWithType.vb: SerializedInterface(Of T).Rehydrate(T)
+- uid: DMediatR.SerializedInterface`1.Rehydrate*
+  name: Rehydrate
+  href: api/DMediatR.SerializedInterface-1.html#DMediatR_SerializedInterface_1_Rehydrate_
+  commentId: Overload:DMediatR.SerializedInterface`1.Rehydrate
   isSpec: "True"
-  fullName: DMediatR.SerializedInterface<T>.PreSerialize
-  fullName.vb: DMediatR.SerializedInterface(Of T).PreSerialize
-  nameWithType: SerializedInterface<T>.PreSerialize
-  nameWithType.vb: SerializedInterface(Of T).PreSerialize
+  fullName: DMediatR.SerializedInterface<T>.Rehydrate
+  fullName.vb: DMediatR.SerializedInterface(Of T).Rehydrate
+  nameWithType: SerializedInterface<T>.Rehydrate
+  nameWithType.vb: SerializedInterface(Of T).Rehydrate
 - uid: DMediatR.Serializer
   name: Serializer
   href: api/DMediatR.Serializer.html

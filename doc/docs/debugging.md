@@ -1,4 +1,4 @@
-# Debugging
+﻿# Debugging
 
 Since DMediatR is bootstrapped in the sense that it is implemented by passing
 certificates around as MediatR `IResponse` objects, the tools used to debug it can

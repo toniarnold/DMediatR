@@ -27,7 +27,7 @@ namespace DMediatR.Tests.Grpc
         [Test]
         public async Task GrpcChannelPoolTest()
         {
-            var mediator = SetUp.ServiceProvider!.GetRequiredService<IMediator>();
+            var mediator = SetUp.ServiceProvider.GetRequiredService<IMediator>();
             await mediator.Send(new ServerCertificateRequest());
             await mediator.Send(new ServerCertificateRequest());
         }
@@ -35,7 +35,7 @@ namespace DMediatR.Tests.Grpc
         [Test]
         public async Task PingPongTest()
         {
-            var mediator = SetUp.ServiceProvider!.GetRequiredService<IMediator>();
+            var mediator = SetUp.ServiceProvider.GetRequiredService<IMediator>();
             var pongFromRemote = await mediator.Send(new Ping("from NUnit"));
             Assert.That(pongFromRemote, Is.Not.Null);
             Assert.That(pongFromRemote.Count, Is.EqualTo(2));
@@ -45,7 +45,7 @@ namespace DMediatR.Tests.Grpc
         [Test]
         public async Task GetRemoteServerCert()
         {
-            var mediator = SetUp.ServiceProvider!.GetRequiredService<IMediator>();
+            var mediator = SetUp.ServiceProvider.GetRequiredService<IMediator>();
             var certFromRemote = await mediator.Send(new ServerCertificateRequest());
             Assert.That(certFromRemote, Is.Not.Null);
             Assert.That(certFromRemote.Subject, Is.EqualTo("CN=ServerCertifier"));
@@ -54,7 +54,7 @@ namespace DMediatR.Tests.Grpc
         [Test]
         public async Task GetRemoteClientCert()
         {
-            var mediator = SetUp.ServiceProvider!.GetRequiredService<IMediator>();
+            var mediator = SetUp.ServiceProvider.GetRequiredService<IMediator>();
             var certFromRemote = await mediator.Send(new ClientCertificateRequest());
             Assert.That(certFromRemote, Is.Not.Null);
             Assert.That(certFromRemote.Subject, Is.EqualTo("CN=ClientCertifier"));
@@ -63,7 +63,7 @@ namespace DMediatR.Tests.Grpc
         [Test]
         public async Task ForceRenewServerCertRemote()
         {
-            var mediator = SetUp.ServiceProvider!.GetRequiredService<IMediator>();
+            var mediator = SetUp.ServiceProvider.GetRequiredService<IMediator>();
             // Requesting it twice yields the same certificate from the filesysem.
             var oldCertFromRemote = await mediator.Send(new ServerCertificateRequest());
             var oldCertDouble = await mediator.Send(new ServerCertificateRequest());
@@ -80,7 +80,7 @@ namespace DMediatR.Tests.Grpc
         [Test]
         public async Task ForceRenewCertChainRemote()
         {
-            var mediator = SetUp.ServiceProvider!.GetRequiredService<IMediator>();
+            var mediator = SetUp.ServiceProvider.GetRequiredService<IMediator>();
 
             var oldRoot = await mediator.Send(new RootCertificateRequest());
             var oldInter = await mediator.Send(new IntermediateCertificateRequest());

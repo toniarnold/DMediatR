@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Performance | DMediatR </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Performance | DMediatR ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/toniarnold/DMediatR/blob/main/doc/docs/performance.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="DMediatR">
+            DMediatR
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="performance">Performance</h1>
+
+<p>All performance measurements are based on an on a Intel(R) Xeon(R) CPU E3-1270
+v5 @ 3.60GHz. As a baseline the performance of the gRPC client and server of the
+official tutorial<a id="fnref:1" href="#fn:1" class="footnote-ref"><sup>1</sup></a> without SSL being run single-threaded for 5 seconds is
+about 3’400 requests/sec, configuration Debug vs. Release has virtually no
+effect. The performance of DMediatR currently is considerably lower at about 40
+requests/sec for unknown reasons.</p>
+<p>The DMediatR <code>PerformanceMeters</code> uses <code>Ping</code> messages with a binary <code>Payload</code>
+property which gets mirrored on the <code>Pong</code> reply to measure both compression and
+decompression performance on the server.</p>
+<h2 id="performancemeter-test-setup">PerformanceMeter Test Setup</h2>
+<p>The <code>PerformanceMeter</code> implements <code>IRemote</code> to talk to a remote DMediatRNode:</p>
+<pre><code class="lang-csharp" name="PerformanceMeter.cs">[Category(&quot;Performance&quot;)]
+[Remote(&quot;Ping&quot;)]
+public class PerformanceMeter : IRemote
+{
+    public Remote Remote { get; set; } = default!;
+</code></pre>
+<p>This enables this simple <code>SendRemote</code> extension method for the first request
+which will negotiate SSL and only then establishes the connection:</p>
+<pre><code class="lang-csharp" name="PerformanceMeter.cs">await this.SendRemote(new Ping(&quot;Connect&quot;), CancellationToken.None);
+</code></pre>
+<p>The concrete <code>Remote</code> named &quot;Ping&quot; to connect to is configured in
+appsettings.RemotePing.json for the test fixture:</p>
+<pre><code class="lang-json" name="appsettings.RemotePing.json">&quot;Remotes&quot;: {
+  &quot;Ping&quot;: {
+    &quot;Host&quot;: &quot;localhost&quot;,
+    &quot;Port&quot;: 18007,
+    &quot;OldPort&quot;: 18008
+  }
+}
+</code></pre>
+<p>The one &quot;Ping&quot; Remote section is identical to the configured &quot;Host&quot; section of the server.</p>
+<h2 id="zero-payload">Zero Payload</h2>
+<p>The 0 byte &quot;overhead only&quot; datapoint yields the mentioned 40 requests/sec when
+run with 8 parallel tasks for 5 seconds:</p>
+<pre><code class="lang-text">GrpcRaw Text Data: 0 B/Sec Pings: 41.80/Sec Count:216
+</code></pre>
+<h2 id="10-mb-payload">10 MB payload</h2>
+<p>As the request overhead appears to be very high, the opposite extreme for the 10
+MB payload datapoint is most relevant for evaluating the compression options.
+As the defaults are lower, the MaxMessageSize must globally  be increased on
+both the client and the server:</p>
+<pre><code class="lang-json" name="appsettings.json">&quot;Grpc&quot;: {
+  &quot;MaxMessageSize&quot;: 11000000
+}
+</code></pre>
+<p>The measurement is performed with three types of payloads: &quot;Bloated&quot; with a byte
+array consisting only of zeros (Zero), &quot;Compressible&quot; with textual content
+(Text) and &quot;Incompressible&quot; with only random bytes (Rand). The highest data
+throughput rate when using no compression is due to the fact that network
+bandwidth is not throttled.</p>
+<h3 id="without-compression">Without compression</h3>
+<p>The 10 MB datapoint yields the following result when using no compression - gRPC
+seems to require a very long warm-up time:</p>
+<pre><code class="lang-text">GrpcRaw Zero Data: 162.06 MB/Sec Pings: 15.46/Sec Count:80
+GrpcRaw Text Data: 189.96 MB/Sec Pings: 18.12/Sec Count:96
+GrpcRaw Rand Data: 196.03 MB/Sec Pings: 18.70/Sec Count:96
+</code></pre>
+<h3 id="gzip">gzip</h3>
+<p>Gzip with the grpc-accept-encoding header is enabled only server-side in
+appsettings.Gzip.json:</p>
+<pre><code class="lang-json" name="appsettings.Gzip.json">&quot;Grpc&quot;: {
+  &quot;ResponseCompressionAlgorithm&quot;: &quot;gzip&quot;,
+  &quot;ResponseCompressionLevel&quot;: &quot;Optimal&quot;
+}
+</code></pre>
+<pre><code class="lang-text">GrpcGzip Zero Data: 144.06 MB/Sec Pings: 13.74/Sec Count:72
+GrpcGzip Text Data: 89.34 MB/Sec Pings: 8.52/Sec Count:48
+GrpcGzip Rand Data: 77.59 MB/Sec Pings: 7.40/Sec Count:40
+</code></pre>
+<h3 id="lz4">LZ4</h3>
+<p>For using MessagePack's LZ4 compression instead of gRPC's Content-Encoding gzip,
+it must be configured on both sides, here the server in
+appsettings.Lz4BlockArray.json:</p>
+<pre><code class="lang-json" name="appsettings.Lz4BlockArray.json">&quot;Grpc&quot;: {
+  &quot;MessagePackCompression&quot;: &quot;Lz4BlockArray&quot;
+}
+</code></pre>
+<pre><code class="lang-text">GrpcLz4 Zero Data: 291.77 MB/Sec Pings: 27.83/Sec Count:144
+GrpcLz4 Text Data: 148.18 MB/Sec Pings: 14.13/Sec Count:72
+GrpcLz4 Rand Data: 164.1 MB/Sec Pings: 15.65/Sec Count:80
+</code></pre>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://learn.microsoft.com/en-us/aspnet/core/tutorials/grpc/grpc-start?view=aspnetcore-8.0&amp;tabs=visual-studio">Tutorial: Create a gRPC client and server in ASP.NET Core</a><a href="#fnref:1" class="footnote-back-ref">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/toniarnold/DMediatR/blob/main/doc/docs/performance.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

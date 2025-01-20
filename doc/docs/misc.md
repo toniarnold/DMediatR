@@ -1,4 +1,4 @@
-# Misc
+﻿# Misc
 
 ## Lock: async reentrant locking
 

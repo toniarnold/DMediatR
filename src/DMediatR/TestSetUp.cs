@@ -20,10 +20,10 @@ namespace DMediatR
 
         public const int ServerStartTimeout = 1;
         public static List<Process> ServerProcesses { get; private set; } = [];
-        public static ServiceProvider? ServiceProvider { get; private set; }
+        public static ServiceProvider ServiceProvider { get; private set; } = default!;
 
         public static CertificateOptions CertificateOptions =>
-            ServiceProvider!.GetRequiredService<IConfiguration>()
+            ServiceProvider.GetRequiredService<IConfiguration>()
             .GetSection(CertificateOptions.SectionName).Get<CertificateOptions>()!;
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace DMediatR
             serviceCollectionAction?.Invoke(sc);
             ServiceProvider = sc.BuildServiceProvider();
             // Implicitly sets static properties as MessagePackCompression
-            var _ = ServiceProvider!.GetRequiredService<IOptions<GrpcOptions>>().Value;
+            var _ = ServiceProvider.GetRequiredService<IOptions<GrpcOptions>>().Value;
         }
 
         public static IConfiguration GetConfiguration(string environment)
@@ -160,7 +160,7 @@ namespace DMediatR
         /// </summary>
         public static void SetUpInitialCertificates()
         {
-            var certs = ServiceProvider!.GetRequiredService<Certificates>();
+            var certs = ServiceProvider.GetRequiredService<Certificates>();
             Task.Run(() => certs.SetUpInitialChainAsync(CancellationToken.None)).Wait();
         }
 
@@ -176,7 +176,7 @@ namespace DMediatR
                 ClientCertificateOptions = ClientCertificateOption.Manual,
                 ServerCertificateCustomValidationCallback = ServerCertificateCustomValidation
             };
-            var clientCertificateProvider = ServiceProvider!.GetRequiredService<ClientCertificateProvider>();
+            var clientCertificateProvider = ServiceProvider.GetRequiredService<ClientCertificateProvider>();
             (var loaded, var cert) = await clientCertificateProvider.TryLoad(CancellationToken.None);
             if (!loaded)
             {

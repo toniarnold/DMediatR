@@ -83,6 +83,10 @@ namespace DMediatR
                     listenOptions.ClientCertificateValidation =
                         usePort == GrpcPort.UseRenew ? IsClientCertificateValidOld : IsClientCertificateValid;
                 });
+                if (grpcOptions.MaxMessageSize != null)
+                {
+                    serverOptions.Limits.Http2.InitialConnectionWindowSize = (int)grpcOptions.MaxMessageSize;
+                }
             });
             builder.Services.AddHostedService<ServerCertificateFileWatcher>();
 

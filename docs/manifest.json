@@ -42,16 +42,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/DMediatR.CorrelatedNotification.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/DMediatR.CorrelatedNotification.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/DMediatR.CustomSerializer-1.yml",
       "output": {
         ".html": {
@@ -449,6 +439,16 @@
       "output": {
         ".html": {
           "relative_path": "docs/misc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/performance.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/performance.html"
         }
       },
       "version": ""

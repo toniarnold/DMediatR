@@ -14,7 +14,7 @@ namespace DMediatR.Tests.Grpc
         public const string GrpcServerProject = "DMediatRNode.csproj";
         public const string WorkDirFromTestDir = @"..\..\..\..\..\src\DMediatRNode";
         public const int ServerStartTimeout = 1;
-        public static ServiceProvider ServiceProvider => TestSetUp.ServiceProvider!;
+        public static ServiceProvider ServiceProvider => TestSetUp.ServiceProvider;
         public static CertificateOptions CertificateOptions => TestSetUp.CertificateOptions;
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace DMediatR.Tests.Grpc
 
         public static void SetUpInitialCertificates()
         {
-            var certs = ServiceProvider!.GetRequiredService<Certificates>();
+            var certs = ServiceProvider.GetRequiredService<Certificates>();
             Task.Run(() => certs.SetUpInitialChainAsync(CancellationToken.None)).Wait();
         }
 

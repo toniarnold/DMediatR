@@ -178,20 +178,20 @@ hierarchy: Serializable classes can implement multiple interfaces, which in turn
 require e.g. specific members which must be dehydrated before serialization for
 each interface implemented.</p>
 <p>The <code>ILockSerializedInterface</code> is defined for the
-interface <code>ILock</code> and overrides the two <code>PreSerialize</code>/<code>PostDeserialize</code> hooks
+interface <code>ILock</code> and overrides the two <code>Dehydrate</code>/<code>Rehydrate</code> hooks
 called by the general <code>Serializer</code> class:</p>
 <pre><code class="lang-csharp" name="ILockISerializedInterface.cs">namespace DMediatR
 {
     public class ILockISerializedInterface : SerializedInterface&lt;ILock&gt;
     {
-        protected override void PreSerialize(ILock obj)
+        protected override void Dehydrate(ILock obj)
         {
-            obj.HasLocked = null; // dehydrate as SemaphoreSlim is not serializable
+            obj.HasLocked = null; // SemaphoreSlim is not serializable
         }
 
-        protected override void PostDeserialize(ILock obj)
+        protected override void Rehydrate(ILock obj)
         {
-            obj.HasLocked = []; // rehydrate
+            obj.HasLocked = [];
         }
     }
 }

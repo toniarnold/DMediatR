@@ -6,5 +6,9 @@
     /// </summary>
     public class Pong : SerializationCountMessage
     {
+        /// <summary>
+        /// Payload for performance testing.
+        /// </summary>
+        public byte[] Payload { get; set; } = [];
     }
 }

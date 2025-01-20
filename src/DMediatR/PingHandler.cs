@@ -24,7 +24,12 @@ namespace DMediatR
             _logger.LogInformation("{message}", request.Message);
 
             var pongMsg = Regex.Replace($"{request.Message}", $@"(^Ping )(.*$)", @"Pong $2");
-            var pong = new Pong { Message = pongMsg, Count = request.Count }; // Count of the Ping
+            var pong = new Pong
+            {
+                Message = pongMsg,
+                Count = request.Count,
+                Payload = request.Payload
+            };
             return pong;
         }
     }

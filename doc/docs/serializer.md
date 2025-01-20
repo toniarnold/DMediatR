@@ -1,4 +1,4 @@
-# Serializer
+﻿# Serializer
 
 DMediatR uses typed binary serialization with pluggable custom serializers to
 transmit MediatR `IRequest`/`IResponse` messages over gRPC. Custom serializers
