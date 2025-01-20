@@ -12,7 +12,7 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Copyright © 2024-2025</Copyright>
-    <PackageProjectUrl>https://toniarnold.github.io/DMediatR/</PackageProjectUrl>>
+    <PackageProjectUrl>https://toniarnold.github.io/DMediatR/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/toniarnold/DMediatR.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../../nuget-info/release-notes.txt"))</PackageReleaseNotes>
