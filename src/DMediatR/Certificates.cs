@@ -15,7 +15,7 @@ namespace DMediatR
         }
 
         /// <summary>
-        /// Generate or renew the certificate chain by directly using the local services
+        /// Generate or renew the certificate chain by directly using the local services.
         /// </summary>
         public void SetUpInitialChain()
         {

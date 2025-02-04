@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>IoT | DMediatR </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="IoT | DMediatR ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/toniarnold/DMediatR/blob/main/doc/docs/iot.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="DMediatR">
+            DMediatR
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="iot">IoT</h1>
+
+<p>The IoT use case is an example of the way DMediatR is opinionated: Encourage the
+distribution of the same monolith across all nodes of a microservice
+architecture - it is the responsibility of the RPC caller to use only a node that
+actually provides the desired service. In this case, querying the CPU
+temperature on a Windows machine throws the exception &quot;Iot.Device.CpuTemperature
+is not available on this device&quot;.</p>
+<h2 id="the-iot-sample-node">The Iot sample node</h2>
+<p>The <code>Iot</code> sample host can be published from VS with the RuntimeIdentifier
+<code>linux-arm64</code><a id="fnref:1" href="#fn:1" class="footnote-ref"><sup>1</sup></a>. The included <code>limux-arm64.pubxml</code> in its
+<code>.\Properties\PublishProfiles</code> points to an SMB share <code>Z:</code> connected via USB to
+the target Raspberry PI. After deployment, it can be started with <code>./Iot</code>.</p>
+<h3 id="the-developer-certificate">The developer certificate</h3>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>Although it is in fact not used at all, the dynamic late certificate
+assignment causes the server to require a developer certificate installed during startup.
+To avoid having to install the dotnet SDK<a id="fnref:2" href="#fn:2" class="footnote-ref"><sup>2</sup></a> despite publishing it as self-contained
+app<a id="fnref:3" href="#fn:3" class="footnote-ref"><sup>3</sup></a>, you can copy a developer certificate manually to its directory created with</p>
+<blockquote>
+<p><code>mkdir -p ~/.dotnet/corefx/cryptography/x509stores/my</code></p>
+</blockquote>
+</div>
+<h3 id="the-smoke-test">The smoke test</h3>
+<p>The <code>appsettings.Iot.json</code> in <code>DMediatR.Tests</code> points to the Raspberry PI host
+named <code>rpi</code>. It is written with a trailing dot to force Windows to actually
+query the DNS server (a Pi-hole with its <code>/etc/hosts</code>).</p>
+<p>The certificate path in the <code>DMediatR:Certificate:FilePath</code> points to the <code>cert</code>
+directory in the IoT application. If you create the initial certificate chain on
+the Raspberry Pi with <code>.\Iot init</code>, manually copy it over to that directory.</p>
+<p>The first of the two test methods in <code>IotTest.cs</code> simply sends a GET request
+like a web browser would and asserts having received the same response:</p>
+<pre><code class="lang-csharp" name="IotTest.cs">[Test]
+public async Task CpuTempReachable()
+{
+    using var httpClient = await TestSetUp.GetHttpClientAsync();
+    var response = await httpClient.GetStringAsync(Remote.Remotes[&quot;CpuTemp&quot;].Address);
+    Assert.That(response, Is.EqualTo(&quot;DMediatR gRPC endpoint&quot;));
+}
+
+[Test]
+public async Task GetRemoteTemp()
+{
+    var temperature = await this.SendRemote(new TempRequest(), CancellationToken.None);
+    TestContext.WriteLine($&quot;CpuTemp of {Remote.Remotes[&quot;CpuTemp&quot;].Address} is {temperature,0:f1} ℃.&quot;);
+}
+
+</code></pre>
+<p>The second one actually uses the DMediatR infrastructure and sends a serialized
+MediatR <code>IRequest</code> to query the CPU temperature of the Raspberry PI using the
+<code>Iot.Device.Bindings</code> NuGet package<a id="fnref:4" href="#fn:4" class="footnote-ref"><sup>4</sup></a>. Then, for plausibility, this
+temperature can manually be compared to what e.g. the PI-hole admin page
+reports:</p>
+<pre><code class="lang-text"> CpuTemp of https://rpi.:18001/ is 46.7 ℃.
+</code></pre>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>It's been a long way  from the days when the special Windows
+distribution designed  to run .NET on a Raspberry PI 3 refused to boot on a
+3+ because of the &quot;+&quot;…<a href="#fnref:1" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p><code>./dotnet-install.sh --channel 8.0</code> with a <a href="https://learn.microsoft.com/en-us/dotnet/core/install/linux-scripted-manual#scripted-install">scripted install</a><a href="#fnref:2" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p><a href="https://learn.microsoft.com/en-us/dotnet/iot/deployment#deploying-a-self-contained-app">Deploying a self-contained app</a><a href="#fnref:3" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p><a href="https://www.nuget.org/packages/Iot.Device.Bindings/">Iot.Device.Bindings</a><a href="#fnref:4" class="footnote-back-ref">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/toniarnold/DMediatR/blob/main/doc/docs/iot.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

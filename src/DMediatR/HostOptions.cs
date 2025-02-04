@@ -19,11 +19,11 @@ namespace DMediatR
 
         [Required]
         [Range(typeof(int), "1", "65535")]
-        public String? Port { get; set; }
+        public int? Port { get; set; }
 
         [Required]
         [Range(typeof(int), "1", "65535")]
-        public String? OldPort { get; set; }
+        public int? OldPort { get; set; }
 
         /// <summary>
         /// Programmatically set during WebApplication configuration, not bound from config.

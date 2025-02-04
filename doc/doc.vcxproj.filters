@@ -50,5 +50,8 @@
     <None Include="docs\performance.md">
       <Filter>DocFX\docs</Filter>
     </None>
+    <None Include="docs\iot.md">
+      <Filter>DocFX\docs</Filter>
+    </None>
   </ItemGroup>
 </Project>

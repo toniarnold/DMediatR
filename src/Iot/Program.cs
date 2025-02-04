@@ -1,12 +1,11 @@
-using Microsoft.Extensions.Options;
-using System;
 using System.Reflection;
 
-namespace DMediatRNode
+namespace Iot
 {
     public class Program
     {
         public static async Task Main(string[] args)
+
         {
             using var cts = new CancellationTokenSource();
             Console.CancelKeyPress += (sender, eventArgs) =>

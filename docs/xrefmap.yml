@@ -667,6 +667,22 @@ references:
   isSpec: "True"
   fullName: DMediatR.GrpcServer.RunRestartWebAppAsync
   nameWithType: GrpcServer.RunRestartWebAppAsync
+- uid: DMediatR.GrpcServer.SetUpInitialCertificateChain(System.Action{Microsoft.Extensions.Logging.ILoggingBuilder})
+  name: SetUpInitialCertificateChain(Action<ILoggingBuilder>)
+  href: api/DMediatR.GrpcServer.html#DMediatR_GrpcServer_SetUpInitialCertificateChain_System_Action_Microsoft_Extensions_Logging_ILoggingBuilder__
+  commentId: M:DMediatR.GrpcServer.SetUpInitialCertificateChain(System.Action{Microsoft.Extensions.Logging.ILoggingBuilder})
+  name.vb: SetUpInitialCertificateChain(Action(Of ILoggingBuilder))
+  fullName: DMediatR.GrpcServer.SetUpInitialCertificateChain(System.Action<Microsoft.Extensions.Logging.ILoggingBuilder>)
+  fullName.vb: DMediatR.GrpcServer.SetUpInitialCertificateChain(System.Action(Of Microsoft.Extensions.Logging.ILoggingBuilder))
+  nameWithType: GrpcServer.SetUpInitialCertificateChain(Action<ILoggingBuilder>)
+  nameWithType.vb: GrpcServer.SetUpInitialCertificateChain(Action(Of ILoggingBuilder))
+- uid: DMediatR.GrpcServer.SetUpInitialCertificateChain*
+  name: SetUpInitialCertificateChain
+  href: api/DMediatR.GrpcServer.html#DMediatR_GrpcServer_SetUpInitialCertificateChain_
+  commentId: Overload:DMediatR.GrpcServer.SetUpInitialCertificateChain
+  isSpec: "True"
+  fullName: DMediatR.GrpcServer.SetUpInitialCertificateChain
+  nameWithType: GrpcServer.SetUpInitialCertificateChain
 - uid: DMediatR.HostOptions
   name: HostOptions
   href: api/DMediatR.HostOptions.html

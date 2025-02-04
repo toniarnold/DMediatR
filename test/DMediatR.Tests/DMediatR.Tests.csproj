@@ -30,10 +30,11 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\DMediatRNode\DMediatRNode.csproj" />
     <ProjectReference Include="..\..\src\DMediatR\DMediatR.csproj" />
+    <ProjectReference Include="..\..\src\Iot\Iot.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="appsettings - Kopieren.RemotePing.json">
+    <None Update="appsettings.Iot.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>appsettings.json</DependentUpon>
     </None>

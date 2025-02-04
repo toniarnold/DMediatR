@@ -79,9 +79,10 @@ namespace DMediatR
                     var client = channel.CreateGrpcService<IDtoService>();
                     responseDto = await client.SendAsync(requestDto);
                 }
-                catch
+                catch (RpcException oldPortEx)
                 {
-                    throw new Exception($"Client certificate renewal failure for {address} on {oldAddress}", defaultPortEx);
+                    throw new AggregateException($"Client certificate renewal failure for {address} on {oldAddress}",
+                        [defaultPortEx, oldPortEx]);
                 }
             }
             var response = provider.Remote.Serializer.Deserialize<TResponse>(responseDto.Bytes);
@@ -157,9 +158,10 @@ namespace DMediatR
                     var client = channel.CreateGrpcService<IDtoService>();
                     await client.PublishAsync(notificationDto); ;
                 }
-                catch
+                catch (RpcException oldPortEx)
                 {
-                    throw new Exception($"Client certificate renewal failure for {address} on {oldAddress}", defaultPortEx);
+                    throw new AggregateException($"Client certificate renewal failure for {address} on {oldAddress}",
+                        [defaultPortEx, oldPortEx]);
                 }
             }
         }
@@ -236,20 +238,7 @@ namespace DMediatR
 
         private static bool IsServerCertificateValid(bool old, HttpRequestMessage requestMessage, X509Certificate2? cert, X509Chain? chain, SslPolicyErrors sslErrors)
         {
-            if (sslErrors != SslPolicyErrors.None)
-            {
-                if (sslErrors.HasFlag(SslPolicyErrors.RemoteCertificateChainErrors) && chain != null)
-                {
-                    var status = from s in chain.ChainStatus select $"{s.Status}: {s.StatusInformation}";
-                    string failures = System.String.Join("\n          ", status);
-                    GrpcServer.Logger!.LogWarning("Server certificate custom validation failure\n          {failures}", failures);
-                }
-                else
-                {
-                    GrpcServer.Logger!.LogWarning("Server certificate validation failure {sslErrors}", sslErrors);
-                }
-                return false;
-            }
+            // Connecting to a  linux-arm64 server fails here: if (sslErrors != SslPolicyErrors.None)
             bool valid = false;
             var policy = new X509ChainPolicy
             {

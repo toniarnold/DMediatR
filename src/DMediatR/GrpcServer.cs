@@ -53,6 +53,29 @@ namespace DMediatR
 
         public static ILogger<X509Chain>? Logger => _logger;
 
+        /// <summary>
+        /// Generate or renew the certificate chain by directly using the local services.
+        /// </summary>
+        /// <returns>FilePath where the certificate chain was saved.</returns>
+        public static string SetUpInitialCertificateChain(Action<ILoggingBuilder> configureLogging)
+        {
+            var env = Environment.GetEnvironmentVariables();
+            var environment = env.Contains("ASPNETCORE_ENVIRONMENT") ? env["ASPNETCORE_ENVIRONMENT"] : "";
+            var builder = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional: false)
+                .AddJsonFile($"appsettings.{environment}.json", optional: true)
+                .AddEnvironmentVariables();
+            var cfg = builder.Build();
+            ServiceCollection sc = new();
+            sc.AddDMediatR(cfg);
+            sc.AddLogging(configureLogging);
+            var sp = sc.BuildServiceProvider();
+            var certs = sp.GetRequiredService<Certificates>();
+            Task.Run(() => certs.SetUpInitialChainAsync(CancellationToken.None)).Wait();
+            var opt = sp.GetRequiredService<IOptions<CertificateOptions>>().Value;
+            return opt.FilePath!;
+        }
+
         public static WebApplicationBuilder CreateWebAppBuilder(string[] args, GrpcPort usePort = GrpcPort.UseDefault)
         {
             var builder = WebApplication.CreateBuilder(args);

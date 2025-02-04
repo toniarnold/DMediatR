@@ -1,1 +1,3 @@
-* 
+* Linux compatibility (RuntimeIdentifier linux-arm64)
+
+* IoT sample node which responds to DMediatR queries with the CPU temperature of a Raspberry Pi

@@ -258,7 +258,7 @@ validated against. Used for certificate renewal</p>
 
   <h3 id="DMediatR_GrpcServer_CreateWebApp_Microsoft_AspNetCore_Builder_WebApplicationBuilder_DMediatR_GrpcPort_" data-uid="DMediatR.GrpcServer.CreateWebApp(Microsoft.AspNetCore.Builder.WebApplicationBuilder,DMediatR.GrpcPort)">
   CreateWebApp(WebApplicationBuilder, GrpcPort)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcServer.cs/#L136"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcServer.cs/#L159"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -296,7 +296,7 @@ validated against. Used for certificate renewal</p>
 
   <h3 id="DMediatR_GrpcServer_CreateWebAppBuilder_System_String___DMediatR_GrpcPort_" data-uid="DMediatR.GrpcServer.CreateWebAppBuilder(System.String[],DMediatR.GrpcPort)">
   CreateWebAppBuilder(string[], GrpcPort)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcServer.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcServer.cs/#L79"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -334,7 +334,7 @@ validated against. Used for certificate renewal</p>
 
   <h3 id="DMediatR_GrpcServer_GetHostOptions_System_String_" data-uid="DMediatR.GrpcServer.GetHostOptions(System.String)">
   GetHostOptions(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcServer.cs/#L194"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcServer.cs/#L217"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Get the Host options outside of the WebApplicationBuilder.</p>
@@ -371,7 +371,7 @@ validated against. Used for certificate renewal</p>
 
   <h3 id="DMediatR_GrpcServer_LoadIntermediateCertificates_System_IServiceProvider_" data-uid="DMediatR.GrpcServer.LoadIntermediateCertificates(System.IServiceProvider)">
   LoadIntermediateCertificates(IServiceProvider)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcServer.cs/#L212"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcServer.cs/#L235"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Used only for validation, thus take the .crt file and ignore
@@ -409,7 +409,7 @@ RenewBeforeExpirationDays.</p>
 
   <h3 id="DMediatR_GrpcServer_RunRestartWebAppAsync_System_String___DMediatR_GrpcPort_System_Action_Microsoft_AspNetCore_Builder_WebApplicationBuilder__System_Threading_CancellationToken_" data-uid="DMediatR.GrpcServer.RunRestartWebAppAsync(System.String[],DMediatR.GrpcPort,System.Action{Microsoft.AspNetCore.Builder.WebApplicationBuilder},System.Threading.CancellationToken)">
   RunRestartWebAppAsync(string[], GrpcPort, Action&lt;WebApplicationBuilder&gt;?, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcServer.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcServer.cs/#L195"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Build and run the WebApplication, repeat after it was stopped with
@@ -440,6 +440,44 @@ concrete logger.</p>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
     <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="DMediatR_GrpcServer_SetUpInitialCertificateChain_" data-uid="DMediatR.GrpcServer.SetUpInitialCertificateChain*"></a>
+
+  <h3 id="DMediatR_GrpcServer_SetUpInitialCertificateChain_System_Action_Microsoft_Extensions_Logging_ILoggingBuilder__" data-uid="DMediatR.GrpcServer.SetUpInitialCertificateChain(System.Action{Microsoft.Extensions.Logging.ILoggingBuilder})">
+  SetUpInitialCertificateChain(Action&lt;ILoggingBuilder&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcServer.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Generate or renew the certificate chain by directly using the local services.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string SetUpInitialCertificateChain(Action&lt;ILoggingBuilder&gt; configureLogging)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>configureLogging</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.iloggingbuilder">ILoggingBuilder</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>FilePath where the certificate chain was saved.</p>
+</dd>
   </dl>
 
 

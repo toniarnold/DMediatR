@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Security;
 using System.Net.Sockets;
+using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 
@@ -174,7 +175,9 @@ namespace DMediatR
             var handler = new HttpClientHandler
             {
                 ClientCertificateOptions = ClientCertificateOption.Manual,
-                ServerCertificateCustomValidationCallback = ServerCertificateCustomValidation
+                // for linux-arm64 server:
+                ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator,
+                SslProtocols = SslProtocols.Tls13 | SslProtocols.Tls12,
             };
             var clientCertificateProvider = ServiceProvider.GetRequiredService<ClientCertificateProvider>();
             (var loaded, var cert) = await clientCertificateProvider.TryLoad(CancellationToken.None);
@@ -187,11 +190,6 @@ namespace DMediatR
             {
                 DefaultRequestVersion = HttpVersion.Version20 // HTTP/2 required for gRPC
             };
-        }
-
-        private static bool ServerCertificateCustomValidation(HttpRequestMessage requestMessage, X509Certificate2? certificate, X509Chain? chain, SslPolicyErrors sslErrors)
-        {
-            return sslErrors == SslPolicyErrors.None;
         }
 
         public static void DeployCertificate(string certificate, string node)

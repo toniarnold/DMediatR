@@ -2,6 +2,7 @@
 using CertificateManager.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 
 namespace DMediatR
@@ -102,11 +103,12 @@ namespace DMediatR
                 },
                 3,
                 Options.HostName);
-#if OS_WINDOWS
 #pragma warning disable CA1416
-            cert.FriendlyName = FriendlyName;
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                cert.FriendlyName = FriendlyName;
+            }
 #pragma warning restore CA1416
-#endif
             return cert;
         }
 
