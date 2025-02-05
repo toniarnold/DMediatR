@@ -175,7 +175,7 @@ namespace DMediatR
             var handler = new HttpClientHandler
             {
                 ClientCertificateOptions = ClientCertificateOption.Manual,
-                // for linux-arm64 server:
+                // Required for linux-arm64 server:
                 ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator,
                 SslProtocols = SslProtocols.Tls13 | SslProtocols.Tls12,
             };

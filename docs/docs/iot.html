@@ -95,9 +95,10 @@ temperature on a Windows machine throws the exception &quot;Iot.Device.CpuTemper
 is not available on this device&quot;.</p>
 <h2 id="the-iot-sample-node">The Iot sample node</h2>
 <p>The <code>Iot</code> sample host can be published from VS with the RuntimeIdentifier
-<code>linux-arm64</code><a id="fnref:1" href="#fn:1" class="footnote-ref"><sup>1</sup></a>. The included <code>limux-arm64.pubxml</code> in its
-<code>.\Properties\PublishProfiles</code> points to an SMB share <code>Z:</code> connected via USB to
-the target Raspberry PI. After deployment, it can be started with <code>./Iot</code>.</p>
+<code>linux-arm64</code><a id="fnref:1" href="#fn:1" class="footnote-ref"><sup>1</sup></a>. The included
+<a href="https://github.com/toniarnold/DMediatR/blob/main/src/Iot/Properties/PublishProfiles/limux-arm64.pubxml">limux-arm64.pubxml</a>
+points to an SMB share <code>Z:</code> connected via USB to the target Raspberry PI. After
+deployment, it can be started there locally with <code>./Iot</code>.</p>
 <h3 id="the-developer-certificate">The developer certificate</h3>
 <div class="IMPORTANT">
 <h5>Important</h5>
@@ -110,14 +111,25 @@ app<a id="fnref:3" href="#fn:3" class="footnote-ref"><sup>3</sup></a>, you can c
 </blockquote>
 </div>
 <h3 id="the-smoke-test">The smoke test</h3>
-<p>The <code>appsettings.Iot.json</code> in <code>DMediatR.Tests</code> points to the Raspberry PI host
-named <code>rpi</code>. It is written with a trailing dot to force Windows to actually
-query the DNS server (a Pi-hole with its <code>/etc/hosts</code>).</p>
+<p>The
+<a href="https://github.com/toniarnold/DMediatR/blob/main/test/DMediatR.Tests/appsettings.Iot.json">appsettings.Iot.json</a>
+in <code>DMediatR.Tests</code> points to the Raspberry PI host named <code>rpi</code>. It is written
+with a trailing dot to force Windows to actually query the DNS server (a
+Pi-hole<a id="fnref:4" href="#fn:4" class="footnote-ref"><sup>4</sup></a> with its <code>/etc/hosts</code>):</p>
+<pre><code class="lang-javascript" name="IotTest.cs">&quot;Remotes&quot;: {
+  &quot;CpuTemp&quot;: {
+    &quot;Host&quot;: &quot;rpi.&quot;,
+    &quot;Port&quot;: 18001,
+    &quot;OldPort&quot;: 18002
+  }
+</code></pre>
 <p>The certificate path in the <code>DMediatR:Certificate:FilePath</code> points to the <code>cert</code>
 directory in the IoT application. If you create the initial certificate chain on
 the Raspberry Pi with <code>.\Iot init</code>, manually copy it over to that directory.</p>
-<p>The first of the two test methods in <code>IotTest.cs</code> simply sends a GET request
-like a web browser would and asserts having received the same response:</p>
+<p>The first of the two test methods in
+<a href="https://github.com/toniarnold/DMediatR/blob/main/test/DMediatR.Tests/Grpc/IotTest.cs">IotTest.cs</a>
+simply sends a GET request like a web browser would and asserts having received
+the same response:</p>
 <pre><code class="lang-csharp" name="IotTest.cs">[Test]
 public async Task CpuTempReachable()
 {
@@ -135,10 +147,13 @@ public async Task GetRemoteTemp()
 
 </code></pre>
 <p>The second one actually uses the DMediatR infrastructure and sends a serialized
-MediatR <code>IRequest</code> to query the CPU temperature of the Raspberry PI using the
-<code>Iot.Device.Bindings</code> NuGet package<a id="fnref:4" href="#fn:4" class="footnote-ref"><sup>4</sup></a>. Then, for plausibility, this
-temperature can manually be compared to what e.g. the PI-hole admin page
-reports:</p>
+MediatR <code>IRequest</code> to remotely query the CPU temperature of the Raspberry PI
+using the <code>Iot.Device.Bindings</code> NuGet package<a id="fnref:5" href="#fn:5" class="footnote-ref"><sup>5</sup></a>. On the PI, the request
+is handled locally in the
+<a href="https://github.com/toniarnold/DMediatR/blob/main/src/Iot/TempHandler.cs">TempHandler.cs</a>
+and the result is sent back. Then, for plausibility, this temperature can
+manually be compared to what e.g. the PI-hole <a href="http://rpi.:8081/admin/index.php">admin
+page</a> reports:</p>
 <pre><code class="lang-text"> CpuTemp of https://rpi.:18001/ is 46.7 ℃.
 </code></pre>
 <div class="footnotes">
@@ -156,7 +171,10 @@ distribution designed  to run .NET on a Raspberry PI 3 refused to boot on a
 <p><a href="https://learn.microsoft.com/en-us/dotnet/iot/deployment#deploying-a-self-contained-app">Deploying a self-contained app</a><a href="#fnref:3" class="footnote-back-ref">&#8617;</a></p>
 </li>
 <li id="fn:4">
-<p><a href="https://www.nuget.org/packages/Iot.Device.Bindings/">Iot.Device.Bindings</a><a href="#fnref:4" class="footnote-back-ref">&#8617;</a></p>
+<p><a href="https://pi-hole.net">https://pi-hole.net</a><a href="#fnref:4" class="footnote-back-ref">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p><a href="https://www.nuget.org/packages/Iot.Device.Bindings/">Iot.Device.Bindings</a><a href="#fnref:5" class="footnote-back-ref">&#8617;</a></p>
 </li>
 </ol>
 </div>

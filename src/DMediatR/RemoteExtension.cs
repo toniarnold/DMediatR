@@ -238,7 +238,7 @@ namespace DMediatR
 
         private static bool IsServerCertificateValid(bool old, HttpRequestMessage requestMessage, X509Certificate2? cert, X509Chain? chain, SslPolicyErrors sslErrors)
         {
-            // Connecting to a  linux-arm64 server fails here: if (sslErrors != SslPolicyErrors.None)
+            // Connecting to a  linux-arm64 server fails if (sslErrors != SslPolicyErrors.None)
             bool valid = false;
             var policy = new X509ChainPolicy
             {

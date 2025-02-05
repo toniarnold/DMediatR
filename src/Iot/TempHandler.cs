@@ -2,7 +2,7 @@
 
 namespace Iot
 {
-    [Local("TempHandler")]
+    [Local("CpuTemp")]
     public class TempHandler : IRequestHandler<TempRequest, double>
     {
         public virtual async Task<double> Handle(TempRequest request, CancellationToken cancellationToken)

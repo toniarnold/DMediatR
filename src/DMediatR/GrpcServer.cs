@@ -128,7 +128,7 @@ namespace DMediatR
 
         private static bool IsClientCertificateValid(bool old, X509Certificate2 cert, X509Chain? chain, SslPolicyErrors sslErrors)
         {
-            // Ignore the too restricted default (sslErrors != SslPolicyErrors.None)
+            // A linux-arm64 server rejects if (sslErrors != SslPolicyErrors.None)
             bool valid = false;
             var policy = new X509ChainPolicy
             {
