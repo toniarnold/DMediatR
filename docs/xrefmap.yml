@@ -554,6 +554,19 @@ references:
   commentId: T:DMediatR.GrpcServer
   fullName: DMediatR.GrpcServer
   nameWithType: GrpcServer
+- uid: DMediatR.GrpcServer.ConsoleTitle
+  name: ConsoleTitle
+  href: api/DMediatR.GrpcServer.html#DMediatR_GrpcServer_ConsoleTitle
+  commentId: P:DMediatR.GrpcServer.ConsoleTitle
+  fullName: DMediatR.GrpcServer.ConsoleTitle
+  nameWithType: GrpcServer.ConsoleTitle
+- uid: DMediatR.GrpcServer.ConsoleTitle*
+  name: ConsoleTitle
+  href: api/DMediatR.GrpcServer.html#DMediatR_GrpcServer_ConsoleTitle_
+  commentId: Overload:DMediatR.GrpcServer.ConsoleTitle
+  isSpec: "True"
+  fullName: DMediatR.GrpcServer.ConsoleTitle
+  nameWithType: GrpcServer.ConsoleTitle
 - uid: DMediatR.GrpcServer.CreateWebApp(Microsoft.AspNetCore.Builder.WebApplicationBuilder,DMediatR.GrpcPort)
   name: CreateWebApp(WebApplicationBuilder, GrpcPort)
   href: api/DMediatR.GrpcServer.html#DMediatR_GrpcServer_CreateWebApp_Microsoft_AspNetCore_Builder_WebApplicationBuilder_DMediatR_GrpcPort_
