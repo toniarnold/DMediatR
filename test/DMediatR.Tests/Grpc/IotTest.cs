@@ -10,10 +10,9 @@ namespace DMediatR.Tests.Grpc
         public Remote Remote { get; set; } = default!;
 
         [OneTimeSetUp]
-        public void SetUpInitialCertificatesRemote()
+        public void SetUpServices()
         {
             SetUp.SetUpDMediatRServices("Iot");
-            SetUp.SetUpInitialCertificates();
             Remote = SetUp.ServiceProvider.GetRequiredService<Remote>();
         }
 
