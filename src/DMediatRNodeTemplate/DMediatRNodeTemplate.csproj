@@ -16,7 +16,7 @@
     <RepositoryUrl>https://github.com/toniarnold/DMediatR.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../../nuget-info/release-notes.txt"))</PackageReleaseNotes>
-    <PackageTags>dotnet-new;templates;mediator;gRPC;x509;certificate</PackageTags>
+    <PackageTags>dotnet-new;templates;MediatR;gRPC;x509;certificate;serialization</PackageTags>
 
     <TargetFramework>netstandard2.0</TargetFramework>
 

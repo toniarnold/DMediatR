@@ -35,8 +35,8 @@ Pi-hole[^pihole] with its `/etc/hosts`):
 [!code-javascript[IotTest.cs](../../test/DMediatR.Tests/appsettings.Iot.json?name=remotes)]
 
 The certificate path in the `DMediatR:Certificate:FilePath` points to the `cert`
-directory in the IoT application. If you create the initial certificate chain on
-the Raspberry Pi with `.\Iot init`, manually copy it over to that directory.
+directory in the Iot application. If you create the initial certificate chain on
+the Raspberry Pi with `./Iot init`, manually copy it over to that directory.
 
 The first of the two test methods in
 [IotTest.cs](https://github.com/toniarnold/DMediatR/blob/main/test/DMediatR.Tests/Grpc/IotTest.cs)

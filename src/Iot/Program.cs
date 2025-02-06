@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Hosting;
+using System;
 using System.Reflection;
 
 namespace Iot
@@ -22,14 +24,7 @@ namespace Iot
             }
             else
             {
-                var env = Environment.GetEnvironmentVariables();
-                if (env.Contains("ASPNETCORE_ENVIRONMENT")) // dotnet run --project
-                {
-                    var environment = (string)env["ASPNETCORE_ENVIRONMENT"]!;
-                    var opt = GrpcServer.GetHostOptions(environment);
-
-                    Console.Title = $"DMediatR {environment} on {opt.Host}:{opt.Port}";
-                }
+                Console.Title = GrpcServer.ConsoleTitle;
                 await Task.WhenAll(
                     GrpcServer.RunRestartWebAppAsync(args, GrpcPort.UseDefault, AddServices, ct),
                     GrpcServer.RunRestartWebAppAsync(args, GrpcPort.UseRenew, AddServices, ct)

@@ -54,6 +54,29 @@ namespace DMediatR
         public static ILogger<X509Chain>? Logger => _logger;
 
         /// <summary>
+        /// For setting the Console.Title in Program.cs. Includes the optional
+        /// ASPNETCORE_ENVIRONMENT, Host and Port.
+        /// </summary>
+        public static string ConsoleTitle
+        {
+            get
+            {
+                var env = Environment.GetEnvironmentVariables();
+                if (env.Contains("ASPNETCORE_ENVIRONMENT")) // dotnet run --project
+                {
+                    var environment = (string)env["ASPNETCORE_ENVIRONMENT"]!;
+                    var opt = GetHostOptions(environment);
+                    return $"DMediatR {environment} on {opt.Host}:{opt.Port}";
+                }
+                else
+                {
+                    var opt = GetHostOptions();
+                    return $"DMediatR on {opt.Host}:{opt.Port}";
+                }
+            }
+        }
+
+        /// <summary>
         /// Generate or renew the certificate chain by directly using the local services.
         /// </summary>
         /// <returns>FilePath where the certificate chain was saved.</returns>
@@ -214,7 +237,7 @@ namespace DMediatR
         /// </summary>
         /// <param name="environment"></param>
         /// <returns></returns>
-        public static HostOptions GetHostOptions(string environment)
+        public static HostOptions GetHostOptions(string environment = "")
         {
             var builder = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", optional: false)
