@@ -1,5 +1,3 @@
-using Microsoft.Extensions.Options;
-using System;
 using System.Reflection;
 
 namespace DMediatRNode

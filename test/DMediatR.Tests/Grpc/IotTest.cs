@@ -13,6 +13,7 @@ namespace DMediatR.Tests.Grpc
         public void SetUpServices()
         {
             SetUp.SetUpDMediatRServices("Iot");
+            TestSetUp.SetUpInitialCertificates();
             Remote = SetUp.ServiceProvider.GetRequiredService<Remote>();
         }
 

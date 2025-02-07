@@ -1,3 +1,11 @@
-* Linux compatibility (RuntimeIdentifier linux-arm64)
+* Linux compatibility (e.g. RuntimeIdentifier linux-arm64)
 
-* IoT sample node which responds to DMediatR queries with the CPU temperature of a Raspberry Pi
+* Iot sample node that responds to DMediatR requests with its CPU temperature when deployed on a Raspberry Pi
+
+* PerformanceMeter NUnit tests to measure gRPC throughput
+
+* Grpc:MaxMessageSize option to increase the defaults
+
+* Grpc:ResponseCompressionAlgorithm/ResponseCompressionLevel/MessagePackCompression options to enable gzip or lz4
+
+* The inexplicably required development certificates are not handled by DMediatR

@@ -15,7 +15,7 @@ namespace Iot
             var temperature = cpuTemperature.ReadTemperatures().FirstOrDefault();
             if (double.IsNaN(temperature.Temperature.DegreesCelsius))
             {
-                throw new Exception("Temperature read is not numeric");
+                throw new Exception("Iot.Device.CpuTemperature read is not numeric");
             }
             return await Task.FromResult(temperature.Temperature.DegreesCelsius);
         }

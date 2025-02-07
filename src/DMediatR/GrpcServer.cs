@@ -183,7 +183,6 @@ namespace DMediatR
         {
             var app = builder.Build();
             app.UseAuthentication();
-            var grpcOptions = app.Services.GetRequiredService<IOptions<GrpcOptions>>().Value;
             app.MapGrpcService<DtoService>();
             var hostOptions = app.Services.GetRequiredService<IOptions<HostOptions>>().Value;
             hostOptions.GrpcPort = usePort;

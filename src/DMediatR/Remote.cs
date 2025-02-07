@@ -46,10 +46,10 @@ namespace DMediatR
             _logger = logger;
         }
 
-        internal IServiceProvider ServiceProvider => _serviceProvider;
         internal CertificateOptions CertificateOptions => _certOptions;
         internal GrpcOptions GrpcOptions => _grpcOptions;
         internal RemotesOptions Remotes => _remotes;
+        internal IServiceProvider ServiceProvider => _serviceProvider;
         internal IMediator Mediator => _mediator;
         internal ISerializer Serializer => _serializer;
         internal IGrpcChannelPool ChannelPool => _grpcChannelProvider;

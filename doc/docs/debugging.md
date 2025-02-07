@@ -11,7 +11,7 @@ two scripts in the root directory:
 Script | Arguments | Usage Example
 : -- | : - | : -
 `start.ps1` | `profile1 [profile2 ...]` | `./start Monolith`
-`test.ps1` |  `[test selection]` | `./test test =~ /GetRemoteServerCert/`
+`test.ps1` |  `[test selection]` | `./test test =~ GetRemoteServerCert`
 
 
 ## start.ps1
@@ -40,7 +40,7 @@ specified `NUnit.Where` test selection[^selection]. It is assumed that the
 selected test executed by the script expects a `DMediatRNode` with a matching
 configuration profile running in the VS debugger.
 
-Running e.g. `test test =~ /Test1/` in the VS Developer-PowerShell eliminates the
+Running e.g. `test test =~ Test1` in the VS Developer-PowerShell eliminates the
 need to attempt to teach tools like Postman to talk binary gRPC MediatR.
 
 [^selection]: [NUnit Test Selection Language](https://docs.nunit.org/articles/nunit/running-tests/Test-Selection-Language.html)

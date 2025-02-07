@@ -1,5 +1,3 @@
-using Microsoft.Extensions.Options;
-
 namespace DMediatRNode
 {
     public class Program
@@ -23,15 +21,10 @@ namespace DMediatRNode
             {
                 Console.Title = GrpcServer.ConsoleTitle;
                 await Task.WhenAll(
-                    GrpcServer.RunRestartWebAppAsync(args, GrpcPort.UseDefault, AddLogger, ct),
-                    GrpcServer.RunRestartWebAppAsync(args, GrpcPort.UseRenew, AddLogger, ct)
+                    GrpcServer.RunRestartWebAppAsync(args, GrpcPort.UseDefault, builder => builder.Logging.AddConsole(), ct),
+                    GrpcServer.RunRestartWebAppAsync(args, GrpcPort.UseRenew, builder => builder.Logging.AddConsole(), ct)
                     );
             }
-        }
-
-        private static void AddLogger(WebApplicationBuilder builder)
-        {
-            builder.Logging.AddConsole();
         }
     }
 }
