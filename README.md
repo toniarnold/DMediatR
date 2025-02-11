@@ -9,8 +9,9 @@ each appsettings.json whether messages will be handled locally or are delegated
 to a specified node. If nothing is configured, the monolith works as before.
 
 For transmission over gRPC, MediatR messages are transparently binary serialized
-using [MessagePack](https://github.com/MessagePack-CSharp/MessagePack-CSharp).
-The serialization can be customized for specific object types or interfaces.
+using MessagePack. The serialization can be
+[customized](https://toniarnold.github.io/DMediatR/docs/serializer.html) for
+specific object types or interfaces.
 
 Validation of the generated X509 certificate chain ignores hostnames, it only
 validates that the client and server certificates match. It is therefore

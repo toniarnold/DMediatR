@@ -13,7 +13,7 @@
     <RepositoryUrl>https://github.com/toniarnold/DMediatR.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../../nuget-info/release-notes.txt"))</PackageReleaseNotes>
-    <PackageTags>MediatR;gRPC;x509;certificate;serialization</PackageTags>
+    <PackageTags>MediatR;gRPC;x509;certificate;serialization;IoT</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup>

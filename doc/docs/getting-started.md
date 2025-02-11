@@ -120,7 +120,7 @@ used as explained in the debugging chapter[^debugging].
 [^wcf]: DMediatR uses the same trust model as ancient WCF 4.0: In that framework
 at that time, a self-signed server certificate was disallowed as insecure, but
 as soon as a client certificate was also required, WCF accepted the whole as
-secure enough. In DMediatR, trust is built on the concrete intermediate
+secure enough. In DMediatR, trust is built on the intermediate
 certificate: If a responding server's certificate was issued by the same
 intermediate certifier, it is considered trustworthy. The server in turn
 validates the required client certificate against the intermediate certificate.

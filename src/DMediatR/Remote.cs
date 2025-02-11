@@ -17,29 +17,30 @@ namespace DMediatR
     /// </summary>
     public class Remote
     {
-        private readonly IServiceProvider _serviceProvider;
         private readonly CertificateOptions _certOptions;
         private readonly RemotesOptions _remotes;
         private readonly GrpcOptions _grpcOptions;
+        private readonly IServiceProvider _serviceProvider;
         private readonly IMediator _mediator;
         private readonly ISerializer _serializer;
         private readonly IGrpcChannelPool _grpcChannelProvider;
         private readonly ILogger<Remote> _logger;
 
         public Remote(
-            IServiceProvider serviceProvider,
+
             IOptions<CertificateOptions> certOptions,
             IOptions<RemotesOptions> remotesOptions,
             IOptions<GrpcOptions> grpcOptions,
+            IServiceProvider serviceProvider,
             IMediator mediator,
             ISerializer serializer,
             IGrpcChannelPool channel,
             ILogger<Remote> logger)
         {
-            _serviceProvider = serviceProvider;
             _certOptions = certOptions.Value;
             _remotes = remotesOptions.Value;
             _grpcOptions = grpcOptions.Value;
+            _serviceProvider = serviceProvider;
             _mediator = mediator;
             _serializer = serializer;
             _grpcChannelProvider = channel;

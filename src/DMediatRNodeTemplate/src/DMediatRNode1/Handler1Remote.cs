@@ -3,13 +3,11 @@
     [Remote("Handler1")]
     public class Handler1Remote : Handler1, IRemote
     {
-        private readonly Remote _remote;
-
-        public Remote Remote => _remote;
+        public Remote Remote { get; init; }
 
         public Handler1Remote(Remote remote, IMediator mediator, ILogger<Handler1Remote> logger) : base(mediator, logger)
         {
-            _remote = remote;
+            Remote = remote;
         }
 
         public override async Task<Response1> Handle(Request1 request, CancellationToken cancellationToken)

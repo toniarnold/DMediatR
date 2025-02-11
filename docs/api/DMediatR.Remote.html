@@ -156,8 +156,8 @@ RemoteExtension.SendRemote().</p>
 
   <a id="DMediatR_Remote__ctor_" data-uid="DMediatR.Remote.#ctor*"></a>
 
-  <h3 id="DMediatR_Remote__ctor_System_IServiceProvider_Microsoft_Extensions_Options_IOptions_DMediatR_CertificateOptions__Microsoft_Extensions_Options_IOptions_DMediatR_RemotesOptions__Microsoft_Extensions_Options_IOptions_DMediatR_GrpcOptions__MediatR_IMediator_DMediatR_ISerializer_DMediatR_IGrpcChannelPool_Microsoft_Extensions_Logging_ILogger_DMediatR_Remote__" data-uid="DMediatR.Remote.#ctor(System.IServiceProvider,Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions},Microsoft.Extensions.Options.IOptions{DMediatR.RemotesOptions},Microsoft.Extensions.Options.IOptions{DMediatR.GrpcOptions},MediatR.IMediator,DMediatR.ISerializer,DMediatR.IGrpcChannelPool,Microsoft.Extensions.Logging.ILogger{DMediatR.Remote})">
-  Remote(IServiceProvider, IOptions&lt;CertificateOptions&gt;, IOptions&lt;RemotesOptions&gt;, IOptions&lt;GrpcOptions&gt;, IMediator, ISerializer, IGrpcChannelPool, ILogger&lt;Remote&gt;)
+  <h3 id="DMediatR_Remote__ctor_Microsoft_Extensions_Options_IOptions_DMediatR_CertificateOptions__Microsoft_Extensions_Options_IOptions_DMediatR_RemotesOptions__Microsoft_Extensions_Options_IOptions_DMediatR_GrpcOptions__System_IServiceProvider_MediatR_IMediator_DMediatR_ISerializer_DMediatR_IGrpcChannelPool_Microsoft_Extensions_Logging_ILogger_DMediatR_Remote__" data-uid="DMediatR.Remote.#ctor(Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions},Microsoft.Extensions.Options.IOptions{DMediatR.RemotesOptions},Microsoft.Extensions.Options.IOptions{DMediatR.GrpcOptions},System.IServiceProvider,MediatR.IMediator,DMediatR.ISerializer,DMediatR.IGrpcChannelPool,Microsoft.Extensions.Logging.ILogger{DMediatR.Remote})">
+  Remote(IOptions&lt;CertificateOptions&gt;, IOptions&lt;RemotesOptions&gt;, IOptions&lt;GrpcOptions&gt;, IServiceProvider, IMediator, ISerializer, IGrpcChannelPool, ILogger&lt;Remote&gt;)
   <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/Remote.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -165,18 +165,18 @@ RemoteExtension.SendRemote().</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Remote(IServiceProvider serviceProvider, IOptions&lt;CertificateOptions&gt; certOptions, IOptions&lt;RemotesOptions&gt; remotesOptions, IOptions&lt;GrpcOptions&gt; grpcOptions, IMediator mediator, ISerializer serializer, IGrpcChannelPool channel, ILogger&lt;Remote&gt; logger)</code></pre>
+    <pre><code class="lang-csharp hljs">public Remote(IOptions&lt;CertificateOptions&gt; certOptions, IOptions&lt;RemotesOptions&gt; remotesOptions, IOptions&lt;GrpcOptions&gt; grpcOptions, IServiceProvider serviceProvider, IMediator mediator, ISerializer serializer, IGrpcChannelPool channel, ILogger&lt;Remote&gt; logger)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>serviceProvider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></dt>
-    <dd></dd>
     <dt><code>certOptions</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.options.ioptions-1">IOptions</a>&lt;<a class="xref" href="DMediatR.CertificateOptions.html">CertificateOptions</a>&gt;</dt>
     <dd></dd>
     <dt><code>remotesOptions</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.options.ioptions-1">IOptions</a>&lt;<a class="xref" href="DMediatR.RemotesOptions.html">RemotesOptions</a>&gt;</dt>
     <dd></dd>
     <dt><code>grpcOptions</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.options.ioptions-1">IOptions</a>&lt;<a class="xref" href="DMediatR.GrpcOptions.html">GrpcOptions</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>serviceProvider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></dt>
     <dd></dd>
     <dt><code>mediator</code> <span class="xref">IMediator</span></dt>
     <dd></dd>

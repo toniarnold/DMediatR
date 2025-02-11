@@ -1,1 +1,1 @@
-Distributed MediatR using gRPC over TLS with auto-renewed self-signed X509 client certificates
+Distributed MediatR over gRPC with auto-renewing X509 client certificate TLS

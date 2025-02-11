@@ -1,4 +1,4 @@
-# DMediatR
+# DMediatR Solution Template
 
 DMediatR gRPC server template with a `Request1` and a `Notification1` class to
 be handled either locally in `Handler1`  or in `Handler1Remote` when configured

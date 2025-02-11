@@ -3,7 +3,7 @@
     [Remote("CpuTemp")]
     public class TempHandlerRemote : TempHandler, IRemote
     {
-        public Remote Remote { get; set; } = default!;
+        public Remote Remote { get; init; }
 
         public TempHandlerRemote(Remote remote)
         {
