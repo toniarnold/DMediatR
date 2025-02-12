@@ -8,6 +8,6 @@ There is an appsettings.Red.json and an appsettings.Blue.json for two server
 instances. These can be started in the Developer PowerShell with `./start Red`
 or `./start Blue`.
 
-A `Request1` message can be sent to such a host e.g. with `./test test =~
+A `Request1` message can be sent to such a host e.g. with `./test =~
 PingRedTest.RequestResponseTest`, as described in
 [Debugging](https://toniarnold.github.io/DMediatR/docs/debugging.html).

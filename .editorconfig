@@ -25,7 +25,7 @@ dotnet_style_require_accessibility_modifiers = for_non_interface_members:silent
 dotnet_style_allow_multiple_blank_lines_experimental = true:silent
 dotnet_style_allow_statement_immediately_after_block_experimental = true:silent
 vsspell_section_id = eea101b9179a457a98fc5e559ca5f60b
-vsspell_ignored_words_eea101b9179a457a98fc5e559ca5f60b = Accessor|app|cfg|datapoint|Deserialize|Dns|Dto|filesystem|Grpc|Gzip|https|Lz|Mediat|mediatr|Pfx|Pong|rehydrated|Serializer|type|Iot
+vsspell_ignored_words_eea101b9179a457a98fc5e559ca5f60b = Accessor|app|cfg|datapoint|Deserialize|Dns|Dto|filesystem|Grpc|Gzip|https|Iot|Lz|Mediat|mediatr|Pfx|Pong|rehydrated|Serializer|type|prepended
 
 [*.cs]
 #### Benennungsstile ####
