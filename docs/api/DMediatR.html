@@ -187,6 +187,17 @@ RemoteExtension.SendRemote().</p>
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.RemotesGraph.html">RemotesGraph</a></dt>
+      <dd><p>Implementation for /remotes.svg with a minimalistic heuristic MSAGL
+renderer. Replace the RemotesGraph service with a class inheriting from
+this and overwriting GetSvg() with an embellished renderer.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.RemotesGraphRequest.html">RemotesGraphRequest</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.RemotesOptions.html">RemotesOptions</a></dt>
       <dd><p>Dictionary of HostOptions declaring the configured remotes for that DMediatR node.</p>
 </dd>
@@ -248,16 +259,32 @@ serialization.</p>
 tests without a dependency to a specific test framework.</p>
 </dd>
     </dl>
+    <h3 id="structs">
+Structs
+</h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.RemotesGraphRequest.Edge.html">RemotesGraphRequest.Edge</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.RemotesGraphRequest.Node.html">RemotesGraphRequest.Node</a></dt>
+      <dd></dd>
+    </dl>
     <h3 id="interfaces">
 Interfaces
 </h3>
     <dl class="jumplist">
-      <dt><a class="xref" href="DMediatR.ICorrelatedNotification.html">ICorrelatedNotification</a></dt>
+      <dt><a class="xref" href="DMediatR.ICorrelatedMessage.html">ICorrelatedMessage</a></dt>
       <dd><p>Multiple DMediatR nodes can have cyclic dependencies or there might be
 indirect diamonds in the configured dependency graph. In such cases a
-single node receives and would forward the same INotification in multiple
+single node receives and would forward the same message in multiple
 duplicate copies. To handle them only once as in a monolith correlate
-these remote Notifications with a Guid.</p>
+these remote messages with a Guid.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.ICorrelatedNotification.html">ICorrelatedNotification</a></dt>
+      <dd><p>Correlated notification with a CorrelationGuid from ICorrelatedMessage.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -282,6 +309,11 @@ HasLocked set.</p>
     <dl class="jumplist">
       <dt><a class="xref" href="DMediatR.IRemote.html">IRemote</a></dt>
       <dd><p>Inherit from IRemote and inject Remote to add the SendRemote extension.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="DMediatR.IRemotesGraph.html">IRemotesGraph</a></dt>
+      <dd><p>Interface for registering a RemotesGraph class.</p>
 </dd>
     </dl>
     <dl class="jumplist">

@@ -72,6 +72,12 @@ namespace DMediatR
         }
 
         /// <summary>
+        /// Whether to expose a /remotes.svg and to respond to and to forwards a
+        /// remote RemotesGraphRequest instance. True if not set.
+        /// </summary>
+        public bool? RemotesSvg { get; set; }
+
+        /// <summary>
         /// GrpcChannel.ForAddress expects a GrpcChannelOptions object for
         /// configuration. Configure it if MaxMessageSize is set.
         /// </summary>

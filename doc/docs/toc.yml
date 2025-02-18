@@ -4,6 +4,8 @@
   href: getting-started.md
 - name: Ping-Pong and Bing
   href: ping-pong-bing.md
+- name: /remotes.svg Graph
+  href: remotes-svg.md
 - name: IoT
   href: iot.md
 - name: Performance

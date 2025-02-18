@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--SvgWriter version 0.0.0.0-->
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="661.5" height="190" id="svg2" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(172,690)">
+    <!--Edges-->
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 36.76923076923 -640 L 193.44620086735 -554.77821710144" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="192.38689563651 -552.83072517704 202.23076923077 -550 194.5055060982 -556.72570902583" />
+    <text x="119.5" y="-575" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="119.5" dy="0">IntermediateCertificateRequest</tspan>
+    </text>
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 0 -640 L 0 -560" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="-2.21694663167 -560 0 -550 2.21694663167 -560" />
+    <text x="0" y="-575" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="0" dy="0">Request2</tspan>
+    </text>
+    <!--nodes-->
+    <rect fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" x="-162" y="-550" width="324" height="40" rx="3" ry="3" />
+    <text x="-97.2" y="-516.66666666667" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="-97.2" dy="0">targetnode.example.com:8083</tspan>
+    </text>
+    <rect fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" x="173" y="-550" width="132" height="40" rx="3" ry="3" />
+    <text x="199.4" y="-516.66666666667" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="199.4" dy="0">target:8082</tspan>
+    </text>
+    <rect fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" x="-66" y="-680" width="132" height="40" rx="3" ry="3" />
+    <text x="-39.6" y="-646.66666666667" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="-39.6" dy="0">source:8081</tspan>
+    </text>
+    <!--end of nodes-->
+  </g>
+</svg>

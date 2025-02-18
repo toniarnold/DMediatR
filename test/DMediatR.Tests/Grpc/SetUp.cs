@@ -13,6 +13,7 @@ namespace DMediatR.Tests.Grpc
     {
         public const string GrpcServerProject = "DMediatRNode.csproj";
         public const string WorkDirFromTestDir = @"..\..\..\..\..\src\DMediatRNode";
+        public const string OutputDirFromTestDir = @"..\..\..\output";
         public const int ServerStartTimeout = 1;
         public static ServiceProvider ServiceProvider => TestSetUp.ServiceProvider;
         public static CertificateOptions CertificateOptions => TestSetUp.CertificateOptions;
@@ -49,8 +50,7 @@ namespace DMediatR.Tests.Grpc
 
         public static void SetUpInitialCertificates()
         {
-            var certs = ServiceProvider.GetRequiredService<Certificates>();
-            Task.Run(() => certs.SetUpInitialChainAsync(CancellationToken.None)).Wait();
+            TestSetUp.SetUpInitialCertificates();
         }
 
         public static void DeployCertificate(string certificate, string node)
@@ -68,6 +68,13 @@ namespace DMediatR.Tests.Grpc
             TestSetUp.SetUpDMediatRServices(environment,
                 cfg => cfg.RegisterServicesFromAssembly(Assembly.GetAssembly(typeof(Program))!),
                 sc => sc.AddLogging(builder => builder.AddNUnit()));
+        }
+
+        public static void SaveOutput(string filename, string content)
+        {
+            var outputDir = Path.GetFullPath(Path.Join(TestContext.CurrentContext.WorkDirectory, OutputDirFromTestDir));
+            var outputFile = Path.Join(outputDir, filename);
+            File.WriteAllText(outputFile, content);
         }
     }
 }

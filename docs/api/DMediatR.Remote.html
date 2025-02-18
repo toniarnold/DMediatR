@@ -156,16 +156,16 @@ RemoteExtension.SendRemote().</p>
 
   <a id="DMediatR_Remote__ctor_" data-uid="DMediatR.Remote.#ctor*"></a>
 
-  <h3 id="DMediatR_Remote__ctor_Microsoft_Extensions_Options_IOptions_DMediatR_CertificateOptions__Microsoft_Extensions_Options_IOptions_DMediatR_RemotesOptions__Microsoft_Extensions_Options_IOptions_DMediatR_GrpcOptions__System_IServiceProvider_MediatR_IMediator_DMediatR_ISerializer_DMediatR_IGrpcChannelPool_Microsoft_Extensions_Logging_ILogger_DMediatR_Remote__" data-uid="DMediatR.Remote.#ctor(Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions},Microsoft.Extensions.Options.IOptions{DMediatR.RemotesOptions},Microsoft.Extensions.Options.IOptions{DMediatR.GrpcOptions},System.IServiceProvider,MediatR.IMediator,DMediatR.ISerializer,DMediatR.IGrpcChannelPool,Microsoft.Extensions.Logging.ILogger{DMediatR.Remote})">
-  Remote(IOptions&lt;CertificateOptions&gt;, IOptions&lt;RemotesOptions&gt;, IOptions&lt;GrpcOptions&gt;, IServiceProvider, IMediator, ISerializer, IGrpcChannelPool, ILogger&lt;Remote&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/Remote.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <h3 id="DMediatR_Remote__ctor_Microsoft_Extensions_Options_IOptions_DMediatR_CertificateOptions__Microsoft_Extensions_Options_IOptions_DMediatR_RemotesOptions__Microsoft_Extensions_Options_IOptions_DMediatR_GrpcOptions__System_IServiceProvider_MediatR_IMediator_DMediatR_ISerializer_DMediatR_IGrpcChannelPool_DMediatR_IRemotesGraph_Microsoft_Extensions_Logging_ILogger_DMediatR_Remote__" data-uid="DMediatR.Remote.#ctor(Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions},Microsoft.Extensions.Options.IOptions{DMediatR.RemotesOptions},Microsoft.Extensions.Options.IOptions{DMediatR.GrpcOptions},System.IServiceProvider,MediatR.IMediator,DMediatR.ISerializer,DMediatR.IGrpcChannelPool,DMediatR.IRemotesGraph,Microsoft.Extensions.Logging.ILogger{DMediatR.Remote})">
+  Remote(IOptions&lt;CertificateOptions&gt;, IOptions&lt;RemotesOptions&gt;, IOptions&lt;GrpcOptions&gt;, IServiceProvider, IMediator, ISerializer, IGrpcChannelPool, IRemotesGraph, ILogger&lt;Remote&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/Remote.cs/#L30"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Remote(IOptions&lt;CertificateOptions&gt; certOptions, IOptions&lt;RemotesOptions&gt; remotesOptions, IOptions&lt;GrpcOptions&gt; grpcOptions, IServiceProvider serviceProvider, IMediator mediator, ISerializer serializer, IGrpcChannelPool channel, ILogger&lt;Remote&gt; logger)</code></pre>
+    <pre><code class="lang-csharp hljs">public Remote(IOptions&lt;CertificateOptions&gt; certOptions, IOptions&lt;RemotesOptions&gt; remotesOptions, IOptions&lt;GrpcOptions&gt; grpcOptions, IServiceProvider serviceProvider, IMediator mediator, ISerializer serializer, IGrpcChannelPool channel, IRemotesGraph remotesGraph, ILogger&lt;Remote&gt; logger)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -184,6 +184,8 @@ RemoteExtension.SendRemote().</p>
     <dd></dd>
     <dt><code>channel</code> <a class="xref" href="DMediatR.IGrpcChannelPool.html">IGrpcChannelPool</a></dt>
     <dd></dd>
+    <dt><code>remotesGraph</code> <a class="xref" href="DMediatR.IRemotesGraph.html">IRemotesGraph</a></dt>
+    <dd></dd>
     <dt><code>logger</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1">ILogger</a>&lt;<a class="xref" href="DMediatR.Remote.html">Remote</a>&gt;</dt>
     <dd></dd>
   </dl>
@@ -191,6 +193,103 @@ RemoteExtension.SendRemote().</p>
 
 
 
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="DMediatR_Remote_CertificateOptions_" data-uid="DMediatR.Remote.CertificateOptions*"></a>
+
+  <h3 id="DMediatR_Remote_CertificateOptions" data-uid="DMediatR.Remote.CertificateOptions">
+  CertificateOptions
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/Remote.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CertificateOptions CertificateOptions { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="DMediatR.CertificateOptions.html">CertificateOptions</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="DMediatR_Remote_GrpcOptions_" data-uid="DMediatR.Remote.GrpcOptions*"></a>
+
+  <h3 id="DMediatR_Remote_GrpcOptions" data-uid="DMediatR.Remote.GrpcOptions">
+  GrpcOptions
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/Remote.cs/#L57"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GrpcOptions GrpcOptions { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="DMediatR.GrpcOptions.html">GrpcOptions</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="DMediatR_Remote_Remotes_" data-uid="DMediatR.Remote.Remotes*"></a>
+
+  <h3 id="DMediatR_Remote_Remotes" data-uid="DMediatR.Remote.Remotes">
+  Remotes
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/Remote.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RemotesOptions Remotes { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="DMediatR.RemotesOptions.html">RemotesOptions</a></dt>
+    <dd></dd>
+  </dl>
 
 
 

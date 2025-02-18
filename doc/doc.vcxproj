@@ -102,6 +102,7 @@
     <None Include="docs\misc.md" />
     <None Include="docs\performance.md" />
     <None Include="docs\ping-pong-bing.md" />
+    <None Include="docs\remotes-svg.md" />
     <None Include="docs\serializer.md" />
     <None Include="docs\toc.yml" />
     <None Include="index.md" />

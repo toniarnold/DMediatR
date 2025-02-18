@@ -53,5 +53,8 @@
     <None Include="docs\iot.md">
       <Filter>DocFX\docs</Filter>
     </None>
+    <None Include="docs\remotes-svg.md">
+      <Filter>DocFX\docs</Filter>
+    </None>
   </ItemGroup>
 </Project>

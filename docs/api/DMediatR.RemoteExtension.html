@@ -157,7 +157,7 @@ Class RemoteExtension  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="DMediatR_RemoteExtension_PublishRemote_DMediatR_IRemote_DMediatR_ICorrelatedNotification_System_Threading_CancellationToken_" data-uid="DMediatR.RemoteExtension.PublishRemote(DMediatR.IRemote,DMediatR.ICorrelatedNotification,System.Threading.CancellationToken)">
   PublishRemote(IRemote, ICorrelatedNotification, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/RemoteExtension.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/RemoteExtension.cs/#L51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Publish the notification to all distinct connected remote nodes.</p>
@@ -198,12 +198,60 @@ Class RemoteExtension  <a class="header-action link-secondary" title="View sourc
 
   <a id="DMediatR_RemoteExtension_SendRemote_" data-uid="DMediatR.RemoteExtension.SendRemote*"></a>
 
+  <h3 id="DMediatR_RemoteExtension_SendRemote__1_DMediatR_IRemote_DMediatR_HostOptions_MediatR_IRequest___0__System_Threading_CancellationToken_" data-uid="DMediatR.RemoteExtension.SendRemote``1(DMediatR.IRemote,DMediatR.HostOptions,MediatR.IRequest{``0},System.Threading.CancellationToken)">
+  SendRemote&lt;TResponse&gt;(IRemote, HostOptions, IRequest&lt;TResponse&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/RemoteExtension.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Send a MediatR IRequest to an explicitly given remote node and receive a TResponse.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;TResponse&gt; SendRemote&lt;TResponse&gt;(this IRemote provider, HostOptions toHost, IRequest&lt;TResponse&gt; request, CancellationToken cancellationToken)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>provider</code> <a class="xref" href="DMediatR.IRemote.html">IRemote</a></dt>
+    <dd></dd>
+    <dt><code>toHost</code> <a class="xref" href="DMediatR.HostOptions.html">HostOptions</a></dt>
+    <dd></dd>
+    <dt><code>request</code> <span class="xref">IRequest</span>&lt;TResponse&gt;</dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;TResponse&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TResponse</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="DMediatR_RemoteExtension_SendRemote_" data-uid="DMediatR.RemoteExtension.SendRemote*"></a>
+
   <h3 id="DMediatR_RemoteExtension_SendRemote__1_DMediatR_IRemote_MediatR_IRequest___0__System_Threading_CancellationToken_" data-uid="DMediatR.RemoteExtension.SendRemote``1(DMediatR.IRemote,MediatR.IRequest{``0},System.Threading.CancellationToken)">
   SendRemote&lt;TResponse&gt;(IRemote, IRequest&lt;TResponse&gt;, CancellationToken)
   <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/RemoteExtension.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Send a MediatR IRequest to a remote node and receive a TResponse.</p>
+  <div class="markdown level1 summary"><p>Send a MediatR IRequest to a configured remote node and receive a TResponse.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 

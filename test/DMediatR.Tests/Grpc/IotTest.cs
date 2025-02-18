@@ -1,5 +1,6 @@
 ﻿using Iot;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace DMediatR.Tests.Grpc
 {
@@ -7,13 +8,15 @@ namespace DMediatR.Tests.Grpc
     [Remote("CpuTemp")]
     public class IotTest : IRemote
     {
+        public const string FILENAME_SVG = "remotes.Iot.svg";
+
         public Remote Remote { get; set; } = default!;
 
         [OneTimeSetUp]
         public void SetUpServices()
         {
             SetUp.SetUpDMediatRServices("Iot");
-            TestSetUp.SetUpInitialCertificates();
+            SetUp.SetUpInitialCertificates();
             Remote = SetUp.ServiceProvider.GetRequiredService<Remote>();
         }
 
@@ -23,7 +26,7 @@ namespace DMediatR.Tests.Grpc
         {
             using var httpClient = await TestSetUp.GetHttpClientAsync();
             var response = await httpClient.GetStringAsync(Remote.Remotes["CpuTemp"].Address);
-            Assert.That(response, Is.EqualTo("DMediatR gRPC endpoint"));
+            Assert.That(response, Is.EqualTo("DMediatR on rpi:18001"));
         }
 
         [Test]
@@ -34,5 +37,15 @@ namespace DMediatR.Tests.Grpc
         }
 
         // </cputemp>
+
+        [Test]
+        public async Task GetRemotesSvg()
+        {
+            using var httpClient = await TestSetUp.GetHttpClientAsync();
+            var host = SetUp.ServiceProvider.GetRequiredService<IOptions<HostOptions>>().Value;
+            var svg = await httpClient.GetStringAsync("https://rpi.:18001/remotes.svg");
+            Assert.That(svg, Does.Contain("<svg"));
+            SetUp.SaveOutput(FILENAME_SVG, svg);
+        }
     }
 }

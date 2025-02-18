@@ -1,11 +1,3 @@
-* Linux compatibility (e.g. RuntimeIdentifier linux-arm64)
+* Make the left-hand side "test" of the test selection in test.ps1 optional
 
-* Iot sample node that responds to DMediatR requests with its CPU temperature when deployed on a Raspberry Pi
-
-* PerformanceMeter NUnit tests to measure gRPC throughput
-
-* Grpc:MaxMessageSize option to increase the defaults
-
-* Grpc:ResponseCompressionAlgorithm/ResponseCompressionLevel/MessagePackCompression options to enable gzip or lz4
-
-* The inexplicably required development certificates are not handled by DMediatR
+* New /remotes.svg endpoint producing a network topology graph of the connected remotes.

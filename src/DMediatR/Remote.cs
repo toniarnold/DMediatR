@@ -24,6 +24,7 @@ namespace DMediatR
         private readonly IMediator _mediator;
         private readonly ISerializer _serializer;
         private readonly IGrpcChannelPool _grpcChannelProvider;
+        private readonly IRemotesGraph _remotesGraph;
         private readonly ILogger<Remote> _logger;
 
         public Remote(
@@ -35,25 +36,34 @@ namespace DMediatR
             IMediator mediator,
             ISerializer serializer,
             IGrpcChannelPool channel,
+            IRemotesGraph remotesGraph,
             ILogger<Remote> logger)
         {
             _certOptions = certOptions.Value;
             _remotes = remotesOptions.Value;
             _grpcOptions = grpcOptions.Value;
+
             _serviceProvider = serviceProvider;
             _mediator = mediator;
             _serializer = serializer;
             _grpcChannelProvider = channel;
+            _remotesGraph = remotesGraph;
             _logger = logger;
         }
 
-        internal CertificateOptions CertificateOptions => _certOptions;
-        internal GrpcOptions GrpcOptions => _grpcOptions;
-        internal RemotesOptions Remotes => _remotes;
+        // The active options are public:
+
+        public CertificateOptions CertificateOptions => _certOptions;
+        public GrpcOptions GrpcOptions => _grpcOptions;
+        public RemotesOptions Remotes => _remotes;
+
+        // But the implementation details are internal:
+
         internal IServiceProvider ServiceProvider => _serviceProvider;
         internal IMediator Mediator => _mediator;
         internal ISerializer Serializer => _serializer;
         internal IGrpcChannelPool ChannelPool => _grpcChannelProvider;
+        internal IRemotesGraph RemotesGraph => _remotesGraph;
         internal ILogger<Remote> Logger => _logger;
     }
 }

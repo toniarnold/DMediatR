@@ -112,6 +112,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.ICorrelatedMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.ICorrelatedMessage.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/DMediatR.ICorrelatedNotification.yml",
       "output": {
         ".html": {
@@ -166,6 +176,16 @@
       "output": {
         ".html": {
           "relative_path": "api/DMediatR.IRemote.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.IRemotesGraph.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.IRemotesGraph.html"
         }
       },
       "version": ""
@@ -266,6 +286,46 @@
       "output": {
         ".html": {
           "relative_path": "api/DMediatR.RemoteExtension.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.RemotesGraph.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.RemotesGraph.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.RemotesGraphRequest.Edge.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.RemotesGraphRequest.Edge.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.RemotesGraphRequest.Node.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.RemotesGraphRequest.Node.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.RemotesGraphRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.RemotesGraphRequest.html"
         }
       },
       "version": ""
@@ -475,6 +535,16 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "docs/remotes-svg.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/remotes-svg.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "docs/serializer.md",
       "output": {
         ".html": {
@@ -492,6 +562,46 @@
         },
         ".json": {
           "relative_path": "docs/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/remotes.FourNodes.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/remotes.FourNodes.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/remotes.Iot.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/remotes.Iot.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/remotes.Iot2.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/remotes.Iot2.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/remotes.Monolith.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/remotes.Monolith.svg"
         }
       },
       "version": ""

@@ -38,18 +38,28 @@ namespace DMediatR
         /// <returns></returns>
         public async Task<Dto> SendAsync(Dto requestDto, CallContext context = default)
         {
-            var request = _serializer.Deserialize(requestDto.Type, requestDto.Bytes);
-            var responseType = ((IBaseRequest)request).GetResponseType();
-            if (responseType != null)
+            // Ignore a RemotesGraphRequest when RemotesSvg is not configured by
+            // returning the request unchanged without forwarding it to the
+            // RemotesGraphHandler.
+            if (requestDto.Type == typeof(RemotesGraphRequest) && !(_grpcOptions.RemotesSvg ?? true))
             {
-                var response = await _mediator.Send(request);
-                var responseDto = new Dto() { Type = responseType, Bytes = _serializer.Serialize(response!) };
-                return responseDto;
+                return requestDto;
             }
             else
             {
-                await _mediator.Send(request);
-                return new Dto();   // ≙ null
+                var request = _serializer.Deserialize(requestDto.Type, requestDto.Bytes);
+                var responseType = ((IBaseRequest)request).GetResponseType();
+                if (responseType != null)
+                {
+                    var response = await _mediator.Send(request);
+                    var responseDto = new Dto() { Type = responseType, Bytes = _serializer.Serialize(response!) };
+                    return responseDto;
+                }
+                else
+                {
+                    await _mediator.Send(request);
+                    return new Dto();   // ≙ null
+                }
             }
         }
 

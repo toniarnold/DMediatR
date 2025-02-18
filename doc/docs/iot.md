@@ -58,6 +58,46 @@ page](http://rpi.:8081/admin/index.php) reports:
  CpuTemp of https://rpi.:18001/ is 46.7 ℃.
 ```
 
+### Monolithic /remotes.svg Graph
+
+In above configuration, the /remotes.svg graph produced by the `Iot` node
+contains just the node itself:
+
+![remotes.Iiot.svg](../images/remotes.Iot.svg)
+
+
+## Splitting up  the monolith
+
+By simply amending a `Remotes` section to the `appsettings.json`, the monolith
+can be split up into two microservices: The former monolith handles the
+`TempRequest` as before, but transparently forwards it to the designated second
+node called `rpi2` (this time without the trailing dot, as the DNS is queried on
+Linux):
+
+``` javascript
+    "Remotes": {
+      "CpuTemp": {
+        "Host": "rpi2",
+        "Port": 18001,
+        "OldPort": 18002
+      }
+    }
+```
+
+When the `GetRemoteTemp` test is run again, it suddenly fails the plausibility
+test (the first one is a PI 4, the second one a PI 5):
+
+```text
+ CpuTemp of https://rpi.:18001/ is 56.2 ℃.
+```
+
+### Two nodes /remotes.svg Graph
+
+The graph produced by the original `rpi` node now displays the second node:
+
+![remotes.Iot2.svg](../images/remotes.Iot2.svg)
+
+
 
 [^rpi3]: It's been a long way  from the days when the special Windows
     distribution designed  to run .NET on a Raspberry PI 3 refused to boot on a

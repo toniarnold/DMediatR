@@ -24,12 +24,15 @@ The test structure follows loosely the Gherkin syntax: https://cucumber.io/docs/
 */
 
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace DMediatR.Tests.Grpc
 {
     [Category("Integration")]
     public class FourNodesTest
     {
+        public const string FILENAME_SVG = "remotes.FourNodes.svg";
+
         [OneTimeSetUp]
         public void Given_FourNodesRunning()
         {
@@ -52,6 +55,7 @@ namespace DMediatR.Tests.Grpc
             await Then_DMediatRNodeRechable();
             await Then_DMediatRNodeAnswersPing();
             await Then_DmMediatRNodeForwardsBing(); // functional as long ClientCertifier is not configured in Remotes
+            await Then_DMediatRNodeGraphAvailable();
 
             // not yet functional:
             /*
@@ -155,7 +159,7 @@ namespace DMediatR.Tests.Grpc
         {
             using var httpClient = await TestSetUp.GetHttpClientAsync();
             var response = await httpClient.GetStringAsync("https://localhost:18007/"); // appsettings.RemotePing.json
-            Assert.That(response, Is.EqualTo("DMediatR gRPC endpoint"));
+            Assert.That(response, Is.EqualTo("DMediatR ClientCertifier on localhost:18007"));
         }
 
         private async Task Then_DMediatRNodeAnswersPing()
@@ -169,6 +173,15 @@ namespace DMediatR.Tests.Grpc
         private async Task Then_DmMediatRNodeForwardsBing()
         {
             await Mediator.Publish(new Bing("from NUnit"));
+        }
+
+        private async Task Then_DMediatRNodeGraphAvailable()
+        {
+            using var httpClient = await TestSetUp.GetHttpClientAsync();
+            var host = SetUp.ServiceProvider.GetRequiredService<IOptions<HostOptions>>().Value;
+            var svg = await httpClient.GetStringAsync("https://localhost:18007/remotes.svg");
+            Assert.That(svg, Does.Contain("<svg"));
+            SetUp.SaveOutput(FILENAME_SVG, svg);
         }
 
         #endregion Then

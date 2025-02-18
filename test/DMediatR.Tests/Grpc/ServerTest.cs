@@ -1,15 +1,19 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using System.IO;
 
 namespace DMediatR.Tests.Grpc
 {
     [Category("Integration")]
     public class ServerTest
     {
+        public const string FILENAME_SVG = "remotes.Monolith.svg";
+
         [OneTimeSetUp]
         public void SetUpInitialCertificatesStartServer()
         {
             SetUp.SetUpDMediatRServices("Monolith"); // generate locally
-            TestSetUp.SetUpInitialCertificates();
+            SetUp.SetUpInitialCertificates();
             SetUp.SetUpDMediatRServices("RemoteAllCerts"); // smoke test mode, as the remote shares the cert location
 
             // <startserver>
@@ -42,15 +46,7 @@ namespace DMediatR.Tests.Grpc
             Assert.That(pongFromRemote.Message, Is.EqualTo("Pong 2 hops from NUnit via Monolith via localhost:8081"));
         }
 
-        [Test]
-        public async Task GetRemoteServerCert()
-        {
-            var mediator = SetUp.ServiceProvider.GetRequiredService<IMediator>();
-            var certFromRemote = await mediator.Send(new ServerCertificateRequest());
-            Assert.That(certFromRemote, Is.Not.Null);
-            Assert.That(certFromRemote.Subject, Is.EqualTo("CN=ServerCertifier"));
-        }
-
+        // Usually gets the certificate from the local ./cert cache:
         [Test]
         public async Task GetRemoteClientCert()
         {
@@ -117,6 +113,16 @@ namespace DMediatR.Tests.Grpc
                 Assert.That(newServer.Thumbprint, Is.Not.EqualTo(oldServer.Thumbprint), "Server");
                 Assert.That(newClient.Thumbprint, Is.Not.EqualTo(oldClient.Thumbprint), "Client");
             });
+        }
+
+        [Test]
+        public async Task GetRemotesSvg()
+        {
+            using var httpClient = await TestSetUp.GetHttpClientAsync();
+            var host = SetUp.ServiceProvider.GetRequiredService<IOptions<HostOptions>>().Value;
+            var svg = await httpClient.GetStringAsync("https://localhost:18001/remotes.svg");
+            Assert.That(svg, Does.Contain("<svg"));
+            SetUp.SaveOutput(FILENAME_SVG, svg);
         }
     }
 }

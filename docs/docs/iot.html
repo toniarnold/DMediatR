@@ -136,7 +136,7 @@ public async Task CpuTempReachable()
 {
     using var httpClient = await TestSetUp.GetHttpClientAsync();
     var response = await httpClient.GetStringAsync(Remote.Remotes[&quot;CpuTemp&quot;].Address);
-    Assert.That(response, Is.EqualTo(&quot;DMediatR gRPC endpoint&quot;));
+    Assert.That(response, Is.EqualTo(&quot;DMediatR on rpi:18001&quot;));
 }
 
 [Test]
@@ -157,6 +157,31 @@ manually be compared to what e.g. the PI-hole <a href="http://rpi.:8081/admin/in
 page</a> reports:</p>
 <pre><code class="lang-text"> CpuTemp of https://rpi.:18001/ is 46.7 ℃.
 </code></pre>
+<h3 id="monolithic-remotessvg-graph">Monolithic /remotes.svg Graph</h3>
+<p>In above configuration, the /remotes.svg graph produced by the <code>Iot</code> node
+contains just the node itself:</p>
+<p><img src="../images/remotes.Iot.svg" alt="remotes.Iiot.svg"></p>
+<h2 id="splitting-up--the-monolith">Splitting up  the monolith</h2>
+<p>By simply amending a <code>Remotes</code> section to the <code>appsettings.json</code>, the monolith
+can be split up into two microservices: The former monolith handles the
+<code>TempRequest</code> as before, but transparently forwards it to the designated second
+node called <code>rpi2</code> (this time without the trailing dot, as the DNS is queried on
+Linux):</p>
+<pre><code class="lang-javascript">    &quot;Remotes&quot;: {
+      &quot;CpuTemp&quot;: {
+        &quot;Host&quot;: &quot;rpi2&quot;,
+        &quot;Port&quot;: 18001,
+        &quot;OldPort&quot;: 18002
+      }
+    }
+</code></pre>
+<p>When the <code>GetRemoteTemp</code> test is run again, it suddenly fails the plausibility
+test (the first one is a PI 4, the second one a PI 5):</p>
+<pre><code class="lang-text"> CpuTemp of https://rpi.:18001/ is 56.2 ℃.
+</code></pre>
+<h3 id="two-nodes-remotessvg-graph">Two nodes /remotes.svg Graph</h3>
+<p>The graph produced by the original <code>rpi</code> node now displays the second node:</p>
+<p><img src="../images/remotes.Iot2.svg" alt="remotes.Iot2.svg"></p>
 <div class="footnotes">
 <hr>
 <ol>

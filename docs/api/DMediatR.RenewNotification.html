@@ -104,7 +104,7 @@ Requires explicitly setting &quot;RenewFirewallEnabled&quot;: &quot;False&quot; 
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class RenewNotification : SerializationCountMessage, ILock, ICorrelatedNotification, INotification</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class RenewNotification : SerializationCountMessage, ILock, ICorrelatedNotification, ICorrelatedMessage, INotification</code></pre>
   </div>
 
 
@@ -124,6 +124,7 @@ Requires explicitly setting &quot;RenewFirewallEnabled&quot;: &quot;False&quot; 
     <dd>
       <div><a class="xref" href="DMediatR.ILock.html">ILock</a></div>
       <div><a class="xref" href="DMediatR.ICorrelatedNotification.html">ICorrelatedNotification</a></div>
+      <div><a class="xref" href="DMediatR.ICorrelatedMessage.html">ICorrelatedMessage</a></div>
       <div><span class="xref">INotification</span></div>
     </dd>
   </dl>

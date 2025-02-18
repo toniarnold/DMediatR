@@ -498,6 +498,19 @@ references:
   isSpec: "True"
   fullName: DMediatR.GrpcOptions.MessagePackCompression
   nameWithType: GrpcOptions.MessagePackCompression
+- uid: DMediatR.GrpcOptions.RemotesSvg
+  name: RemotesSvg
+  href: api/DMediatR.GrpcOptions.html#DMediatR_GrpcOptions_RemotesSvg
+  commentId: P:DMediatR.GrpcOptions.RemotesSvg
+  fullName: DMediatR.GrpcOptions.RemotesSvg
+  nameWithType: GrpcOptions.RemotesSvg
+- uid: DMediatR.GrpcOptions.RemotesSvg*
+  name: RemotesSvg
+  href: api/DMediatR.GrpcOptions.html#DMediatR_GrpcOptions_RemotesSvg_
+  commentId: Overload:DMediatR.GrpcOptions.RemotesSvg
+  isSpec: "True"
+  fullName: DMediatR.GrpcOptions.RemotesSvg
+  nameWithType: GrpcOptions.RemotesSvg
 - uid: DMediatR.GrpcOptions.ResponseCompressionAlgorithm
   name: ResponseCompressionAlgorithm
   href: api/DMediatR.GrpcOptions.html#DMediatR_GrpcOptions_ResponseCompressionAlgorithm
@@ -747,25 +760,31 @@ references:
   commentId: F:DMediatR.HostOptions.SectionName
   fullName: DMediatR.HostOptions.SectionName
   nameWithType: HostOptions.SectionName
+- uid: DMediatR.ICorrelatedMessage
+  name: ICorrelatedMessage
+  href: api/DMediatR.ICorrelatedMessage.html
+  commentId: T:DMediatR.ICorrelatedMessage
+  fullName: DMediatR.ICorrelatedMessage
+  nameWithType: ICorrelatedMessage
+- uid: DMediatR.ICorrelatedMessage.CorrelationGuid
+  name: CorrelationGuid
+  href: api/DMediatR.ICorrelatedMessage.html#DMediatR_ICorrelatedMessage_CorrelationGuid
+  commentId: P:DMediatR.ICorrelatedMessage.CorrelationGuid
+  fullName: DMediatR.ICorrelatedMessage.CorrelationGuid
+  nameWithType: ICorrelatedMessage.CorrelationGuid
+- uid: DMediatR.ICorrelatedMessage.CorrelationGuid*
+  name: CorrelationGuid
+  href: api/DMediatR.ICorrelatedMessage.html#DMediatR_ICorrelatedMessage_CorrelationGuid_
+  commentId: Overload:DMediatR.ICorrelatedMessage.CorrelationGuid
+  isSpec: "True"
+  fullName: DMediatR.ICorrelatedMessage.CorrelationGuid
+  nameWithType: ICorrelatedMessage.CorrelationGuid
 - uid: DMediatR.ICorrelatedNotification
   name: ICorrelatedNotification
   href: api/DMediatR.ICorrelatedNotification.html
   commentId: T:DMediatR.ICorrelatedNotification
   fullName: DMediatR.ICorrelatedNotification
   nameWithType: ICorrelatedNotification
-- uid: DMediatR.ICorrelatedNotification.CorrelationGuid
-  name: CorrelationGuid
-  href: api/DMediatR.ICorrelatedNotification.html#DMediatR_ICorrelatedNotification_CorrelationGuid
-  commentId: P:DMediatR.ICorrelatedNotification.CorrelationGuid
-  fullName: DMediatR.ICorrelatedNotification.CorrelationGuid
-  nameWithType: ICorrelatedNotification.CorrelationGuid
-- uid: DMediatR.ICorrelatedNotification.CorrelationGuid*
-  name: CorrelationGuid
-  href: api/DMediatR.ICorrelatedNotification.html#DMediatR_ICorrelatedNotification_CorrelationGuid_
-  commentId: Overload:DMediatR.ICorrelatedNotification.CorrelationGuid
-  isSpec: "True"
-  fullName: DMediatR.ICorrelatedNotification.CorrelationGuid
-  nameWithType: ICorrelatedNotification.CorrelationGuid
 - uid: DMediatR.IDtoService
   name: IDtoService
   href: api/DMediatR.IDtoService.html
@@ -906,6 +925,38 @@ references:
   isSpec: "True"
   fullName: DMediatR.IRemote.Remote
   nameWithType: IRemote.Remote
+- uid: DMediatR.IRemotesGraph
+  name: IRemotesGraph
+  href: api/DMediatR.IRemotesGraph.html
+  commentId: T:DMediatR.IRemotesGraph
+  fullName: DMediatR.IRemotesGraph
+  nameWithType: IRemotesGraph
+- uid: DMediatR.IRemotesGraph.GetSvg(DMediatR.RemotesGraphRequest)
+  name: GetSvg(RemotesGraphRequest)
+  href: api/DMediatR.IRemotesGraph.html#DMediatR_IRemotesGraph_GetSvg_DMediatR_RemotesGraphRequest_
+  commentId: M:DMediatR.IRemotesGraph.GetSvg(DMediatR.RemotesGraphRequest)
+  fullName: DMediatR.IRemotesGraph.GetSvg(DMediatR.RemotesGraphRequest)
+  nameWithType: IRemotesGraph.GetSvg(RemotesGraphRequest)
+- uid: DMediatR.IRemotesGraph.GetSvg*
+  name: GetSvg
+  href: api/DMediatR.IRemotesGraph.html#DMediatR_IRemotesGraph_GetSvg_
+  commentId: Overload:DMediatR.IRemotesGraph.GetSvg
+  isSpec: "True"
+  fullName: DMediatR.IRemotesGraph.GetSvg
+  nameWithType: IRemotesGraph.GetSvg
+- uid: DMediatR.IRemotesGraph.GetSvgAsync
+  name: GetSvgAsync()
+  href: api/DMediatR.IRemotesGraph.html#DMediatR_IRemotesGraph_GetSvgAsync
+  commentId: M:DMediatR.IRemotesGraph.GetSvgAsync
+  fullName: DMediatR.IRemotesGraph.GetSvgAsync()
+  nameWithType: IRemotesGraph.GetSvgAsync()
+- uid: DMediatR.IRemotesGraph.GetSvgAsync*
+  name: GetSvgAsync
+  href: api/DMediatR.IRemotesGraph.html#DMediatR_IRemotesGraph_GetSvgAsync_
+  commentId: Overload:DMediatR.IRemotesGraph.GetSvgAsync
+  isSpec: "True"
+  fullName: DMediatR.IRemotesGraph.GetSvgAsync
+  nameWithType: IRemotesGraph.GetSvgAsync
 - uid: DMediatR.ISerializedInterface
   name: ISerializedInterface
   href: api/DMediatR.ISerializedInterface.html
@@ -1154,15 +1205,15 @@ references:
   commentId: T:DMediatR.Remote
   fullName: DMediatR.Remote
   nameWithType: Remote
-- uid: DMediatR.Remote.#ctor(Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions},Microsoft.Extensions.Options.IOptions{DMediatR.RemotesOptions},Microsoft.Extensions.Options.IOptions{DMediatR.GrpcOptions},System.IServiceProvider,MediatR.IMediator,DMediatR.ISerializer,DMediatR.IGrpcChannelPool,Microsoft.Extensions.Logging.ILogger{DMediatR.Remote})
-  name: Remote(IOptions<CertificateOptions>, IOptions<RemotesOptions>, IOptions<GrpcOptions>, IServiceProvider, IMediator, ISerializer, IGrpcChannelPool, ILogger<Remote>)
-  href: api/DMediatR.Remote.html#DMediatR_Remote__ctor_Microsoft_Extensions_Options_IOptions_DMediatR_CertificateOptions__Microsoft_Extensions_Options_IOptions_DMediatR_RemotesOptions__Microsoft_Extensions_Options_IOptions_DMediatR_GrpcOptions__System_IServiceProvider_MediatR_IMediator_DMediatR_ISerializer_DMediatR_IGrpcChannelPool_Microsoft_Extensions_Logging_ILogger_DMediatR_Remote__
-  commentId: M:DMediatR.Remote.#ctor(Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions},Microsoft.Extensions.Options.IOptions{DMediatR.RemotesOptions},Microsoft.Extensions.Options.IOptions{DMediatR.GrpcOptions},System.IServiceProvider,MediatR.IMediator,DMediatR.ISerializer,DMediatR.IGrpcChannelPool,Microsoft.Extensions.Logging.ILogger{DMediatR.Remote})
-  name.vb: New(IOptions(Of CertificateOptions), IOptions(Of RemotesOptions), IOptions(Of GrpcOptions), IServiceProvider, IMediator, ISerializer, IGrpcChannelPool, ILogger(Of Remote))
-  fullName: DMediatR.Remote.Remote(Microsoft.Extensions.Options.IOptions<DMediatR.CertificateOptions>, Microsoft.Extensions.Options.IOptions<DMediatR.RemotesOptions>, Microsoft.Extensions.Options.IOptions<DMediatR.GrpcOptions>, System.IServiceProvider, MediatR.IMediator, DMediatR.ISerializer, DMediatR.IGrpcChannelPool, Microsoft.Extensions.Logging.ILogger<DMediatR.Remote>)
-  fullName.vb: DMediatR.Remote.New(Microsoft.Extensions.Options.IOptions(Of DMediatR.CertificateOptions), Microsoft.Extensions.Options.IOptions(Of DMediatR.RemotesOptions), Microsoft.Extensions.Options.IOptions(Of DMediatR.GrpcOptions), System.IServiceProvider, MediatR.IMediator, DMediatR.ISerializer, DMediatR.IGrpcChannelPool, Microsoft.Extensions.Logging.ILogger(Of DMediatR.Remote))
-  nameWithType: Remote.Remote(IOptions<CertificateOptions>, IOptions<RemotesOptions>, IOptions<GrpcOptions>, IServiceProvider, IMediator, ISerializer, IGrpcChannelPool, ILogger<Remote>)
-  nameWithType.vb: Remote.New(IOptions(Of CertificateOptions), IOptions(Of RemotesOptions), IOptions(Of GrpcOptions), IServiceProvider, IMediator, ISerializer, IGrpcChannelPool, ILogger(Of Remote))
+- uid: DMediatR.Remote.#ctor(Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions},Microsoft.Extensions.Options.IOptions{DMediatR.RemotesOptions},Microsoft.Extensions.Options.IOptions{DMediatR.GrpcOptions},System.IServiceProvider,MediatR.IMediator,DMediatR.ISerializer,DMediatR.IGrpcChannelPool,DMediatR.IRemotesGraph,Microsoft.Extensions.Logging.ILogger{DMediatR.Remote})
+  name: Remote(IOptions<CertificateOptions>, IOptions<RemotesOptions>, IOptions<GrpcOptions>, IServiceProvider, IMediator, ISerializer, IGrpcChannelPool, IRemotesGraph, ILogger<Remote>)
+  href: api/DMediatR.Remote.html#DMediatR_Remote__ctor_Microsoft_Extensions_Options_IOptions_DMediatR_CertificateOptions__Microsoft_Extensions_Options_IOptions_DMediatR_RemotesOptions__Microsoft_Extensions_Options_IOptions_DMediatR_GrpcOptions__System_IServiceProvider_MediatR_IMediator_DMediatR_ISerializer_DMediatR_IGrpcChannelPool_DMediatR_IRemotesGraph_Microsoft_Extensions_Logging_ILogger_DMediatR_Remote__
+  commentId: M:DMediatR.Remote.#ctor(Microsoft.Extensions.Options.IOptions{DMediatR.CertificateOptions},Microsoft.Extensions.Options.IOptions{DMediatR.RemotesOptions},Microsoft.Extensions.Options.IOptions{DMediatR.GrpcOptions},System.IServiceProvider,MediatR.IMediator,DMediatR.ISerializer,DMediatR.IGrpcChannelPool,DMediatR.IRemotesGraph,Microsoft.Extensions.Logging.ILogger{DMediatR.Remote})
+  name.vb: New(IOptions(Of CertificateOptions), IOptions(Of RemotesOptions), IOptions(Of GrpcOptions), IServiceProvider, IMediator, ISerializer, IGrpcChannelPool, IRemotesGraph, ILogger(Of Remote))
+  fullName: DMediatR.Remote.Remote(Microsoft.Extensions.Options.IOptions<DMediatR.CertificateOptions>, Microsoft.Extensions.Options.IOptions<DMediatR.RemotesOptions>, Microsoft.Extensions.Options.IOptions<DMediatR.GrpcOptions>, System.IServiceProvider, MediatR.IMediator, DMediatR.ISerializer, DMediatR.IGrpcChannelPool, DMediatR.IRemotesGraph, Microsoft.Extensions.Logging.ILogger<DMediatR.Remote>)
+  fullName.vb: DMediatR.Remote.New(Microsoft.Extensions.Options.IOptions(Of DMediatR.CertificateOptions), Microsoft.Extensions.Options.IOptions(Of DMediatR.RemotesOptions), Microsoft.Extensions.Options.IOptions(Of DMediatR.GrpcOptions), System.IServiceProvider, MediatR.IMediator, DMediatR.ISerializer, DMediatR.IGrpcChannelPool, DMediatR.IRemotesGraph, Microsoft.Extensions.Logging.ILogger(Of DMediatR.Remote))
+  nameWithType: Remote.Remote(IOptions<CertificateOptions>, IOptions<RemotesOptions>, IOptions<GrpcOptions>, IServiceProvider, IMediator, ISerializer, IGrpcChannelPool, IRemotesGraph, ILogger<Remote>)
+  nameWithType.vb: Remote.New(IOptions(Of CertificateOptions), IOptions(Of RemotesOptions), IOptions(Of GrpcOptions), IServiceProvider, IMediator, ISerializer, IGrpcChannelPool, IRemotesGraph, ILogger(Of Remote))
 - uid: DMediatR.Remote.#ctor*
   name: Remote
   href: api/DMediatR.Remote.html#DMediatR_Remote__ctor_
@@ -1173,6 +1224,45 @@ references:
   fullName.vb: DMediatR.Remote.New
   nameWithType: Remote.Remote
   nameWithType.vb: Remote.New
+- uid: DMediatR.Remote.CertificateOptions
+  name: CertificateOptions
+  href: api/DMediatR.Remote.html#DMediatR_Remote_CertificateOptions
+  commentId: P:DMediatR.Remote.CertificateOptions
+  fullName: DMediatR.Remote.CertificateOptions
+  nameWithType: Remote.CertificateOptions
+- uid: DMediatR.Remote.CertificateOptions*
+  name: CertificateOptions
+  href: api/DMediatR.Remote.html#DMediatR_Remote_CertificateOptions_
+  commentId: Overload:DMediatR.Remote.CertificateOptions
+  isSpec: "True"
+  fullName: DMediatR.Remote.CertificateOptions
+  nameWithType: Remote.CertificateOptions
+- uid: DMediatR.Remote.GrpcOptions
+  name: GrpcOptions
+  href: api/DMediatR.Remote.html#DMediatR_Remote_GrpcOptions
+  commentId: P:DMediatR.Remote.GrpcOptions
+  fullName: DMediatR.Remote.GrpcOptions
+  nameWithType: Remote.GrpcOptions
+- uid: DMediatR.Remote.GrpcOptions*
+  name: GrpcOptions
+  href: api/DMediatR.Remote.html#DMediatR_Remote_GrpcOptions_
+  commentId: Overload:DMediatR.Remote.GrpcOptions
+  isSpec: "True"
+  fullName: DMediatR.Remote.GrpcOptions
+  nameWithType: Remote.GrpcOptions
+- uid: DMediatR.Remote.Remotes
+  name: Remotes
+  href: api/DMediatR.Remote.html#DMediatR_Remote_Remotes
+  commentId: P:DMediatR.Remote.Remotes
+  fullName: DMediatR.Remote.Remotes
+  nameWithType: Remote.Remotes
+- uid: DMediatR.Remote.Remotes*
+  name: Remotes
+  href: api/DMediatR.Remote.html#DMediatR_Remote_Remotes_
+  commentId: Overload:DMediatR.Remote.Remotes
+  isSpec: "True"
+  fullName: DMediatR.Remote.Remotes
+  nameWithType: Remote.Remotes
 - uid: DMediatR.RemoteAttribute
   name: RemoteAttribute
   href: api/DMediatR.RemoteAttribute.html
@@ -1237,6 +1327,15 @@ references:
   isSpec: "True"
   fullName: DMediatR.RemoteExtension.SendRemote
   nameWithType: RemoteExtension.SendRemote
+- uid: DMediatR.RemoteExtension.SendRemote``1(DMediatR.IRemote,DMediatR.HostOptions,MediatR.IRequest{``0},System.Threading.CancellationToken)
+  name: SendRemote<TResponse>(IRemote, HostOptions, IRequest<TResponse>, CancellationToken)
+  href: api/DMediatR.RemoteExtension.html#DMediatR_RemoteExtension_SendRemote__1_DMediatR_IRemote_DMediatR_HostOptions_MediatR_IRequest___0__System_Threading_CancellationToken_
+  commentId: M:DMediatR.RemoteExtension.SendRemote``1(DMediatR.IRemote,DMediatR.HostOptions,MediatR.IRequest{``0},System.Threading.CancellationToken)
+  name.vb: SendRemote(Of TResponse)(IRemote, HostOptions, IRequest(Of TResponse), CancellationToken)
+  fullName: DMediatR.RemoteExtension.SendRemote<TResponse>(DMediatR.IRemote, DMediatR.HostOptions, MediatR.IRequest<TResponse>, System.Threading.CancellationToken)
+  fullName.vb: DMediatR.RemoteExtension.SendRemote(Of TResponse)(DMediatR.IRemote, DMediatR.HostOptions, MediatR.IRequest(Of TResponse), System.Threading.CancellationToken)
+  nameWithType: RemoteExtension.SendRemote<TResponse>(IRemote, HostOptions, IRequest<TResponse>, CancellationToken)
+  nameWithType.vb: RemoteExtension.SendRemote(Of TResponse)(IRemote, HostOptions, IRequest(Of TResponse), CancellationToken)
 - uid: DMediatR.RemoteExtension.SendRemote``1(DMediatR.IRemote,MediatR.IRequest{``0},System.Threading.CancellationToken)
   name: SendRemote<TResponse>(IRemote, IRequest<TResponse>, CancellationToken)
   href: api/DMediatR.RemoteExtension.html#DMediatR_RemoteExtension_SendRemote__1_DMediatR_IRemote_MediatR_IRequest___0__System_Threading_CancellationToken_
@@ -1246,6 +1345,190 @@ references:
   fullName.vb: DMediatR.RemoteExtension.SendRemote(Of TResponse)(DMediatR.IRemote, MediatR.IRequest(Of TResponse), System.Threading.CancellationToken)
   nameWithType: RemoteExtension.SendRemote<TResponse>(IRemote, IRequest<TResponse>, CancellationToken)
   nameWithType.vb: RemoteExtension.SendRemote(Of TResponse)(IRemote, IRequest(Of TResponse), CancellationToken)
+- uid: DMediatR.RemotesGraph
+  name: RemotesGraph
+  href: api/DMediatR.RemotesGraph.html
+  commentId: T:DMediatR.RemotesGraph
+  fullName: DMediatR.RemotesGraph
+  nameWithType: RemotesGraph
+- uid: DMediatR.RemotesGraph.#ctor(MediatR.IMediator)
+  name: RemotesGraph(IMediator)
+  href: api/DMediatR.RemotesGraph.html#DMediatR_RemotesGraph__ctor_MediatR_IMediator_
+  commentId: M:DMediatR.RemotesGraph.#ctor(MediatR.IMediator)
+  name.vb: New(IMediator)
+  fullName: DMediatR.RemotesGraph.RemotesGraph(MediatR.IMediator)
+  fullName.vb: DMediatR.RemotesGraph.New(MediatR.IMediator)
+  nameWithType: RemotesGraph.RemotesGraph(IMediator)
+  nameWithType.vb: RemotesGraph.New(IMediator)
+- uid: DMediatR.RemotesGraph.#ctor*
+  name: RemotesGraph
+  href: api/DMediatR.RemotesGraph.html#DMediatR_RemotesGraph__ctor_
+  commentId: Overload:DMediatR.RemotesGraph.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: DMediatR.RemotesGraph.RemotesGraph
+  fullName.vb: DMediatR.RemotesGraph.New
+  nameWithType: RemotesGraph.RemotesGraph
+  nameWithType.vb: RemotesGraph.New
+- uid: DMediatR.RemotesGraph.GetSvg(DMediatR.RemotesGraphRequest)
+  name: GetSvg(RemotesGraphRequest)
+  href: api/DMediatR.RemotesGraph.html#DMediatR_RemotesGraph_GetSvg_DMediatR_RemotesGraphRequest_
+  commentId: M:DMediatR.RemotesGraph.GetSvg(DMediatR.RemotesGraphRequest)
+  fullName: DMediatR.RemotesGraph.GetSvg(DMediatR.RemotesGraphRequest)
+  nameWithType: RemotesGraph.GetSvg(RemotesGraphRequest)
+- uid: DMediatR.RemotesGraph.GetSvg*
+  name: GetSvg
+  href: api/DMediatR.RemotesGraph.html#DMediatR_RemotesGraph_GetSvg_
+  commentId: Overload:DMediatR.RemotesGraph.GetSvg
+  isSpec: "True"
+  fullName: DMediatR.RemotesGraph.GetSvg
+  nameWithType: RemotesGraph.GetSvg
+- uid: DMediatR.RemotesGraph.GetSvgAsync
+  name: GetSvgAsync()
+  href: api/DMediatR.RemotesGraph.html#DMediatR_RemotesGraph_GetSvgAsync
+  commentId: M:DMediatR.RemotesGraph.GetSvgAsync
+  fullName: DMediatR.RemotesGraph.GetSvgAsync()
+  nameWithType: RemotesGraph.GetSvgAsync()
+- uid: DMediatR.RemotesGraph.GetSvgAsync*
+  name: GetSvgAsync
+  href: api/DMediatR.RemotesGraph.html#DMediatR_RemotesGraph_GetSvgAsync_
+  commentId: Overload:DMediatR.RemotesGraph.GetSvgAsync
+  isSpec: "True"
+  fullName: DMediatR.RemotesGraph.GetSvgAsync
+  nameWithType: RemotesGraph.GetSvgAsync
+- uid: DMediatR.RemotesGraphRequest
+  name: RemotesGraphRequest
+  href: api/DMediatR.RemotesGraphRequest.html
+  commentId: T:DMediatR.RemotesGraphRequest
+  fullName: DMediatR.RemotesGraphRequest
+  nameWithType: RemotesGraphRequest
+- uid: DMediatR.RemotesGraphRequest.CorrelationGuid
+  name: CorrelationGuid
+  href: api/DMediatR.RemotesGraphRequest.html#DMediatR_RemotesGraphRequest_CorrelationGuid
+  commentId: P:DMediatR.RemotesGraphRequest.CorrelationGuid
+  fullName: DMediatR.RemotesGraphRequest.CorrelationGuid
+  nameWithType: RemotesGraphRequest.CorrelationGuid
+- uid: DMediatR.RemotesGraphRequest.CorrelationGuid*
+  name: CorrelationGuid
+  href: api/DMediatR.RemotesGraphRequest.html#DMediatR_RemotesGraphRequest_CorrelationGuid_
+  commentId: Overload:DMediatR.RemotesGraphRequest.CorrelationGuid
+  isSpec: "True"
+  fullName: DMediatR.RemotesGraphRequest.CorrelationGuid
+  nameWithType: RemotesGraphRequest.CorrelationGuid
+- uid: DMediatR.RemotesGraphRequest.Edge
+  name: RemotesGraphRequest.Edge
+  href: api/DMediatR.RemotesGraphRequest.Edge.html
+  commentId: T:DMediatR.RemotesGraphRequest.Edge
+  fullName: DMediatR.RemotesGraphRequest.Edge
+  nameWithType: RemotesGraphRequest.Edge
+- uid: DMediatR.RemotesGraphRequest.Edge.#ctor(System.String,System.String,System.String)
+  name: Edge(string, string, string)
+  href: api/DMediatR.RemotesGraphRequest.Edge.html#DMediatR_RemotesGraphRequest_Edge__ctor_System_String_System_String_System_String_
+  commentId: M:DMediatR.RemotesGraphRequest.Edge.#ctor(System.String,System.String,System.String)
+  name.vb: New(String, String, String)
+  fullName: DMediatR.RemotesGraphRequest.Edge.Edge(string, string, string)
+  fullName.vb: DMediatR.RemotesGraphRequest.Edge.New(String, String, String)
+  nameWithType: RemotesGraphRequest.Edge.Edge(string, string, string)
+  nameWithType.vb: RemotesGraphRequest.Edge.New(String, String, String)
+- uid: DMediatR.RemotesGraphRequest.Edge.#ctor*
+  name: Edge
+  href: api/DMediatR.RemotesGraphRequest.Edge.html#DMediatR_RemotesGraphRequest_Edge__ctor_
+  commentId: Overload:DMediatR.RemotesGraphRequest.Edge.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: DMediatR.RemotesGraphRequest.Edge.Edge
+  fullName.vb: DMediatR.RemotesGraphRequest.Edge.New
+  nameWithType: RemotesGraphRequest.Edge.Edge
+  nameWithType.vb: RemotesGraphRequest.Edge.New
+- uid: DMediatR.RemotesGraphRequest.Edge.Label
+  name: Label
+  href: api/DMediatR.RemotesGraphRequest.Edge.html#DMediatR_RemotesGraphRequest_Edge_Label
+  commentId: P:DMediatR.RemotesGraphRequest.Edge.Label
+  fullName: DMediatR.RemotesGraphRequest.Edge.Label
+  nameWithType: RemotesGraphRequest.Edge.Label
+- uid: DMediatR.RemotesGraphRequest.Edge.Label*
+  name: Label
+  href: api/DMediatR.RemotesGraphRequest.Edge.html#DMediatR_RemotesGraphRequest_Edge_Label_
+  commentId: Overload:DMediatR.RemotesGraphRequest.Edge.Label
+  isSpec: "True"
+  fullName: DMediatR.RemotesGraphRequest.Edge.Label
+  nameWithType: RemotesGraphRequest.Edge.Label
+- uid: DMediatR.RemotesGraphRequest.Edge.SourceId
+  name: SourceId
+  href: api/DMediatR.RemotesGraphRequest.Edge.html#DMediatR_RemotesGraphRequest_Edge_SourceId
+  commentId: P:DMediatR.RemotesGraphRequest.Edge.SourceId
+  fullName: DMediatR.RemotesGraphRequest.Edge.SourceId
+  nameWithType: RemotesGraphRequest.Edge.SourceId
+- uid: DMediatR.RemotesGraphRequest.Edge.SourceId*
+  name: SourceId
+  href: api/DMediatR.RemotesGraphRequest.Edge.html#DMediatR_RemotesGraphRequest_Edge_SourceId_
+  commentId: Overload:DMediatR.RemotesGraphRequest.Edge.SourceId
+  isSpec: "True"
+  fullName: DMediatR.RemotesGraphRequest.Edge.SourceId
+  nameWithType: RemotesGraphRequest.Edge.SourceId
+- uid: DMediatR.RemotesGraphRequest.Edge.TargetId
+  name: TargetId
+  href: api/DMediatR.RemotesGraphRequest.Edge.html#DMediatR_RemotesGraphRequest_Edge_TargetId
+  commentId: P:DMediatR.RemotesGraphRequest.Edge.TargetId
+  fullName: DMediatR.RemotesGraphRequest.Edge.TargetId
+  nameWithType: RemotesGraphRequest.Edge.TargetId
+- uid: DMediatR.RemotesGraphRequest.Edge.TargetId*
+  name: TargetId
+  href: api/DMediatR.RemotesGraphRequest.Edge.html#DMediatR_RemotesGraphRequest_Edge_TargetId_
+  commentId: Overload:DMediatR.RemotesGraphRequest.Edge.TargetId
+  isSpec: "True"
+  fullName: DMediatR.RemotesGraphRequest.Edge.TargetId
+  nameWithType: RemotesGraphRequest.Edge.TargetId
+- uid: DMediatR.RemotesGraphRequest.Edges
+  name: Edges
+  href: api/DMediatR.RemotesGraphRequest.html#DMediatR_RemotesGraphRequest_Edges
+  commentId: F:DMediatR.RemotesGraphRequest.Edges
+  fullName: DMediatR.RemotesGraphRequest.Edges
+  nameWithType: RemotesGraphRequest.Edges
+- uid: DMediatR.RemotesGraphRequest.Node
+  name: RemotesGraphRequest.Node
+  href: api/DMediatR.RemotesGraphRequest.Node.html
+  commentId: T:DMediatR.RemotesGraphRequest.Node
+  fullName: DMediatR.RemotesGraphRequest.Node
+  nameWithType: RemotesGraphRequest.Node
+- uid: DMediatR.RemotesGraphRequest.Node.#ctor(System.String)
+  name: Node(string)
+  href: api/DMediatR.RemotesGraphRequest.Node.html#DMediatR_RemotesGraphRequest_Node__ctor_System_String_
+  commentId: M:DMediatR.RemotesGraphRequest.Node.#ctor(System.String)
+  name.vb: New(String)
+  fullName: DMediatR.RemotesGraphRequest.Node.Node(string)
+  fullName.vb: DMediatR.RemotesGraphRequest.Node.New(String)
+  nameWithType: RemotesGraphRequest.Node.Node(string)
+  nameWithType.vb: RemotesGraphRequest.Node.New(String)
+- uid: DMediatR.RemotesGraphRequest.Node.#ctor*
+  name: Node
+  href: api/DMediatR.RemotesGraphRequest.Node.html#DMediatR_RemotesGraphRequest_Node__ctor_
+  commentId: Overload:DMediatR.RemotesGraphRequest.Node.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: DMediatR.RemotesGraphRequest.Node.Node
+  fullName.vb: DMediatR.RemotesGraphRequest.Node.New
+  nameWithType: RemotesGraphRequest.Node.Node
+  nameWithType.vb: RemotesGraphRequest.Node.New
+- uid: DMediatR.RemotesGraphRequest.Node.Id
+  name: Id
+  href: api/DMediatR.RemotesGraphRequest.Node.html#DMediatR_RemotesGraphRequest_Node_Id
+  commentId: P:DMediatR.RemotesGraphRequest.Node.Id
+  fullName: DMediatR.RemotesGraphRequest.Node.Id
+  nameWithType: RemotesGraphRequest.Node.Id
+- uid: DMediatR.RemotesGraphRequest.Node.Id*
+  name: Id
+  href: api/DMediatR.RemotesGraphRequest.Node.html#DMediatR_RemotesGraphRequest_Node_Id_
+  commentId: Overload:DMediatR.RemotesGraphRequest.Node.Id
+  isSpec: "True"
+  fullName: DMediatR.RemotesGraphRequest.Node.Id
+  nameWithType: RemotesGraphRequest.Node.Id
+- uid: DMediatR.RemotesGraphRequest.Nodes
+  name: Nodes
+  href: api/DMediatR.RemotesGraphRequest.html#DMediatR_RemotesGraphRequest_Nodes
+  commentId: F:DMediatR.RemotesGraphRequest.Nodes
+  fullName: DMediatR.RemotesGraphRequest.Nodes
+  nameWithType: RemotesGraphRequest.Nodes
 - uid: DMediatR.RemotesOptions
   name: RemotesOptions
   href: api/DMediatR.RemotesOptions.html

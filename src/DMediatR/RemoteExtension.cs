@@ -15,7 +15,7 @@ namespace DMediatR
     public static class RemoteExtension
     {
         /// <summary>
-        /// Send a MediatR IRequest to a remote node and receive a TResponse.
+        /// Send a MediatR IRequest to a configured remote node and receive a TResponse.
         /// </summary>
         /// <typeparam name="TResponse"></typeparam>
         /// <param name="provider">The class providing a MediatR handler.</param>
@@ -25,6 +25,20 @@ namespace DMediatR
         public static async Task<TResponse> SendRemote<TResponse>(this IRemote provider, IRequest<TResponse> request, CancellationToken cancellationToken)
         {
             return await RemoteInternalExtension.InternalSendRemote(provider, request, cancellationToken);
+        }
+
+        /// <summary>
+        /// Send a MediatR IRequest to an explicitly given remote node and receive a TResponse.
+        /// </summary>
+        /// <typeparam name="TResponse"></typeparam>
+        /// <param name="provider"></param>
+        /// <param name="toHost"></param>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public static async Task<TResponse> SendRemote<TResponse>(this IRemote provider, HostOptions toHost, IRequest<TResponse> request, CancellationToken cancellationToken)
+        {
+            return await RemoteInternalExtension.InternalSendRemote(provider, toHost, request, cancellationToken);
         }
 
         /// <summary>
@@ -44,11 +58,17 @@ namespace DMediatR
     {
         internal static async Task<TResponse> InternalSendRemote<TResponse>(this IRemote provider, IRequest<TResponse> request, CancellationToken cancellationToken)
         {
+            var toHost = Remote(provider);
+            return await RemoteInternalExtension.InternalSendRemote(provider, toHost, request, cancellationToken);
+        }
+
+        internal static async Task<TResponse> InternalSendRemote<TResponse>(this IRemote provider, HostOptions toHost, IRequest<TResponse> request, CancellationToken cancellationToken)
+        {
             var hasLocked = (request as ILock)?.HasLocked ?? [];
             var requestDto = Dto(provider, request);
             Dto responseDto;
-            var address = Remote(provider).Address;
-            var oldAddress = Remote(provider).OldAddress;
+            var address = toHost.Address;
+            var oldAddress = toHost.OldAddress;
             var options = provider.Remote.GrpcOptions.GrpcChannelOptions;
             bool renew = request is CertificateRequest && ((CertificateRequest)request).Renew;
             try

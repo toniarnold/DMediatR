@@ -53,16 +53,17 @@ namespace DMediatR
                 cfg.TypeEvaluator = t => config.SelectLocalRemote(t) && externalTypeEvaluator(t);
             });
 
-            // Composite DMediatR dependencies
             services.TryAddSingleton<Remote>();
 
             // DMediatR
             services.TryAddSingleton<IGrpcChannelPool, GrpcChannelPool>();
-            services.TryAddSingleton<NotificationForwarder>();
             services.AddMemoryCache();
+            services.TryAddSingleton<NotificationForwarder>();
             services.TryAddSingleton<PingHandler>();
             services.TryAddSingleton<PingHandlerRemote>();
             services.TryAddSingleton<BingHandler>();
+            services.TryAddSingleton<IRemotesGraph, RemotesGraph>();
+            services.TryAddSingleton<RemotesGraphHandler>();
 
             // Certificates
             services.AddCertificateManager();

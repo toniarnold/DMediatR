@@ -131,7 +131,7 @@ As the defaults are lower, the MaxMessageSize must globally  be increased on
 both the client and the server:</p>
 <pre><code class="lang-json" name="appsettings.json">&quot;Grpc&quot;: {
   &quot;MaxMessageSize&quot;: 11000000
-}
+},
 </code></pre>
 <p>The measurement is performed with three types of payloads: &quot;Bloated&quot; with a byte
 array consisting only of zeros (Zero), &quot;Compressible&quot; with textual content

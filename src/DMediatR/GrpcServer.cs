@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication.Certificate;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Server.Kestrel.Https;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using ProtoBuf.Grpc.Server;
+using System.Net.Mime;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 
@@ -199,8 +201,22 @@ namespace DMediatR
             }
             _logger = app.Services.GetRequiredService<ILogger<X509Chain>>();
             LoadIntermediateCertificates(app.Services); // for IsClientCertificateValid
-            app.MapGet("/", () => "DMediatR gRPC endpoint");
+            var grpcOptions = app.Services.GetRequiredService<IOptions<GrpcOptions>>().Value;
+            if (grpcOptions.RemotesSvg ?? true)
+            {
+                app.MapGet("/remotes.svg", context => GetRemotesSvg(app.Services, context));
+            }
+            app.MapGet("/", () => ConsoleTitle);
             return app;
+        }
+
+        private static async Task GetRemotesSvg(IServiceProvider sp, HttpContext context)
+        {
+            var remotesGraph = sp.GetRequiredService<IRemotesGraph>();
+            var svg = await remotesGraph.GetSvgAsync();
+            context.Response.Clear();
+            context.Response.ContentType = MediaTypeNames.Image.Svg;
+            await context.Response.WriteAsync(svg);
         }
 
         /// <summary>

@@ -11,7 +11,7 @@ two scripts in the root directory:
 Script | Arguments | Usage Example
 : -- | : - | : -
 `start.ps1` | `profile1 [profile2 ...]` | `./start Monolith`
-`test.ps1` |  `[test selection]` | `./test =~ GetRemoteServerCert`
+`test.ps1` |  `[test selection]` | `./test =~ GetRemoteTemp`
 
 
 ## start.ps1
