@@ -498,6 +498,19 @@ references:
   isSpec: "True"
   fullName: DMediatR.GrpcOptions.MessagePackCompression
   nameWithType: GrpcOptions.MessagePackCompression
+- uid: DMediatR.GrpcOptions.OptionsMonitorEnabled
+  name: OptionsMonitorEnabled
+  href: api/DMediatR.GrpcOptions.html#DMediatR_GrpcOptions_OptionsMonitorEnabled
+  commentId: P:DMediatR.GrpcOptions.OptionsMonitorEnabled
+  fullName: DMediatR.GrpcOptions.OptionsMonitorEnabled
+  nameWithType: GrpcOptions.OptionsMonitorEnabled
+- uid: DMediatR.GrpcOptions.OptionsMonitorEnabled*
+  name: OptionsMonitorEnabled
+  href: api/DMediatR.GrpcOptions.html#DMediatR_GrpcOptions_OptionsMonitorEnabled_
+  commentId: Overload:DMediatR.GrpcOptions.OptionsMonitorEnabled
+  isSpec: "True"
+  fullName: DMediatR.GrpcOptions.OptionsMonitorEnabled
+  nameWithType: GrpcOptions.OptionsMonitorEnabled
 - uid: DMediatR.GrpcOptions.RemotesSvg
   name: RemotesSvg
   href: api/DMediatR.GrpcOptions.html#DMediatR_GrpcOptions_RemotesSvg
@@ -543,6 +556,19 @@ references:
   commentId: F:DMediatR.GrpcOptions.SectionName
   fullName: DMediatR.GrpcOptions.SectionName
   nameWithType: GrpcOptions.SectionName
+- uid: DMediatR.GrpcOptions.ServerCertificateWatcherEnabled
+  name: ServerCertificateWatcherEnabled
+  href: api/DMediatR.GrpcOptions.html#DMediatR_GrpcOptions_ServerCertificateWatcherEnabled
+  commentId: P:DMediatR.GrpcOptions.ServerCertificateWatcherEnabled
+  fullName: DMediatR.GrpcOptions.ServerCertificateWatcherEnabled
+  nameWithType: GrpcOptions.ServerCertificateWatcherEnabled
+- uid: DMediatR.GrpcOptions.ServerCertificateWatcherEnabled*
+  name: ServerCertificateWatcherEnabled
+  href: api/DMediatR.GrpcOptions.html#DMediatR_GrpcOptions_ServerCertificateWatcherEnabled_
+  commentId: Overload:DMediatR.GrpcOptions.ServerCertificateWatcherEnabled
+  isSpec: "True"
+  fullName: DMediatR.GrpcOptions.ServerCertificateWatcherEnabled
+  nameWithType: GrpcOptions.ServerCertificateWatcherEnabled
 - uid: DMediatR.GrpcPort
   name: GrpcPort
   href: api/DMediatR.GrpcPort.html

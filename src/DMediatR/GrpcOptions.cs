@@ -73,9 +73,21 @@ namespace DMediatR
 
         /// <summary>
         /// Whether to expose a /remotes.svg and to respond to and to forwards a
-        /// remote RemotesGraphRequest instance. True if not set.
+        /// remote RemotesGraphRequest instance. Defaults to true.
         /// </summary>
-        public bool? RemotesSvg { get; set; }
+        public bool RemotesSvg { get; set; } = true;
+
+        /// <summary>
+        /// Automatic restarting of the Grpc server application on server
+        /// certificate change can be disabled here. Defaults to true.
+        /// </summary>
+        public bool ServerCertificateWatcherEnabled { get; set; } = true;
+
+        /// <summary>
+        /// Automatic restarting of the Grpc server application on
+        /// appsettings.json change can be disabled here. Defaults to true.
+        /// </summary>
+        public bool OptionsMonitorEnabled { get; set; } = true;
 
         /// <summary>
         /// GrpcChannel.ForAddress expects a GrpcChannelOptions object for

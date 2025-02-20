@@ -136,7 +136,7 @@ namespace DMediatR
                     serverOptions.Limits.Http2.InitialConnectionWindowSize = (int)grpcOptions.MaxMessageSize;
                 }
             });
-            builder.Services.AddHostedService<ServerCertificateFileWatcher>();
+            builder.Services.AddHostedService<ServerCertificateOptionsWatcher>();
 
             return builder;
         }
@@ -202,7 +202,7 @@ namespace DMediatR
             _logger = app.Services.GetRequiredService<ILogger<X509Chain>>();
             LoadIntermediateCertificates(app.Services); // for IsClientCertificateValid
             var grpcOptions = app.Services.GetRequiredService<IOptions<GrpcOptions>>().Value;
-            if (grpcOptions.RemotesSvg ?? true)
+            if (grpcOptions.RemotesSvg)
             {
                 app.MapGet("/remotes.svg", context => GetRemotesSvg(app.Services, context));
             }

@@ -4,10 +4,10 @@
     {
         public Guid CorrelationGuid { get; init; } = Guid.NewGuid();
 
-        // Can't use theMicrosoft.Msagl.Drawing as accumulator directly as it is
-        // not serializable with MessagePack (although it basically seems
-        // intended to be according to the used [NonSerialized] attribute),
-        // therefore use declarative shallow objects:
+        // Can't directly use the Microsoft.Msagl.Drawing.Graph object as
+        // accumulator, as it is not serializable with MessagePack (although it
+        // basically seems intended to be according to the used [NonSerialized]
+        // attribute), therefore use declarative shallow objects:
         public readonly record struct Node(string Id);
         public readonly record struct Edge(string SourceId, string Label, string TargetId);
 

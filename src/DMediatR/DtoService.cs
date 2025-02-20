@@ -41,7 +41,7 @@ namespace DMediatR
             // Ignore a RemotesGraphRequest when RemotesSvg is not configured by
             // returning the request unchanged without forwarding it to the
             // RemotesGraphHandler.
-            if (requestDto.Type == typeof(RemotesGraphRequest) && !(_grpcOptions.RemotesSvg ?? true))
+            if (requestDto.Type == typeof(RemotesGraphRequest) && !_grpcOptions.RemotesSvg)
             {
                 return requestDto;
             }

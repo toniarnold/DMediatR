@@ -327,20 +327,20 @@ None|Lz4Block|Lz4BlockArray</p>
 
 
 
-  <a id="DMediatR_GrpcOptions_RemotesSvg_" data-uid="DMediatR.GrpcOptions.RemotesSvg*"></a>
+  <a id="DMediatR_GrpcOptions_OptionsMonitorEnabled_" data-uid="DMediatR.GrpcOptions.OptionsMonitorEnabled*"></a>
 
-  <h3 id="DMediatR_GrpcOptions_RemotesSvg" data-uid="DMediatR.GrpcOptions.RemotesSvg">
-  RemotesSvg
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  <h3 id="DMediatR_GrpcOptions_OptionsMonitorEnabled" data-uid="DMediatR.GrpcOptions.OptionsMonitorEnabled">
+  OptionsMonitorEnabled
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L90"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Whether to expose a /remotes.svg and to respond to and to forwards a
-remote RemotesGraphRequest instance. True if not set.</p>
+  <div class="markdown level1 summary"><p>Automatic restarting of the Grpc server application on
+appsettings.json change can be disabled here. Defaults to true.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool? RemotesSvg { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool OptionsMonitorEnabled { get; set; }</code></pre>
   </div>
 
 
@@ -349,7 +349,40 @@ remote RemotesGraphRequest instance. True if not set.</p>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>?</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="DMediatR_GrpcOptions_RemotesSvg_" data-uid="DMediatR.GrpcOptions.RemotesSvg*"></a>
+
+  <h3 id="DMediatR_GrpcOptions_RemotesSvg" data-uid="DMediatR.GrpcOptions.RemotesSvg">
+  RemotesSvg
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether to expose a /remotes.svg and to respond to and to forwards a
+remote RemotesGraphRequest instance. Defaults to true.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RemotesSvg { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
   </dl>
 
@@ -415,6 +448,39 @@ supported: gzip</p>
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.compression.compressionlevel">CompressionLevel</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="DMediatR_GrpcOptions_ServerCertificateWatcherEnabled_" data-uid="DMediatR.GrpcOptions.ServerCertificateWatcherEnabled*"></a>
+
+  <h3 id="DMediatR_GrpcOptions_ServerCertificateWatcherEnabled" data-uid="DMediatR.GrpcOptions.ServerCertificateWatcherEnabled">
+  ServerCertificateWatcherEnabled
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L84"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Automatic restarting of the Grpc server application on server
+certificate change can be disabled here. Defaults to true.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ServerCertificateWatcherEnabled { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
   </dl>
 
