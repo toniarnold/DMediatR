@@ -18,7 +18,7 @@ namespace DMediatR.Tests
             var cfg = Configuration.Get();
             ServiceCollection sc = new();
             sc.AddDMediatR(cfg)
-              .AddLogging(builder => builder.AddConsole());
+              .AddLogging(builder => builder.AddNUnit());
 
             // Replace the read config with this one for generating the SVG:
             var host = new HostOptions() { Host = "source", Port = 8081 };

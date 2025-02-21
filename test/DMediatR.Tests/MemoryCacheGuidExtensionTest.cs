@@ -15,7 +15,7 @@ namespace DMediatR.Tests
             var cfg = Configuration.Get();
             ServiceCollection sc = new();
             _serviceProvider = sc.AddDMediatR(cfg)
-                .AddLogging(builder => builder.AddConsole())
+                .AddLogging(builder => builder.AddNUnit())
                 .BuildServiceProvider();
         }
 
