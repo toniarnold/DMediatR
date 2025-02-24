@@ -72,6 +72,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/DMediatR.GrpcException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/DMediatR.GrpcException.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/DMediatR.GrpcOptions.yml",
       "output": {
         ".html": {

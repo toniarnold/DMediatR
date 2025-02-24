@@ -128,10 +128,10 @@ run with 8 parallel tasks for 5 seconds:</p>
 <p>As the request overhead appears to be very high, the opposite extreme for the 10
 MB payload datapoint is most relevant for evaluating the compression options.
 As the defaults are lower, the MaxMessageSize must globally  be increased on
-both the client and the server:</p>
-<pre><code class="lang-json" name="appsettings.json">&quot;Grpc&quot;: {
-  &quot;MaxMessageSize&quot;: 11000000
-},
+both the client and the server with:</p>
+<pre><code class="lang-javascript">&quot;Grpc&quot;: {
+    &quot;MaxMessageSize&quot;: 11000000,
+}
 </code></pre>
 <p>The measurement is performed with three types of payloads: &quot;Bloated&quot; with a byte
 array consisting only of zeros (Zero), &quot;Compressible&quot; with textual content

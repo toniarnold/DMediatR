@@ -1,5 +1,7 @@
-* Make the left-hand side "test" of the test selection in test.ps1 optional.
+* Make the left-hand side "test" of the test selection in test.ps1 optional
 
-* New /remotes.svg endpoint producing a network topology graph of the connected remotes.
+* New /remotes.svg endpoint producing a network topology graph of the connected remotes
 
-* OptionsMonitor for restarting the node when any appsettings.json changed.
+* OptionsMonitor for restarting the node when any appsettings.json changed
+
+* Transmit exception details to the caller using Grpc.StatusProto

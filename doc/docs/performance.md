@@ -44,9 +44,13 @@ GrpcRaw Text Data: 0 B/Sec Pings: 41.80/Sec Count:216
 As the request overhead appears to be very high, the opposite extreme for the 10
 MB payload datapoint is most relevant for evaluating the compression options.
 As the defaults are lower, the MaxMessageSize must globally  be increased on
-both the client and the server:
+both the client and the server with:
 
-[!code-json[appsettings.json](../../src/DMediatRNode/appsettings.json?name=messagsize)]
+```javascript
+"Grpc": {
+    "MaxMessageSize": 11000000,
+}
+```
 
 The measurement is performed with three types of payloads: "Bloated" with a byte
 array consisting only of zeros (Zero), "Compressible" with textual content

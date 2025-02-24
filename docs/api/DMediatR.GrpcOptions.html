@@ -192,15 +192,17 @@ configuration with single values.</p>
 
   <h3 id="DMediatR_GrpcOptions_EnableDetailedErrors" data-uid="DMediatR.GrpcOptions.EnableDetailedErrors">
   EnableDetailedErrors
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>GrpcServiceOptions.EnableDetailedErrors</p>
+  <div class="markdown level1 summary"><p>GrpcServiceOptions.EnableDetailedErrors and also whether to include
+exception details on the server in the RpcException. Defaults to
+false.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool? EnableDetailedErrors { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool EnableDetailedErrors { get; set; }</code></pre>
   </div>
 
 
@@ -209,7 +211,7 @@ configuration with single values.</p>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>?</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
     <dd></dd>
   </dl>
 
@@ -224,7 +226,7 @@ configuration with single values.</p>
 
   <h3 id="DMediatR_GrpcOptions_MaxLatency" data-uid="DMediatR.GrpcOptions.MaxLatency">
   MaxLatency
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Duration the CorrelationGuid of a ICorrelatedNotification should
@@ -260,7 +262,7 @@ adjusted to specific workloads here.</p>
 
   <h3 id="DMediatR_GrpcOptions_MaxMessageSize" data-uid="DMediatR.GrpcOptions.MaxMessageSize">
   MaxMessageSize
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L30"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Aligns
@@ -296,7 +298,7 @@ GrpcChannelOptions.MaxSendMessageSize</p>
 
   <h3 id="DMediatR_GrpcOptions_MessagePackCompression" data-uid="DMediatR.GrpcOptions.MessagePackCompression">
   MessagePackCompression
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L58"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Proxy for static MessagePack.MessagePackCompression. Ensure that all
@@ -331,7 +333,7 @@ None|Lz4Block|Lz4BlockArray</p>
 
   <h3 id="DMediatR_GrpcOptions_OptionsMonitorEnabled" data-uid="DMediatR.GrpcOptions.OptionsMonitorEnabled">
   OptionsMonitorEnabled
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L90"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L92"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Automatic restarting of the Grpc server application on
@@ -364,10 +366,10 @@ appsettings.json change can be disabled here. Defaults to true.</p>
 
   <h3 id="DMediatR_GrpcOptions_RemotesSvg" data-uid="DMediatR.GrpcOptions.RemotesSvg">
   RemotesSvg
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L80"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Whether to expose a /remotes.svg and to respond to and to forwards a
+  <div class="markdown level1 summary"><p>Whether to expose a /remotes.svg and whether to respond to and forward a
 remote RemotesGraphRequest instance. Defaults to true.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -397,7 +399,7 @@ remote RemotesGraphRequest instance. Defaults to true.</p>
 
   <h3 id="DMediatR_GrpcOptions_ResponseCompressionAlgorithm" data-uid="DMediatR.GrpcOptions.ResponseCompressionAlgorithm">
   ResponseCompressionAlgorithm
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L45"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Header grpc-accept-encoding compression algorithm natively
@@ -430,7 +432,7 @@ supported: gzip</p>
 
   <h3 id="DMediatR_GrpcOptions_ResponseCompressionLevel" data-uid="DMediatR.GrpcOptions.ResponseCompressionLevel">
   ResponseCompressionLevel
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L50"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The compress level used to compress messages sent from the server.</p>
@@ -462,7 +464,7 @@ supported: gzip</p>
 
   <h3 id="DMediatR_GrpcOptions_ServerCertificateWatcherEnabled" data-uid="DMediatR.GrpcOptions.ServerCertificateWatcherEnabled">
   ServerCertificateWatcherEnabled
-  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L84"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/toniarnold/DMediatR/blob/main/src/DMediatR/GrpcOptions.cs/#L86"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Automatic restarting of the Grpc server application on server

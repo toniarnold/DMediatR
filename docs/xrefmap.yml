@@ -440,6 +440,44 @@ references:
   isSpec: "True"
   fullName: DMediatR.DtoService.SendAsync
   nameWithType: DtoService.SendAsync
+- uid: DMediatR.GrpcException
+  name: GrpcException
+  href: api/DMediatR.GrpcException.html
+  commentId: T:DMediatR.GrpcException
+  fullName: DMediatR.GrpcException
+  nameWithType: GrpcException
+- uid: DMediatR.GrpcException.#ctor(Grpc.Core.RpcException)
+  name: GrpcException(RpcException)
+  href: api/DMediatR.GrpcException.html#DMediatR_GrpcException__ctor_Grpc_Core_RpcException_
+  commentId: M:DMediatR.GrpcException.#ctor(Grpc.Core.RpcException)
+  name.vb: New(RpcException)
+  fullName: DMediatR.GrpcException.GrpcException(Grpc.Core.RpcException)
+  fullName.vb: DMediatR.GrpcException.New(Grpc.Core.RpcException)
+  nameWithType: GrpcException.GrpcException(RpcException)
+  nameWithType.vb: GrpcException.New(RpcException)
+- uid: DMediatR.GrpcException.#ctor*
+  name: GrpcException
+  href: api/DMediatR.GrpcException.html#DMediatR_GrpcException__ctor_
+  commentId: Overload:DMediatR.GrpcException.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: DMediatR.GrpcException.GrpcException
+  fullName.vb: DMediatR.GrpcException.New
+  nameWithType: GrpcException.GrpcException
+  nameWithType.vb: GrpcException.New
+- uid: DMediatR.GrpcException.StackTrace
+  name: StackTrace
+  href: api/DMediatR.GrpcException.html#DMediatR_GrpcException_StackTrace
+  commentId: P:DMediatR.GrpcException.StackTrace
+  fullName: DMediatR.GrpcException.StackTrace
+  nameWithType: GrpcException.StackTrace
+- uid: DMediatR.GrpcException.StackTrace*
+  name: StackTrace
+  href: api/DMediatR.GrpcException.html#DMediatR_GrpcException_StackTrace_
+  commentId: Overload:DMediatR.GrpcException.StackTrace
+  isSpec: "True"
+  fullName: DMediatR.GrpcException.StackTrace
+  nameWithType: GrpcException.StackTrace
 - uid: DMediatR.GrpcOptions
   name: GrpcOptions
   href: api/DMediatR.GrpcOptions.html

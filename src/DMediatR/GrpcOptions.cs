@@ -14,9 +14,11 @@ namespace DMediatR
         public const string SectionName = "DMediatR:Grpc";
 
         /// <summary>
-        /// GrpcServiceOptions.EnableDetailedErrors
+        /// GrpcServiceOptions.EnableDetailedErrors and also whether to include
+        /// exception details on the server in the RpcException. Defaults to
+        /// false.
         /// </summary>
-        public bool? EnableDetailedErrors { get; set; }
+        public bool EnableDetailedErrors { get; set; } = false;
 
         /// <summary>
         /// Aligns
@@ -72,7 +74,7 @@ namespace DMediatR
         }
 
         /// <summary>
-        /// Whether to expose a /remotes.svg and to respond to and to forwards a
+        /// Whether to expose a /remotes.svg and whether to respond to and forward a
         /// remote RemotesGraphRequest instance. Defaults to true.
         /// </summary>
         public bool RemotesSvg { get; set; } = true;

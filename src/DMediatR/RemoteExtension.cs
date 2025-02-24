@@ -82,6 +82,10 @@ namespace DMediatR
             }
             catch (RpcException defaultPortEx)
             {
+                if (defaultPortEx.StatusCode != StatusCode.Unknown)
+                {
+                    throw new GrpcException(defaultPortEx);  // The connection itself was successful.
+                }
                 // Enforce reconnect
                 provider.Remote.ChannelPool.Remove(address);
                 provider.Remote.ChannelPool.Remove(oldAddress);
@@ -161,6 +165,10 @@ namespace DMediatR
             }
             catch (RpcException defaultPortEx)
             {
+                if (defaultPortEx.StatusCode != StatusCode.Unknown)
+                {
+                    throw new GrpcException(defaultPortEx);  // The connection itself was successful.
+                }
                 // Enforce reconnect
                 provider.Remote.ChannelPool.Remove(address);
                 provider.Remote.ChannelPool.Remove(oldAddress);

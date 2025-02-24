@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Caching.Memory;
+﻿using Google.Protobuf.WellKnownTypes;
+using Google.Rpc;
+using Grpc.Core;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using ProtoBuf.Grpc;
 
@@ -47,18 +50,25 @@ namespace DMediatR
             }
             else
             {
-                var request = _serializer.Deserialize(requestDto.Type, requestDto.Bytes);
-                var responseType = ((IBaseRequest)request).GetResponseType();
-                if (responseType != null)
+                try
                 {
-                    var response = await _mediator.Send(request);
-                    var responseDto = new Dto() { Type = responseType, Bytes = _serializer.Serialize(response!) };
-                    return responseDto;
+                    var request = _serializer.Deserialize(requestDto.Type, requestDto.Bytes);
+                    var responseType = ((IBaseRequest)request).GetResponseType();
+                    if (responseType != null)
+                    {
+                        var response = await _mediator.Send(request);
+                        var responseDto = new Dto() { Type = responseType, Bytes = _serializer.Serialize(response!) };
+                        return responseDto;
+                    }
+                    else
+                    {
+                        await _mediator.Send(request);
+                        return new Dto();   // ≙ null
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    await _mediator.Send(request);
-                    return new Dto();   // ≙ null
+                    throw NewRpcException(ex);
                 }
             }
         }
@@ -75,16 +85,62 @@ namespace DMediatR
         /// <returns></returns>
         public async Task PublishAsync(Dto notificationDto, CallContext context = default)
         {
-            var notification = _serializer.Deserialize(notificationDto.Type, notificationDto.Bytes);
-            if (notification is not ICorrelatedNotification) // from RemoteExtension.PublishRemote
+            try
             {
-                throw new ArgumentException($"Expected ICorrelatedNotification, but got {notification.GetType()}");
+                var notification = _serializer.Deserialize(notificationDto.Type, notificationDto.Bytes);
+                if (notification is not ICorrelatedNotification) // from RemoteExtension.PublishRemote
+                {
+                    throw new ArgumentException($"Expected ICorrelatedNotification, but got {notification.GetType()}");
+                }
+                if (!(notification is RenewNotification && _certOptions.RenewFirewallEnabled) &&
+                   (!_cache.HaveSeen(((ICorrelatedNotification)notification).CorrelationGuid, _grpcOptions.MaxLatency)))
+                {
+                    await _mediator.Publish(notification);
+                }
             }
-            if (!(notification is RenewNotification && _certOptions.RenewFirewallEnabled) &&
-               (!_cache.HaveSeen(((ICorrelatedNotification)notification).CorrelationGuid, _grpcOptions.MaxLatency)))
+            catch (Exception ex)
             {
-                await _mediator.Publish(notification);
+                throw NewRpcException(ex);
             }
+        }
+
+        /// <summary>
+        /// Create an RpcException from the Exception including stack trace
+        /// details if EnableDetailedErrors is configured.
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <returns></returns>
+        private RpcException NewRpcException(Exception ex)
+        {
+            Google.Rpc.Status? status;
+            if (_grpcOptions.EnableDetailedErrors)
+            {
+                status = new Google.Rpc.Status
+                {
+                    Code = (int)Code.Internal,
+                    Message = ex.Message,
+                    Details =
+                        {
+                            Any.Pack(new ErrorInfo
+                            {
+                                Domain = "DMediatR",
+                                Reason = ex.Message,
+                                Metadata =
+                                    {
+                                        { "StackTrace", ex.StackTrace }
+                                    }
+                            })
+                        }
+                };
+            }
+            else
+            {
+                status = new Google.Rpc.Status
+                {
+                    Code = (int)Code.Internal   // suffices to distinct it from TLS errors
+                };
+            }
+            return status.ToRpcException();
         }
     }
 }
