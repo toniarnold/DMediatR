@@ -29,8 +29,7 @@ deployment, it can be started there locally with `./Iot`.
 The
 [appsettings.Iot.json](https://github.com/toniarnold/DMediatR/blob/main/test/DMediatR.Tests/appsettings.Iot.json)
 in `DMediatR.Tests` points to the Raspberry PI host named `rpi`. It is written
-with a trailing dot to force Windows to actually query the DNS server (a
-Pi-hole[^pihole] with its `/etc/hosts`):
+with a trailing dot to force Windows to actually query the Linux DNS server assigned by DHCP:
 
 [!code-javascript[IotTest.cs](../../test/DMediatR.Tests/appsettings.Iot.json?name=remotes)]
 
@@ -51,8 +50,7 @@ using the `Iot.Device.Bindings` NuGet package[^bindings]. On the PI, the request
 is handled locally in the
 [TempHandler.cs](https://github.com/toniarnold/DMediatR/blob/main/src/Iot/TempHandler.cs)
 and the result is sent back. Then, for plausibility, this temperature can
-manually be compared to what e.g. the PI-hole [admin
-page](http://rpi.:8081/admin/index.php) reports:
+manually be compared to what e.g. `vcgencmd measure_temp` in an SSH shell reports:
 
 ```text
  CpuTemp of https://rpi.:18001/ is 46.7 ℃.
@@ -106,7 +104,5 @@ The graph produced by the original `rpi` node now displays the second node:
 [^dotnet]: `./dotnet-install.sh --channel 8.0` with a [scripted install](https://learn.microsoft.com/en-us/dotnet/core/install/linux-scripted-manual#scripted-install)
 
 [^selfcontained]: [Deploying a self-contained app](https://learn.microsoft.com/en-us/dotnet/iot/deployment#deploying-a-self-contained-app)
-
-[^pihole]: [https://pi-hole.net](https://pi-hole.net)
 
 [^bindings]: [Iot.Device.Bindings](https://www.nuget.org/packages/Iot.Device.Bindings/)
